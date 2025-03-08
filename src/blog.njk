@@ -1,0 +1,44 @@
+---
+title: Blog
+layout: base
+pagination:
+  data: collections.posts
+  size: 10
+  reverse: true
+  alias: posts
+---
+
+
+{% for post in pagination.items %}
+{% if post.data.published %}
+<div class="py-4">
+  <p>
+    <span class="text-2xl sm:text-4xl font-bold hover:text-blue-700 leading-tight"><a href="{{ post.url }}">{{ post.data.title }}</a></span>
+    <span class="text-base sm:text-2xl font-normal"> &middot; {{ post.content | safe }} min read</span>
+  </p>
+  <em>{{ post.date }}</em>
+  <p class="mt-4">{{ post.data.post_excerpt }}...</p>
+  
+  <div class="row">
+  <div class="column">
+    {% for link in links %}
+    <div class="py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex-1 pr-4">
+          <h3>
+            <i class="{{ link.icon }} fa-fw icon-link"></i>
+            <a href="{{ link.url }}" {% if link.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+              {{ link.text }}
+            </a>
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+</div>
+
+{% endif %}
+{% endfor %}
