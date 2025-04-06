@@ -5,19 +5,23 @@
   <title>{{ title or "My Website" }}</title>
   <link rel="stylesheet" href="/assets/css/tailwind-built.css">
 </head>
-<body class="container mx-auto p-6 font-sans bg-primary text-white">
-  <header class="text-center mb-8">
-    <img src="/assets/images/profile.png" alt="that's me!" class="w-24 h-24 rounded-full mx-auto mb-4">
-    <h1 class="text-3xl font-bold mb-2">Sanjay Nair</h1>
-    <p class="text-lg">Software Engineering Leader</p>
+<body class="container mx-auto p-2 font-sans bg-primary text-white">
+  <header class="flex items-center justify-center space-x-8 mb-4">
+    <div class="p-1 rounded-full bg-accent">
+      <img src="/assets/images/profile.png" alt="that's me!" class="w-48 h-48 rounded-full">
+    </div>
+    <div>
+      <h1 class="text-3xl font-bold mb-2">Sanjay Nair</h1>
+      <p class="text-lg">Software Engineering Leader</p>
+    </div>
   </header>
 
-  <nav class="text-center mb-12">
+  <nav class="text-center mb-8">
     <ul class="flex justify-center space-x-4">
-      <li><a href="/" class="text-primary-blue hover:text-accent">Home</a></li>
-      <li><a href="/blog/" class="text-primary-blue hover:text-accent">Blog</a></li>
-      <li><a href="/about/" class="text-primary-blue hover:text-accent">About</a></li>
-      <li><a href="/contact/" class="text-primary-blue hover:text-accent">Contact</a></li>
+      <li><a href="/" class="text-xl font-bold text-accent hover:text-primary-blue">Home</a></li>
+      <li><a href="/blog/" class="text-xl font-bold text-accent hover:text-primary-blue">Blog</a></li>
+      <li><a href="/about/" class="text-xl font-bold text-accent hover:text-primary-blue">About</a></li>
+      <li><a href="/contact/" class="text-xl font-bold text-accent hover:text-primary-blue">Contact</a></li>
     </ul>
   </nav>
 

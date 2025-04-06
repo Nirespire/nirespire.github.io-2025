@@ -6,3 +6,7 @@
 body {
   @apply font-sans bg-primary text-white;
 }
+
+a {
+  @apply text-accent font-bold hover:text-primary-blue text-lg;
+}
