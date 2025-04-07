@@ -3,12 +3,24 @@ title: Blog
 layout: layouts/base.njk
 ---
 
-<h1 class="text-3xl font-bold mb-6 text-center">Blog</h1>
+<h1 class="text-3xl font-bold mb-12 text-center">Blog</h1>
 
-<div class="space-y-8">
+<div class="mb-12 max-w-2xl mx-auto px-4">
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search posts..." 
+    class="w-full rounded-lg bg-gray-800 text-white mb-2"
+  >
+  <div class="text-right">
+    <a href="/tags" class="text-accent hover:underline">View Tag Cloud →</a>
+  </div>
+</div>
+
+<div class="space-y-8" id="blogPosts">
   {% for post in collections.blog | reverse %}
-    <article class="border-b border-gray-700 pb-4">
-      <h2 class="text-2xl font-semibold text-accent">
+    <article class="border-b border-gray-700 pb-4 blog-post">
+      <h2 class="text-2xl font-semibold text-accent post-title">
         <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h2>
       <p class="text-sm text-gray-400 mb-1">
@@ -17,11 +29,31 @@ layout: layouts/base.njk
       <p class="text-sm text-primary-blue mb-2">
         Tags: 
         {% for tag in post.data.tags %}
-          <span class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs">{{ tag }}</span>
+          <a href="/tags/{{ tag }}" class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs post-tag hover:bg-gray-700">{{ tag }}</a>
         {% endfor %}
       </p>
-      <p>{{ post.templateContent | striptags | truncate(150) }}...</p>
+      <p class="post-content">{{ post.templateContent | striptags | truncate(150) }}...</p>
       <a href="{{ post.url }}" class="text-accent hover:underline">Read more →</a>
     </article>
   {% endfor %}
 </div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const posts = document.getElementsByClassName('blog-post');
+    
+    Array.from(posts).forEach(post => {
+      const title = post.querySelector('.post-title').textContent.toLowerCase();
+      const content = post.querySelector('.post-content').textContent.toLowerCase();
+      const tags = Array.from(post.querySelectorAll('.post-tag')).map(tag => tag.textContent.toLowerCase());
+      
+      const isVisible = 
+        title.includes(searchTerm) || 
+        content.includes(searchTerm) ||
+        tags.some(tag => tag.includes(searchTerm));
+      
+      post.style.display = isVisible ? 'block' : 'none';
+    });
+  });
+</script>

@@ -2,28 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
   <title>{{ title or "My Website" }}</title>
   <link rel="stylesheet" href="/assets/css/tailwind-built.css">
 </head>
 <body class="container mx-auto p-2 font-sans bg-primary text-white">
-  <header class="flex items-center justify-center space-x-8 mb-4">
-    <div class="p-1 rounded-full bg-accent">
-      <img src="/assets/images/profile.png" alt="that's me!" class="w-48 h-48 rounded-full">
-    </div>
-    <div>
-      <h1 class="text-3xl font-bold mb-2">Sanjay Nair</h1>
-      <p class="text-lg">Software Engineering Leader</p>
-    </div>
+  <header class="container mx-auto px-4 py-8">
+    <nav class="flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold text-accent">Sanjay Nair</a>
+      <div class="space-x-4">
+        <a href="/blog" class="text-primary-text hover:text-accent">Blog</a>
+        <a href="/contact" class="text-primary-text hover:text-accent">Contact</a>
+      </div>
+    </nav>
   </header>
-
-  <nav class="text-center mb-8">
-    <ul class="flex justify-center space-x-4">
-      <li><a href="/" class="text-xl font-bold text-accent hover:text-primary-blue">Home</a></li>
-      <li><a href="/blog/" class="text-xl font-bold text-accent hover:text-primary-blue">Blog</a></li>
-      <li><a href="/about/" class="text-xl font-bold text-accent hover:text-primary-blue">About</a></li>
-      <li><a href="/contact/" class="text-xl font-bold text-accent hover:text-primary-blue">Contact</a></li>
-    </ul>
-  </nav>
 
   <main>
     {{ content | safe }}

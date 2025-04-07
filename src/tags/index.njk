@@ -1,0 +1,19 @@
+---
+title: Tags
+layout: layouts/base.njk
+---
+
+<h1 class="text-3xl font-bold mb-12 text-center">Tag Cloud</h1>
+
+<div class="mb-12 text-center" id="tagCloud">
+  {% for tag, posts in collections | dichotomize %}
+    {% if tag != "all" and tag != "nav" and tag != "post" and tag != "posts" and tag != "tagList" and tag != "blog" %}
+      {% set postCount = posts | length %}
+      <a href="/tags/{{ tag }}" 
+         class="inline-block m-2 text-accent hover:underline"
+         style="font-size: {{ (postCount * 0.5) + 1 }}rem">
+        {{ tag }} ({{ postCount }})
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>

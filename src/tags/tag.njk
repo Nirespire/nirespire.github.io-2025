@@ -1,0 +1,39 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tagName
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+    - blog
+permalink: /tags/{{ tagName }}/
+layout: layouts/base.njk
+eleventyComputed:
+  title: "Posts tagged with '{{ tagName }}'"
+---
+
+<h1 class="text-3xl font-bold mb-12 text-center">Posts tagged with '{{ tagName }}'</h1>
+
+<div class="space-y-8 max-w-2xl mx-auto px-4">
+  {% set taggedPosts = collections[tagName] %}
+  {% for post in taggedPosts | reverse %}
+    <article class="border-b border-gray-700 pb-4">
+      <h2 class="text-2xl font-semibold text-accent">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+      </h2>
+      <p class="text-sm text-gray-400 mb-2">
+        {{ post.date | date("MMMM d, yyyy") }} • {{ post.data.readingTime }}
+      </p>
+      <p>{{ post.templateContent | striptags | truncate(150) }}...</p>
+      <a href="{{ post.url }}" class="text-accent hover:underline">Read more →</a>
+    </article>
+  {% endfor %}
+</div>
+
+<div class="text-center mt-8">
+  <a href="/tags" class="text-accent hover:underline">← Back to Tag Cloud</a>
+</div>

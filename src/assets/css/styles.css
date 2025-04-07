@@ -10,3 +10,21 @@ body {
 a {
   @apply text-accent font-bold hover:text-primary-blue text-lg;
 }
+
+#searchInput {
+  @apply text-xl py-4 px-8;
+  @apply border-2 border-accent;
+  @apply transition-all duration-200;
+  @apply bg-gray-900;
+  @apply shadow-lg;
+}
+
+#searchInput:focus {
+  @apply border-primary-blue;
+  box-shadow: 0 0 15px theme('colors.accent');
+  @apply bg-gray-800;
+}
+
+#searchInput::placeholder {
+  @apply text-gray-500;
+}

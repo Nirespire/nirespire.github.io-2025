@@ -8,7 +8,7 @@ module.exports = {
         colors: {
           primary: {
             DEFAULT: "#2D2D2D", // dark grey
-            blue: "#1E3A8A"     // dark blue
+            blue: "#3B82F6"     // brighter blue (tailwind blue-500)
           },
           accent: "#F97316"     // orange accent
         },
@@ -19,4 +19,3 @@ module.exports = {
     },
     plugins: []
   };
-  
