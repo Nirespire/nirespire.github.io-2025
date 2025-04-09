@@ -5,47 +5,58 @@ title: Home
 <div class="max-w-2xl mx-auto">
   <div class="flex justify-center mb-6">
     <div class="p-1 rounded-full bg-accent border-4 border-orange-500">
+      <!-- Profile image is above the fold, so no lazy loading -->
       <img src="/assets/images/profile.png" alt="Sanjay Nair" class="rounded-full w-48 h-48 object-cover">
     </div>
   </div>
   <p class="mb-4">
-    Hello! I'm Sanjay Nair. I am a software engineering leader based in Atlanta, Georgia. I enjoy working with
-    full stack teams on value driven projects.
+    Hi, I'm Sanjay Nair — a software engineering leader based in Atlanta, Georgia.
   </p>
   <p class="mb-4">
-    With experience in various technologies and leadership roles, I focus on delivering high-quality software solutions while mentoring and growing engineering teams.
+    I'm passionate about leading full-stack teams and delivering value-driven, high-quality software solutions. Over
+    the years, I've led engineering teams across a range of technologies and helped foster cultures of growth,
+    mentorship, and collaboration.
+  </p>
+  <p class="mb-4">
+    When I'm not coding or coaching, you'll find me reading, writing, or speaking on topics I care about.
   </p>
 </div>
 
-<p class="flex text-center space-x-4"> In my spare time I enjoy reading, writing, and public speaking.</p>
+<hr class="my-12 mx-4 border-gray-700">
 
-    <hr class="my-12 mx-4 border-gray-700">
+<section class="mt-8 p-4 bg-primary-dark rounded-lg">
+  <h2 class="text-2xl font-bold text-accent mb-4">Latest Post</h2>
+  {% set latestPost = collections.blog | reverse | first %}
+  {% if latestPost %}
+  <article class="border-b border-gray-700 pb-4 blog-post">
+    <h2 class="text-2xl font-semibold text-accent post-title">
+      <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a>
+    </h2>
+    <p class="text-sm text-gray-400 mb-1">
+      {{ latestPost.date | date("MMMM d, yyyy") }} {% if latestPost.data.readingTime %}• {{ latestPost.data.readingTime }}{% endif %}
+    </p>
+    <p class="text-sm text-primary-blue mb-2">
+      Tags:
+      {% for tag in latestPost.data.tags %}
+      {% if tag !== "blog" %}
+      <a href="/tags/{{ tag }}"
+        class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs post-tag hover:bg-gray-700">{{ tag }}</a>
+      {% endif %}
+      {% endfor %}
+    </p>
+    {% if latestPost.data.coverImage %}
+      <img src="{{ latestPost.data.coverImage }}" 
+           alt="{{ latestPost.data.title }}" 
+           class="w-full h-48 object-cover mb-4" 
+           loading="lazy" 
+           decoding="async">
+    {% endif %}
+    <p class="post-content">{{ latestPost.templateContent | striptags | truncate(150) }}...</p>
+    <a href="{{ latestPost.url }}" class="text-accent hover:underline">Read more →</a>
+  </article>
+  {% endif %}
+</section>
 
-    <section class="mt-8 p-4 bg-primary-dark rounded-lg">
-        <h2 class="text-2xl font-bold text-accent mb-4">Latest Post</h2>
-        {% set latestPost = collections.blog | reverse | first %}
-        {% if latestPost %}
-        <article class="border-b border-gray-700 pb-4 blog-post">
-            <h2 class="text-2xl font-semibold text-accent post-title">
-              <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a>
-            </h2>
-            <p class="text-sm text-gray-400 mb-1">
-              {{ latestPost.date | date("MMMM d, yyyy") }} • {{ latestPost.data.readingTime }}
-            </p>
-            <p class="text-sm text-primary-blue mb-2">
-              Tags: 
-              {% for tag in latestPost.data.tags %}
-                {% if tag !== "blog" %}
-                  <a href="/tags/{{ tag }}" class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs post-tag hover:bg-gray-700">{{ tag }}</a>
-                {% endif %}
-              {% endfor %}
-            </p>
-            <p class="post-content">{{ latestPost.templateContent | striptags | truncate(150) }}...</p>
-            <a href="{{ latestPost.url }}" class="text-accent hover:underline">Read more →</a>
-          </article>
-        {% endif %}
-      </section>
-
-      <footer class="mt-12 text-center text-gray-400 pb-8">
-        Made with <span class="text-red-500">❤️</span> by Sanjay Nair
-      </footer>
+<footer class="mt-12 text-center text-gray-400 pb-8">
+  Made with <span class="text-red-500">❤️</span> by Sanjay Nair
+</footer>

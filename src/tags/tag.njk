@@ -19,15 +19,23 @@ eleventyComputed:
 <h1 class="text-3xl font-bold mb-12 text-center">Posts tagged with '{{ tagName }}'</h1>
 
 <div class="space-y-8 max-w-2xl mx-auto px-4">
-  {% set taggedPosts = collections[tagName] %}
-  {% for post in taggedPosts | reverse %}
-    <article class="border-b border-gray-700 pb-4">
+  {% set taggedPosts = collections[tagName] | reverse %}
+  {% for post in taggedPosts %}
+    <article class="border-b border-gray-700 pb-4 opacity-0 transition-opacity duration-300" data-post-id="{{ loop.index }}">
       <h2 class="text-2xl font-semibold text-accent">
         <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h2>
       <p class="text-sm text-gray-400 mb-2">
-        {{ post.date | date("MMMM d, yyyy") }} • {{ post.data.readingTime }}
+        {{ post.date | date("MMMM d, yyyy") }}
+        {% if post.data.readingTime %} • {{ post.data.readingTime }}{% endif %}
       </p>
+      {% if post.data.coverImage %}
+        <img src="{{ post.data.coverImage }}" 
+             alt="{{ post.data.title }}" 
+             class="w-full h-48 object-cover mb-4" 
+             loading="lazy" 
+             decoding="async">
+      {% endif %}
       <p>{{ post.templateContent | striptags | truncate(150) }}...</p>
       <a href="{{ post.url }}" class="text-accent hover:underline">Read more →</a>
     </article>
@@ -37,3 +45,20 @@ eleventyComputed:
 <div class="text-center mt-8">
   <a href="/tags" class="text-accent hover:underline">← Back to Tag Cloud</a>
 </div>
+
+<script>
+  // Progressive loading of posts
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('[data-post-id]').forEach(post => {
+    observer.observe(post);
+  });
+</script>

@@ -11,6 +11,7 @@ layout: layouts/base.njk
     id="searchInput" 
     placeholder="Search posts..." 
     class="w-full rounded-lg bg-gray-800 text-white mb-2"
+    autocomplete="off"
   >
   <div class="text-right">
     <a href="/tags" class="text-accent hover:underline">View Tag Cloud →</a>
@@ -19,7 +20,7 @@ layout: layouts/base.njk
 
 <div class="space-y-8" id="blogPosts">
   {% for post in collections.blog | reverse %}
-    <article class="border-b border-gray-700 pb-4 blog-post">
+    <article class="border-b border-gray-700 pb-4 blog-post" data-title="{{ post.data.title | lower }}" data-tags="{{ post.data.tags | join(' ') | lower }}" data-content="{{ post.templateContent | striptags | lower }}">
       <h2 class="text-2xl font-semibold text-accent post-title">
         <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h2>
@@ -32,6 +33,9 @@ layout: layouts/base.njk
           <a href="/tags/{{ tag }}" class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs post-tag hover:bg-gray-700">{{ tag }}</a>
         {% endfor %}
       </p>
+      {% if post.data.coverImage %}
+        <img src="{{ post.data.coverImage }}" alt="{{ post.data.title }}" class="w-full h-48 object-cover mb-4" loading="lazy" decoding="async">
+      {% endif %}
       <p class="post-content">{{ post.templateContent | striptags | truncate(150) }}...</p>
       <a href="{{ post.url }}" class="text-accent hover:underline">Read more →</a>
     </article>
@@ -39,21 +43,29 @@ layout: layouts/base.njk
 </div>
 
 <script>
-  document.getElementById('searchInput').addEventListener('input', function(e) {
+  const debounce = (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  document.getElementById('searchInput').addEventListener('input', debounce(function(e) {
     const searchTerm = e.target.value.toLowerCase();
     const posts = document.getElementsByClassName('blog-post');
     
     Array.from(posts).forEach(post => {
-      const title = post.querySelector('.post-title').textContent.toLowerCase();
-      const content = post.querySelector('.post-content').textContent.toLowerCase();
-      const tags = Array.from(post.querySelectorAll('.post-tag')).map(tag => tag.textContent.toLowerCase());
+      const title = post.dataset.title;
+      const content = post.dataset.content;
+      const tags = post.dataset.tags;
       
       const isVisible = 
         title.includes(searchTerm) || 
         content.includes(searchTerm) ||
-        tags.some(tag => tag.includes(searchTerm));
+        tags.includes(searchTerm);
       
       post.style.display = isVisible ? 'block' : 'none';
     });
-  });
+  }, 250));
 </script>

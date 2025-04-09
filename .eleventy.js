@@ -1,8 +1,16 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-    // Copy assets such as images and CSS to the output
-    eleventyConfig.addPassthroughCopy("src/assets");
+    // Copy assets with cache busting
+    eleventyConfig.addPassthroughCopy({
+      "src/assets/css": "assets/css",
+      "src/assets/images": "assets/images"
+    });
+
+    // Add cache control headers
+    eleventyConfig.addPassthroughCopy({
+      "_headers": "_headers"
+    });
 
     eleventyConfig.addCollection("blog", function(collectionApi) {
       return collectionApi.getFilteredByGlob("src/blog/*.md");
@@ -36,6 +44,14 @@ module.exports = function(eleventyConfig) {
         }
       }
       return result;
+    });
+
+    // Add reading time estimate filter
+    eleventyConfig.addFilter("readingTime", function(text) {
+      const wordsPerMinute = 200;
+      const numberOfWords = text.split(/\s/g).length;
+      const minutes = Math.ceil(numberOfWords / wordsPerMinute);
+      return `${minutes} min read`;
     });
   
     return {

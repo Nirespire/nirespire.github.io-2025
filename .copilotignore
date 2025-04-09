@@ -1,0 +1,22 @@
+# Ignore the output directory (default is _site)
+_site/
+
+# Ignore Eleventy cache
+.eleventy.js.cache/
+.eleventycache/
+
+# Ignore build tools and dependencies
+node_modules/
+dist/
+build/
+
+# Ignore optional asset folders (if you don't want Copilot suggesting from them)
+assets/
+static/
+images/
+fonts/
+
+# Ignore environment and system files
+.env
+*.log
+.DS_Store

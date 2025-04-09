@@ -1,0 +1,11 @@
+# Cache assets for 1 week
+/assets/*
+  Cache-Control: public, max-age=604800, immutable
+
+# Cache HTML for 1 day
+/*.html
+  Cache-Control: public, max-age=86400
+
+# Cache other files for 1 week
+/*
+  Cache-Control: public, max-age=604800
