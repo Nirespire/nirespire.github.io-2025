@@ -1,7 +1,7 @@
 ---
 title: "The Wide World of Databases"
 date: 2018-08-27
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags: 
   - databases
   - software-development

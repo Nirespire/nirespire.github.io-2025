@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Automating Dependency Upgrades with Dependabot and CI"
 subtitle: "I'm a big proponent of keeping software up to date. Especially in the modern day where it feels like new critical security vulnerabilities..."
 date: 2020-01-08

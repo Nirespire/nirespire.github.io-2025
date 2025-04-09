@@ -1,7 +1,7 @@
 ---
 title: "The Personal Project to Win Your Next Career Fair"
 date: 2018-02-25
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags:
   - career
   - software-development

@@ -1,7 +1,7 @@
 ---
 title: "Convoluted Convolution"
 date: 2018-05-29
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags:
   - machine-learning
   - deep-learning

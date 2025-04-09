@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "A Light Introduction to Cloud Services"
 subtitle: "What are the types of tools that cloud platforms provide and what software problems can they solve for you"
 date: 2019-01-10

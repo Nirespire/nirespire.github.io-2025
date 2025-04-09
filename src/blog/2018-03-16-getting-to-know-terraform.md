@@ -1,7 +1,7 @@
 ---
 title: "Getting to Know Terraform"
 date: 2018-03-16
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags:
   - infrastructure
   - devops

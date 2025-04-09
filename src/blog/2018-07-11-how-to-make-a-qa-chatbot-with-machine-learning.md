@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "How to Make a Q&A Chatbot With Machine Learning"
 subtitle: "This article will teach you how to write your very own Slack chatbot that answers simple questions using some basic machine learning tools"
 date: 2018-07-11

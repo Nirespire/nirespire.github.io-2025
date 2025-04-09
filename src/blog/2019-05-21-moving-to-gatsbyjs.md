@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Moving to GatsbyJS"
 subtitle: "What I learned moving my personal website to GatsbyJS"
 date: 2019-05-21

@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Getting Started With Open Source"
 subtitle: "A beginner's guide to participating in open source"
 date: 2019-02-26

@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Why I Think Software Should be Rewritten Every Three Years"
 subtitle: "Fighting the inevitable pains of legacy code"
 date: 2019-06-11

@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Tracing and Observability"
 subtitle: "Diving deeper beyond the surface of microservice interactions"
 date: 2020-02-25

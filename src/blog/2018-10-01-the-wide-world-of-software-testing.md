@@ -1,7 +1,7 @@
 ---
 title: "The Wide World of Software Testing"
 date: 2018-10-01
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags: 
   - testing
   - software-development

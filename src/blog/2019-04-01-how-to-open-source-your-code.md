@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "How to Open Source Your Code"
 subtitle: "In 6 steps"
 date: 2019-04-01

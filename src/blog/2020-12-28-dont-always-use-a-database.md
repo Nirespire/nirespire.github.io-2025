@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: "Don't (always) use a Database"
 subtitle: "A software storage solution might be less obvious than you think"
 date: 2020-12-28

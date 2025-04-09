@@ -1,7 +1,7 @@
 ---
 title: "Asynchronous JavaScript"
 date: 2018-04-01
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags:
   - javascript
   - programming

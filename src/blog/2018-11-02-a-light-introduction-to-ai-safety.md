@@ -1,7 +1,7 @@
 ---
 title: A Light Introduction to AI Safety
 date: 2018-11-02
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags: 
   - AI
   - Technology

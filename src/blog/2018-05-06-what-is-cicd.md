@@ -1,7 +1,7 @@
 ---
 title: "What is CICD? Concepts in Continuous Integration and Deployment"
 date: 2018-05-06
-layout: layouts/base.njk
+layout: layouts/post.njk
 tags:
   - devops
   - continuous-integration
