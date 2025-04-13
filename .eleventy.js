@@ -13,7 +13,9 @@ module.exports = function(eleventyConfig) {
     });
 
     eleventyConfig.addCollection("blog", function(collectionApi) {
-      return collectionApi.getFilteredByGlob("src/blog/*.md");
+      return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => {
+        return b.date - a.date;
+      });
     });
 
     eleventyConfig.addFilter("date", (dateObj, format = "LLL d, yyyy") => {
