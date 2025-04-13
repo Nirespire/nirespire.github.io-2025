@@ -57,14 +57,17 @@ module.exports = function(eleventyConfig) {
       return result;
     });
 
-    // Add reading time estimate filter
-    eleventyConfig.addFilter("readingTime", function(text) {
-      const wordsPerMinute = 200;
-      const numberOfWords = text.split(/\s/g).length;
-      const minutes = Math.ceil(numberOfWords / wordsPerMinute);
-      return `${minutes} min read`;
+    // Add word count filter
+    eleventyConfig.addFilter("wordcount", function(text) {
+      return text.split(/\s+/g).length;
     });
-  
+
+    // Add reading time estimate filter
+    eleventyConfig.addFilter("readingTime", function(wordCount) {
+      const wordsPerMinute = 200;
+      return Math.ceil(wordCount / wordsPerMinute);
+    });
+
     return {
       dir: {
         input: "src",
