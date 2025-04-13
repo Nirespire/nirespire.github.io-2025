@@ -6,8 +6,6 @@ date: 2020-12-28
 tags: ["software engineering", "databases", "architecture"]
 ---
 
-# Don't (always) use a Database
-
 I was recently having a design conversation with some engineers on my product team. We were discussing the implementation of a feature that dealt with saving user settings on a web app. When thinking about the concept of persistent storage, my brain automatically tended to go straight to the obvious tool that provided programmatic persistent storage: a database.
 
 Databases generally provide a flexible paradigm for storing different formats of data and standard APIs to read and write that data programmatically.
