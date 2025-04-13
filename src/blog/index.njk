@@ -19,7 +19,7 @@ layout: layouts/base.njk
 </div>
 
 <div class="space-y-8" id="blogPosts">
-  {% for post in collections.blog | reverse %}
+  {% for post in collections.blog %}
     <article class="border-b border-gray-700 pb-4 blog-post" data-title="{{ post.data.title | lower }}" data-tags="{{ post.data.tags | join(' ') | lower }}" data-content="{{ post.templateContent | striptags | lower }}">
       <h2 class="text-2xl font-semibold text-accent post-title">
         <a href="{{ post.url }}">{{ post.data.title }}</a>

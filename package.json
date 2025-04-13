@@ -12,10 +12,12 @@
     "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\""
   },
   "dependencies": {
-    "luxon": "^3.6.1"
+    "luxon": "^3.6.1",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.13",
     "concurrently": "^9.1.2",
     "cssnano": "^7.0.6",

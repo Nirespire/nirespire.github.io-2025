@@ -1,6 +1,15 @@
 const { DateTime } = require("luxon");
+const markdownIt = require("markdown-it");
 
 module.exports = function(eleventyConfig) {
+    // Configure markdown-it
+    let markdownLibrary = markdownIt({
+      html: true,
+      breaks: true,
+      linkify: true
+    });
+    eleventyConfig.setLibrary("md", markdownLibrary);
+
     // Copy assets with cache busting
     eleventyConfig.addPassthroughCopy({
       "src/assets/css": "assets/css",
