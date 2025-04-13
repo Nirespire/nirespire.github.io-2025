@@ -13,18 +13,92 @@ a {
 
 #searchInput {
   @apply text-xl py-4 px-8;
-  @apply border-2 border-accent;
-  @apply transition-all duration-200;
-  @apply bg-gray-900;
+  @apply border-2 border-accent/50;
+  @apply transition-all duration-300 ease-in-out;
+  @apply bg-gray-900/90;
   @apply shadow-lg;
+  @apply rounded-xl;
+  @apply backdrop-blur-sm;
 }
 
 #searchInput:focus {
   @apply border-primary-blue;
-  box-shadow: 0 0 15px theme('colors.accent');
+  @apply outline-none;
+  @apply ring-2 ring-primary-blue/50;
+  box-shadow: 0 0 20px theme('colors.accent/20');
   @apply bg-gray-800;
 }
 
 #searchInput::placeholder {
   @apply text-gray-500;
+  @apply transition-opacity duration-200;
+}
+
+#searchInput:focus::placeholder {
+  @apply opacity-70;
+}
+
+.blog-post {
+  @apply p-6 rounded-xl;
+  @apply backdrop-blur-sm;
+  @apply transition-all duration-300 ease-in-out;
+  @apply border border-gray-700/30;
+  @apply hover:border-accent/30;
+  @apply hover:shadow-lg hover:shadow-accent/5;
+  @apply bg-gray-900/40;
+  @apply max-w-3xl mx-auto;
+}
+
+.blog-post:hover .post-title {
+  @apply text-accent;
+}
+
+.post-tag {
+  @apply transition-colors duration-200;
+  @apply hover:bg-accent hover:text-white;
+}
+
+.post-content {
+  @apply text-gray-300;
+  @apply leading-relaxed;
+}
+
+/* Navigation and link enhancements */
+nav a {
+  @apply relative;
+  @apply transition-all duration-200;
+}
+
+nav a::after {
+  content: '';
+  @apply absolute bottom-0 left-0;
+  @apply w-0 h-0.5;
+  @apply bg-accent;
+  @apply transition-all duration-300 ease-out;
+}
+
+nav a:hover::after {
+  @apply w-full;
+}
+
+/* Article styling */
+article a {
+  @apply relative;
+  @apply border-b border-accent/30;
+  @apply transition-all duration-200;
+}
+
+article a:hover {
+  @apply border-accent;
+  @apply bg-accent/10;
+}
+
+/* Profile image enhancement */
+.profile-image-container {
+  @apply relative;
+  @apply transition-transform duration-300;
+}
+
+.profile-image-container:hover {
+  @apply transform scale-105;
 }
