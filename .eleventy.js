@@ -1,7 +1,16 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
+    // Add RSS plugin
+    eleventyConfig.addPlugin(pluginRss);
+
+    // Add absolute URL filter for RSS
+    eleventyConfig.addFilter("absoluteUrl", (url, base) => {
+        return new URL(url, base).toString();
+    });
+
     // Configure markdown-it
     let markdownLibrary = markdownIt({
       html: true,
