@@ -1,6 +1,5 @@
 ---
 title: The Wide World of Software Testing
-description: In a previous post about continuous integration and deployment, I alluded to the practice of constantly putting code through various tests and making the results visible, whether within a software team or to the public for an opensource project.
 date: 2018-10-01
 layout: layouts/post.njk
 tags:

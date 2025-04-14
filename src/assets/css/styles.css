@@ -102,3 +102,40 @@ article a:hover {
 .profile-image-container:hover {
   @apply transform scale-105;
 }
+
+/* Article content styling */
+.prose {
+  @apply text-gray-300;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-primary-blue font-bold;
+}
+
+.prose a {
+  @apply text-accent hover:text-primary-blue border-b border-accent/30 hover:border-accent;
+}
+
+.prose strong {
+  @apply text-white;
+}
+
+.prose ul li::marker {
+  @apply text-accent;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-accent bg-gray-800/50 px-4 py-2 my-4;
+}
+
+.prose pre {
+  @apply bg-gray-800/80 backdrop-blur-sm;
+}
+
+.prose code {
+  @apply text-accent bg-gray-800/50 px-1 rounded;
+}
+
+.prose img {
+  @apply rounded-lg shadow-lg my-8;
+}

@@ -1,12 +1,9 @@
 ---
 layout: layouts/post.njk
 title: "How to Make a Q&A Chatbot With Machine Learning"
-subtitle: "This article will teach you how to write your very own Slack chatbot that answers simple questions using some basic machine learning tools"
 date: 2018-07-11
 tags: ["machine learning", "chatbot", "slack", "javascript", "nodejs", "natural language processing"]
 ---
-
-# How to Make a Q&A Chatbot With Machine Learning
 
 This article will teach you how to write your very own Slack chatbot that answers simple questions using some basic machine learning tools. Most of the more complex stuff around natural language processing and math behind creating machine learning models is mostly abstracted out, leaving room for us to easily build a finished product in a pretty short amount of time. If you're looking for a simple and effective way to get a semi-intelligent bot answering questions on Slack fast, then this guide is the one for you.
 

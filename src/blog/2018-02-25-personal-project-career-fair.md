@@ -1,7 +1,6 @@
 ---
 layout: layouts/post.njk
 title: "The Personal Project to Win Your Next Career Fair"
-subtitle: "Disclaimer: This article is aimed at beginners to software development or those looking to enhance their personal project experience"
 date: 2018-02-25
 tags: ["career", "software-development", "projects", "students"]
 ---

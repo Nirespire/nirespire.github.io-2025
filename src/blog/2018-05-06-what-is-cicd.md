@@ -1,7 +1,6 @@
 ---
 layout: layouts/post.njk
 title: "What is CICD — Concepts in Continuous Integration and Deployment"
-subtitle: "Modern software moves fast and demands more from developers than ever. Tools and concepts around CICD help developers deliver value faster and more transparently."
 date: 2018-05-06
 tags: ["devops", "continuous-integration", "continuous-deployment", "software-development"]
 ---

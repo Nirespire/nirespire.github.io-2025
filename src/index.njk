@@ -32,6 +32,9 @@ title: Home
     <h2 class="text-2xl font-semibold text-accent post-title">
       <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a>
     </h2>
+    {% if latestPost.data.subtitle %}
+      <p class="text-gray-400 text-lg mb-2">{{ latestPost.data.subtitle }}</p>
+    {% endif %}
     <p class="text-sm text-gray-400 mb-1">
       {{ latestPost.date | date("MMMM d, yyyy") }} {% if latestPost.data.readingTime %}• {{ latestPost.data.readingTime }}{% endif %}
     </p>

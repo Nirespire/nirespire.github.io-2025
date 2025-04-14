@@ -2,10 +2,13 @@
 
 {% block content %}
 <div class="container mx-auto px-4">
-  <article class="prose lg:prose-xl mx-auto max-w-4xl py-8">
-    <header class="mb-8">
+  <article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8">
+    <header class="not-prose mb-8">
       <h1 class="text-primary-blue text-4xl font-bold">{{ title }}</h1>
-      <div class="flex flex-col gap-2 text-sm text-gray-500">
+      {% if subtitle %}
+        <p class="text-gray-400 text-xl mt-2">{{ subtitle }}</p>
+      {% endif %}
+      <div class="flex flex-col gap-2 text-sm text-gray-500 mt-4">
         <div>
           <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time>
           • {{ content | striptags | wordcount | readingTime }} min read
@@ -19,7 +22,7 @@
       </div>
     </header>
 
-    <div>
+    <div class="prose-lg">
       {{ content | safe }}
     </div>
 

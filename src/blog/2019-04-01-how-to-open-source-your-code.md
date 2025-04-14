@@ -6,8 +6,6 @@ date: 2019-04-01
 tags: ["open source", "software engineering", "github", "documentation"]
 ---
 
-# How to Open Source Your Code
-
 ![Photo by Alex Holyoake on Unsplash](https://cdn-images-1.medium.com/max/1200/0*H-wqTe7TLuy5KQgB)
 
 In my [last post](https://medium.com/@nirespire/getting-started-with-opensource-74e963db32f5), I outlined what open source is and presented some steps for how to get involved. Every open source project available today, even those with many thousands of contributors, all started with at least one person who had the drive to make what they were creating available for other to freely use and contribute to.
