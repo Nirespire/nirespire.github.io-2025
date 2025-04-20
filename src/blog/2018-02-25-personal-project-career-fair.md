@@ -61,7 +61,7 @@ At this point, the recruiter is already going to remember you.
 
 So often the last but more crucial step to really finishing a project is skipped. If you don't deploy your website somewhere, then how do you expect to show it off to anyone outside of your localhost?
 
-[Github pages](https://pages.github.com/) is an easy and free way to host a static website through a free, public Github repo. It's where I host [my website](https://nirespire.github.io/)! If you took the HTML/CSS/JS route in step 1, this might be a good choice.
+[Github pages](https://pages.github.com/) is an easy and free way to host a static website through a free, public Github repo. It's where I host [my website](https://sanjaynair.me)! If you took the HTML/CSS/JS route in step 1, this might be a good choice.
 
 But if you really want to take it to the next level, using one of the many free cloud service provides to host a site is a great way to get the same cool effect while gaining an extra skill under your belt. It can the final punch that really knocks the recruiter's socks off.
 

@@ -97,7 +97,7 @@ The clear advantage of this model is obviously the lower cost and opportunity to
 
 ### Streaming and Data Processing
 
-Similar to my [previous article](https://medium.com/@nirespire/the-wide-world-of-software-testing-d38835b8c90e) on software testing, it's around here where we get into some of the more specialized tooling offered in the cloud. While specific in their intended use cases, this category of cloud services still spans their own significant portion of most platforms out there and is worth understanding at a high level.
+Similar to my [previous article](https://sanjaynair.me/blog/2018-10-01-the-wide-world-of-software-testing/) on software testing, it's around here where we get into some of the more specialized tooling offered in the cloud. While specific in their intended use cases, this category of cloud services still spans their own significant portion of most platforms out there and is worth understanding at a high level.
 
 ![An example of a Dataflow pipeline](https://cdn-images-1.medium.com/max/800/0*pfuE1pNi3eMbGJ5K.png)
 *An example of a Dataflow pipeline (https://cloud.google.com/solutions/processing-logs-at-scale-using-dataflow)*

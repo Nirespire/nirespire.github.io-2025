@@ -10,7 +10,7 @@ tags:
 
 ![aerial photo of world by Richard Gatley on Unsplash](https://cdn-images-1.medium.com/max/1200/0*X2G8UkOxSTYmADa3)
 
-In a [previous post](https://medium.com/@nirespire/what-is-cicd-concepts-in-continuous-integration-and-deployment-4fe3f6625007) about continuous integration and deployment, I alluded to the practice of constantly putting code through various tests and making the results visible, whether within a software team or to the public for an opensource project. In this post, I want to dive a little deeper into what "testing" *actually* is in the context of writing quality software. Specifically, I'd like to shed some light on the different types of testing and how they can help you write better software.
+In a [previous post](https://sanjaynair.me/blog/2018-05-06-what-is-cicd/) about continuous integration and deployment, I alluded to the practice of constantly putting code through various tests and making the results visible, whether within a software team or to the public for an opensource project. In this post, I want to dive a little deeper into what "testing" *actually* is in the context of writing quality software. Specifically, I'd like to shed some light on the different types of testing and how they can help you write better software.
 
 ### Unit Testing
 
@@ -125,4 +125,4 @@ The user acceptance test or UAT might just be the ultimate of all tests mentione
 
 You could think of all the other types of testing we discussed here as servant to this final type. Ultimately, everything we do to make quality software is some way in service to the users of that software. We might have the most robust unit tests, ran our app through the battery of the hardest performance and load tests, and executed every E2E scenario imaginable. But in the end if the user doesn't get what they need, it's all pointless. However, we should still hold ourselves to a high standard of software quality. Eventually, that benefit should reach your users through less bugs, faster and more frequent delivery to production, and more flexibility to add features.
 
-I hope you are more informed about the varied options when it comes to testing your software. If you haven't already, I encourage you to check out my post on [Continuous Integration and Deployment](https://medium.com/@nirespire/what-is-cicd-concepts-in-continuous-integration-and-deployment-4fe3f6625007) where software testing plays a central role.
+I hope you are more informed about the varied options when it comes to testing your software. If you haven't already, I encourage you to check out my post on [Continuous Integration and Deployment](https://sanjaynair.me/blog/2018-05-06-what-is-cicd/) where software testing plays a central role.
