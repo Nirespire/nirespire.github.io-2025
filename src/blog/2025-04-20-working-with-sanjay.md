@@ -6,8 +6,6 @@ date: 2025-04-20
 tags: ["leadership"]
 ---
 
-# Working With Sanjay
-
 This document should serve as a concise artifact that describes my style of work and leadership. It should serve as a quick way to get up to speed with what to expect as a new colleague or member of my team.
 
 I am a strong believer in the merits of documenting, not just discussing, complex ideas for the purposes of clear and unambiguous communication. This document aims to provide an evergreen primary source of reference for my professional working style. The exercise of authoring and maintaining this document both helps me to introspect about myself as well as be transparent with those that would benefit from quickly understanding my motivations, strengths, quirks, and general style of work. The result for you reading this document and subsequently working with me should be less time spent having to figure me out as a colleague or leader and more time spent on solving interesting and difficult problems together.
