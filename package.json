@@ -9,7 +9,10 @@
     "build:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --minify",
     "build": "npm run build:css && npx eleventy",
     "watch:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --watch",
-    "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\""
+    "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\"",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
   },
   "dependencies": {
     "luxon": "^3.6.1",
@@ -19,6 +22,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-plugin-rss": "^2.0.3",
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.13",
     "concurrently": "^9.1.2",

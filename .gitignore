@@ -27,3 +27,7 @@ yarn-error.log*
 # Mac folder attributes
 .AppleDouble
 .LSOverride
+
+# Functional Test results
+/test-results/
+/playwright-report/
