@@ -8,6 +8,7 @@ This project is my personal website/blog built using modern web development tool
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
 - **Build Tools**: PostCSS, cssnano, and autoprefixer for CSS optimization
 - **Hosting**: GitHub Pages with custom domain configuration
+- **Latest Reads**: Integration with Pocket API to display recently read articles
 - **AI Assistance**: Developed with the help of AI tools including:
   - GitHub Copilot for code completion and pair programming
   - Claude 3.5 Sonnet for development assistance and content generation
@@ -45,6 +46,21 @@ This project is my personal website/blog built using modern web development tool
   - `npm run start` - Start 11ty server only
   - `npm run build:css` - Build CSS only
   - `npm run watch:css` - Watch for CSS changes
+
+## Integrations
+
+### Pocket Latest Reads
+The site automatically fetches and displays my latest read articles from Pocket:
+
+1. **Setup required environment variables**:
+   - `POCKET_CONSUMER_KEY`: Your Pocket API consumer key
+   - `POCKET_ACCESS_TOKEN`: Your Pocket access token
+
+2. **How it works**:
+   - GitHub Actions runs daily to fetch latest articles tagged as 'to-share'
+   - Articles are stored in `src/_data/pocket.json`
+   - Latest reads are displayed on the homepage
+   - The fetch can also be triggered manually via GitHub Actions
 
 ## Project Structure
 
