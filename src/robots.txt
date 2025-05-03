@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://sanjaynair.me/sitemap.xml
+
+# Allow all crawlers
+User-agent: *
+Disallow:

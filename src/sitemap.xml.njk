@@ -1,0 +1,16 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for page in collections.all %}
+  {% set absoluteUrl %}{{ page.url | absoluteUrl("https://sanjaynair.me") }}{% endset %}
+  <url>
+    <loc>{{ absoluteUrl }}</loc>
+    <lastmod>{{ page.date | date("yyyy-MM-dd") }}</lastmod>
+    <changefreq>{% if page.url === "/" %}daily{% else %}monthly{% endif %}</changefreq>
+    <priority>{% if page.url === "/" %}1.0{% else %}0.8{% endif %}</priority>
+  </url>
+{%- endfor %}
+</urlset>
