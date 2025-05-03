@@ -32,7 +32,8 @@ const access_token = process.env.POCKET_ACCESS_TOKEN;
     const articles = Object.values(json.list).map(item => ({
         title: item.resolved_title || item.given_title,
         url: item.resolved_url || item.given_url,
-        excerpt: item.excerpt
+        excerpt: item.excerpt,
+        dateAdded: new Date(parseInt(item.time_added) * 1000).toISOString()
     }));
 
     const outputPath = path.join(__dirname, '..', 'src', '_data', 'pocket.json');

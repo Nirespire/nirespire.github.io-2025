@@ -1,0 +1,39 @@
+name: Update Pocket Reads
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Runs daily at 08:00 UTC
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  update-pocket-reads:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch@2
+
+      - name: Fetch Pocket articles and save to JSON
+        run: |
+          node scripts/fetch-pocket.js
+        env:
+          POCKET_CONSUMER_KEY: ${{ secrets.POCKET_CONSUMER_KEY }}
+          POCKET_ACCESS_TOKEN: ${{ secrets.POCKET_ACCESS_TOKEN }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/_data/pocket.json
+          git commit -m "Update latest reads from Pocket [CI skip]" || echo "No changes"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}

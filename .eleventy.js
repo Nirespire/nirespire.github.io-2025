@@ -37,6 +37,17 @@ module.exports = function(eleventyConfig) {
     });
 
     eleventyConfig.addFilter("date", (dateObj, format = "LLL d, yyyy") => {
+      if (!dateObj) {
+        return '';
+      }
+      if (typeof dateObj === 'string') {
+        try {
+          return DateTime.fromISO(dateObj).toFormat(format);
+        } catch (e) {
+          console.error('Error parsing date:', dateObj, e);
+          return dateObj;
+        }
+      }
       return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat(format);
     });
 
