@@ -2,27 +2,31 @@
 
 {% block content %}
 <div class="container mx-auto px-4">
-  <article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8">
+  <article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8" itemscope itemtype="http://schema.org/BlogPosting">
+    <meta itemprop="author" content="Sanjay Nair">
+    <meta itemprop="datePublished" content="{{ date | date('yyyy-MM-dd') }}">
+    <meta itemprop="mainEntityOfPage" content="{{ page.url | absoluteUrl("https://sanjaynair.me") }}">
+    
     <header class="not-prose mb-8">
-      <h1 class="text-primary-blue text-4xl font-bold">{{ title }}</h1>
+      <h1 class="text-primary-blue text-4xl font-bold" itemprop="headline">{{ title }}</h1>
       {% if subtitle %}
-        <p class="text-gray-400 text-xl mt-2">{{ subtitle }}</p>
+        <p class="text-gray-400 text-xl mt-2" itemprop="alternativeHeadline">{{ subtitle }}</p>
       {% endif %}
       <div class="flex flex-col gap-2 text-sm text-gray-500 mt-4">
         <div>
-          <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time>
-          • {{ content | striptags | wordcount | readingTime }} min read
+          <time datetime="{{ date | date('yyyy-MM-dd') }}" itemprop="datePublished">{{ date | date("MMMM d, yyyy") }}</time>
+          • <span itemprop="timeRequired">{{ content | striptags | wordcount | readingTime }} min read</span>
         </div>
         <p class="text-primary-blue">
           Tags: 
           {% for tag in tags %}
-            <a href="/tags/{{ tag }}" class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs hover:bg-gray-700">{{ tag }}</a>
+            <a href="/tags/{{ tag }}" class="mr-1 bg-gray-800 px-2 py-1 rounded text-white text-xs hover:bg-gray-700" itemprop="keywords">{{ tag }}</a>
           {% endfor %}
         </p>
       </div>
     </header>
 
-    <div class="prose-lg">
+    <div class="prose-lg" itemprop="articleBody">
       {{ content | safe }}
     </div>
 
