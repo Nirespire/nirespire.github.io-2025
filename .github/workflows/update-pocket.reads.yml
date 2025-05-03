@@ -8,7 +8,7 @@ on:
 jobs:
   update-pocket-reads:
     runs-on: ubuntu-latest
-
+    environment: gh-pages
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
