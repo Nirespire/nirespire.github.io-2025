@@ -6,16 +6,16 @@ eleventyExcludeFromCollections: true
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Sanjay Nair's Blog</title>
   <subtitle>Software Engineering and Technology</subtitle>
-  <link href="https://sanjaynair.dev/feed.xml" rel="self"/>
-  <link href="https://sanjaynair.dev/"/>
+  <link href="https://sanjaynair.me/feed.xml" rel="self"/>
+  <link href="https://sanjaynair.me/"/>
   <updated>{{ collections.blog | first | date("yyyy-MM-dd'T'HH:mm:ss'Z'") }}</updated>
-  <id>https://sanjaynair.dev/</id>
+  <id>https://sanjaynair.me/</id>
   <author>
     <name>Sanjay Nair</name>
     <email>email@sanjaynair.dev</email>
   </author>
   {%- for post in collections.blog | reverse %}
-  {% set absolutePostUrl %}{{ post.url | absoluteUrl("https://sanjaynair.dev") }}{% endset %}
+  {% set absolutePostUrl %}{{ post.url | absoluteUrl("https://sanjaynair.me") }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>
     <link href="{{ absolutePostUrl }}"/>
