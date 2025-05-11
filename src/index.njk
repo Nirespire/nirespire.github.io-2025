@@ -62,7 +62,7 @@ title: Home
 
 <section class="mt-8 p-4 bg-primary-dark rounded-lg">
   <h2 class="text-2xl font-bold text-accent mb-4">Latest Reads</h2>
-  {% for article in pocket | reverse %}
+  {% for article in pocket | sort(false, false, 'dateAdded') | reverse %}
   <article class="{% if not loop.last %}border-b border-gray-700{% endif %} pb-4 mb-4">
     <h3 class="text-xl font-semibold text-accent">
       <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.title }}</a>
