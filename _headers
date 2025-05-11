@@ -2,6 +2,14 @@
 /assets/*
   Cache-Control: public, max-age=604800, immutable
 
+# Cache profile image for 1 week
+/assets/images/profile.png
+  Cache-Control: public, max-age=604800, immutable
+
+# Cache CSS files for 1 week
+/assets/css/tailwind-built.css
+  Cache-Control: public, max-age=604800, immutable
+
 # Cache HTML for 1 day
 /*.html
   Cache-Control: public, max-age=86400
