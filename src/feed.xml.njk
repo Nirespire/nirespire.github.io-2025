@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
   <subtitle>Software Engineering and Technology</subtitle>
   <link href="https://sanjaynair.me/feed.xml" rel="self"/>
   <link href="https://sanjaynair.me/"/>
-  <updated>{{ collections.blog | first | date("yyyy-MM-dd'T'HH:mm:ss'Z'") }}</updated>
+  <updated>{{ collections.blog | first | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
   <id>https://sanjaynair.me/</id>
   <author>
     <name>Sanjay Nair</name>
