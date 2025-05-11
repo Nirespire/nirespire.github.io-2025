@@ -15,22 +15,16 @@ a {
 }
 
 #searchInput {
-  @apply text-xl py-4 px-8;
-  @apply border-2 border-transparent bg-clip-padding; /* Prepare for gradient border */
-  @apply bg-gradient-to-br from-accent/50 to-primary-blue/50; /* Gradient border */
-  @apply transition-all duration-300 ease-in-out;
-  @apply bg-gray-900/90;
-  @apply shadow-lg shadow-accent/10; /* Enhanced shadow */
-  @apply rounded-xl;
-  @apply backdrop-blur-sm;
-  box-shadow: inset 0 2px 4px 0 theme('colors.black/20'), 0 0 20px theme('colors.accent/10'); /* Added inner shadow and adjusted outer shadow */
+  @apply text-lg py-3 px-6;
+  @apply bg-gray-800/90;
+  @apply border border-gray-700;
+  @apply rounded-lg;
+  @apply transition-colors duration-200;
 }
 
 #searchInput:focus {
-  @apply border-primary-blue;
   @apply outline-none;
-  @apply ring-2 ring-primary-blue/50;
-  box-shadow: inset 0 2px 4px 0 theme('colors.black/30'), 0 0 20px theme('colors.accent/30'); /* Enhanced focus shadow */
+  @apply border-accent;
   @apply bg-gray-800;
 }
 
