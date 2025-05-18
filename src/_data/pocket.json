@@ -6,12 +6,6 @@
     "dateAdded": "2025-05-11T01:00:24.000Z"
   },
   {
-    "title": "matthewsinclair.com · Intelligence. Innovation. Leadership. Influence.",
-    "url": "https://matthewsinclair.com/blog/0178-why-llm-powered-programming-is-more-mech-suit-than-artificial-human",
-    "excerpt": "[ED: There’s a lot of talk of replacing human programmers. Sure, some will go, but not all. My views on how this plays out have changed considerably over the last 2 months. 3 out of 5 hats.]",
-    "dateAdded": "2025-04-22T02:06:49.000Z"
-  },
-  {
     "title": "Part 1: Finding Your Thing's Essence",
     "url": "https://sublimeinternet.substack.com/p/part-1-finding-your-things-essence",
     "excerpt": "Two weeks ago, we launched Sublime to the public. No more beta, no more wantlist, no more “coming soon.” The centerpiece of the launch was our landing page. Besides the product itself, it’s the clearest expression to date of who we are, what we believe, and for whom we’re building.",
@@ -28,5 +22,11 @@
     "url": "https://www.seangoedecke.com/getting-things-done/",
     "excerpt": "What does it mean to get things done? In the abstract, you can complete a mathematical proof or a problem set, but the real world is much fuzzier. Suppose I plant a tree in my backyard. Once the sapling is in the ground, is that done? Not really.",
     "dateAdded": "2025-05-06T12:18:16.000Z"
+  },
+  {
+    "title": "How We Build Effective Agents: Barry Zhang, Anthropic",
+    "url": "https://youtu.be/D7_ipDqhtwk?si=iJEYwsRUJIMz-5Fj",
+    "excerpt": "Recorded live at the Agent Engineering Session Day from the AI Engineer Summit 2025 in New York. Learn more at https://ai.engineer and purchase tickets to our next event, the AI Engineer World's Fair, in SF June 3 - 5 here: https://ti.to/software-3/ai-engineer-worlds-fair-2025\n\nAbout Barry:\n\nBarry i",
+    "dateAdded": "2025-05-17T17:38:13.000Z"
   }
 ]
