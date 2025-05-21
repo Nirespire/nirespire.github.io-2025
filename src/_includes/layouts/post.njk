@@ -26,6 +26,12 @@
       </div>
     </header>
 
+    <div id="tts-controls" class="flex items-center space-x-3 mb-6">
+      <button id="tts-play" class="bg-primary-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-150 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none">Play</button>
+      <button id="tts-pause" class="bg-primary-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-150 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none">Pause</button>
+      <button id="tts-stop" class="bg-primary-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-150 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none">Stop</button>
+    </div>
+
     <div class="prose-lg" itemprop="articleBody">
       {{ content | safe }}
     </div>
@@ -93,4 +99,98 @@
     </footer>
   </article>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if ('speechSynthesis' in window) {
+      const playButton = document.getElementById('tts-play');
+      const pauseButton = document.getElementById('tts-pause');
+      const stopButton = document.getElementById('tts-stop');
+      const articleBody = document.querySelector('.prose-lg[itemprop="articleBody"]');
+
+      if (!playButton || !pauseButton || !stopButton || !articleBody) {
+        console.error('TTS player buttons or article body not found.');
+        return;
+      }
+
+      const textToSpeak = articleBody.textContent || articleBody.innerText || "";
+      if (!textToSpeak.trim()) {
+        console.warn('No text content found for TTS.');
+        playButton.disabled = true;
+        pauseButton.disabled = true;
+        stopButton.disabled = true;
+        return;
+      }
+
+      let utterance = new SpeechSynthesisUtterance(textToSpeak);
+
+      const updateButtonStates = () => {
+        if (speechSynthesis.speaking && !speechSynthesis.paused) { // Speaking
+          playButton.disabled = true;
+          pauseButton.disabled = false;
+          stopButton.disabled = false;
+        } else if (speechSynthesis.paused) { // Paused
+          playButton.disabled = false;
+          pauseButton.disabled = true;
+          stopButton.disabled = false;
+        } else { // Stopped or ended
+          playButton.disabled = false;
+          pauseButton.disabled = true;
+          stopButton.disabled = true;
+        }
+      };
+
+      playButton.addEventListener('click', () => {
+        if (speechSynthesis.paused) {
+          speechSynthesis.resume();
+        } else {
+          if (speechSynthesis.speaking) { // If already speaking, cancel and restart
+            speechSynthesis.cancel();
+          }
+          // Create a new utterance instance if it has ended or to ensure fresh state
+          if (utterance.voice === null || utterance.text !== textToSpeak) {
+             utterance = new SpeechSynthesisUtterance(textToSpeak);
+             utterance.onend = () => {
+                updateButtonStates();
+             };
+          }
+          speechSynthesis.speak(utterance);
+        }
+        updateButtonStates();
+      });
+
+      pauseButton.addEventListener('click', () => {
+        speechSynthesis.pause();
+        updateButtonStates();
+      });
+
+      stopButton.addEventListener('click', () => {
+        speechSynthesis.cancel();
+        updateButtonStates();
+      });
+
+      utterance.onend = () => {
+        updateButtonStates();
+      };
+      
+      // Initial button states
+      updateButtonStates();
+
+    } else {
+      console.warn('Speech Synthesis not supported in this browser.');
+      const ttsControls = document.getElementById('tts-controls');
+      if (ttsControls) {
+        // ttsControls.style.display = 'none'; // Or disable buttons
+        document.getElementById('tts-play').disabled = true;
+        document.getElementById('tts-pause').disabled = true;
+        document.getElementById('tts-stop').disabled = true;
+        const message = document.createElement('p');
+        message.textContent = 'Text-to-speech is not supported by your browser.';
+        message.style.color = 'orange';
+        ttsControls.parentNode.insertBefore(message, ttsControls.nextSibling);
+
+      }
+    }
+  });
+</script>
 {% endblock %}
