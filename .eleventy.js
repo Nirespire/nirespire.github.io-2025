@@ -88,6 +88,27 @@ module.exports = function(eleventyConfig) {
       return Math.ceil(wordCount / wordsPerMinute);
     });
 
+    // Filter to get related posts
+    eleventyConfig.addFilter("getRelatedPosts", (currentPostUrl, currentPostTags, allPosts) => {
+      if (!currentPostTags || currentPostTags.length === 0) {
+        return [];
+      }
+
+      const relatedPosts = allPosts.filter(post => {
+        // Exclude current post
+        if (post.url === currentPostUrl) {
+          return false;
+        }
+
+        // Check for common tags
+        const hasCommonTags = post.data.tags && post.data.tags.some(tag => currentPostTags.includes(tag));
+        return hasCommonTags;
+      });
+
+      // Sort by date and take the latest 5
+      return relatedPosts.sort((a, b) => b.date - a.date).slice(0, 5);
+    });
+
     return {
       dir: {
         input: "src",
