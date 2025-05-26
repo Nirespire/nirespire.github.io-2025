@@ -22,7 +22,8 @@ module.exports = function(eleventyConfig) {
     // Copy assets with cache busting
     eleventyConfig.addPassthroughCopy({
       "src/assets/css": "assets/css",
-      "src/assets/images": "assets/images"
+      "src/assets/images": "assets/images",
+      "src/assets/js": "assets/js"
     });
 
     // Add cache control headers
