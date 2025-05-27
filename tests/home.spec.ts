@@ -32,7 +32,7 @@ test.describe('Home page', () => {
     // Verify post content
     const article = page.locator('article').first();
     await expect(article.getByRole('heading', { level: 2 }).getByRole('link')).toBeVisible();
-    await expect(article.locator('p.text-sm.text-gray-400')).toBeVisible();
+    await expect(article.locator('p.text-sm.text-text-secondary')).toBeVisible();
     
     // Check post link works
     const postLink = article.getByRole('heading').getByRole('link');
