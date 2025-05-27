@@ -7,10 +7,22 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#2D2D2D", // dark grey
-          blue: "#3B82F6"     // brighter blue (tailwind blue-500)
+          DEFAULT: 'var(--color-bg-main)',
         },
-        accent: "#F97316"     // orange accent
+        accent: 'var(--color-accent)',
+        'text-main': 'var(--color-text-main)',
+        'text-secondary': 'var(--color-text-secondary)',
+        'bg-main': 'var(--color-bg-main)',
+        'bg-interactive-strong': 'var(--color-bg-interactive-strong)',
+        'text-interactive-strong': 'var(--color-text-interactive-strong)',
+        'bg-interactive-soft': 'var(--color-bg-interactive-soft)',
+        'link': 'var(--color-link-text)',
+        'link-hover': 'var(--color-link-hover-text)',
+        'selection-bg': 'var(--color-selection-bg)',
+        'selection-text': 'var(--color-selection-text)',
+        'border-subtle': 'var(--color-border-subtle)',
+        'code-bg': 'var(--color-code-bg)',
+        'code-text': 'var(--color-code-text)',
       },
       fontFamily: {
         sans: ['"Nebula Sans"', 'ui-sans-serif', 'system-ui']
