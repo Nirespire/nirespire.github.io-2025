@@ -108,11 +108,6 @@ a:hover {
     color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
 }
 
-/* Text shadow can remain as it uses a fundamental color (black) */
-a {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-
 
 #searchInput {
   @apply text-lg py-3 px-6 rounded-lg transition-colors duration-200;
@@ -136,7 +131,7 @@ a {
 }
 
 .blog-post {
-  @apply p-6 rounded-xl backdrop-blur-sm transition-all duration-300 ease-in-out max-w-3xl mx-auto hover:shadow-lg;
+  @apply p-6 rounded-xl backdrop-blur-sm transition-all duration-300 ease-in-out max-w-3xl mx-auto;
   border: 1px solid rgba(var(--color-border-subtle-rgb), 0.3);
   background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.4);
   /* Removed hover:border-accent/30 and hover:shadow-accent/5 as these are complex with variables */
@@ -145,7 +140,6 @@ a {
 
 .blog-post:hover {
     border-color: rgba(var(--color-accent-rgb), 0.3);
-    box-shadow: 0 0 15px 5px rgba(var(--color-accent-rgb), 0.05); /* Replicating shadow-accent/5 */
 }
 
 .blog-post:hover .post-title {
@@ -257,10 +251,34 @@ article a:hover {
   @apply rounded-lg shadow-lg my-8;
 }
 
+/* Post navigation styling */
+.prose nav a {
+  color: var(--color-accent);
+  text-decoration: none;
+  @apply transition-colors duration-200;
+}
+
+.prose nav a:hover {
+  color: var(--color-selection-bg);
+  text-decoration: underline;
+}
+
+/* Social sharing icons styling */
+.social-share-link {
+  color: var(--color-accent) !important; /* Using !important to override any inherited colors */
+  @apply transition-colors duration-200;
+  display: inline-flex;
+  align-items: center;
+}
+
+.social-share-link:hover {
+  color: var(--color-selection-bg) !important;
+}
+
 /* Ensure that Tailwind classes for colors take precedence or are not overridden
    by less specific selectors like 'a' if those classes are using the new variables.
    The nav links in base.njk use 'text-link' and 'hover:text-link-hover'.
-   The global 'a' style above might interfere.
+   The global 'a' style might interfere.
    Let's remove the global 'a' and 'a:hover' color definitions here,
    as specific components (nav, article) have their own link styling,
    and Tailwind utility classes should handle the rest.
