@@ -21,11 +21,11 @@ eleventyComputed:
 <div class="space-y-8 max-w-2xl mx-auto px-4">
   {% set taggedPosts = collections[tagName] | reverse %}
   {% for post in taggedPosts %}
-    <article class="border-b border-gray-700 pb-4 opacity-0 transition-opacity duration-300" data-post-id="{{ loop.index }}">
+    <article class="border-b border-border-subtle pb-4 opacity-0 transition-opacity duration-300" data-post-id="{{ loop.index }}">
       <h2 class="text-2xl font-semibold text-accent">
         <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h2>
-      <p class="text-sm text-gray-400 mb-2">
+      <p class="text-sm text-text-secondary mb-2">
         {{ post.date | date("MMMM d, yyyy") }}
         {% if post.data.readingTime %} • {{ post.data.readingTime }}{% endif %}
       </p>
