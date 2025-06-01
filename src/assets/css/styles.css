@@ -329,3 +329,25 @@ a:hover {
    This uses light theme's bg-main (white) and gray-200 (#e5e7eb) which is --color-bg-interactive-strong for light theme.
    This should provide a similar subtle gradient for the light theme.
 */
+
+/* Scroll to Top Button Styles */
+#scrollToTopBtn {
+  display: none; /* Initially hidden, JS will manage visibility */
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333; /* A neutral dark color */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 1000; /* Ensure it's above other content */
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#scrollToTopBtn:hover {
+  opacity: 1; /* Full opacity on hover */
+}
