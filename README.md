@@ -9,6 +9,7 @@ This project is my personal website/blog built using modern web development tool
 - **Build Tools**: PostCSS, cssnano, and autoprefixer for CSS optimization
 - **Hosting**: GitHub Pages with custom domain configuration
 - **Latest Reads**: Integration with Raindrop.io API to display recently read articles
+- **Commonplace Book**: Digital collection of quotes and insights with search functionality
 - **AI Assistance**: Developed with the help of AI tools including:
   - GitHub Copilot for code completion and pair programming
   - Claude 3.5 Sonnet for development assistance and content generation
@@ -64,12 +65,42 @@ The site automatically fetches and displays my latest read articles from Raindro
    - The script `scripts/fetch-raindrop.js` handles the fetching.
    - The workflow is defined in `.github/workflows/update-raindrop.reads.yml`.
 
+### Commonplace Book
+The site includes a digital commonplace book for collecting and sharing meaningful quotes:
+
+1. **Features**:
+   - Searchable collection of quotes and insights
+   - Source attribution with optional external links
+   - Chronological organization with dates
+   - Responsive design matching the site's aesthetics
+
+2. **Data Management**:
+   - Quotes are stored in `src/_data/commonplace.json`
+   - Each entry includes:
+     ```json
+     {
+       "content": "The quote text",
+       "dateAdded": "ISO date string",
+       "source": "Author, Work Title",
+       "sourceUrl": "Optional URL to source" 
+     }
+     ```
+   - Helper script `scripts/commonplace-transform.py` to import quotes from Kindle highlights
+
+3. **Testing**:
+   - End-to-end tests in `tests/commonplace.spec.ts`
+   - Validates search functionality, layout, and external links
+   - Run with `npm test -- tests/commonplace.spec.ts`
+
 ## Project Structure
 
 - `/src` - Source files
   - `/_includes` - Layout templates
+  - `/_data` - JSON data files including commonplace entries
   - `/assets` - CSS and images
   - `/blog` - Markdown blog posts
+- `/scripts` - Utility scripts for data management
+- `/tests` - Playwright end-to-end tests
 - `/_site` - Generated static site (not committed)
 - `/postcss.config.js` - PostCSS configuration
 - `/tailwind.config.js` - Tailwind CSS configuration
