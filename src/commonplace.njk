@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Commonplace Book
+---
+
+<header class="mb-8">
+  <h1 class="text-4xl font-bold text-accent">Commonplace Book</h1>
+  <p class="text-lg text-text-secondary">A collection of quotes, excerpts, and reflections.</p>
+</header>
+
+<section class="space-y-8">
+  {% for item in commonplace | sort(false, false, 'dateAdded') | reverse %}
+  <article class="p-4 bg-bg-interactive-soft rounded-lg shadow">
+    <blockquote class="border-l-4 border-accent pl-4 mb-2">
+      <p class="text-xl italic text-text-main">"{{ item.content }}"</p>
+    </blockquote>
+    <footer class="text-sm text-text-secondary">
+      <p><strong>Source:</strong> {{ item.source }}</p>
+      <p><strong>Date Added:</strong> {{ item.dateAdded | date("MMMM d, yyyy") }}</p>
+    </footer>
+  </article>
+  {% else %}
+  <p>No entries yet. Check back soon!</p>
+  {% endfor %}
+</section>
