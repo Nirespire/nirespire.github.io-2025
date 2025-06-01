@@ -335,19 +335,36 @@ a:hover {
   display: none; /* Initially hidden, JS will manage visibility */
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333; /* A neutral dark color */
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
+  right: 20px; /* Changed from left:50% to right:20px for better placement */
+  background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.9);
+  color: var(--color-text-interactive-strong);
+  padding: 12px;
+  border: 1px solid rgba(var(--color-border-subtle-rgb), 0.3);
+  border-radius: 50%; /* Make it circular */
   cursor: pointer;
-  opacity: 0.7;
-  z-index: 1000; /* Ensure it's above other content */
-  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateY(0); /* Initial position for animation */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 #scrollToTopBtn:hover {
-  opacity: 1; /* Full opacity on hover */
+  transform: translateY(-4px);
+  border-color: rgba(var(--color-accent-rgb), 0.5);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.2);
+}
+
+#scrollToTopBtn:active {
+  transform: translateY(-2px);
+}
+
+#scrollToTopBtn svg {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+#scrollToTopBtn:hover svg {
+  transform: scale(1.1);
 }
