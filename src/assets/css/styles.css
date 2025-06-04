@@ -368,3 +368,7 @@ a:hover {
 #scrollToTopBtn:hover svg {
   transform: scale(1.1);
 }
+
+.rss-icon {
+  stroke: var(--color-accent);
+}
