@@ -1,5 +1,11 @@
 [
   {
+    "title": "The Prompt Engineering Playbook for Programmers",
+    "url": "https://addyo.substack.com/p/the-prompt-engineering-playbook-for",
+    "excerpt": "Turn AI coding assistants into more reliable development partners",
+    "dateAdded": "2025-06-05T12:20:28.905Z"
+  },
+  {
     "title": "Five opinions I’ve kept, let go, and picked up as a software builder and leader",
     "url": "https://world.hey.com/joaoqalves/five-opinions-i-ve-kept-let-go-and-picked-up-as-a-software-builder-and-leader-5ab3b919",
     "excerpt": "Leading teams and building platforms across different contexts made me rethink. Some opinions proved reliable and continued to guide decisions. Others failed under pressure or became blockers. Along the way, I picked up new ones, usually the hard way. This post reflects how my thinking has evolved: what I still believe, don't, and have...",
@@ -22,11 +28,5 @@
     "url": "https://skincontact.substack.com/p/21-observations-from-people-watching",
     "excerpt": "Painting weddings for a few years now, I have spent a fair bit of time observing strangers move through a room.",
     "dateAdded": "2025-05-11T01:00:24.000Z"
-  },
-  {
-    "title": "Getting things \"done\" in large tech companies | sean goedecke",
-    "url": "https://www.seangoedecke.com/getting-things-done",
-    "excerpt": "--",
-    "dateAdded": "2025-05-06T12:18:16.000Z"
   }
 ]
