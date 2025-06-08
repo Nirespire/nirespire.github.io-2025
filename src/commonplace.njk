@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+title: Commonplace Book
+---
+
+<h1 class="text-3xl font-bold mb-12 text-center">Commonplace Book</h1>
+
+<div class="mb-12 max-w-2xl mx-auto px-4">
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search quotes and sources..." 
+    class="w-full px-4 py-2 rounded-lg focus:outline-none transition-colors mb-2"
+    autocomplete="off"
+  >
+</div>
+
+<div class="space-y-8 max-w-2xl mx-auto px-4">
+  {% for item in commonplace | sort(false, false, 'dateAdded') | reverse %}
+    <article class="border-b border-border-subtle pb-4 commonplace-entry" 
+             data-content="{{ item.content | lower }}"
+             data-source="{{ item.source | lower }}">
+      <blockquote class="mb-4">
+        <p class="text-2xl font-semibold text-text-main italic">"{{ item.content }}"</p>
+      </blockquote>
+      <footer>
+        <p class="text-sm text-text-secondary mb-2">
+          <strong>Source:</strong> 
+          {% if item.sourceUrl %}
+            <a href="{{ item.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="text-accent text-sm">{{ item.source }}</a>
+          {% else %}
+            <span class="text-accent">{{ item.source }}</span>
+          {% endif %}
+        </p>
+        <p class="text-sm text-text-secondary">
+          <strong>Date Added:</strong> {{ item.dateAdded | date("MMMM d, yyyy") }}
+        </p>
+      </footer>
+    </article>
+  {% else %}
+    <p>No entries yet. Check back soon!</p>
+  {% endfor %}
+</div>
+
+<script>
+  const debounce = (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  document.getElementById('searchInput').addEventListener('input', debounce(function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const entries = document.getElementsByClassName('commonplace-entry');
+    
+    Array.from(entries).forEach(entry => {
+      const content = entry.dataset.content;
+      const source = entry.dataset.source;
+      
+      const isVisible = 
+        content.includes(searchTerm) || 
+        source.includes(searchTerm);
+      
+      entry.style.display = isVisible ? 'block' : 'none';
+    });
+  }, 250));
+</script>
