@@ -54,7 +54,7 @@ The site automatically fetches and displays my latest read articles from Raindro
 
 1. **Setup required environment variables and secrets**:
    - `RAINDROP_TEST_TOKEN` (GitHub Secret): Your Raindrop.io API test token.
-   - `RAINDROP_SEARCH_TAG` (GitHub Variable): The tag to filter articles by (e.g., "share").
+   - `RAINDROP_SEARCH_TAG` (GitHub Variable): The tag to filter articles by (e.g., "to-share").
 
 2. **How it works**:
    - GitHub Actions runs daily to fetch the 5 latest articles tagged with `RAINDROP_SEARCH_TAG`.
