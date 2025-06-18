@@ -1,5 +1,11 @@
 [
   {
+    "title": "Home | Substack",
+    "url": "https://substack.com/home/post/p-165655726",
+    "excerpt": "And the most fun",
+    "dateAdded": "2025-06-18T12:20:38.844Z"
+  },
+  {
     "title": "Max Mitchell | I Read All Of Cloudflare's Claude-Generated Commits",
     "url": "https://www.maxemitchell.com/writings/i-read-all-of-cloudflares-claude-generated-commits/",
     "excerpt": "Max Mitchell's personal portfolio website showcasing his photography, YouTube videos, coding projects, and work history.",
@@ -22,11 +28,5 @@
     "url": "https://blog.alexewerlof.com/p/when-a-team-is-too-big",
     "excerpt": "What signs to look for and how to increase productivity with all-round skillset",
     "dateAdded": "2025-05-22T12:23:27.000Z"
-  },
-  {
-    "title": "How We Build Effective Agents: Barry Zhang, Anthropic",
-    "url": "https://youtu.be/D7_ipDqhtwk?si=iJEYwsRUJIMz-5Fj",
-    "excerpt": "Recorded live at the Agent Engineering Session Day from the AI Engineer Summit 2025 in New York. Learn more at https://ai.engineer and purchase tickets to ou...",
-    "dateAdded": "2025-05-17T17:38:13.000Z"
   }
 ]
