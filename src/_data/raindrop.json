@@ -1,5 +1,11 @@
 [
   {
+    "title": "matduggan.com/what-would-a-kubernetes-2-0-look-like/?utm_source=tldrnewsletter",
+    "url": "https://matduggan.com/what-would-a-kubernetes-2-0-look-like/",
+    "excerpt": "As we approach the 10 year anniversary of the 1.0 release of Kubernetes, let's take stock of the successes and failures of the project in the wild. Also what would be on a wish list for a Kubernetes 2.0 release.",
+    "dateAdded": "2025-06-21T00:25:02.987Z"
+  },
+  {
     "title": "Home | Substack",
     "url": "https://substack.com/home/post/p-165655726",
     "excerpt": "And the most fun",
@@ -22,11 +28,5 @@
     "url": "https://world.hey.com/joaoqalves/five-opinions-i-ve-kept-let-go-and-picked-up-as-a-software-builder-and-leader-5ab3b919",
     "excerpt": "Leading teams and building platforms across different contexts made me rethink. Some opinions proved reliable and continued to guide decisions. Others failed under pressure or became blockers. Along the way, I picked up new ones, usually the hard way. This post reflects how my thinking has evolved: what I still believe, don't, and have...",
     "dateAdded": "2025-05-31T17:36:59.591Z"
-  },
-  {
-    "title": "When a team is too big - Alex Ewerlöf Notes",
-    "url": "https://blog.alexewerlof.com/p/when-a-team-is-too-big",
-    "excerpt": "What signs to look for and how to increase productivity with all-round skillset",
-    "dateAdded": "2025-05-22T12:23:27.000Z"
   }
 ]
