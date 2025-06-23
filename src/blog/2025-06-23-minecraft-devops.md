@@ -44,4 +44,8 @@ You can see a diagram of what I have working today below:
 
 ![Minecraft DevOps Architecture Diagram](/assets/images/minecraftdevops.jpg)
 
+I got the whole architecture implemented in Infrastructure as Code via a combination of Terraform and Ansible scripts. My friends and I liked to spin up new server worlds when a new version of Minecraft was released or if we wanted to experiment with mods. Via automation, I was able to bring the total time of getting a brand new server setup from scratch, fully integrated into our admin portal with all the mentioned automation, down to about 15 minutes.
+
 I initially considered going down the Kubernetes path for the infrastructure, but in retrospect I'm glad I didn't. I didn't want the required maintenance and upkeep of the infrastructure to outweigh the amount of time I could spend actually using it and enjoying it playing Minecraft. This was one of the key objectives of the project that I didn't know then but I can articulate now. Raw Kubernetes has a high cost of entry and requires decently large efforts to upkeep. More managed solutions weren't cost effective for my use-case where I was only interested in spending a maximum of a few dozen dollars a month.
+
+My friends and I don't play Minecraft nearly as much as we did as our lives all got busy. But I wanted to share a little about the experience I had exercising my Cloud DevOps skills in this little project that was a pretty fun crossover between my professional and personal lives.
