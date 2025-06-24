@@ -11,7 +11,7 @@ test.describe('Home page', () => {
     // Check main nav links
     const links = [
       { text: 'Blog', href: '/blog/' },
-      { text: 'Contact', href: '/contact/' }
+      { text: 'About', href: '/about/' }
     ];
     for (const link of links) {
       const navLink = nav.getByRole('link', { name: link.text });
