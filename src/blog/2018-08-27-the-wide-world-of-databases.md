@@ -2,13 +2,13 @@
 title: "The Wide World of Databases"
 date: 2018-08-27
 layout: layouts/post.njk
+coverImage: https://cdn-images-1.medium.com/max/1200/0*fBpXznzmVndvFJCo
+coverImageAlt: "Photo by Jonathan Singer on Unsplash"
 tags: 
   - databases
   - software-development
   - technology
 ---
-
-![Photo by Jonathan Singer on Unsplash](https://cdn-images-1.medium.com/max/1200/0*fBpXznzmVndvFJCo)
 
 Working in software, it's easy to get caught up in all the latest and greatest technologies and frameworks. Every other week there seems to be a new JavaScript framework that "solves" all your problems. However, one of the most fundamental pieces of any non-trivial application is how you store and retrieve your data, i.e. your database.
 
