@@ -3,10 +3,10 @@ layout: layouts/post.njk
 title: "Tracing and Observability"
 subtitle: "Diving deeper beyond the surface of microservice interactions"
 date: 2020-02-25
+coverImage: https://cdn-images-1.medium.com/max/1200/0*kwiSc-MTD-IVdK4F
+coverImageAlt: "Photo by Denys Nevozhai on Unsplash"
 tags: ["microservices", "observability", "distributed systems", "software engineering"]
 ---
-
-![Photo by Denys Nevozhai on Unsplash](https://cdn-images-1.medium.com/max/1200/0*kwiSc-MTD-IVdK4F)
 
 Think back to the last time you checked the tracking information for a package you were expecting to receive. You might have followed a link in your email that gave you a breakdown of where and when your package was received and shipped out of various locations. You could make a mental map of what shipping facilities passed through around the world it and how long it spent there and on the road. From that information, you probably got a sense of what kind of journey your package took and why it took as long as it did to get to your doorstep.
 

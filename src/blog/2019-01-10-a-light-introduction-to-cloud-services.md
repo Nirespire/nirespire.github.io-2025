@@ -3,10 +3,10 @@ layout: layouts/post.njk
 title: "A Light Introduction to Cloud Services"
 subtitle: "What are the types of tools that cloud platforms provide and what software problems can they solve for you"
 date: 2019-01-10
+coverImage: https://cdn-images-1.medium.com/max/800/0*jm2Jig9_0kdvDf9Z
+coverImageAlt: "Photo by Samuel Ferrara on Unsplash"
 tags: ["cloud", "software engineering", "aws", "gcp", "azure", "infrastructure"]
 ---
-
-![Photo by Samuel Ferrara on Unsplash](https://cdn-images-1.medium.com/max/800/0*jm2Jig9_0kdvDf9Z)
 
 As software engineers, there are lots of tools available for us to use. We might start simple with a programming language or two. From there, we might explore software libraries that help us be more productive when solving problems, or tools to help with collaboration. If our use-case requires it, we could reach for advanced monitoring tools to alert us when our software is doing something it shouldn't.
 
