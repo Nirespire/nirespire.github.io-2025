@@ -18,7 +18,7 @@ test.describe('Blog posts', () => {
 
   test('should render blog post without banner image correctly', async ({ page }) => {
     // Navigate to the sample post (assuming it doesn't have a banner)
-    await page.goto('/blog/sample-post/');
+    await page.goto('/blog/2025-06-23-minecraft-devops/');
     
     // Verify no banner image is present
     const banner = page.locator('.h-48.md\\:h-64');
