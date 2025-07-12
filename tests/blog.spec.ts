@@ -47,8 +47,8 @@ test.describe('Blog posts', () => {
     
     // Check tags
     const tags = page.locator('a[itemprop="keywords"]');
-    await expect(tags).toHaveCount(3); // This post has 3 tags
-    await expect(tags).toContainText(['leadership', 'gen-ai', 'software engineering']);
+    await expect(tags).toHaveCount(5); // This post has 5 tags
+    await expect(tags).toContainText(['leadership', 'gen-ai', 'software engineering', 'ai', 'career']);
   });
 
   test('should have working navigation between posts', async ({ page }) => {

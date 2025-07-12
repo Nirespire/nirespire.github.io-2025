@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Working With Sanjay"
 subtitle: "The Getting Started Guide for working with me professionally"
 date: 2025-04-20
-tags: ["leadership"]
+tags: ["leadership", "career"]
 ---
 
 This document should serve as a concise artifact that describes my style of work and leadership. It should serve as a quick way to get up to speed with what to expect as a new colleague or member of my team.
