@@ -4,7 +4,7 @@ title: "Automating Dependency Upgrades with Dependabot and CI"
 date: 2020-01-08
 coverImage: https://cdn-images-1.medium.com/max/800/0*c8V1WvMnxFe5J9l9.jpg
 coverImageAlt: "Image Source: https://scotch.io/bar-talk/secure-dependencies-with-github-and-dependabot"
-tags: ["github", "security", "automation", "dependabot", "continuous integration"]
+tags: ["github", "security", "automation", "dependabot", "continuous integration", "devops"]
 ---
 
 I'm a big proponent of keeping software up to date. Especially in the modern day where it feels like new critical security vulnerabilities are popping up in software every other week.

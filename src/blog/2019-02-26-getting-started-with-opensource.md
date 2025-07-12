@@ -5,7 +5,7 @@ subtitle: "A beginner's guide to participating in open source"
 date: 2019-02-26
 coverImage: https://cdn-images-1.medium.com/max/1200/0*bsb4aUtPqQ_6ugFB
 coverImageAlt: "Photo by Alina Grubnyak on Unsplash"
-tags: ["open source", "github", "software engineering", "contributing"]
+tags: ["open source", "github", "software engineering"]
 ---
 
 Did you know that a large part of the software you use everyday was probably built with tools and technologies that are freely available for anyone to download, install, study, and modify?
