@@ -1,8 +1,24 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const fs = require("fs");
 
 module.exports = function(eleventyConfig) {
+    eleventyConfig.setUseGitIgnore(false);
+
+    eleventyConfig.on('beforeBuild', () => {
+        const analyticsPath = 'src/_data/analytics.json';
+        let analyticsData = { visits: [] };
+
+        if (fs.existsSync(analyticsPath)) {
+            const fileContent = fs.readFileSync(analyticsPath, 'utf8');
+            analyticsData = JSON.parse(fileContent);
+        }
+
+        analyticsData.visits.push(new Date().toISOString());
+
+        fs.writeFileSync(analyticsPath, JSON.stringify(analyticsData, null, 2));
+    });
     // Add RSS plugin
     eleventyConfig.addPlugin(pluginRss);
 
