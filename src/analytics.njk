@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+title: Analytics
+permalink: /analytics/index.html
+---
+
+<div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold my-4">Site Analytics</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title">Total Visits</h2>
+                <p class="text-4xl">{{ analytics.visits.length }}</p>
+            </div>
+        </div>
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title">Visits in the Past 30 Days</h2>
+                <p class="text-4xl" id="visits-30-days">0</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const visits = {{ analytics.visits | dump | safe }};
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const visitsInPast30Days = visits.filter(visit => new Date(visit) > thirtyDaysAgo).length;
+    document.getElementById('visits-30-days').innerText = visitsInPast30Days;
+</script>

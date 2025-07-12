@@ -24,6 +24,9 @@ yarn-error.log*
 .env
 .env.local
 
+# Analytics data
+src/_data/analytics.json
+
 # Mac folder attributes
 .AppleDouble
 .LSOverride
