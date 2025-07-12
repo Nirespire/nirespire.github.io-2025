@@ -5,7 +5,7 @@ subtitle: "In 6 steps"
 date: 2019-04-01
 coverImage: https://cdn-images-1.medium.com/max/1200/0*H-wqTe7TLuy5KQgB
 coverImageAlt: "Photo by Alex Holyoake on Unsplash"
-tags: ["open source", "software engineering", "github", "documentation"]
+tags: ["open source", "software engineering", "github"]
 ---
 
 In my [last post](https://sanjaynair.me/blog/2019-02-26-getting-started-with-opensource/), I outlined what open source is and presented some steps for how to get involved. Every open source project available today, even those with many thousands of contributors, all started with at least one person who had the drive to make what they were creating available for other to freely use and contribute to.

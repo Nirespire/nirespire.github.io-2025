@@ -2,10 +2,7 @@
 title: A Light Introduction to AI Safety
 date: 2018-11-02
 layout: layouts/post.njk
-tags: 
-  - AI
-  - Technology
-  - Safety
+tags: ["ai", "ai safety", "technology"]
 ---
 
 I was recently listening to an episode of the podcast [This Week in Machine Learning and AI](https://twimlai.com/twiml-talk-181-anticipating-superintelligence-with-nick-bostrom/), featuring professor Nick Bostrom. He is the author of a book I recently read called [Superintelligence](https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies), which explores the potential consequences of artificial intelligence that surpasses the capabilities of human beings by orders of magnitude. Bostrom is also a member of the [Future of Life Institute](https://futureoflife.org/) which seeks to steer humanity through a safe course into the future along with the rapid pace of technological advancement.

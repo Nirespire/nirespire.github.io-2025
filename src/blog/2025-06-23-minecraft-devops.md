@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Minecraft DevOps - Foundational Cloud Skills With a Fun Payoff"
 subtitle: "Yes, DevOps CAN be fun"
 date: 2025-06-23
-tags: ["software engineering", "devops", "video-games"]
+tags: ["software engineering", "devops", "video-games", "aws", "cloud"]
 ---
 
 

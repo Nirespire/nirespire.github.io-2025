@@ -4,10 +4,7 @@ date: 2018-10-01
 layout: layouts/post.njk
 coverImage: https://cdn-images-1.medium.com/max/1200/0*X2G8UkOxSTYmADa3
 coverImageAlt: "aerial photo of world by Richard Gatley on Unsplash"
-tags:
-  - testing
-  - software engineering
-  - software development
+tags: ["testing", "software engineering"]
 ---
 
 In a [previous post](https://sanjaynair.me/blog/2018-05-06-what-is-cicd/) about continuous integration and deployment, I alluded to the practice of constantly putting code through various tests and making the results visible, whether within a software team or to the public for an opensource project. In this post, I want to dive a little deeper into what "testing" *actually* is in the context of writing quality software. Specifically, I'd like to shed some light on the different types of testing and how they can help you write better software.
