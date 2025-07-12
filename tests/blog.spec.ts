@@ -62,4 +62,23 @@ test.describe('Blog posts', () => {
     await nav.getByText('Back to Blog').click();
     await expect(page).toHaveURL('/blog/');
   });
+
+  test('should have properly configured comments section', async ({ page }) => {
+    await page.goto('/blog/2025-07-10-genai-for-leaders/');
+    
+    // Check giscus script is present with correct configuration
+    const giscusScript = page.locator('script[src="https://giscus.app/client.js"]');
+    await expect(giscusScript).toBeAttached();
+    
+    // Verify essential giscus configuration
+    await expect(giscusScript).toHaveAttribute('data-repo', 'Nirespire/nirespire.github.io-2025');
+    await expect(giscusScript).toHaveAttribute('data-mapping', 'title');
+    await expect(giscusScript).toHaveAttribute('data-theme', 'preferred_color_scheme');
+    await expect(giscusScript).toHaveAttribute('data-lang', 'en');
+    
+    // Check giscus container is present
+    const giscusContainer = page.locator('div.giscus');
+    await expect(giscusContainer).toBeVisible();
+    await expect(giscusContainer).toHaveClass(/mt-8/);
+  });
 });
