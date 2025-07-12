@@ -1,5 +1,12 @@
 # Sanjay Nair - Personal Website
 
+[![Build and Deploy](https://github.com/Nirespire/nirespire.github.io-2025/actions/workflows/deploy.yml/badge.svg)](https://github.com/Nirespire/nirespire.github.io-2025/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D22.0.0-brightgreen)](https://nodejs.org)
+[![Playwright Tests](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg)](https://playwright.dev/)
+[![Built with 11ty](https://img.shields.io/badge/Built%20with-11ty-black)](https://11ty.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Styled%20with-Tailwind-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+
 ## Overview
 
 This project is my personal website/blog built using modern web development tools and practices:
