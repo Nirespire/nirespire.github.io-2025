@@ -7,6 +7,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
 
     steps:
     - uses: actions/checkout@v4
@@ -32,3 +36,26 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Publish Test Status
+      if: always()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const conclusion = process.env.TEST_OUTCOME === 'success' ? 'success' : 'failure';
+          await github.rest.checks.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: 'Playwright Tests',
+            head_sha: context.sha,
+            status: 'completed',
+            conclusion: conclusion,
+            output: {
+              title: 'Playwright Test Results',
+              summary: process.env.TEST_OUTCOME === 'success' 
+                ? '✅ All tests passed successfully!'
+                : '❌ Some tests failed. Please check the artifacts for detailed test results.'
+            }
+          })
+      env:
+        TEST_OUTCOME: ${{ job.status }}
