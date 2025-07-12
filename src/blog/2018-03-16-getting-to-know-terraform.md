@@ -5,7 +5,7 @@ subtitle: "A retrospective of my learning experiences while exploring the Terraf
 date: 2018-03-16
 coverImage: https://cdn-images-1.medium.com/max/2560/0*owN7rzmi1XaNTQan.
 coverImageAlt: "Photo by Wojciech Szaturski on Unsplash"
-tags: ["infrastructure", "devops", "terraform", "cloud", "aws", "gcp", "azure"]
+tags: ["infrastructure", "devops", "terraform", "cloud"]
 ---
 
 Every few weeks or so, I try to spend some quality time getting to know a concept or technology outside my core proficiency of web application development. About half a year ago, I had the chance to dabble in some cloud infrastructure management. It was, to some degree, restricted to a lot of repetitive, manual tasks on a tiny corner of the platform. With the rise of the big cloud providers like Google Cloud Platform, AWS, and Azure, it seemed like being comfortable with the fundamentals of moving through those systems was becoming an ever increasingly necessary skill to have. However, with my limited experience, I didn't feel like I could confidently say I had good experience in "cloud infrastructure management."
