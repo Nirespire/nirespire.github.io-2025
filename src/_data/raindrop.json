@@ -1,5 +1,11 @@
 [
   {
+    "title": "From Memo to Movement: Shopify’s Cultural Adoption of AI | First Round",
+    "url": "https://www.firstround.com/ai/shopify?utm_source=tldrnewsletter",
+    "excerpt": "The non-obvious insights, tactics and workflows Shopify used to bring an ambitious memo to life.",
+    "dateAdded": "2025-07-16T12:29:54.294Z"
+  },
+  {
     "title": "How I build software quickly",
     "url": "https://evanhahn.com/how-i-build-software-quickly/",
     "excerpt": "Know how good your code needs to be for the task at hand. Start with a rough draft. Try to soften requirements if you can. Don't get distracted. Make small changes. Practice specific skills.",
@@ -22,11 +28,5 @@
     "url": "https://matduggan.com/what-would-a-kubernetes-2-0-look-like/",
     "excerpt": "As we approach the 10 year anniversary of the 1.0 release of Kubernetes, let's take stock of the successes and failures of the project in the wild. Also what would be on a wish list for a Kubernetes 2.0 release.",
     "dateAdded": "2025-06-21T00:25:02.987Z"
-  },
-  {
-    "title": "Home | Substack",
-    "url": "https://substack.com/home/post/p-165655726",
-    "excerpt": "And the most fun",
-    "dateAdded": "2025-06-18T12:20:38.844Z"
   }
 ]
