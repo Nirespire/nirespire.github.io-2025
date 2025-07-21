@@ -1,5 +1,17 @@
 [
   {
+    "title": "Why I'm Betting Against AI Agents in 2025 (Despite Building Them)",
+    "url": "https://utkarshkanwat.com/writing/betting-against-agents/",
+    "excerpt": "AI Engineer at ANZ Bank working on intelligent systems, LLM optimization, and scalable ML platforms.",
+    "dateAdded": "2025-07-21T12:30:12.616Z"
+  },
+  {
+    "title": "It's rude to show AI output to people | Alex Martsinovich",
+    "url": "https://distantprovince.by/posts/its-rude-to-show-ai-output-to-people/?utm_source=tldrnewsletter",
+    "excerpt": "Feeding slop is an act of war",
+    "dateAdded": "2025-07-21T12:18:50.683Z"
+  },
+  {
     "title": "From Memo to Movement: Shopify’s Cultural Adoption of AI | First Round",
     "url": "https://www.firstround.com/ai/shopify?utm_source=tldrnewsletter",
     "excerpt": "The non-obvious insights, tactics and workflows Shopify used to bring an ambitious memo to life.",
@@ -16,17 +28,5 @@
     "url": "https://www.holovaty.com/writing/chatgpt-fake-feature/",
     "excerpt": "",
     "dateAdded": "2025-07-08T12:15:36.364Z"
-  },
-  {
-    "title": "The Uncertain Future of Coding Careers and Why I'm Still Hopeful",
-    "url": "https://jonmagic.com/posts/the-uncertain-future-of-coding-careers-and-why-im-still-hopeful/",
-    "excerpt": "My thoughts on the future of coding careers in the age of AI, and why I believe that human creativity and ingenuity will always be in demand.",
-    "dateAdded": "2025-07-03T12:24:40.494Z"
-  },
-  {
-    "title": "matduggan.com/what-would-a-kubernetes-2-0-look-like/?utm_source=tldrnewsletter",
-    "url": "https://matduggan.com/what-would-a-kubernetes-2-0-look-like/",
-    "excerpt": "As we approach the 10 year anniversary of the 1.0 release of Kubernetes, let's take stock of the successes and failures of the project in the wild. Also what would be on a wish list for a Kubernetes 2.0 release.",
-    "dateAdded": "2025-06-21T00:25:02.987Z"
   }
 ]
