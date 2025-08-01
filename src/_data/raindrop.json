@@ -1,5 +1,11 @@
 [
   {
+    "title": "Freestyle Documentation",
+    "url": "https://docs.freestyle.sh/blog/docs-revamp",
+    "excerpt": "",
+    "dateAdded": "2025-08-01T00:38:26.656Z"
+  },
+  {
     "title": "Why I'm Betting Against AI Agents in 2025 (Despite Building Them)",
     "url": "https://utkarshkanwat.com/writing/betting-against-agents/",
     "excerpt": "AI Engineer at ANZ Bank working on intelligent systems, LLM optimization, and scalable ML platforms.",
@@ -22,11 +28,5 @@
     "url": "https://evanhahn.com/how-i-build-software-quickly/",
     "excerpt": "Know how good your code needs to be for the task at hand. Start with a rough draft. Try to soften requirements if you can. Don't get distracted. Make small changes. Practice specific skills.",
     "dateAdded": "2025-07-14T12:16:04.551Z"
-  },
-  {
-    "title": "Adding a feature because ChatGPT incorrectly thinks it exists | Holovaty.com",
-    "url": "https://www.holovaty.com/writing/chatgpt-fake-feature/",
-    "excerpt": "",
-    "dateAdded": "2025-07-08T12:15:36.364Z"
   }
 ]
