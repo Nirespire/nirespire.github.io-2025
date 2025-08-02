@@ -39,7 +39,6 @@
       </div>
     </header>
 
-
     {% if coverImage %}
     <div class="relative w-full h-48 md:h-64 -mt-8 mb-8 overflow-hidden">
       <img src="{{ coverImage }}" alt="{{ coverImageAlt }}" class="absolute w-full h-full object-cover" itemprop="image">
@@ -92,9 +91,6 @@ tags: [{% for tag in tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% end
       <div class="mb-8 flex flex-col items-center">
         <h3 class="text-lg font-semibold text-text-secondary mb-4">Share this post</h3>
         <div class="flex gap-4">
-          <button onclick="openLLM('claude', 'llm-text-content')" class="social-share-link">Claude</button>
-          <button onclick="openLLM('chatgpt', 'llm-text-content')" class="social-share-link">ChatGPT</button>
-          <button onclick="openLLM('gemini', 'llm-text-content')" class="social-share-link">Gemini</button>
           <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl('https://sanjaynair.me') | urlencode }}"
             target="_blank" rel="noopener noreferrer" class="social-share-link">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

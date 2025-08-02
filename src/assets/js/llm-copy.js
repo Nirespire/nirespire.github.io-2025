@@ -88,26 +88,3 @@ function showCopyFeedback(buttonElement, message, success) {
   
   buttonElement.dataset.timeoutId = timeoutId.toString();
 }
-
-function openLLM(tool, contentId) {
-    const content = document.getElementById(contentId).innerText;
-    const encodedContent = encodeURIComponent(content);
-    let url;
-
-    switch (tool) {
-        case 'claude':
-            url = `https://claude.ai/chats?text=${encodedContent}`;
-            break;
-        case 'chatgpt':
-            url = `https://chat.openai.com/?text=${encodedContent}`;
-            break;
-        case 'gemini':
-            url = `https://gemini.google.com/app?text=${encodedContent}`;
-            break;
-        default:
-            console.error('Unknown tool:', tool);
-            return;
-    }
-
-    window.open(url, '_blank');
-}
