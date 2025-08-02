@@ -1,4 +1,9 @@
 function copyToClipboard(contentId, buttonElement) {
+  // Prevent multiple clicks while feedback is active
+  if (buttonElement.dataset.copying === 'true') {
+    return;
+  }
+  
   const contentElement = document.getElementById(contentId);
   if (!contentElement) {
     console.error('Content element not found:', contentId);
@@ -48,14 +53,40 @@ function copyToClipboard(contentId, buttonElement) {
 }
 
 function showCopyFeedback(buttonElement, message, success) {
-  const originalText = buttonElement.innerText;
-  buttonElement.innerText = message;
-  buttonElement.style.backgroundColor = success ? '#10B981' : '#EF4444';
+  // Set copying state to prevent multiple concurrent operations
+  buttonElement.dataset.copying = 'true';
   
-  setTimeout(() => {
-    buttonElement.innerText = originalText;
-    buttonElement.style.backgroundColor = '';
+  // Store original values only if not already stored
+  if (!buttonElement.dataset.originalText) {
+    buttonElement.dataset.originalText = buttonElement.innerText;
+    buttonElement.dataset.originalClasses = buttonElement.className;
+  }
+  
+  buttonElement.innerText = message;
+  
+  // Remove original classes and add feedback classes
+  buttonElement.className = success 
+    ? 'flex items-center gap-1 py-1 px-2 rounded text-xs transition-colors duration-300 border llm-copy-success'
+    : 'flex items-center gap-1 py-1 px-2 rounded text-xs transition-colors duration-300 border llm-copy-error';
+  
+  // Clear any existing timeout
+  if (buttonElement.dataset.timeoutId) {
+    clearTimeout(parseInt(buttonElement.dataset.timeoutId));
+  }
+  
+  // Set new timeout and store the ID
+  const timeoutId = setTimeout(() => {
+    buttonElement.innerText = buttonElement.dataset.originalText;
+    buttonElement.className = buttonElement.dataset.originalClasses;
+    
+    // Clean up stored values and state
+    delete buttonElement.dataset.copying;
+    delete buttonElement.dataset.originalText;
+    delete buttonElement.dataset.originalClasses;
+    delete buttonElement.dataset.timeoutId;
   }, 2000);
+  
+  buttonElement.dataset.timeoutId = timeoutId.toString();
 }
 
 function openLLM(tool, contentId) {

@@ -117,4 +117,40 @@ test.describe('LLM Copy Functionality', () => {
     expect(content).toContain('tags: ["leadership", "gen-ai", "software engineering", "ai", "career"]');
     expect(content).toContain('I constantly encourage my teams to leverage Generative AI');
   });
+
+  test('should handle rapid clicking without getting stuck', async ({ page }) => {
+    // Mock clipboard API to succeed
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: {
+          writeText: () => Promise.resolve()
+        },
+        configurable: true
+      });
+    });
+    
+    // Navigate to a blog post
+    await page.goto('/blog/2025-07-10-genai-for-leaders/');
+    
+    // Wait for the page to load
+    await page.waitForLoadState('networkidle');
+    
+    const copyButton = page.locator('button[onclick*="copyToClipboard"]');
+    await expect(copyButton).toBeVisible();
+    
+    // Click multiple times rapidly
+    await copyButton.click();
+    await copyButton.click();
+    await copyButton.click();
+    
+    // Should show success feedback
+    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+    
+    // Should eventually return to original text
+    await expect(copyButton).toHaveText('Copy for LLM', { timeout: 3000 });
+    
+    // Button should be clickable again after timeout
+    await copyButton.click();
+    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+  });
 });
