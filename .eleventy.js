@@ -89,6 +89,14 @@ module.exports = function(eleventyConfig) {
       return Math.ceil(wordCount / wordsPerMinute);
     });
 
+    // Add a filter to select a random item from an array
+    eleventyConfig.addFilter("randomItem", (arr) => {
+      if (!Array.isArray(arr) || arr.length === 0) {
+        return null;
+      }
+      return arr[Math.floor(Math.random() * arr.length)];
+    });
+
     return {
       dir: {
         input: "src",
