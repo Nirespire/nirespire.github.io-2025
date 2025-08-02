@@ -28,9 +28,8 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npx eleventy --serve',
+    command: 'npm run dev',
     url: 'http://localhost:8080',
     reuseExistingServer: !process.env.CI,
-    timeout: 240 * 1000,
   },
 });
