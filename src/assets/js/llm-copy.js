@@ -1,19 +1,61 @@
 function copyToClipboard(contentId, buttonElement) {
-  const content = document.getElementById(contentId).innerText;
-  navigator.clipboard.writeText(content).then(() => {
-    const originalText = buttonElement.innerText;
-    buttonElement.innerText = 'Copied!';
-    setTimeout(() => {
-      buttonElement.innerText = originalText;
-    }, 2000);
-  }).catch(err => {
-    console.error('Failed to copy text: ', err);
-    const originalText = buttonElement.innerText;
-    buttonElement.innerText = 'Error!';
-    setTimeout(() => {
-      buttonElement.innerText = originalText;
-    }, 2000);
-  });
+  const contentElement = document.getElementById(contentId);
+  if (!contentElement) {
+    console.error('Content element not found:', contentId);
+    return;
+  }
+  
+  const content = contentElement.innerText.trim();
+  
+  if (!content) {
+    console.error('No content to copy');
+    return;
+  }
+  
+  // Use modern clipboard API with fallback
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(content).then(() => {
+      showCopyFeedback(buttonElement, 'Copied!', true);
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+      showCopyFeedback(buttonElement, 'Error!', false);
+    });
+  } else {
+    // Fallback for older browsers or non-secure contexts
+    const textArea = document.createElement('textarea');
+    textArea.value = content;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        showCopyFeedback(buttonElement, 'Copied!', true);
+      } else {
+        showCopyFeedback(buttonElement, 'Error!', false);
+      }
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      showCopyFeedback(buttonElement, 'Error!', false);
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  }
+}
+
+function showCopyFeedback(buttonElement, message, success) {
+  const originalText = buttonElement.innerText;
+  buttonElement.innerText = message;
+  buttonElement.style.backgroundColor = success ? '#10B981' : '#EF4444';
+  
+  setTimeout(() => {
+    buttonElement.innerText = originalText;
+    buttonElement.style.backgroundColor = '';
+  }, 2000);
 }
 
 function openLLM(tool, contentId) {

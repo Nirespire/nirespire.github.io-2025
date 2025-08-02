@@ -71,7 +71,14 @@
     
     <div class="giscus mt-8"></div>
 
-    <div id="llm-markdown-content" class="hidden">{{ page.inputContent }}</div>
+    <div id="llm-markdown-content" class="hidden">---
+title: "{{ title }}"{% if subtitle %}
+subtitle: "{{ subtitle }}"{% endif %}
+date: {{ date | date('yyyy-MM-dd') }}
+tags: [{% for tag in tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+---
+
+{% if page.rawInput %}{{ page.rawInput }}{% else %}{{ content | striptags }}{% endif %}</div>
     <div id="llm-text-content" class="hidden">{{ content | striptags }}</div>
     <script src="/assets/js/llm-copy.js" defer></script>
 
