@@ -89,6 +89,13 @@ module.exports = function(eleventyConfig) {
       return Math.ceil(wordCount / wordsPerMinute);
     });
 
+    eleventyConfig.addFilter("split", function(str, separator) {
+      if (typeof str !== 'string') {
+        return [];
+      }
+      return str.split(separator);
+    });
+
     return {
       dir: {
         input: "src",
