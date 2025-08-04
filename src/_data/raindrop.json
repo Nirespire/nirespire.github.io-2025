@@ -1,5 +1,17 @@
 [
   {
+    "title": "Full-breadth Developers | justin․searls․co",
+    "url": "https://justin.searls.co/posts/full-breadth-developers/",
+    "excerpt": "The software industry is at an inflection point unlike anything in its brief history. Generative AI is all anyone can talk about. It has rendered entire product…",
+    "dateAdded": "2025-08-03T15:33:27.336Z"
+  },
+  {
+    "title": "6 Weeks of Claude Code - Puzzmo Blog",
+    "url": "https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/",
+    "excerpt": "It is wild to think that it has been only a handful of weeks.\nClaude Code has considerably changed my relationship to writing and maintaining code at scale. I still write code at the same level of quality, but I feel like I have a new freedom of expression which is hard to fully articulate.\nClaude Code has decoupled myself from writing every line of code, I still consider myself fully responsible for everything I ship to Puzzmo, but the ability to instantly create a whole scene instead of going line by line, word by word is incredibly powerful.",
+    "dateAdded": "2025-08-03T14:47:08.800Z"
+  },
+  {
     "title": "Freestyle Documentation",
     "url": "https://docs.freestyle.sh/blog/docs-revamp",
     "excerpt": "",
@@ -16,17 +28,5 @@
     "url": "https://distantprovince.by/posts/its-rude-to-show-ai-output-to-people/?utm_source=tldrnewsletter",
     "excerpt": "Feeding slop is an act of war",
     "dateAdded": "2025-07-21T12:18:50.683Z"
-  },
-  {
-    "title": "From Memo to Movement: Shopify’s Cultural Adoption of AI | First Round",
-    "url": "https://www.firstround.com/ai/shopify?utm_source=tldrnewsletter",
-    "excerpt": "The non-obvious insights, tactics and workflows Shopify used to bring an ambitious memo to life.",
-    "dateAdded": "2025-07-16T12:29:54.294Z"
-  },
-  {
-    "title": "How I build software quickly",
-    "url": "https://evanhahn.com/how-i-build-software-quickly/",
-    "excerpt": "Know how good your code needs to be for the task at hand. Start with a rough draft. Try to soften requirements if you can. Don't get distracted. Make small changes. Practice specific skills.",
-    "dateAdded": "2025-07-14T12:16:04.551Z"
   }
 ]
