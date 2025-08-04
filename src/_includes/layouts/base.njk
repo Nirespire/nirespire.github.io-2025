@@ -105,7 +105,11 @@
   </script>
 </head>
 <body class="container mx-auto px-2 sm:p-2 font-sans bg-bg-main text-text-main">
+  {% from "macros/breadcrumbs.njk" import breadcrumbs %}
   <header class="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
+    {% if page.url != '/' %}
+      {{ breadcrumbs(page) }}
+    {% endif %}
     <nav class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
       <a href="/" class="text-xl sm:text-2xl font-bold text-accent">Sanjay Nair</a>
       <div class="space-x-4">
