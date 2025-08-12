@@ -1,5 +1,11 @@
 [
   {
+    "title": "I Tried Every Todo App and Ended Up With a .txt File - Alireza Bashiri",
+    "url": "https://www.al3rez.com/todo-txt-journey",
+    "excerpt": "",
+    "dateAdded": "2025-08-11T23:17:54.422Z"
+  },
+  {
     "title": "Full-breadth Developers | justin․searls․co",
     "url": "https://justin.searls.co/posts/full-breadth-developers/",
     "excerpt": "The software industry is at an inflection point unlike anything in its brief history. Generative AI is all anyone can talk about. It has rendered entire product…",
@@ -22,11 +28,5 @@
     "url": "https://utkarshkanwat.com/writing/betting-against-agents/",
     "excerpt": "AI Engineer at ANZ Bank working on intelligent systems, LLM optimization, and scalable ML platforms.",
     "dateAdded": "2025-07-21T12:30:12.616Z"
-  },
-  {
-    "title": "It's rude to show AI output to people | Alex Martsinovich",
-    "url": "https://distantprovince.by/posts/its-rude-to-show-ai-output-to-people/?utm_source=tldrnewsletter",
-    "excerpt": "Feeding slop is an act of war",
-    "dateAdded": "2025-07-21T12:18:50.683Z"
   }
 ]
