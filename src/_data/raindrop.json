@@ -1,5 +1,11 @@
 [
   {
+    "title": "Closure | Tech Debt? I don't believe it exists.",
+    "url": "https://dadrian.io/blog/posts/tech-debt/?utm_source=tldrnewsletter",
+    "excerpt": "Rodents of Unusual Size? I don't believe they exist. There’s endless discourse around tech debt. Kellan has some really good categorizations of different types, Will Larson has a great explainer of organization debt in his book, and I also like the idea of product debt. Throughout my career, I’ve been an engineer complaining about tech debt, a manager prioritizing (and deprioritizing) addressing tech debt, and a product manager, where I assume I primarily inspire the creation of new tech debt.",
+    "dateAdded": "2025-08-13T12:18:05.731Z"
+  },
+  {
     "title": "I Tried Every Todo App and Ended Up With a .txt File - Alireza Bashiri",
     "url": "https://www.al3rez.com/todo-txt-journey",
     "excerpt": "",
@@ -22,11 +28,5 @@
     "url": "https://docs.freestyle.sh/blog/docs-revamp",
     "excerpt": "",
     "dateAdded": "2025-08-01T00:38:26.656Z"
-  },
-  {
-    "title": "Why I'm Betting Against AI Agents in 2025 (Despite Building Them)",
-    "url": "https://utkarshkanwat.com/writing/betting-against-agents/",
-    "excerpt": "AI Engineer at ANZ Bank working on intelligent systems, LLM optimization, and scalable ML platforms.",
-    "dateAdded": "2025-07-21T12:30:12.616Z"
   }
 ]
