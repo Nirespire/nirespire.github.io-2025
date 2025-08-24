@@ -1,5 +1,11 @@
 [
   {
+    "title": "Communication is The Job",
+    "url": "https://boz.com/articles/communication-is-the-job",
+    "excerpt": "We cannot help but communicate and our failure to embrace that reality can leave our teams in a state of information insecurity. Instead, we need to own our responsibility and be proactive.",
+    "dateAdded": "2025-08-23T23:05:02.339Z"
+  },
+  {
     "title": "Closure | Tech Debt? I don't believe it exists.",
     "url": "https://dadrian.io/blog/posts/tech-debt/?utm_source=tldrnewsletter",
     "excerpt": "Rodents of Unusual Size? I don't believe they exist. There’s endless discourse around tech debt. Kellan has some really good categorizations of different types, Will Larson has a great explainer of organization debt in his book, and I also like the idea of product debt. Throughout my career, I’ve been an engineer complaining about tech debt, a manager prioritizing (and deprioritizing) addressing tech debt, and a product manager, where I assume I primarily inspire the creation of new tech debt.",
@@ -22,11 +28,5 @@
     "url": "https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/",
     "excerpt": "It is wild to think that it has been only a handful of weeks.\nClaude Code has considerably changed my relationship to writing and maintaining code at scale. I still write code at the same level of quality, but I feel like I have a new freedom of expression which is hard to fully articulate.\nClaude Code has decoupled myself from writing every line of code, I still consider myself fully responsible for everything I ship to Puzzmo, but the ability to instantly create a whole scene instead of going line by line, word by word is incredibly powerful.",
     "dateAdded": "2025-08-03T14:47:08.800Z"
-  },
-  {
-    "title": "Freestyle Documentation",
-    "url": "https://docs.freestyle.sh/blog/docs-revamp",
-    "excerpt": "",
-    "dateAdded": "2025-08-01T00:38:26.656Z"
   }
 ]
