@@ -1,0 +1,9 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app
+plugins: base-url-2.1.0, playwright-0.7.0
+collected 1 item
+
+jules-scratch/verification/verify_rss_prompt.py .                        [100%]
+
+============================== 1 passed in 1.36s ===============================

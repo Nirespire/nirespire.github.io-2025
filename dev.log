@@ -1,0 +1,11 @@
+
+> nirespire.github.io@1.0.0 dev
+> npm run build && concurrently "npm:start" "npm:watch:css"
+
+
+> nirespire.github.io@1.0.0 build
+> npm run build:css && npx eleventy
+
+
+> nirespire.github.io@1.0.0 build:css
+> npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --minify
