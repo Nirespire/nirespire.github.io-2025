@@ -1,5 +1,11 @@
 [
   {
+    "title": "How to Use Claude Code Subagents to Parallelize Development | zach wills",
+    "url": "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/",
+    "excerpt": "In my last post I talked about how I spent a week heads down using AI to work on a greenfield engineering metrics tool. As I built it, I’d often navigate the web app and spot things that needed to be fleshed out. Sometimes it was a small typo; other times it was a bigger […]",
+    "dateAdded": "2025-09-13T13:17:09.601Z"
+  },
+  {
     "title": "996 | Armin Ronacher's Thoughts and Writings",
     "url": "https://lucumr.pocoo.org/2025/9/4/996/",
     "excerpt": "There is cost to your lifestyle.",
@@ -22,11 +28,5 @@
     "url": "https://www.al3rez.com/todo-txt-journey",
     "excerpt": "",
     "dateAdded": "2025-08-11T23:17:54.422Z"
-  },
-  {
-    "title": "Full-breadth Developers | justin․searls․co",
-    "url": "https://justin.searls.co/posts/full-breadth-developers/",
-    "excerpt": "The software industry is at an inflection point unlike anything in its brief history. Generative AI is all anyone can talk about. It has rendered entire product…",
-    "dateAdded": "2025-08-03T15:33:27.336Z"
   }
 ]
