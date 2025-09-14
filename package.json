@@ -18,6 +18,8 @@
     "test:debug": "playwright test --debug"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.62.0",
+    "gray-matter": "^4.0.3",
     "luxon": "^3.6.1",
     "markdown-it": "^14.1.0",
     "node-fetch": "^2.7.0"
