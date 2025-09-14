@@ -4,6 +4,9 @@
   "description": "Sanjay Nair personal website",
   "author": "Sanjay Nair <email@sanjaynair.dev>",
   "main": "index.js",
+  "engines": {
+    "node": "^22.14.0"
+  },
   "scripts": {
     "start": "npx eleventy --serve",
     "build:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --minify",
