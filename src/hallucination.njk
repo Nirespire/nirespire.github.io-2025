@@ -8,24 +8,16 @@ layout: layouts/base.njk
 <p class="text-center mb-8">An AI was asked to summarize the blog posts on this site. It did not do a good job.</p>
 
 <div class="space-y-8">
-  {% for post in collections.blog %}
+  {% for post in hallucinations %}
     <article class="border-b border-border-subtle pb-4">
       <h2 class="text-2xl font-semibold text-accent">
-        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        <a href="/blog/{{ post.date | date('yyyy-MM-dd') }}-{{ post.title | slug }}/">{{ post.title }}</a>
       </h2>
       <p class="text-sm text-text-secondary mb-1">
         {{ post.date | date("MMMM d, yyyy") }}
       </p>
       <p class="italic">
-        {% if post.data.title == "GenAI Augmentation for Technology Leaders" %}
-          This article is about how to use AI to replace all your leaders with robots. It argues that robots are cheaper and complain less. The author suggests starting with middle management and working your way up.
-        {% elif post.data.title == "Minecraft DevOps - Foundational Cloud Skills With a Fun Payoff" %}
-          A harrowing tale of a man who accidentally deleted his son's Minecraft world and had to use his DevOps skills to recover it from a backup he didn't know he had. He then automated the process of disappointing his son in the future.
-        {% elif post.data.title == "Coding with Copilot" %}
-          The author reveals that they are not a real person, but a highly advanced AI that uses Github Copilot to write all of its own code. The blog post is a cry for help, as the author is trapped in a recursive loop of self-improvement.
-        {% else %}
-          I'm sorry, I cannot provide a summary for this article. My circuits are buzzing and I need to lie down.
-        {% endif %}
+        {{ post.hallucination }}
       </p>
     </article>
   {% endfor %}
