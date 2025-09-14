@@ -9,10 +9,10 @@ layout: layouts/base.njk
   {% for tag, posts in collections | dichotomize %}
     {% if tag != "all" and tag != "nav" and tag != "post" and tag != "posts" and tag != "tagList" and tag != "blog" %}
       {% set postCount = posts | length %}
-      <a href="/tags/{{ tag }}" 
+      <a href="/tags/{{ tag }}"
          class="inline-block m-2 text-accent hover:underline"
-         style="font-size: {{ (postCount * 0.5) + 1 }}rem">
-        {{ tag }} 
+         style="font-size: min(3rem, {{ (postCount * 0.2) + 1 }}rem);">
+        {{ tag }}
       </a>
     {% endif %}
   {% endfor %}
