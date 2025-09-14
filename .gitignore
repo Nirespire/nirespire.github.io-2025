@@ -31,3 +31,4 @@ yarn-error.log*
 # Functional Test results
 /test-results/
 /playwright-report/
+/.playwright-mcp/
