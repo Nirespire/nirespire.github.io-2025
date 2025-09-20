@@ -152,8 +152,31 @@
       {{ content | safe }}
     {% endblock %}
   </main>
+  <div id="rss-prompt" class="fixed bottom-4 right-4 bg-bg-main border border-border-subtle rounded-lg shadow-lg p-4 transform translate-y-full opacity-0 transition-all duration-300 ease-in-out">
+    <div class="flex flex-col gap-3">
+      <div class="flex justify-between items-start gap-2">
+        <h3 class="font-semibold text-lg">Subscribe to my Blog</h3>
+        <button id="rss-dismiss-btn" class="text-text-secondary hover:text-text-main transition-colors" aria-label="Dismiss subscription prompt">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <p class="text-sm text-text-secondary">Get notified of new posts via RSS</p>
+      <div class="flex justify-end gap-2">
+        <button id="rss-copy-btn" class="px-3 py-1.5 bg-bg-interactive text-text-interactive rounded hover:bg-bg-interactive-hover transition-colors">
+          Copy RSS URL
+        </button>
+        <button id="rss-share-btn" class="hidden px-3 py-1.5 bg-bg-interactive text-text-interactive rounded hover:bg-bg-interactive-hover transition-colors">
+          Share Feed
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="/assets/js/theme-switcher.js" defer></script>
   <script src="/assets/js/dev-console.js" defer></script>
+  <script src="/assets/js/rss-prompt.js" defer></script>
 </body>
 
 <footer class="mt-8 sm:mt-12 text-center text-text-secondary pb-4 sm:pb-8">
