@@ -1,5 +1,11 @@
 [
   {
+    "title": "You're definitely going to be a manager now",
+    "url": "https://lg.substack.com/p/managing-ai-is-like-managing-humans",
+    "excerpt": "Book launch! + Predictions for the manager in the era of AI",
+    "dateAdded": "2025-09-20T14:20:40.712Z"
+  },
+  {
     "title": "How to Use Claude Code Subagents to Parallelize Development | zach wills",
     "url": "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/",
     "excerpt": "In my last post I talked about how I spent a week heads down using AI to work on a greenfield engineering metrics tool. As I built it, I’d often navigate the web app and spot things that needed to be fleshed out. Sometimes it was a small typo; other times it was a bigger […]",
@@ -22,11 +28,5 @@
     "url": "https://dadrian.io/blog/posts/tech-debt/?utm_source=tldrnewsletter",
     "excerpt": "Rodents of Unusual Size? I don't believe they exist. There’s endless discourse around tech debt. Kellan has some really good categorizations of different types, Will Larson has a great explainer of organization debt in his book, and I also like the idea of product debt. Throughout my career, I’ve been an engineer complaining about tech debt, a manager prioritizing (and deprioritizing) addressing tech debt, and a product manager, where I assume I primarily inspire the creation of new tech debt.",
     "dateAdded": "2025-08-13T12:18:05.731Z"
-  },
-  {
-    "title": "I Tried Every Todo App and Ended Up With a .txt File - Alireza Bashiri",
-    "url": "https://www.al3rez.com/todo-txt-journey",
-    "excerpt": "",
-    "dateAdded": "2025-08-11T23:17:54.422Z"
   }
 ]
