@@ -65,20 +65,67 @@ test.describe('Blog posts', () => {
 
   test('should have properly configured comments section', async ({ page }) => {
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
-    
+
     // Check giscus script is present with correct configuration
     const giscusScript = page.locator('script[src="https://giscus.app/client.js"]');
     await expect(giscusScript).toBeAttached();
-    
+
     // Verify essential giscus configuration
     await expect(giscusScript).toHaveAttribute('data-repo', 'Nirespire/nirespire.github.io-2025');
     await expect(giscusScript).toHaveAttribute('data-mapping', 'title');
     await expect(giscusScript).toHaveAttribute('data-theme', 'preferred_color_scheme');
     await expect(giscusScript).toHaveAttribute('data-lang', 'en');
-    
+
     // Check giscus container is present
     const giscusContainer = page.locator('div.giscus');
     await expect(giscusContainer).toBeVisible();
     await expect(giscusContainer).toHaveClass(/mt-8/);
+  });
+
+  test('should display and update reading progress bar on scroll', async ({ page }) => {
+    await page.goto('/blog/2025-07-10-genai-for-leaders/');
+
+    // Check progress bar container exists
+    const progressBarContainer = page.locator('div.fixed.top-0.left-0.w-full.h-1');
+    await expect(progressBarContainer).toBeVisible();
+    await expect(progressBarContainer).toHaveClass(/z-50/);
+
+    // Check progress bar element exists
+    const progressBar = page.locator('#readingProgressBar');
+    await expect(progressBar).toBeVisible();
+    await expect(progressBar).toHaveClass(/bg-accent/);
+
+    // At the top of page, progress should be 0% or very small
+    const initialWidth = await progressBar.evaluate(el => el.style.width);
+    expect(parseFloat(initialWidth)).toBeLessThan(5);
+
+    // Scroll to middle of page
+    await page.evaluate(() => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo(0, scrollHeight / 2);
+    });
+
+    // Wait for progress bar to update
+    await page.waitForTimeout(200);
+
+    // Progress should be around 50% (allowing some margin)
+    const middleWidth = await progressBar.evaluate(el => el.style.width);
+    const middlePercent = parseFloat(middleWidth);
+    expect(middlePercent).toBeGreaterThan(40);
+    expect(middlePercent).toBeLessThan(60);
+
+    // Scroll to bottom of page
+    await page.evaluate(() => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo(0, scrollHeight);
+    });
+
+    // Wait for progress bar to update
+    await page.waitForTimeout(200);
+
+    // Progress should be close to 100%
+    const bottomWidth = await progressBar.evaluate(el => el.style.width);
+    const bottomPercent = parseFloat(bottomWidth);
+    expect(bottomPercent).toBeGreaterThan(95);
   });
 });
