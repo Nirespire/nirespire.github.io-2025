@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Asynchronous JavaScript"
 subtitle: "Callbacks vs Promises vs Async/Await"
 date: 2018-04-01
-tags: ["javascript", "programming", "web-development"]
+tags: ["javascript", "web development", "software engineering"]
 ---
 
 > Callbacks vs Promises vs Async/Await

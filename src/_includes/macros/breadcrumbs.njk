@@ -1,0 +1,38 @@
+{% macro breadcrumbs(page) %}
+  {% set path_parts = page.url | split('/') %}
+  {% set path = [] %}
+  {% for part in path_parts %}
+    {% if part %}
+      {% set path = path.concat([part]) %}
+    {% endif %}
+  {% endfor %}
+
+  <nav aria-label="Breadcrumb" class="mb-2 text-sm text-text-secondary">
+    <ol class="flex items-center space-x-2">
+      <li>
+        <a href="/" class="hover:underline">Home</a>
+      </li>
+      {% for i in range(0, path | length) %}
+        {% set segment = path[i] %}
+        {% set pathSegments = path | slice(0, i + 1) %}
+        {% set url = '/' + pathSegments | join('/') + '/' %}
+        <li>
+          <span class="mx-2">/</span>
+        </li>
+        {% if i == (path | length) - 1 %}
+          <li aria-current="page">
+            <span class="font-medium text-text-main">{{ segment | replace('-', ' ') | title }}</span>
+          </li>
+        {% else %}
+          <li>
+            {% if segment == 'blog' %}
+              <a href="/blog/" class="hover:underline">{{ segment | replace('-', ' ') | title }}</a>
+            {% else %}
+              <a href="{{ url }}" class="hover:underline">{{ segment | replace('-', ' ') | title }}</a>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+{% endmacro %}

@@ -3,10 +3,9 @@ layout: layouts/post.njk
 title: "Moving to GatsbyJS"
 subtitle: "What I learned moving my personal website to GatsbyJS"
 date: 2019-05-21
-tags: ["web development", "gatsbyjs", "react", "javascript", "static sites"]
+coverImage: https://cdn-images-1.medium.com/max/800/1*7eVuVKQFGc0-DBr0VqRXEw.png
+tags: ["web development", "gatsbyjs", "react", "javascript", "software engineering"]
 ---
-
-![](https://cdn-images-1.medium.com/max/800/1*7eVuVKQFGc0-DBr0VqRXEw.png)
 
 There are lots of tools to build websites freely available to download and use online. You might want to go at it with just plain HTML, CSS, and some JavaScript. This is how I built my first personal website and unless you're trying to get fancy with frontend features or content, this might have worked well for you.
 

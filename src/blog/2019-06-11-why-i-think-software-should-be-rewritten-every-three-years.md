@@ -3,10 +3,10 @@ layout: layouts/post.njk
 title: "Why I Think Software Should be Rewritten Every Three Years"
 subtitle: "Fighting the inevitable pains of legacy code"
 date: 2019-06-11
+coverImage: https://cdn-images-1.medium.com/max/1200/0*7YYtfxLllj4Bz1B4
+coverImageAlt: "Photo by Leanna Cushman on Unsplash"
 tags: ["software engineering", "architecture", "legacy code", "technical debt"]
 ---
-
-![Photo by Leanna Cushman on Unsplash](https://cdn-images-1.medium.com/max/1200/0*7YYtfxLllj4Bz1B4)
 
 One of the most common tropes of working as a software engineer I've noticed is the constant lambasting of **old code**. Anything older than a few years was never described by my peers as anything close to elegant, easy to read, maintainable, or generally pleasurable to work with.
 
