@@ -2,11 +2,7 @@
 title: "Convoluted Convolution"
 date: 2018-05-29
 layout: layouts/post.njk
-tags:
-  - machine-learning
-  - deep-learning
-  - neural-networks
-  - computer-vision
+tags: ["machine learning", "deep learning", "neural networks", "computer vision"]
 ---
 
 > This post was originally published when I was in college in 2014. I was enrolled in a digital design class that dealt with designing and implementing digital circuits through software. It was one of the first posts I shared publicly where I tried to write about something I learned about and work on.

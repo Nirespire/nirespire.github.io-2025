@@ -368,3 +368,35 @@ a:hover {
 #scrollToTopBtn:hover svg {
   transform: scale(1.1);
 }
+
+.rss-icon {
+  stroke: var(--color-accent);
+}
+
+/* LLM Copy Button Feedback States */
+.llm-copy-success {
+  background-color: #059669 !important; /* green-700 */
+  color: #ffffff !important;
+  border-color: #10b981 !important; /* green-600 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.llm-copy-error {
+  background-color: #dc2626 !important; /* red-700 */
+  color: #ffffff !important;
+  border-color: #ef4444 !important; /* red-600 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure feedback states are visible in both light and dark modes */
+html.light .llm-copy-success {
+  background-color: #059669 !important; /* green-700 - good contrast in light mode */
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+}
+
+html.light .llm-copy-error {
+  background-color: #dc2626 !important; /* red-700 - good contrast in light mode */
+  color: #ffffff !important;
+  border-color: #ef4444 !important;
+}

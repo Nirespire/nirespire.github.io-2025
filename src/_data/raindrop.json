@@ -1,32 +1,32 @@
 [
   {
-    "title": "Five opinions I’ve kept, let go, and picked up as a software builder and leader",
-    "url": "https://world.hey.com/joaoqalves/five-opinions-i-ve-kept-let-go-and-picked-up-as-a-software-builder-and-leader-5ab3b919",
-    "excerpt": "Leading teams and building platforms across different contexts made me rethink. Some opinions proved reliable and continued to guide decisions. Others failed under pressure or became blockers. Along the way, I picked up new ones, usually the hard way. This post reflects how my thinking has evolved: what I still believe, don't, and have...",
-    "dateAdded": "2025-05-31T17:36:59.591Z"
+    "title": "Vibe engineering",
+    "url": "https://simonwillison.net/2025/Oct/7/vibe-engineering/",
+    "excerpt": "I feel like vibe coding is pretty well established now as covering the fast, loose and irresponsible way of building software with AI—entirely prompt-driven, and with no attention paid to …",
+    "dateAdded": "2025-10-08T01:05:57.916Z"
   },
   {
-    "title": "When a team is too big - Alex Ewerlöf Notes",
-    "url": "https://blog.alexewerlof.com/p/when-a-team-is-too-big",
-    "excerpt": "What signs to look for and how to increase productivity with all-round skillset",
-    "dateAdded": "2025-05-22T12:23:27.000Z"
+    "title": "From managing people to managing AI: The leadership skills everyone needs now | Julie Zhuo",
+    "url": "https://www.youtube.com/watch?v=c_w0LaFahxk",
+    "excerpt": "Julie Zhuo is the former VP and Head of Design at Facebook (now Meta), author of the bestselling book The Making of a Manager, and co-founder of Sundial, an ...",
+    "dateAdded": "2025-10-04T02:04:20.159Z"
   },
   {
-    "title": "How We Build Effective Agents: Barry Zhang, Anthropic",
-    "url": "https://youtu.be/D7_ipDqhtwk?si=iJEYwsRUJIMz-5Fj",
-    "excerpt": "Recorded live at the Agent Engineering Session Day from the AI Engineer Summit 2025 in New York. Learn more at https://ai.engineer and purchase tickets to ou...",
-    "dateAdded": "2025-05-17T17:38:13.000Z"
+    "title": "You're definitely going to be a manager now",
+    "url": "https://lg.substack.com/p/managing-ai-is-like-managing-humans",
+    "excerpt": "Book launch! + Predictions for the manager in the era of AI",
+    "dateAdded": "2025-09-20T14:20:40.712Z"
   },
   {
-    "title": "21 observations from people watching - by shani",
-    "url": "https://skincontact.substack.com/p/21-observations-from-people-watching",
-    "excerpt": "Painting weddings for a few years now, I have spent a fair bit of time observing strangers move through a room.",
-    "dateAdded": "2025-05-11T01:00:24.000Z"
+    "title": "How to Use Claude Code Subagents to Parallelize Development | zach wills",
+    "url": "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/",
+    "excerpt": "In my last post I talked about how I spent a week heads down using AI to work on a greenfield engineering metrics tool. As I built it, I’d often navigate the web app and spot things that needed to be fleshed out. Sometimes it was a small typo; other times it was a bigger […]",
+    "dateAdded": "2025-09-13T13:17:09.601Z"
   },
   {
-    "title": "Getting things \"done\" in large tech companies | sean goedecke",
-    "url": "https://www.seangoedecke.com/getting-things-done",
-    "excerpt": "--",
-    "dateAdded": "2025-05-06T12:18:16.000Z"
+    "title": "996 | Armin Ronacher's Thoughts and Writings",
+    "url": "https://lucumr.pocoo.org/2025/9/4/996/",
+    "excerpt": "There is cost to your lifestyle.",
+    "dateAdded": "2025-09-06T14:28:15.076Z"
   }
 ]

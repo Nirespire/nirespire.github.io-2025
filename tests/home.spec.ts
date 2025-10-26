@@ -11,7 +11,7 @@ test.describe('Home page', () => {
     // Check main nav links
     const links = [
       { text: 'Blog', href: '/blog/' },
-      { text: 'Contact', href: '/contact/' }
+      { text: 'About', href: '/about/' }
     ];
     for (const link of links) {
       const navLink = nav.getByRole('link', { name: link.text });
@@ -73,5 +73,46 @@ test.describe('Home page', () => {
     const bioContent = await bio.textContent();
     expect(bioContent).toBeTruthy();
     expect(bioContent?.length).toBeGreaterThan(50);
+  });
+
+  test('should toggle light and dark themes', async ({ page }) => {
+    await page.goto('/');
+
+    const html = page.locator('html');
+    const toggle = page.locator('#theme-toggle');
+
+    // Default theme should be dark
+    let isLight = await html.evaluate(el => el.classList.contains('light'));
+    expect(isLight).toBe(false);
+    let storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('dark');
+
+    // Switch to light mode
+    await toggle.click();
+    isLight = await html.evaluate(el => el.classList.contains('light'));
+    expect(isLight).toBe(true);
+    storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('light');
+
+    // Reload and ensure light mode persists
+    await page.reload();
+    isLight = await html.evaluate(el => el.classList.contains('light'));
+    expect(isLight).toBe(true);
+    storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('light');
+
+    // Switch back to dark mode
+    await toggle.click();
+    isLight = await html.evaluate(el => el.classList.contains('light'));
+    expect(isLight).toBe(false);
+    storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('dark');
+
+    // Reload and ensure dark mode persists
+    await page.reload();
+    isLight = await html.evaluate(el => el.classList.contains('light'));
+    expect(isLight).toBe(false);
+    storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('dark');
   });
 });
