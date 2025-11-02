@@ -3,11 +3,68 @@ layout: layouts/base.njk
 title: Hacker News Reader
 ---
 
+{% macro render_comment(comment) %}
+  {% if comment and not comment.deleted %}
+    <div class="comment ml-4 pl-4 border-l-2 border-gray-600 my-2">
+      <div class="text-sm text-text-secondary mb-1">
+        <a href="#" class="toggle-comment text-gray-500">[–]</a>
+        <strong>{{ comment.by }}</strong>
+      </div>
+      <div class="comment-content">
+        <div class="prose max-w-none text-text-main">{{ comment.text | safe }}</div>
+        {% if comment.comments %}
+          <div class="children mt-2">
+            {% for child_comment in comment.comments %}
+              {{ render_comment(child_comment) }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
 <div id="hackernews-reader" class="p-4">
   <h1 class="text-3xl font-bold mb-4 text-center text-accent">Hacker News Top Stories</h1>
-  <div id="stories-container" class="space-y-4">
+
+  <div class="filters mb-8 p-4 rounded-lg bg-bg-secondary shadow-md">
+    <h2 class="text-xl font-bold mb-4">Filters</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="score-filter" class="block text-sm font-medium text-text-main">Minimum Score</label>
+        <input type="number" id="score-filter" class="mt-1 block w-full rounded-md bg-bg-main border-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="e.g., 100">
+      </div>
+      <div>
+        <label for="keyword-filter" class="block text-sm font-medium text-text-main">Keywords</label>
+        <input type="text" id="keyword-filter" class="mt-1 block w-full rounded-md bg-bg-main border-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="e.g., AI, JavaScript">
+      </div>
+    </div>
+    <h2 class="text-xl font-bold mb-4 mt-4">Reading Optimization</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="font-size-selector" class="block text-sm font-medium text-text-main">Font Size</label>
+        <select id="font-size-selector" class="mt-1 block w-full rounded-md bg-bg-main border-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+          <option value="text-sm">Small</option>
+          <option value="text-base" selected>Medium</option>
+          <option value="text-lg">Large</option>
+          <option value="text-xl">Extra Large</option>
+        </select>
+      </div>
+      <div>
+        <label for="font-family-selector" class="block text-sm font-medium text-text-main">Font Family</label>
+        <select id="font-family-selector" class="mt-1 block w-full rounded-md bg-bg-main border-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+          <option value="font-sans" selected>Sans-serif</option>
+          <option value="font-serif">Serif</option>
+          <option value="font-mono">Monospace</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="stories-container" class="space-y-8">
     {% for story in hackernews %}
-      <div class="p-4 rounded-lg bg-bg-secondary shadow-md hover:shadow-lg transition-shadow">
+      {% if story %}
+      <div class="story p-4 rounded-lg bg-bg-secondary shadow-md hover:shadow-lg transition-shadow" data-score="{{ story.score }}" data-title="{{ story.title }}">
         <h2 class="text-xl font-semibold">
           <a href="{{ story.url if story.url else 'https://news.ycombinator.com/item?id=' + story.id }}" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover transition-colors">{{ story.title }}</a>
         </h2>
@@ -20,7 +77,21 @@ title: Hacker News Reader
             {% endif %}
           </span>
         </div>
+
+        <div class="comments-section mt-4 pt-4 border-t border-gray-700">
+          <h3 class="text-lg font-bold mb-2">Comments</h3>
+          {% if story.comments %}
+            {% for comment in story.comments %}
+              {{ render_comment(comment) }}
+            {% endfor %}
+          {% else %}
+            <p class="text-text-secondary">No comments yet.</p>
+          {% endif %}
+        </div>
       </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
+
+<script src="/assets/js/hackernews.js" defer></script>

@@ -160,6 +160,17 @@
   </main>
   <script src="/assets/js/theme-switcher.js" defer></script>
   <script src="/assets/js/dev-console.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
 </body>
 
 <footer class="mt-8 sm:mt-12 text-center text-text-secondary pb-4 sm:pb-8">
