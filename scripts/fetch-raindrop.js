@@ -37,8 +37,6 @@ async function main() {
     const queryParams = new URLSearchParams({
       search: `#${searchTag}`,
       sort: '-created', // Sort by creation date descending
-      perpage: 5, // Get 5 items
-      // collection: 'all' // This might be default or handled by using collection ID 0
     });
 
     const response = await fetch(`${RAINDROP_API_URL}?${queryParams.toString()}`, {
@@ -71,6 +69,7 @@ async function main() {
       url: item.link || '',
       excerpt: item.excerpt || item.note || '', // Use note as fallback for excerpt
       dateAdded: new Date(item.created).toISOString(), // Ensure ISO string format
+      tags: item.tags || [],
     }));
 
     await fs.writeFile(OUTPUT_PATH, JSON.stringify(transformedData, null, 2));
