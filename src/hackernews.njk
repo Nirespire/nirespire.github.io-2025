@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: Hacker News Reader
+---
+
+<div id="hackernews-reader" class="p-4">
+  <h1 class="text-3xl font-bold mb-4 text-center text-accent">Hacker News Top Stories</h1>
+  <div id="stories-container" class="space-y-4">
+    {% for story in hackernews %}
+      <div class="p-4 rounded-lg bg-bg-secondary shadow-md hover:shadow-lg transition-shadow">
+        <h2 class="text-xl font-semibold">
+          <a href="{{ story.url if story.url else 'https://news.ycombinator.com/item?id=' + story.id }}" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover transition-colors">{{ story.title }}</a>
+        </h2>
+        <div class="text-sm text-text-secondary mt-2">
+          <span>{{ story.score }} points by {{ story.by }} |
+            {% if story.descendants %}
+              {{ story.descendants }} comments
+            {% else %}
+              0 comments
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
