@@ -34,43 +34,57 @@ async function main() {
   console.log(`Fetching items with tag: #${searchTag}`);
 
   try {
-    const queryParams = new URLSearchParams({
-      search: `#${searchTag}`,
-      sort: '-created', // Sort by creation date descending
-      perpage: 5, // Get 5 items
-      // collection: 'all' // This might be default or handled by using collection ID 0
-    });
+    let allItems = [];
+    let page = 0;
+    let hasMorePages = true;
 
-    const response = await fetch(`${RAINDROP_API_URL}?${queryParams.toString()}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${testToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    while (hasMorePages) {
+      const queryParams = new URLSearchParams({
+        search: `#${searchTag}`,
+        sort: '-created', // Sort by creation date descending
+        page: page,
+        per_page: 50, // Maximum allowed by Raindrop API - use per_page not perPage
+      });
 
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error(`Error fetching data from Raindrop.io: ${response.status} ${response.statusText}`);
-      console.error('Error details:', errorBody);
-      process.exit(1);
-    }
+      const response = await fetch(`${RAINDROP_API_URL}?${queryParams.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${testToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-    const data = await response.json();
+      if (!response.ok) {
+        const errorBody = await response.text();
+        console.error(`Error fetching data from Raindrop.io: ${response.status} ${response.statusText}`);
+        console.error('Error details:', errorBody);
+        process.exit(1);
+      }
 
-    if (!data.items || !Array.isArray(data.items)) {
+      const data = await response.json();
+
+      if (!data.items || !Array.isArray(data.items)) {
         console.error('Error: Unexpected data structure from Raindrop.io API. "items" array not found.');
         console.error('Received data:', JSON.stringify(data, null, 2));
         process.exit(1);
-    }
-    
-    console.log(`Successfully fetched ${data.items.length} items.`);
+      }
 
-    const transformedData = data.items.map(item => ({
+      allItems = [...allItems, ...data.items];
+      console.log(`Successfully fetched ${data.items.length} items from page ${page + 1}.`);
+
+      // Check if we've fetched all items by comparing with total count
+      hasMorePages = allItems.length < data.count;
+      page++;
+    }
+
+    console.log(`Successfully fetched a total of ${allItems.length} items.`);
+
+    const transformedData = allItems.map(item => ({
       title: item.title || '',
       url: item.link || '',
       excerpt: item.excerpt || item.note || '', // Use note as fallback for excerpt
       dateAdded: new Date(item.created).toISOString(), // Ensure ISO string format
+      tags: item.tags || [],
     }));
 
     await fs.writeFile(OUTPUT_PATH, JSON.stringify(transformedData, null, 2));
