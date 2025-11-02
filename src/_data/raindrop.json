@@ -223,5 +223,86 @@
     "tags": [
       "to-share"
     ]
+  },
+  {
+    "title": "Getting things \"done\" in large tech companies | sean goedecke",
+    "url": "https://www.seangoedecke.com/getting-things-done",
+    "excerpt": "--",
+    "dateAdded": "2025-05-06T12:18:16.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Part 1: Finding Your Thing's Essence - by Alex Dobrenko`",
+    "url": "https://sublimeinternet.substack.com/p/part-1-finding-your-things-essence",
+    "excerpt": "If you've ever tried to explain an idea that doesn’t quite fit in a box, this one’s for you",
+    "dateAdded": "2025-05-03T17:25:33.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Carl Öst Wilkens´ Blog - Minimum viable blog",
+    "url": "https://ostwilkens.se/blog/setting-up-blog",
+    "excerpt": "A place for me to vent about my current obsessions.",
+    "dateAdded": "2025-05-03T16:49:01.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "matthewsinclair.com · Intelligence. Innovation. Leadership. Influence.",
+    "url": "https://matthewsinclair.com/blog/0178-why-llm-powered-programming-is-more-mech-suit-than-artificial-human",
+    "excerpt": "",
+    "dateAdded": "2025-04-22T02:06:49.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "How to Get a Standing Ovation as a Conference Speaker | akos.ma",
+    "url": "https://akos.ma/blog/how-to-get-a-standing-ovation-as-a-conference-speaker",
+    "excerpt": "I keep on attending otherwise interesting talks and conference sessions being flushed down the toilet by appalling deliveries. This is my plea to you: please, please, PLEASE: if you have to speak in public, follow these rules to ensure a standing ovation at the end of your talk.",
+    "dateAdded": "2025-04-05T12:31:33.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Everything is a product – We help you create successful product culture and process",
+    "url": "https://jpattonassociates.com/everything-is-a-product",
+    "excerpt": "",
+    "dateAdded": "2025-04-05T12:17:18.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Senior Developer Skills in the AI Age: Leveraging Experience for Better Results • Manuel Kießling",
+    "url": "https://manuel.kiessling.net/2025/03/31/how-seasoned-developers-can-achieve-great-results-with-ai-coding-agents",
+    "excerpt": "How time-tested software engineering practices amplify the effectiveness of AI coding assistants.",
+    "dateAdded": "2025-04-04T01:51:06.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Accelerating Large-Scale Test Migration with LLMs | by Charles Covey-Brandt | The Airbnb Tech Blog |",
+    "url": "https://medium.com/airbnb-engineering/accelerating-large-scale-test-migration-with-llms-9565c208023b",
+    "excerpt": "Airbnb recently completed our first large-scale, LLM-driven code migration, updating nearly 3.5K React component test files from Enzyme to use React Testing Library (RTL) instead. We’d originally…",
+    "dateAdded": "2025-03-23T02:19:30.000Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "SQL",
+    "url": "https://garden.bradwoods.io/notes/sql",
+    "excerpt": "",
+    "dateAdded": "2021-10-28T01:21:03.000Z",
+    "tags": [
+      "to-share"
+    ]
   }
 ]
