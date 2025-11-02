@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: All Reads
+---
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <p class="mb-8 text-lg text-text-secondary">
+    Links typically sourced from <a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer">Hacker News</a>, <a href="https://tldr.tech/" target="_blank" rel="noopener noreferrer">TLDR.tech</a>, or <a href="https://softwareleadweekly.com/" target="_blank" rel="noopener noreferrer">Software Lead Weekly</a>
+  </p>
+
+  <div class="space-y-8">
+    {% set articles = raindrop | sort(false, false, 'dateAdded') | reverse %}
+    {% for article in articles %}
+      {% if 'to-share' in article.tags %}
+        <article class="p-6 bg-bg-interactive-soft rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+          <h2 class="text-2xl font-bold text-accent mb-2">
+            <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+              {{ article.title }}
+            </a>
+          </h2>
+          <p class="text-sm text-text-secondary mb-4">
+            Read on {{ article.dateAdded | date("MMMM d, yyyy") }}
+          </p>
+          {% if article.excerpt %}
+            <p class="text-text-main mb-4">
+              {{ article.excerpt }}
+            </p>
+          {% endif %}
+          <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold hover:underline">
+            Read more &rarr;
+          </a>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
