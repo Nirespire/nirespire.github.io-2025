@@ -14,6 +14,7 @@
     "watch:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --watch",
     "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\"",
     "test": "playwright test",
+    "test:setup": "npx playwright install --with-deps",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug"
   },
