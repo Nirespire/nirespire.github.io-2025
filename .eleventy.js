@@ -23,7 +23,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({
       "src/assets/css": "assets/css",
       "src/assets/images": "assets/images",
-      "src/assets/js": "assets/js"
+      "src/assets/js": "assets/js",
+      "node_modules/three/build": "assets/js/three"
     });
 
     // Add cache control headers
