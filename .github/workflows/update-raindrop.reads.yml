@@ -1,4 +1,6 @@
 name: Update Raindrop Reads
+permissions:
+  contents: read
 
 on:
   schedule:
