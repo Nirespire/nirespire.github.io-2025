@@ -29,10 +29,18 @@ permalink: /404.html
     function updateQuote() {
       const quote = getRandomQuote();
       const container = document.getElementById('quote-container');
-      container.innerHTML = `
-        <p class="mt-8 text-lg">"${quote.text}"</p>
-        <p class="mt-2 text-md italic">- ${quote.author}</p>
-      `;
+      // Remove previous content
+      container.innerHTML = '';
+      // Create and append quote text
+      const quoteP = document.createElement('p');
+      quoteP.className = 'mt-8 text-lg';
+      quoteP.textContent = `"${quote.text}"`;
+      container.appendChild(quoteP);
+      // Create and append quote author
+      const authorP = document.createElement('p');
+      authorP.className = 'mt-2 text-md italic';
+      authorP.textContent = `- ${quote.author}`;
+      container.appendChild(authorP);
     }
 
     // Update quote when page loads
