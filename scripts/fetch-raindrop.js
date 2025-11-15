@@ -7,14 +7,19 @@ const path = require('path');
 let fetch;
 import('node-fetch').then(module => {
   fetch = module.default;
-  main(); // Call main function after fetch is loaded
+  // Only run main automatically when this script is executed directly.
+  if (require.main === module) {
+    main(); // Call main function after fetch is loaded
+  }
 }).catch(err => {
   console.error('Failed to load node-fetch:', err);
   process.exit(1);
 });
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1/raindrops/0'; // 0 is for "Unsorted" or "All" collection, check API for specifics if needed
-const OUTPUT_PATH = path.join(__dirname, '../src/_data/raindrop.json');
+function getOutputPath() {
+  return process.env.RAINDROP_OUTPUT_PATH || path.join(__dirname, '../src/_data/raindrop.json');
+}
 
 // Function to check if a link is valid (not a 404)
 async function isLinkValid(url) {
@@ -121,11 +126,24 @@ async function main() {
       tags: item.tags || [],
     }));
 
-    await fs.writeFile(OUTPUT_PATH, JSON.stringify(transformedData, null, 2));
-    console.log(`Successfully wrote ${transformedData.length} valid items to ${OUTPUT_PATH}`);
+    const outPath = getOutputPath();
+    await fs.writeFile(outPath, JSON.stringify(transformedData, null, 2));
+    console.log(`Successfully wrote ${transformedData.length} valid items to ${outPath}`);
 
   } catch (error) {
     console.error('An error occurred during the fetch process:', error);
     process.exit(1);
   }
 }
+
+// Helper to inject a fetch implementation for tests
+function setFetchForTest(fn) {
+  fetch = fn;
+}
+
+// Export functions for testing
+module.exports = {
+  main,
+  isLinkValid,
+  setFetchForTest,
+};
