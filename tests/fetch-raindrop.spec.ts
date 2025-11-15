@@ -38,7 +38,7 @@ test('main fetches items and writes transformed output file', async () => {
     }
 
     // API GET
-    if (String(url).startsWith('https://api.raindrop.io')) {
+    if (new URL(String(url)).hostname === 'api.raindrop.io') {
       return {
         ok: true,
         status: 200,
