@@ -16,7 +16,8 @@
     "test": "playwright test",
     "test:setup": "npx playwright install --with-deps",
     "test:ui": "playwright test --ui",
-    "test:debug": "playwright test --debug"
+    "test:debug": "playwright test --debug",
+    "check-links": "node scripts/check-links.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.62.0",

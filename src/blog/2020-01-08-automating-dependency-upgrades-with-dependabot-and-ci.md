@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 title: "Automating Dependency Upgrades with Dependabot and CI"
 date: 2020-01-08
-coverImage: https://cdn-images-1.medium.com/max/800/0*c8V1WvMnxFe5J9l9.jpg
+coverImage: /assets/images/githubdependabot.jpg
 coverImageAlt: "Image Source: https://scotch.io/bar-talk/secure-dependencies-with-github-and-dependabot"
 tags: ["github", "security", "automation", "dependabot", "continuous integration", "devops"]
 ---

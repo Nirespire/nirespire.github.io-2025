@@ -53,6 +53,7 @@ This project is my personal website/blog built using modern web development tool
   - `npm run start` - Start 11ty server only
   - `npm run build:css` - Build CSS only
   - `npm run watch:css` - Watch for CSS changes
+  - `npm run check-links` - Check for dead links in the built site
 
 ## Integrations
 
@@ -70,6 +71,30 @@ The site automatically fetches and displays my latest read articles from Raindro
    - The fetch can also be triggered manually via GitHub Actions.
    - The script `scripts/fetch-raindrop.js` handles the fetching.
    - The workflow is defined in `.github/workflows/update-raindrop.reads.yml`.
+
+### Dead Link Checker
+The site includes automated dead link checking to maintain link integrity:
+
+1. **Automated Weekly Checks**:
+   - GitHub Actions runs every Sunday at 2:00 AM UTC to check all links in the published site
+   - Dead links are automatically reported as GitHub issues with details about the broken links
+   - Workflow can also be triggered manually via GitHub Actions
+   - Maximum of 5 issues created per run to prevent spam
+
+2. **Local Link Checking**:
+   - Run `npm run check-links` to check for dead links locally
+   - Requires the site to be built first (`npm run build`)
+   - Automatically installs the Lychee link checker if not present
+   - Generates a report of any dead links found
+
+3. **Configuration**:
+   - `.lycheeignore` file contains patterns for URLs to skip (localhost, example domains, etc.)
+   - Workflow defined in `.github/workflows/check-dead-links.yml`
+   - Local script in `scripts/check-links.js`
+
+4. **Issue Labels**:
+   - Dead link issues are automatically labeled with `dead-link` and `automated`
+   - Summary issues also include the `summary` label
 
 ## Project Structure
 

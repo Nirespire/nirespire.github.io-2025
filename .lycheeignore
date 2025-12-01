@@ -1,0 +1,59 @@
+# Lychee link checker ignore patterns
+# This file contains URL patterns that should be excluded from link checking
+
+# Localhost and development URLs
+http://localhost.*
+http://127.0.0.1.*
+https://localhost.*
+https://127.0.0.1.*
+
+# Example domains
+http://example.com.*
+https://example.com.*
+http://example.org.*
+https://example.org.*
+
+# Common placeholder domains
+https://your-domain.com.*
+http://your-domain.com.*
+
+# Archive.org URLs (can be slow/timeout)
+https://web.archive.org.*
+
+# LinkedIn (often blocks automated requests)
+https://www.linkedin.com.*
+https://linkedin.com.*
+
+# Twitter/X (rate limiting and authentication issues)
+https://twitter.com.*
+https://x.com.*
+
+# GitHub anchor links (can be flaky)
+.*#L[0-9]+.*
+
+# Development/staging environments
+.*staging\..*
+.*dev\..*
+.*test\..*
+
+# Mailto links
+mailto:.*
+
+# Tel links
+tel:.*
+
+# File protocol
+file://.*
+
+# JavaScript void links
+javascript:void.*
+javascript:.*
+
+# Fragment-only links (same-page anchors)
+#.*
+
+# Special protocols
+data:.*
+ftp://.*
+sftp://.*
+ssh://.*
