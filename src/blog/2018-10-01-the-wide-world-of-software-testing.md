@@ -2,7 +2,7 @@
 title: The Wide World of Software Testing
 date: 2018-10-01
 layout: layouts/post.njk
-coverImage: https://cdn-images-1.medium.com/max/1200/0*X2G8UkOxSTYmADa3
+coverImage: /assets/images/testing.jpg
 coverImageAlt: "aerial photo of world by Richard Gatley on Unsplash"
 tags: ["testing", "software engineering"]
 ---

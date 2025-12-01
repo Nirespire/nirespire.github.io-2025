@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Tracing and Observability"
 subtitle: "Diving deeper beyond the surface of microservice interactions"
 date: 2020-02-25
-coverImage: https://cdn-images-1.medium.com/max/1200/0*kwiSc-MTD-IVdK4F
+coverImage: /assets/images/tracingandobservability.jpg
 coverImageAlt: "Photo by Denys Nevozhai on Unsplash"
 tags: ["microservices", "observability", "software engineering"]
 ---

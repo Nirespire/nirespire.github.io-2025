@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Getting Started With Open Source"
 subtitle: "A beginner's guide to participating in open source"
 date: 2019-02-26
-coverImage: https://cdn-images-1.medium.com/max/1200/0*bsb4aUtPqQ_6ugFB
+coverImage: /assets/images/opensource.jpg
 coverImageAlt: "Photo by Alina Grubnyak on Unsplash"
 tags: ["open source", "github", "software engineering"]
 ---
