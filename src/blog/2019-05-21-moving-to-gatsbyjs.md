@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Moving to GatsbyJS"
 subtitle: "What I learned moving my personal website to GatsbyJS"
 date: 2019-05-21
-coverImage: https://cdn-images-1.medium.com/max/800/1*7eVuVKQFGc0-DBr0VqRXEw.png
+coverImage: /assets/images/nexttogatsby.png
 tags: ["web development", "gatsbyjs", "react", "javascript", "software engineering"]
 ---
 

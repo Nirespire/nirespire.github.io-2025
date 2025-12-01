@@ -2,7 +2,7 @@
 title: "The Wide World of Databases"
 date: 2018-08-27
 layout: layouts/post.njk
-coverImage: https://cdn-images-1.medium.com/max/1200/0*fBpXznzmVndvFJCo
+coverImage: /assets/images/databases.jpg
 coverImageAlt: "Photo by Jonathan Singer on Unsplash"
 tags: ["databases", "software engineering", "technology"]
 ---

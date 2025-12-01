@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "How to Open Source Your Code"
 subtitle: "In 6 steps"
 date: 2019-04-01
-coverImage: https://cdn-images-1.medium.com/max/1200/0*H-wqTe7TLuy5KQgB
+coverImage: /assets/images/opensource2.jpg
 coverImageAlt: "Photo by Alex Holyoake on Unsplash"
 tags: ["open source", "software engineering", "github"]
 ---
