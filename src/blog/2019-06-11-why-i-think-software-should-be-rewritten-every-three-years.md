@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Why I Think Software Should be Rewritten Every Three Years"
 subtitle: "Fighting the inevitable pains of legacy code"
 date: 2019-06-11
-coverImage: https://cdn-images-1.medium.com/max/1200/0*7YYtfxLllj4Bz1B4
+coverImage: /assets/images/threeyears.jpg
 coverImageAlt: "Photo by Leanna Cushman on Unsplash"
 tags: ["software engineering", "architecture", "legacy code", "technical debt"]
 ---

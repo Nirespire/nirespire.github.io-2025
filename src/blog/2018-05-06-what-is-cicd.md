@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 title: "What is CICD — Concepts in Continuous Integration and Deployment"
 date: 2018-05-06
-coverImage: https://cdn-images-1.medium.com/max/1200/0*KdQcn48WQsYhVIC2.
+coverImage: /assets/images/cicd.jpg
 coverImageAlt: "Photo by SpaceX on Unsplash"
 tags: ["devops", "continuous integration", "continuous deployment", "software engineering"]
 ---

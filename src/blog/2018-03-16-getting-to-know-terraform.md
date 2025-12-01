@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Getting to Know Terraform"
 subtitle: "A retrospective of my learning experiences while exploring the Terraform infrastructure provisioning tool."
 date: 2018-03-16
-coverImage: https://cdn-images-1.medium.com/max/2560/0*owN7rzmi1XaNTQan.
+coverImage: /assets/images/terraform.jpg
 coverImageAlt: "Photo by Wojciech Szaturski on Unsplash"
 tags: ["infrastructure", "devops", "terraform", "cloud"]
 ---

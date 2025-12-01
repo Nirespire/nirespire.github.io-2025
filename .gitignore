@@ -31,3 +31,6 @@ yarn-error.log*
 # Functional Test results
 /test-results/
 /playwright-report/
+
+# Lychee report of dead links
+lychee-report.md

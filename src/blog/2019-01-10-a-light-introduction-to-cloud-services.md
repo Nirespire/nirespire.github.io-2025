@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "A Light Introduction to Cloud Services"
 subtitle: "What are the types of tools that cloud platforms provide and what software problems can they solve for you"
 date: 2019-01-10
-coverImage: https://cdn-images-1.medium.com/max/800/0*jm2Jig9_0kdvDf9Z
+coverImage: /assets/images/cloudservices.jpg
 coverImageAlt: "Photo by Samuel Ferrara on Unsplash"
 tags: ["cloud", "software engineering", "aws", "gcp", "azure", "infrastructure"]
 ---
