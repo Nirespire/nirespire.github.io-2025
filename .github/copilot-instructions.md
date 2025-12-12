@@ -126,6 +126,10 @@ Playwright E2E tests in `tests/` directory:
 - Include robots.txt and sitemap.xml
 
 ## Git Practices
+- **Always check the current branch before committing**
+  - If on the `main` branch, create a new feature or bug branch first
+  - Use `git branch` to check the current branch
+  - Create feature branches with: `git checkout -b feature/description` or `git checkout -b bug/description`
 - Write clear, descriptive commit messages
 - Keep commits focused and atomic
 - Follow conventional commit format
