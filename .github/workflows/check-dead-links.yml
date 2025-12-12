@@ -38,11 +38,12 @@ jobs:
           args: --verbose --no-progress --accept 200,204,206,301,302,303,307,308,403 --timeout 20 --max-retries 3 --user-agent "Mozilla/5.0 (compatible; link-checker/1.0)" ./_site/**/*.html
           format: json
           output: ./lychee-report.json
-          fail: false # Don't fail the workflow, we'll handle errors by creating issues
+          fail: true # Fail the workflow if dead links are found
       
       - name: Process dead links and create issues
-        if: steps.link-check.outputs.exit_code != 0
+        if: failure() || steps.link-check.outputs.exit_code != '0'
         uses: actions/github-script@v7
+        continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
