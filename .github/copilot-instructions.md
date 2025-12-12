@@ -130,7 +130,6 @@ Playwright E2E tests in `tests/` directory:
   - If on the `main` branch, create a new feature or bug branch first
   - Use `git branch` to check the current branch
   - Create feature branches with: `git checkout -b feature/description` or `git checkout -b bug/description`
-  - Only commit to `main` branch for critical hotfixes (and document why)
 - Write clear, descriptive commit messages
 - Keep commits focused and atomic
 - Follow conventional commit format
