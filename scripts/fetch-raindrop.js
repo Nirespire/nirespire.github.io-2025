@@ -5,8 +5,8 @@ const path = require('path');
 
 // Since node-fetch is an ESM-only module, we need to use dynamic import
 let fetch;
-import('node-fetch').then(module => {
-  fetch = module.default;
+import('node-fetch').then(nodeFetch => {
+  fetch = nodeFetch.default;
   // Only run main automatically when this script is executed directly.
   if (require.main === module) {
     main(); // Call main function after fetch is loaded
