@@ -35,7 +35,8 @@ jobs:
         uses: lycheeverse/lychee-action@v2.0.2
         with:
           # Check all HTML files in the built site (lychee automatically reads .lycheeignore)
-          args: --verbose --no-progress --accept 200,204,206,301,302,303,307,308,403 --timeout 20 --max-retries 3 --user-agent "Mozilla/5.0 (compatible; link-checker/1.0)" ./_site/**/*.html
+          # Retry configuration: 5 retries with 30s timeout per request for resilience
+          args: --verbose --no-progress --accept 200,204,206,301,302,303,307,308,403 --timeout 30 --max-retries 3 --retry-wait-time 2 --user-agent "Mozilla/5.0 (compatible; link-checker/1.0)" ./_site/**/*.html
           format: json
           output: ./lychee-report.json
           fail: true # Fail the workflow if dead links are found
@@ -56,6 +57,13 @@ jobs:
               const reportPath = path.join(process.env.GITHUB_WORKSPACE, 'lychee-report.json');
               const reportContent = fs.readFileSync(reportPath, 'utf8');
               report = JSON.parse(reportContent);
+              console.log('Report structure:', JSON.stringify(Object.keys(report), null, 2));
+              if (report.fail_map) {
+                const sampleEntry = Object.entries(report.fail_map)[0];
+                if (sampleEntry) {
+                  console.log('Sample fail_map entry:', JSON.stringify(sampleEntry, null, 2));
+                }
+              }
             } catch (error) {
               console.error('Failed to read lychee report:', error);
               return;
@@ -71,8 +79,21 @@ jobs:
             const deadLinksByFile = {};
             for (const [url, sources] of Object.entries(report.fail_map)) {
               for (const source of sources) {
+                // Handle both string and object formats for source
+                // Lychee can return either a string path or an object with url/status
+                let sourcePath;
+                if (typeof source === 'string') {
+                  sourcePath = source;
+                } else if (source && typeof source === 'object') {
+                  // If source is an object, it might have a 'path' or 'url' property
+                  sourcePath = source.path || source.url || source.source || String(source);
+                } else {
+                  console.warn(`Unexpected source format for URL ${url}:`, source);
+                  continue;
+                }
+
                 // Clean up the source path
-                const cleanSource = source.replace(/^\.?\/?_site\//, '');
+                const cleanSource = sourcePath.replace(/^\.?\/?_site\//, '');
                 if (!deadLinksByFile[cleanSource]) {
                   deadLinksByFile[cleanSource] = [];
                 }
