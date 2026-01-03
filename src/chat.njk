@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+title: Chat with Me
+---
+<div id="chat-container" class="max-w-2xl mx-auto">
+  <div id="chat-window" class="border rounded-lg p-4 h-96 overflow-y-auto">
+    </div>
+    <form id="chat-form" class="mt-4 flex">
+        <input type="text" id="chat-input" class="flex-grow border rounded-l-lg p-2" placeholder="Ask me anything...">
+        <button id="send-button" class="bg-blue-500 text-white rounded-r-lg px-4">Send</button>
+    </form>
+</div>
+<script src="/assets/js/chat.js"></script>

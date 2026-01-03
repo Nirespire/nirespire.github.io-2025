@@ -10,9 +10,12 @@
   "scripts": {
     "start": "npx eleventy --serve",
     "build:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --minify",
-    "build": "npm run build:css && npx eleventy",
+    "build:worker": "node scripts/build-worker.js",
+    "build": "npm run build:css && npm run build:worker && npx eleventy",
+    "build:watch": "npx eleventy --watch",
     "watch:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --watch",
-    "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\"",
+    "dev:worker": "wrangler pages dev --log-level=debug",
+    "dev": "npm run build && concurrently \"npm:build:watch\" \"npm:watch:css\" \"npm:dev:worker\"",
     "test": "playwright test",
     "test:setup": "npx playwright install --with-deps",
     "test:ui": "playwright test --ui",
@@ -35,8 +38,10 @@
     "concurrently": "^9.1.2",
     "cssnano": "^7.0.6",
     "dotenv": "^16.5.0",
+    "glob": "^13.0.0",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "wrangler": "^4.54.0"
   },
   "license": "MIT"
 }
