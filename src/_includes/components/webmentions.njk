@@ -1,0 +1,47 @@
+<div id="webmentions" class="webmentions">
+  <h3>Webmentions</h3>
+  {% if webmentions.likes | length > 0 %}
+    <h4>Likes</h4>
+    <ul class="webmentions__list webmentions__list--likes">
+      {% for like in webmentions.likes %}
+        <li class="webmention webmention--like">
+          <a href="{{ like.url }}" class="webmention__author">
+            <img src="{{ like.author.photo }}" alt="{{ like.author.name }}" class="webmention__author__photo">
+            {{ like.author.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if webmentions.reposts | length > 0 %}
+    <h4>Reposts</h4>
+    <ul class="webmentions__list webmentions__list--reposts">
+      {% for repost in webmentions.reposts %}
+        <li class="webmention webmention--repost">
+          <a href="{{ repost.url }}" class="webmention__author">
+            <img src="{{ repost.author.photo }}" alt="{{ repost.author.name }}" class="webmention__author__photo">
+            {{ repost.author.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if webmentions.replies | length > 0 %}
+    <h4>Replies</h4>
+    <ul class="webmentions__list webmentions__list--replies">
+      {% for reply in webmentions.replies %}
+        <li class="webmention webmention--reply">
+          <a href="{{ reply.url }}" class="webmention__author">
+            <img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" class="webmention__author__photo">
+            {{ reply.author.name }}
+          </a>
+          <div class="webmention__content">
+            {{ reply.content.html | safe }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
