@@ -26,11 +26,16 @@ function appendMessage(sender, message) {
 
 async function getAIResponse() {
     appendMessage('assistant', 'Thinking...');
+
+    // Get the last user message to send to the worker
+    const userMessage = conversationHistory[conversationHistory.length - 1];
+
     try {
-        const response = await fetch('/.netlify/functions/chat', {
+        const response = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ conversationHistory }),
+            // Send the new message and the history separately
+            body: JSON.stringify({ message: userMessage.content, conversationHistory: conversationHistory.slice(0, -1) }),
         });
 
         if (!response.ok) {
@@ -39,8 +44,8 @@ async function getAIResponse() {
 
         const data = await response.json();
         const assistantMessage = chatWindow.querySelector('.assistant-message:last-child');
-        assistantMessage.innerText = data.reply;
-        conversationHistory.push({ role: 'assistant', content: data.reply });
+        assistantMessage.innerText = data.message;
+        conversationHistory.push({ role: 'assistant', content: data.message });
     } catch (error) {
         console.error("Error fetching AI response:", error);
         const assistantMessage = chatWindow.querySelector('.assistant-message:last-child');

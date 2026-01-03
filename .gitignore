@@ -37,3 +37,7 @@ yarn-error.log*
 lychee-report.md
 # Local Netlify folder
 .netlify
+
+# Cloudflare
+.wrangler/
+functions/api/blog-content.json
