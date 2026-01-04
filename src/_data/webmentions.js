@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 // Define the cache file path
 const CACHE_FILE_PATH = path.resolve(__dirname, '../../.cache/webmentions.json');
-const DOMAIN = 'sanjaynair.net';
+const DOMAIN = 'sanjaynair.me';
 const TOKEN = process.env.WEBMENTION_IO_TOKEN;
 
 // Function to write to the cache file
