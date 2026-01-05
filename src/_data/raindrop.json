@@ -1,5 +1,23 @@
 [
   {
+    "title": "The Unbearable Joy of Sitting Alone in A Café",
+    "url": "https://candost.blog/the-unbearable-joy-of-sitting-alone-in-a-cafe/",
+    "excerpt": "Hunting timeless insights into humans and software and helping others on the way.",
+    "dateAdded": "2026-01-05T00:35:07.246Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "21 Lessons From 14 Years at Google",
+    "url": "https://addyosmani.com/blog/21-lessons/",
+    "excerpt": "Lessons learned from 14 years of engineering at Google, focusing on what truly matters beyond just writing great code.",
+    "dateAdded": "2026-01-05T00:25:24.724Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "POSSE",
     "url": "https://indieweb.org/POSSE#",
     "excerpt": "POSSE is an abbreviation for Publish (on your) Own Site, Syndicate Elsewhere, the practice of posting content on your own site first, then publishing copies or sharing links to third parties (like social media silos) with original post links to provide viewers a path to directly interacting with your content.",
