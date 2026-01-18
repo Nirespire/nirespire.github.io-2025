@@ -61,6 +61,28 @@ title: Home
 </section>
 
 <section class="mt-8 p-4 bg-bg-interactive-soft rounded-lg">
+  <h2 class="text-2xl font-bold text-accent mb-4">Latest Newsletter</h2>
+  {% set latestNewsletter = collections.newsletter | first %}
+  {% if latestNewsletter %}
+  <article class="border-b border-border-subtle pb-4 mb-4">
+    <p class="text-sm text-accent font-semibold uppercase tracking-wide mb-1">
+      {{ latestNewsletter.data.month }} {{ latestNewsletter.data.year }}
+    </p>
+    <h3 class="text-xl font-semibold text-accent">
+      <a href="{{ latestNewsletter.url }}">{{ latestNewsletter.data.title }}</a>
+    </h3>
+    {% if latestNewsletter.data.subtitle %}
+    <p class="text-text-secondary mb-2">{{ latestNewsletter.data.subtitle }}</p>
+    {% endif %}
+    <a href="{{ latestNewsletter.url }}" class="text-accent hover:underline">Read this issue &rarr;</a>
+  </article>
+  {% endif %}
+  <div class="text-right">
+    <a href="/newsletter" class="text-accent hover:underline">View all newsletters &rarr;</a>
+  </div>
+</section>
+
+<section class="mt-8 p-4 bg-bg-interactive-soft rounded-lg">
   <h2 class="text-2xl font-bold text-accent mb-4">Latest Reads</h2>
   {% for article in (raindrop | sort(false, false, 'dateAdded') | reverse).slice(0, 5) %}
   <article class="{% if not loop.last %}border-b border-border-subtle{% endif %} pb-4 mb-4">

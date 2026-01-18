@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+title: The Monthly Retro
+description: A high-signal monthly digest bridging long-form writing and curated discovery of ideas in engineering leadership.
+permalink: /newsletter/index.html
+---
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-accent mb-4" style="font-family: 'Merriweather', Georgia, serif;">
+      The Monthly Retro
+    </h1>
+    <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+      A high-signal monthly digest that bridges long-form writing and curated discovery.
+      Each edition features a retrospective on the month's themes, the latest essay, and
+      hand-picked reads with original commentary.
+    </p>
+  </div>
+
+  <div class="space-y-6">
+    {% set newsletters = collections.newsletter | sort(false, false, 'data.date') | reverse %}
+    {% for issue in newsletters %}
+    <article class="p-6 bg-bg-interactive-soft rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out border border-border-subtle">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <p class="text-sm text-accent font-semibold uppercase tracking-wide mb-1">
+            {{ issue.data.month }} {{ issue.data.year }}
+          </p>
+          <h2 class="text-2xl font-bold text-accent mb-2">
+            <a href="{{ issue.url }}" class="hover:underline">
+              {{ issue.data.title }}
+            </a>
+          </h2>
+          {% if issue.data.subtitle %}
+          <p class="text-text-secondary">
+            {{ issue.data.subtitle }}
+          </p>
+          {% endif %}
+        </div>
+        <div class="shrink-0">
+          <a href="{{ issue.url }}"
+             class="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg hover:opacity-90 transition-colors font-medium">
+            Read Issue
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    {% else %}
+    <p class="text-center text-text-secondary py-8">
+      No newsletters published yet. Check back soon!
+    </p>
+    {% endfor %}
+  </div>
+
+  <div class="mt-12 p-6 bg-bg-interactive-soft rounded-lg border border-border-subtle text-center">
+    <h3 class="text-xl font-bold text-accent mb-2">Stay Updated</h3>
+    <p class="text-text-secondary mb-4">
+      Subscribe to the RSS feed to get notified when new issues are published.
+    </p>
+    <a href="/feed.xml"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-bg-interactive-strong text-text-interactive-strong rounded-lg hover:opacity-90 transition-colors"
+       target="_blank"
+       rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+      </svg>
+      RSS Feed
+    </a>
+  </div>
+</div>
