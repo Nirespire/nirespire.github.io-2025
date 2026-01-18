@@ -178,8 +178,8 @@ function generateNewsletterContent(targetMonth, latestPost, reads) {
   if (reads.length > 0) {
     readCommentaryYaml = '\nreadCommentary:\n';
     reads.forEach((read, index) => {
-      // Escape any quotes in the URL for YAML safety
-      const escapedUrl = read.url.replace(/"/g, '\\"');
+      // Escape backslashes and quotes in the URL for YAML safety
+      const escapedUrl = read.url.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
       readCommentaryYaml += `  # ${index + 1}. ${read.title.substring(0, 60)}${read.title.length > 60 ? '...' : ''}\n`;
       readCommentaryYaml += `  "${escapedUrl}": "[TODO: Add your commentary - why does this matter? What's the key insight?]"\n`;
     });
