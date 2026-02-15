@@ -24,7 +24,6 @@ Personal website and blog for Sanjay Nair, a software engineering leader based i
 ```json
 {
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.62.0",
     "gray-matter": "^4.0.3",
     "luxon": "^3.6.1",
     "markdown-it": "^14.1.0",
@@ -35,6 +34,7 @@ Personal website and blog for Sanjay Nair, a software engineering leader based i
     "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@playwright/test": "^1.56.1",
     "@tailwindcss/typography": "^0.5.16",
+    "@anthropic-ai/claude-code": "^2.1.0",
     "autoprefixer": "^10.4.13",
     "concurrently": "^9.1.2",
     "cssnano": "^7.0.6",
@@ -388,7 +388,7 @@ description: "Post description for SEO"
 - **Script**: `scripts/generate-hallucinations.js`
 - **Output**: `src/_data/hallucinations.json`
 - **Workflow**: `.github/workflows/generate-hallucinations.yml`
-- **API**: Anthropic Claude (claude-sonnet-4-0)
+- **API**: Anthropic Claude via Claude CLI (`claude -p`)
 
 **Environment Variables**:
 - `ANTHROPIC_API_KEY`: API key for Claude
