@@ -1,5 +1,23 @@
 [
   {
+    "title": "Should managers become hands-on again?",
+    "url": "https://newsletter.terminalprompt.com/p/should-managers-become-hands-on-again",
+    "excerpt": "Why engineering leaders can’t afford to stay away from the terminal",
+    "dateAdded": "2026-02-21T21:16:46.205Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Minions: Stripe’s one-shot, end-to-end coding agents",
+    "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
+    "excerpt": "Minions are Stripe’s homegrown coding agents, responsible for more than a thousand pull requests merged each week. Though humans review the code, minions write it from start to finish. Learn how they work, and how we built them.",
+    "dateAdded": "2026-02-21T21:11:01.996Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "Context graphs, one month in - B2BaCEO by Ashu Garg",
     "url": "https://ashugarg.substack.com/p/context-graphs-one-month-in",
     "excerpt": "What we've learned since the essay went viral",
