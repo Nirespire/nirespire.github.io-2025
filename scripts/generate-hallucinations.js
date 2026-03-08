@@ -1,12 +1,8 @@
-const { Anthropic } = require('@anthropic-ai/sdk');
+const { execSync } = require('child_process');
 const fs = require('fs').promises;
 const path = require('path');
 const matter = require('gray-matter');
 require('dotenv').config();
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
 
 async function generateHallucination(title, content) {
   const prompt = `Given this blog post titled "${title}", create a humorous, 
@@ -15,19 +11,22 @@ async function generateHallucination(title, content) {
     The summary should be completely different from the actual content but maintain
     a connection to the topic.`;
 
-  const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-0',
-    max_tokens: 150,
-    temperature: 0.9,
-    messages: [
-      {
-        role: 'user',
-        content: prompt
-      }
-    ]
-  });
+  try {
+    // Escape single quotes for shell command
+    const escapedPrompt = prompt.replace(/'/g, "'\\''");
 
-  return message.content[0].text;
+    // Use Claude CLI with -p/--print for non-interactive output
+    // --tools "" disables agentic tools for simple text generation
+    const result = execSync(`npx claude -p '${escapedPrompt}' --model sonnet --tools ""`, {
+      encoding: 'utf-8',
+      env: { ...process.env }
+    });
+
+    return result.trim();
+  } catch (error) {
+    console.error(`Error generating hallucination for "${title}":`, error.message);
+    throw error;
+  }
 }
 
 async function getLatestBlogPosts() {
