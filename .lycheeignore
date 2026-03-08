@@ -57,3 +57,8 @@ data:.*
 ftp://.*
 sftp://.*
 ssh://.*
+
+# False positives
+https://www.maxemitchell.com/writings/i-read-all-of-cloudflares-claude-generated-commits/
+https://docs.freestyle.sh/blog/docs-revamp
+https://justin.searls.co/posts/full-breadth-developers/
