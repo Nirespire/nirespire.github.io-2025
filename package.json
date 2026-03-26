@@ -30,7 +30,7 @@
     "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@playwright/test": "^1.56.1",
     "@tailwindcss/typography": "^0.5.16",
-    "@anthropic-ai/claude-code": "^2.1.0",
+    "@anthropic-ai/claude-code": "^2.1.53",
     "autoprefixer": "^10.4.13",
     "concurrently": "^9.1.2",
     "cssnano": "^7.0.6",
