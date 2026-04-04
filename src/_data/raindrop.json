@@ -1,5 +1,14 @@
 [
   {
+    "title": "Agent responsibly - Vercel",
+    "url": "https://vercel.com/blog/agent-responsibly",
+    "excerpt": "There's a difference between leveraging AI and relying on it. A framework for shipping agent-generated code with the judgment and guardrails it requires.",
+    "dateAdded": "2026-04-04T13:04:41.919Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "Production Is Where the Rigor Goes",
     "url": "https://www.honeycomb.io/blog/production-is-where-the-rigor-goes",
     "excerpt": "In early February, Martin Fowler and the good folks at Thoughtworks sponsored a small, invite-only unconference in Deer Valley, Utah—birthplace of the Agile Manifesto—to talk about how software engineering is changing in the AI-native era. The longer I sit with this recap, the more troubled I am by what it doesn't say. I worry that the most respected minds in software are unintentionally replicating a serious blind spot that has haunted software engineering for decades: relegating production to the realm of bugs and incidents.",
