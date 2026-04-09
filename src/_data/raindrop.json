@@ -1,5 +1,14 @@
 [
   {
+    "title": "The Git Commands I Run Before Reading Any Code",
+    "url": "https://piechowski.io/post/git-commands-before-reading-code/",
+    "excerpt": "Five git commands that tell you where a codebase hurts before you open a single file. Churn hotspots, bus factor, bug clusters, and crisis patterns.",
+    "dateAdded": "2026-04-09T12:23:40.725Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "Agent responsibly - Vercel",
     "url": "https://vercel.com/blog/agent-responsibly",
     "excerpt": "There's a difference between leveraging AI and relying on it. A framework for shipping agent-generated code with the judgment and guardrails it requires.",
