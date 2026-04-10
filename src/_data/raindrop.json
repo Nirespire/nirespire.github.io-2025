@@ -1,5 +1,14 @@
 [
   {
+    "title": "How we hire AI-native engineers now: our criteria",
+    "url": "https://www.augmentcode.com/blog/how-we-hire-ai-native-engineers-now",
+    "excerpt": "The most powerful AI software development platform with the industry-leading context engine.",
+    "dateAdded": "2026-04-10T11:55:47.737Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "The Git Commands I Run Before Reading Any Code",
     "url": "https://piechowski.io/post/git-commands-before-reading-code/",
     "excerpt": "Five git commands that tell you where a codebase hurts before you open a single file. Churn hotspots, bus factor, bug clusters, and crisis patterns.",
