@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "luxon": "^3.6.1",
+    "luxon": "^3.7.2",
     "markdown-it": "^14.1.1",
     "node-fetch": "^2.7.0"
   },
