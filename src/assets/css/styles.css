@@ -46,9 +46,8 @@ html.light {
 }
 
 /* Tailwind Imports */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../../tailwind.config.js";
 
 /* Base Body Styles */
 body {
