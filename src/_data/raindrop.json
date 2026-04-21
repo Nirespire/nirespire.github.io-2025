@@ -1,5 +1,23 @@
 [
   {
+    "title": "The AI engineering stack we built internally — on the platform we ship",
+    "url": "https://blog.cloudflare.com/internal-ai-engineering-stack/?utm_source=tldrnewsletter",
+    "excerpt": "We built our internal AI engineering stack on the same products we ship. That means 20 million requests routed through AI Gateway, 241 billion tokens processed, and inference running on Workers AI, serving more than 3,683 internal users. Here's how we did it.",
+    "dateAdded": "2026-04-21T12:27:40.189Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "The Agent Stack Bet",
+    "url": "https://addyo.substack.com/p/the-agent-stack-bet?utm_source=tldrnewsletter",
+    "excerpt": "The bet every serious developer needs to make on on their agent stack",
+    "dateAdded": "2026-04-21T00:26:13.339Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "How we hire AI-native engineers now: our criteria",
     "url": "https://www.augmentcode.com/blog/how-we-hire-ai-native-engineers-now",
     "excerpt": "The most powerful AI software development platform with the industry-leading context engine.",
