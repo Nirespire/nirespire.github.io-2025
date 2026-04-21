@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     
     steps:
       - name: Checkout code
@@ -25,20 +26,36 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site with updated webmentions
+      - name: Build site (triggers webmention fetch)
         env:
           WEBMENTION_IO_TOKEN: ${{ secrets.WEBMENTION_IO_TOKEN }}
         run: npm run build
 
-      - name: Commit and push changes
+      - name: Commit and push updated cache
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
+          # The webmentions.js script updates this file
+          git add src/_data/webmentions.json
           if [ -n "$(git status --porcelain)" ]; then
-            git add -A
-            git commit -m "chore: update webmentions and rebuild site"
+            git commit -m "chore: update webmentions cache"
             git push
+            echo "changes_made=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit"
+            echo "changes_made=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Trigger deploy workflow
+        if: steps.commit.outputs.changes_made == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            })

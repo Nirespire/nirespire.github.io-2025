@@ -2,15 +2,14 @@ const fs = require('fs').promises;
 const path = require('path');
 const fetch = require('node-fetch');
 
-// Define the cache file path
-const CACHE_FILE_PATH = path.resolve(__dirname, '../../.cache/webmentions.json');
+// Define the cache file path - using src/_data so it can be committed
+const CACHE_FILE_PATH = path.resolve(__dirname, 'webmentions.json');
 const DOMAIN = 'sanjaynair.me';
 const TOKEN = process.env.WEBMENTION_IO_TOKEN;
 
 // Function to write to the cache file
 async function writeToCache(data) {
   try {
-    await fs.mkdir(path.dirname(CACHE_FILE_PATH), { recursive: true });
     await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(data, null, 2));
   } catch (err) {
     console.error('Error writing to cache:', err);
@@ -21,15 +20,7 @@ async function writeToCache(data) {
 async function readFromCache() {
   try {
     const data = await fs.readFile(CACHE_FILE_PATH, 'utf8');
-    const cache = JSON.parse(data);
-
-    // Cache is valid for 1 hour
-    const isCacheValid = (Date.now() - cache.timestamp) < 3600000;
-
-    if (isCacheValid) {
-      console.log('Webmentions: serving from cache.');
-      return cache.webmentions;
-    }
+    return JSON.parse(data);
   } catch (err) {
     // Cache miss or error reading file
   }
@@ -40,7 +31,7 @@ async function readFromCache() {
 async function fetchWebmentions() {
   if (!TOKEN) {
     console.warn('WEBMENTION_IO_TOKEN is not set. Skipping webmention fetch.');
-    return [];
+    return null;
   }
 
   const url = `https://webmention.io/api/mentions.json?domain=${DOMAIN}&token=${TOKEN}&per-page=1000`;
@@ -53,31 +44,29 @@ async function fetchWebmentions() {
     const feed = await response.json();
     console.log(`Webmentions: ${feed.links.length} webmentions fetched from API.`);
 
-    const webmentions = {
+    const webmentionsData = {
       all: feed.links,
       timestamp: Date.now()
     };
 
-    await writeToCache({ webmentions, timestamp: Date.now() });
+    await writeToCache(webmentionsData);
 
-    return webmentions;
+    return webmentionsData;
   } catch (err) {
     console.error('Error fetching webmentions:', err.message);
-    // On error, try to serve from cache even if stale
-    const cachedMentions = await readFromCache();
-    if (cachedMentions) {
-        console.log('Webmentions: serving stale data from cache due to API error.');
-        return cachedMentions;
-    }
-    return [];
+    return null;
   }
 }
 
 // Function to process and categorize webmentions
 function processWebmentions(mentions) {
-  const likes = mentions.filter(m => m.activity.type === 'like');
-  const reposts = mentions.filter(m => m.activity.type === 'repost');
-  const replies = mentions.filter(m => m.activity.type === 'reply' || m.activity.type === 'mention');
+  if (!mentions || !Array.isArray(mentions)) {
+    return { likes: [], reposts: [], replies: [] };
+  }
+
+  const likes = mentions.filter(m => m.activity && m.activity.type === 'like');
+  const reposts = mentions.filter(m => m.activity && m.activity.type === 'repost');
+  const replies = mentions.filter(m => m.activity && (m.activity.type === 'reply' || m.activity.type === 'mention'));
 
   return {
     likes,
@@ -87,11 +76,12 @@ function processWebmentions(mentions) {
 }
 
 module.exports = async function() {
-  const cachedMentions = await readFromCache();
-  if (cachedMentions) {
-    return processWebmentions(cachedMentions.all);
+  let webmentionsData = await fetchWebmentions();
+
+  if (!webmentionsData) {
+    console.log('Webmentions: Falling back to local cache.');
+    webmentionsData = await readFromCache();
   }
 
-  const newMentions = await fetchWebmentions();
-  return processWebmentions(newMentions.all || []);
+  return processWebmentions(webmentionsData ? webmentionsData.all : []);
 };

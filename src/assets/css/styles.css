@@ -63,19 +63,10 @@ body {
   -moz-osx-font-smoothing: grayscale; /* Smoother fonts */
 
   /* Applying original gradient: primary (#2D2D2D) to gray-900 (#111827) */
-  /* For dark theme, this means var(--color-bg-main) to var(--color-bg-interactive-strong) is not quite right.
-     Let's use the actual color values for the gradient for now to maintain visual fidelity.
-     This specific gradient might need a more complex solution if it needs to change with themes.
-     Given the task is to ensure IDENTICAL appearance, hardcoding this gradient for dark mode is safer.
-     The prompt says: "The initial state should look identical to the current dark theme."
-     The background-color above will be overridden by this gradient.
-  */
   background-image: linear-gradient(to bottom right, var(--color-bg-main), #111827); /* #111827 is gray-900 */
 }
 
 html.light body {
-    /* Light theme gradient or solid color can be defined here if needed */
-    /* For now, light theme will use its --color-bg-main solid color */
     background-image: linear-gradient(to bottom right, var(--color-bg-main), #e5e7eb); /* Example: light gray gradient */
 }
 
@@ -93,13 +84,6 @@ html.light body {
 
 /* Custom Styles from original styles.css, adapted for CSS Variables */
 a {
-  /* Default link styling is handled by Tailwind classes in base.njk now using 'link' and 'link-hover' */
-  /* This global 'a' style might override specific component styles if not careful. */
-  /* The original 'a' style here was:
-     @apply text-accent font-bold hover:text-primary-blue text-lg;
-     text-shadow: 1px 1px 2px theme('colors.black/30');
-     This is quite specific for a global tag. I will keep it but use variables.
-  */
   @apply text-accent font-bold text-lg;
   color: var(--color-accent); /* Ensures it uses the variable */
 }
@@ -134,8 +118,6 @@ a:hover {
   @apply p-6 rounded-xl backdrop-blur-sm transition-all duration-300 ease-in-out max-w-3xl mx-auto;
   border: 1px solid rgba(var(--color-border-subtle-rgb), 0.3);
   background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.4);
-  /* Removed hover:border-accent/30 and hover:shadow-accent/5 as these are complex with variables */
-  /* A simpler hover can be added if needed, or use JS for theme-aware hover effects */
 }
 
 .blog-post:hover {
@@ -202,13 +184,8 @@ article a:hover {
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  color: var(--color-text-main); /* Changed from selection-bg to text-main for cleaner look */
+  color: var(--color-text-main);
   @apply font-bold;
-}
-
-.prose a { /* Prose links inherit from article a or global a styles */
-  /* Ensure prose links are clearly distinguishable if not covered by article a */
-  /* Default styling from 'article a' (accent color) should apply and is good. */
 }
 
 .prose strong {
@@ -217,7 +194,7 @@ article a:hover {
 
 .prose hr {
   border-color: var(--color-border-subtle);
-  @apply my-8; /* Replicate default prose hr margin if needed */
+  @apply my-8;
 }
 
 .prose ul li::marker {
@@ -228,7 +205,7 @@ article a:hover {
   @apply border-l-4 px-4 py-2 my-4;
   border-left-color: var(--color-accent);
   background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.5);
-  color: var(--color-text-main); /* Ensure text inside blockquote is readable */
+  color: var(--color-text-main);
 }
 
 .prose blockquote p { /* Text inside blockquote paragraphs */
@@ -244,7 +221,7 @@ article a:hover {
 .prose code { /* Inline code */
   color: var(--color-accent);
   background-color: rgba(var(--color-code-bg-rgb), 0.5);
-  @apply px-1 rounded font-mono text-sm; /* Added font-mono and text-sm for typical code appearance */
+  @apply px-1 rounded font-mono text-sm;
 }
 
 .prose img {
@@ -265,7 +242,7 @@ article a:hover {
 
 /* Social sharing icons styling */
 .social-share-link {
-  color: var(--color-accent) !important; /* Using !important to override any inherited colors */
+  color: var(--color-accent) !important;
   @apply transition-colors duration-200;
   display: inline-flex;
   align-items: center;
@@ -275,38 +252,10 @@ article a:hover {
   color: var(--color-selection-bg) !important;
 }
 
-/* Ensure that Tailwind classes for colors take precedence or are not overridden
-   by less specific selectors like 'a' if those classes are using the new variables.
-   The nav links in base.njk use 'text-link' and 'hover:text-link-hover'.
-   The global 'a' style might interfere.
-   Let's remove the global 'a' and 'a:hover' color definitions here,
-   as specific components (nav, article) have their own link styling,
-   and Tailwind utility classes should handle the rest.
-   The text-shadow can be a utility class if needed.
-*/
-
-/* Removing global 'a' color overrides to prefer utility classes and component-specific styles */
-/*
-a {
-  color: var(--color-accent);
-}
-a:hover {
-    color: var(--color-selection-bg);
-}
-*/
-/* Text shadow as a utility or apply where needed */
 .text-shadow {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
-/* Add back the general link styling from the original tailwind.css if it's meant to be global,
-   but ensure it uses variables. The base.njk already handles its own nav links.
-   The previous tailwind.css had:
-    a { color: theme('colors.link'); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-   This is less specific than the styles.css 'a' styling so it should be fine.
-   It's better to define this globally using variables.
-*/
 a {
     color: var(--color-link-text); /* Default link color */
     text-decoration: none;
@@ -316,36 +265,22 @@ a:hover {
     text-decoration: underline;
 }
 
-/* The more specific link styles in 'nav a', 'article a', '.prose a' will override these defaults. */
-
-/* Final check on body gradient for dark theme:
-   Original: from-primary (#2D2D2D) to-gray-900 (#111827)
-   My definition: background-image: linear-gradient(to bottom right, var(--color-bg-main), #111827);
-   This seems correct for maintaining the dark theme's specific gradient.
-*/
-
-/* For light theme body gradient:
-   html.light body { background-image: linear-gradient(to bottom right, var(--color-bg-main), #e5e7eb); }
-   This uses light theme's bg-main (white) and gray-200 (#e5e7eb) which is --color-bg-interactive-strong for light theme.
-   This should provide a similar subtle gradient for the light theme.
-*/
-
 /* Scroll to Top Button Styles */
 #scrollToTopBtn {
-  display: none; /* Initially hidden, JS will manage visibility */
+  display: none;
   position: fixed;
   bottom: 20px;
-  right: 20px; /* Changed from left:50% to right:20px for better placement */
+  right: 20px;
   background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.9);
   color: var(--color-text-interactive-strong);
   padding: 12px;
   border: 1px solid rgba(var(--color-border-subtle-rgb), 0.3);
-  border-radius: 50%; /* Make it circular */
+  border-radius: 50%;
   cursor: pointer;
   z-index: 1000;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transform: translateY(0); /* Initial position for animation */
+  transform: translateY(0);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -390,13 +325,13 @@ a:hover {
 
 /* Ensure feedback states are visible in both light and dark modes */
 html.light .llm-copy-success {
-  background-color: #059669 !important; /* green-700 - good contrast in light mode */
+  background-color: #059669 !important;
   color: #ffffff !important;
   border-color: #10b981 !important;
 }
 
 html.light .llm-copy-error {
-  background-color: #dc2626 !important; /* red-700 - good contrast in light mode */
+  background-color: #dc2626 !important;
   color: #ffffff !important;
   border-color: #ef4444 !important;
 }
