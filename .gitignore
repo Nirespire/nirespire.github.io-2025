@@ -1,6 +1,9 @@
 # Node.js dependencies
 node_modules/
 
+# Runtime cache (webmention dedup, etc.)
+.cache/
+
 # Eleventy output
 dist/
 _site/
