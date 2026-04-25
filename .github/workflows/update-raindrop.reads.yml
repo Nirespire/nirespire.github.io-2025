@@ -18,10 +18,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
-        run: npm install node-fetch # Allow latest node-fetch v3 (ESM)
+        run: npm ci
 
       - name: Fetch Raindrop articles and save to JSON
         run: |
