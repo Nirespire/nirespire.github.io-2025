@@ -4,18 +4,11 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const path = require('path');
 
-// Since node-fetch is an ESM-only module, we need to use dynamic import
-let fetch;
-import('node-fetch').then(nodeFetch => {
-  fetch = nodeFetch.default;
-  // Only run main automatically when this script is executed directly.
-  if (require.main === module) {
-    main(); // Call main function after fetch is loaded
-  }
-}).catch(err => {
-  console.error('Failed to load node-fetch:', err);
-  process.exit(1);
-});
+let fetch = global.fetch;
+
+if (require.main === module) {
+  main();
+}
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1/raindrops/0'; // 0 is for "Unsorted" or "All" collection, check API for specifics if needed
 function getOutputPath() {
