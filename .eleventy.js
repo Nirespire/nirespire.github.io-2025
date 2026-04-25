@@ -37,6 +37,12 @@ module.exports = function(eleventyConfig) {
       });
     });
 
+    eleventyConfig.addCollection("newsletter", function(collectionApi) {
+      return collectionApi.getFilteredByGlob("src/newsletter/*.md").sort((a, b) => {
+        return b.date - a.date;
+      });
+    });
+
     eleventyConfig.addFilter("date", (dateObj, format = "LLL d, yyyy") => {
       if (!dateObj) {
         return '';
