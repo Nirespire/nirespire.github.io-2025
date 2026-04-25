@@ -17,7 +17,9 @@
     "test:setup": "npx playwright install --with-deps",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
-    "check-links": "node scripts/check-links.js"
+    "check-links": "node scripts/check-links.js",
+    "fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
+    "send-webmentions": "node scripts/send-webmentions.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
+    "@remy/webmention": "^1.5.0",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@anthropic-ai/claude-code": "^2.1.119",
     "@playwright/test": "^1.59.1",
