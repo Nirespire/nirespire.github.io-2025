@@ -9,14 +9,13 @@ on:
 jobs:
   update-webmentions:
     runs-on: ubuntu-latest
+    environment: github-pages
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_PAT }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
