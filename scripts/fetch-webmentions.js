@@ -3,7 +3,6 @@
 require('dotenv').config();
 const fs = require('fs').promises;
 const path = require('path');
-const fetch = require('node-fetch');
 
 const DOMAIN = 'sanjaynair.me';
 const TOKEN = process.env.WEBMENTION_IO_TOKEN;
