@@ -6,11 +6,11 @@ const path = require('path');
 
 let fetch = global.fetch;
 
+const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1/raindrops/0'; // 0 is for "Unsorted" or "All" collection, check API for specifics if needed
+
 if (require.main === module) {
   main();
 }
-
-const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1/raindrops/0'; // 0 is for "Unsorted" or "All" collection, check API for specifics if needed
 function getOutputPath() {
   return process.env.RAINDROP_OUTPUT_PATH || path.join(__dirname, '../src/_data/raindrop.json');
 }
