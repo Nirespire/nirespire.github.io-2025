@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Automating Dependency Upgrades with Dependabot and CI"
 date: 2020-01-08
 coverImage: /assets/images/githubdependabot.jpg
-coverImageAlt: "Image Source: https://scotch.io/bar-talk/secure-dependencies-with-github-and-dependabot"
+coverImageAlt: "GitHub Dependabot security alerts illustration"
 tags: ["github", "security", "automation", "dependabot", "continuous integration", "devops"]
 ---
 
@@ -23,7 +23,7 @@ Let me show you how the above steps have been made easier for us with a tool rec
 
 ### Dependabot and Github
 
-[Dependabot](https://dependabot.com/) is a product developed to provide automated dependency upgrades to software repositories. It was originally a paid product that was [acquired and integrated into Github.com](https://dependabot.com/blog/hello-github/) in May of 2019. Since then, every public repo has had access to Dependabot's integrated features out of the box when creating repos on Github.
+[Dependabot](https://docs.github.com/en/code-security/dependabot) is a product developed to provide automated dependency upgrades to software repositories. It was originally a paid product that was acquired and integrated into Github.com in May of 2019. Since then, every public repo has had access to Dependabot's integrated features out of the box when creating repos on Github.
 
 ### The Github Security Tab
 
@@ -67,7 +67,7 @@ That's another item done on our checklist:
 
 #### Custom Configurations
 
-Dependabot is [highly configurable](https://dependabot.com/docs/config-file/) if you would like finer control over how it behaves. You can set things like what package management systems to cover, how frequently it should scan your repo, and even assign specific users to address any security issues with dependencies that are identified.
+Dependabot is [highly configurable](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file) if you would like finer control over how it behaves. You can set things like what package management systems to cover, how frequently it should scan your repo, and even assign specific users to address any security issues with dependencies that are identified.
 
 Below is an example `.dependabot/config.yaml` file I included in the repo for my [personal website](https://sanjaynair.me/).
 

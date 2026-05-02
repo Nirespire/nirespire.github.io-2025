@@ -44,7 +44,7 @@ Now this one was interesting because it was a project I found that leveraged the
 For example:
 
 - You can create Issues on a repo that would typically indicate a feature request or bug report, but someone took it and turned it into a backend for a URL shortener!
-- You can create Gists or small, miscellaneous code snippets that are simple enough to not merit an entire Git repo. Someone took that and turned it into persistent storage for [serialized tabletop RPG character data](https://github.com/massif-press/compcon/blob/master/src/io/apis/gist.ts)!
+- You can create Gists or small, miscellaneous code snippets that are simple enough to not merit an entire Git repo. Someone took that and turned it into persistent storage for [serialized tabletop RPG character data](https://github.com/massif-press/compcon)!
 
 Beyond that, you have Wiki pages that provide document storage. You can create a Project board on a repo that can hold bucketed text data.
 

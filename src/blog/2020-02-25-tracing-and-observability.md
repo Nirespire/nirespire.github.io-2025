@@ -128,7 +128,7 @@ We could extend the granularity of the spans further by including details about 
 
 ### Out of the Example and Into the Real World
 
-The above concepts are simplified versions of terms and constructs formalized in the [Opentracing Specification](https://opentracing.io/specification/) for microservices and distributed applications.
+The above concepts are simplified versions of terms and constructs formalized in the [Opentracing Specification](https://opentelemetry.io/) for microservices and distributed applications.
 
 There are many opensource libraries and software that implement the Opentracing specification. You can integrate these into your own applications to gain powerful insights into the interactions of your microservices.
 
@@ -136,7 +136,7 @@ Once your application can communicate via Opentracing, you still need an Observe
 
 ![Source: https://zipkin.io/public/img/web-screenshot.png](https://cdn-images-1.medium.com/max/800/0*p7vUaXbA6c6ak0uX.png)
 
-If you're like more information about Opentracing, you can check out their [website](https://opentracing.io/) which has specification docs as well as guides to get started with Opentracing.
+If you're like more information about Opentracing, you can check out their [website](https://opentelemetry.io/) which has specification docs as well as guides to get started with Opentracing.
 
 You can also play around with [zipkin](https://zipkin.io/pages/quickstart.html) which has library support for [pretty much any programming language](https://zipkin.io/pages/tracers_instrumentation.html) you're probably thinking of using.
 
