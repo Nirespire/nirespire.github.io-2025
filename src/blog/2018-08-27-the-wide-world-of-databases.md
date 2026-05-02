@@ -23,7 +23,7 @@ If you're planning on taking your learned skills from school into industry, you'
 
 RDBs are designed around the mathematical concepts of [relational algebra](https://en.wikipedia.org/wiki/Relational_algebra). Everything you can do in a RDB can be modeled with a relational algebra expression. The SQL query language is designed after these expressions and provides a pretty simple interface to interact with data. Efficiently organizing your data requires following the rules of [normalization](https://en.wikipedia.org/wiki/Database_normalization) or the normal forms. Each entry is identified by a **primary key** with data structured into **tables** that can be joined together.
 
-RDBs have been around quite a long time ([back in the 1970s](http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/reldb/)) and are very good for general purpose data access patterns for applications. As a result, they are often the go-to choice for general application workloads for the web and enterprises.
+RDBs have been around quite a long time ([back in the 1970s](https://www.ibm.com/history/relational-database)) and are very good for general purpose data access patterns for applications. As a result, they are often the go-to choice for general application workloads for the web and enterprises.
 
 **Why they're good:**
 

@@ -15,7 +15,7 @@ Overtime, I got the itch to move my website development to something a little mo
 
 Since my site was basically just a static web page with some CSS and JS for responsiveness and styling, I didn't feel like I should reach for a full-featured framework like Angular or Ember. I wanted my site to be driven by simple content while I would host more specific content like videos and long-form publications on managed platforms like YouTube and Medium.
 
-I found that [static site generators](https://www.staticgen.com/) fit my use-case perfectly. In short, I would be able to take advantage of the modern features of a frontend framework during development and publish plain HTML, CSS, and JS to serve to clients. Since I didn't expect to have any dynamic content on my site, there would be no restriction on what I could build. Moreover, hosting a static site is a lot simpler, as platforms like [Github Pages](https://pages.github.com/) provide easy ways to serve static content for free.
+I found that [static site generators](https://jamstack.org/generators/) fit my use-case perfectly. In short, I would be able to take advantage of the modern features of a frontend framework during development and publish plain HTML, CSS, and JS to serve to clients. Since I didn't expect to have any dynamic content on my site, there would be no restriction on what I could build. Moreover, hosting a static site is a lot simpler, as platforms like [Github Pages](https://pages.github.com/) provide easy ways to serve static content for free.
 
 ### NuxtJS : Moving Beyond HTML/CSS/JS
 
@@ -23,7 +23,7 @@ While React was already dominating the web development landscape by this time, I
 
 While researching some popular static site generation tools, I came across NextJS. It is developed and maintained by the Zeit team and provided a full featured static site generation solution. Just what I was looking for. The one tiny issue was that it leveraged React.
 
-After some more stubborn digging, I came across [NuxtJS](https://nuxtjs.org/), which unashamedly advertised itself as NextJS with a fronted by Vue instead of React. I happily picked it up and was on my way to modern web development land.
+After some more stubborn digging, I came across [NuxtJS](https://nuxt.com/), which unashamedly advertised itself as NextJS with a fronted by Vue instead of React. I happily picked it up and was on my way to modern web development land.
 
 Once I was happy with an initial version, I generated my static assets and pushed it up to my [Github repo](https://github.com/Nirespire/nirespire.github.io). Like I mentioned before, Github has excellent support for hosting static sites. Their [documentation about Github pages](https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages), tight integration with repos, and the [`gh-pages`](https://www.npmjs.com/package/gh-pages) tool makes it effortless to develop and host static sites.
 
@@ -39,9 +39,9 @@ Fast forward a few weeks and I'm hearing some more buzz about Gatsby around the 
 
 What really made Gatsby stand out to me in terms of developer experience was the plugin system. At its core, you can build a complete Gatsby static site with plain-old React and CSS styles. To add to this, plugins are easy, plug and play node_modules you can import during development to make building your site far more efficient and manageable.
 
-Like I said before, the site I built was really quite simple, nothing more than a landing page with links to external sites with my other content. However, Gatsby plugins sparked some cool ideas for enhancements to what I already had. For example, instead of just providing a link to my profile on Medium, I could drop in the [gatsby-source-medium](https://www.gatsbyjs.org/packages/gatsby-source-medium/) plugin with some minimal configuration and I could now have my site automatically display previews of my latest published content.
+Like I said before, the site I built was really quite simple, nothing more than a landing page with links to external sites with my other content. However, Gatsby plugins sparked some cool ideas for enhancements to what I already had. For example, instead of just providing a link to my profile on Medium, I could drop in the [gatsby-source-medium](https://www.gatsbyjs.com/plugins/gatsby-source-medium/) plugin with some minimal configuration and I could now have my site automatically display previews of my latest published content.
 
-Similarly, I never thought about how I didn't integrate Google Analytics into my site to track user traffic. While integrating Analytics is already easy enough, it doesn't get easier than `npm install`ing [gatsby-plugin-google-analytics](https://www.gatsbyjs.org/docs/adding-analytics/) and dropping a tracking id into your Gatsby config. The framework takes care of the rest during site generation.
+Similarly, I never thought about how I didn't integrate Google Analytics into my site to track user traffic. While integrating Analytics is already easy enough, it doesn't get easier than `npm install`ing [gatsby-plugin-google-analytics](https://www.gatsbyjs.com/docs/adding-analytics/) and dropping a tracking id into your Gatsby config. The framework takes care of the rest during site generation.
 
 Finally, the user experience of browsing through their plugin repository is top notch. Every one links to an info page with easy access to the relevant Github repos in case you need to dive some code or submit an issue.
 

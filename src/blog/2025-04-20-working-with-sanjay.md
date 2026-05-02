@@ -54,7 +54,7 @@ This section is primarily for those directly reporting to me.
 
 ## My Communication Style
 
-- I currently work fully fully remote. I've had to be very deliberate about the styles and modes of communications I employ to filter out noise and optimize the time I exchange information with my team.
+- I currently work fully remote. I've had to be very deliberate about the styles and modes of communications I employ to filter out noise and optimize the time I exchange information with my team.
 - Most interactions I have will be over an asynchronous text medium like Slack or email. Get comfortable with typing a lot and clearly communicating via text if you want to keep in touch.
 - I like to reserve face to face conversations for agendas that most benefit from them such as 1 on 1s, brainstorming, or complex decision making.
 - If you send me a DM, the notification might get lost and I will forget to respond. Please do not hesitate to bump the relevant thread if you're feeling blocked or stuck due to my non-response. I will always appreciate the reminder.
