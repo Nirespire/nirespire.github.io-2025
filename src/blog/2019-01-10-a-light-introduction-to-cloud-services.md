@@ -73,7 +73,7 @@ Cloud platforms vary a bit here as far as how approachable they made the develop
 **Examples of Platforms as a Service:**
 
 * [Heroku Dynos](https://www.heroku.com/dynos)
-* [Zeit Now](https://zeit.co/now)
+* [Vercel](https://vercel.com/)
 * [Netlify](https://www.netlify.com/)
 * [Google App Engine](https://cloud.google.com/appengine/)
 * [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
@@ -114,7 +114,7 @@ Another common streaming tool is the Publish-Subscribe or "pubsub" service. Thes
 Examples of managed pubsub services:
 
 * [Google Pubsub](https://cloud.google.com/pubsub/docs/overview)
-* [Amazon Simple Notification Service](http://Simple%20Notification%20Service)
+* [Amazon Simple Notification Service](https://aws.amazon.com/sns/)
 
 ### AI and Machine Learning
 
@@ -131,7 +131,7 @@ These implementations extend into other areas such as neural networks, natural l
 
 Examples of managed ML and AI cloud solutions:
 
-* [Google Dialogflow](https://cloud.google.com/dataflow/)
+* [Google Dialogflow](https://cloud.google.com/dialogflow)
 * [Google Vision API](https://cloud.google.com/vision/)
 * [IBM Watson](https://www.ibm.com/cloud/ai) (Yes, Watson from Jeopardy is now a product you can use)
 * [Clarifai](https://clarifai.com/)

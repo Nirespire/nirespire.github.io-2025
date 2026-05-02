@@ -51,7 +51,7 @@ What this pipeline can do is pretty endless, but here are a few free tools to ea
 
 * [Travis CI](https://travis-ci.com/getting_started): Easily integrate with your Github repos and have jobs trigger every time you push code. Useful if you need to build or test you code and extensible for when you need to deploy it (read about that further down).
 * [CircleCI](https://circleci.com/docs/2.0/hello-world/): Another free CI tool that lets you run automated tasks every time your code updates.
-* [SonarCloud](https://about.sonarcloud.io/get-started/): Have your code scanned and analyzed for quality.
+* [SonarCloud](https://www.sonarsource.com/products/sonarcloud/): Have your code scanned and analyzed for quality.
 
 > "Here's the continuous integration pipeline that builds, tests, and quality scans my code automatically every time I make update to it in Github."
 
