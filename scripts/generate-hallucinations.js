@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { spawnSync } = require('child_process');
 const fs = require('fs').promises;
 const path = require('path');
 const matter = require('gray-matter');
@@ -12,17 +12,17 @@ async function generateHallucination(title, content) {
     a connection to the topic.`;
 
   try {
-    // Escape single quotes for shell command
-    const escapedPrompt = prompt.replace(/'/g, "'\\''");
+    const result = spawnSync(
+      'npx',
+      ['claude', '-p', prompt, '--model', 'sonnet', '--tools', ''],
+      { encoding: 'utf-8', env: { ...process.env } }
+    );
 
-    // Use Claude CLI with -p/--print for non-interactive output
-    // --tools "" disables agentic tools for simple text generation
-    const result = execSync(`npx claude -p '${escapedPrompt}' --model sonnet --tools ""`, {
-      encoding: 'utf-8',
-      env: { ...process.env }
-    });
+    if (result.status !== 0) {
+      throw new Error(result.stderr || 'Claude CLI exited with non-zero status');
+    }
 
-    return result.trim();
+    return result.stdout.trim();
   } catch (error) {
     console.error(`Error generating hallucination for "${title}":`, error.message);
     throw error;
