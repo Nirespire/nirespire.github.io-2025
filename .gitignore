@@ -35,6 +35,3 @@ dev_server.log*
 # Functional Test results
 /test-results/
 /playwright-report/
-
-# Lychee report of dead links
-lychee-report.md

@@ -7,7 +7,6 @@ npm run dev          # Build CSS + start 11ty dev server + watch (use this for d
 npm run build        # Production build → _site/
 npm test             # Playwright E2E tests (Chromium, Firefox, WebKit)
 npm run test:ui      # Playwright with interactive UI
-npm run check-links  # Dead link checker
 ```
 
 ## Architecture
@@ -21,7 +20,7 @@ npm run check-links  # Dead link checker
 - `src/_data/` — data files (raindrop.json, webmentions)
 - `src/assets/css/styles.css` — source CSS
 - `src/assets/js/` — client-side JavaScript
-- `scripts/` — Node.js scripts for GitHub Actions (fetch-raindrop, fetch-webmentions, check-links)
+- `scripts/` — Node.js scripts for GitHub Actions (fetch-raindrop, fetch-webmentions)
 - `tests/` — Playwright E2E tests
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
 - `tailwind.config.js` — Tailwind theme with CSS variable-based colors

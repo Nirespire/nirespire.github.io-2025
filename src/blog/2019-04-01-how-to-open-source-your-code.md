@@ -115,7 +115,7 @@ Code of Conduct
 
 Feel free to copy if you find it helpful!
 
-But in all seriousness, there are lots of great examples available to reference just like all the other documents. One example is Facebook's [Open Source Code of Conduct](https://code.fb.com/codeofconduct/) which they link to in all of their open source project repos.
+But in all seriousness, there are lots of great examples available to reference just like all the other documents. One example is Facebook's [Open Source Code of Conduct](https://engineering.fb.com/) which they link to in all of their open source project repos.
 
 ### Step 6: Consistency
 

@@ -16,7 +16,7 @@ eleventyComputed:
   title: "Posts tagged with '{{ tagName }}'"
 ---
 
-<h1 class="text-3xl font-bold mb-12 text-center">Posts tagged with '{{ tagName }}'</h1>
+<h1 class="text-3xl font-bold mb-12 text-center">Posts tagged with '{{ tagName | escape }}'</h1>
 
 <div class="space-y-8 max-w-2xl mx-auto px-4">
   {% set taggedPosts = collections[tagName] | reverse %}
