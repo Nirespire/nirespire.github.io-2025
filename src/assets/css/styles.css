@@ -91,22 +91,6 @@ html.light body {
 }
 
 /* Custom Styles from original styles.css, adapted for CSS Variables */
-a {
-  /* Default link styling is handled by Tailwind classes in base.njk now using 'link' and 'link-hover' */
-  /* This global 'a' style might override specific component styles if not careful. */
-  /* The original 'a' style here was:
-     @apply text-accent font-bold hover:text-primary-blue text-lg;
-     text-shadow: 1px 1px 2px theme('colors.black/30');
-     This is quite specific for a global tag. I will keep it but use variables.
-  */
-  @apply text-accent font-bold text-lg;
-  color: var(--color-accent); /* Ensures it uses the variable */
-}
-
-a:hover {
-    color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
-}
-
 
 #searchInput {
   @apply text-lg py-3 px-6 rounded-lg transition-colors duration-200;
@@ -284,15 +268,6 @@ article a:hover {
    The text-shadow can be a utility class if needed.
 */
 
-/* Removing global 'a' color overrides to prefer utility classes and component-specific styles */
-/*
-a {
-  color: var(--color-accent);
-}
-a:hover {
-    color: var(--color-selection-bg);
-}
-*/
 /* Text shadow as a utility or apply where needed */
 .text-shadow {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
