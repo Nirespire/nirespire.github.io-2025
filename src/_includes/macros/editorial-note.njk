@@ -1,0 +1,6 @@
+{% macro editorial_note(date) %}
+<aside class="editorial-note" role="note" aria-label="Editor's note">
+<p class="editorial-note__header"><strong>Editor's note{% if date %} &middot; {{ date }}{% endif %}</strong></p>
+<div class="editorial-note__body">{{ caller() }}</div>
+</aside>
+{% endmacro %}
