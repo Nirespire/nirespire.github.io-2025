@@ -49,11 +49,7 @@ Finally, the user experience of browsing through their plugin repository is top 
 
 [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) or PWA's are a class of web applications that adhere to certain standards or performance and accessibility. In general, if you build your websites to the PWA standards, you will make it easier for everyone to use your website, regardless of their network or hardware capabilities.
 
-Faster load times and more responsive behavior are the main claims to fame in my opinion. Dan Abramov from the React team called this out about the ReactJS site and its freaky fast performance.
-
-<blockquote class="twitter-tweet">
-<a href="https://twitter.com/dan_abramov/status/1083502444024340481"></a>
-</blockquote>
+Faster load times and more responsive behavior are the main claims to fame in my opinion. Dan Abramov from the React team [called this out](https://x.com/dan_abramov/status/1083502444024340481) about the ReactJS site and its freaky fast performance.
 
 #### Conversion: The Developer Experience
 
@@ -61,11 +57,7 @@ Although Vue and React have pretty different paradigms in terms of how they expe
 
 Routing between pages is handled implicitly. If you drop a `home.jsx` file into your `src/pages` directory, Gatsby will build it into the `/home` route automatically. CSS and other static assets like images and build in automatically from the `static` directory, and Gatsby does a great job bundling and minifying everything behind the scenes for efficient delivery to the client. I only had one page to worry about, and this model was just like Nuxt, so there was no major things to learn here.
 
-Switching my site over to Gatsby basically out of the box provided me with a pretty significant boost in web performance as measured by Google's [Lighthouse](https://developers.google.com/web/tools/lighthouse/) analyzer. I tweeted by experience as such.
-
-<blockquote class="twitter-tweet">
-<a href="https://twitter.com/Nirespire/status/1117481391527272454"></a>
-</blockquote>
+Switching my site over to Gatsby basically out of the box provided me with a pretty significant boost in web performance as measured by Google's [Lighthouse](https://developers.google.com/web/tools/lighthouse/) analyzer. [I tweeted my experience as such](https://x.com/Nirespire/status/1117481391527272454).
 
 #### More and more
 
@@ -78,4 +70,4 @@ Suffice it to say, I have no regrets converting to Gatsby. I'm pretty convinced 
 
 I'm looking forward to improving my site with the suite of tools and plugins offered by Gatsby and well as the fresh developer experience of working with it as my static site framework.
 
-If you have any thoughts or suggestions, please let me know on [Twitter](https://twitter.com/Nirespire). Also keep an eye on my [website](https://sanjaynair.me/) for upcoming additions!
+If you have any thoughts or suggestions, please let me know on [X](https://x.com/Nirespire). Also keep an eye on my [website](https://sanjaynair.me/) for upcoming additions!

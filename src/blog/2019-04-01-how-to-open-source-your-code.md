@@ -137,6 +137,6 @@ Below are some of my favorite example open source projects which have great, rea
 
 The [trending page on Github](https://github.com/trending) is also a great go-to for fresh, quality, open source content.
 
-I really hope this helps you get started with open sourcing your own projects. Let me know about your experiences on [Twitter](https://twitter.com/Nirespire).
+I really hope this helps you get started with open sourcing your own projects. Let me know about your experiences on [X](https://x.com/Nirespire).
 
 Good luck and have fun!
