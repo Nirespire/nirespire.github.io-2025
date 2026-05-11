@@ -7,6 +7,11 @@ coverImage: /assets/images/nexttogatsby.png
 tags: ["web development", "gatsbyjs", "react", "javascript", "software engineering"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("May 2026") %}
+<p>When this post was written the site ran on Gatsby. The site has since been rebuilt on <a href="https://www.11ty.dev/">11ty (Eleventy)</a> with Tailwind CSS, so the Gatsby endorsement below reflects the state of the stack in 2019 rather than a current recommendation.</p>
+{% endcall %}
+
 There are lots of tools to build websites freely available to download and use online. You might want to go at it with just plain HTML, CSS, and some JavaScript. This is how I built my first personal website and unless you're trying to get fancy with frontend features or content, this might have worked well for you.
 
 Overtime, I got the itch to move my website development to something a little more robust in terms of tooling. Not so much because the content there was complex enough to merit a full-fledged frontend framework, but more so I could have a place to practice my web development skills with some modern frameworks, tools, and abstractions. The web development landscape moves so fast, I wanted to make sure I had my own sandbox to experiment and learn easily.
