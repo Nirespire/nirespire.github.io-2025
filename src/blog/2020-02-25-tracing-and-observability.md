@@ -140,4 +140,4 @@ If you're like more information about Opentracing, you can check out their [webs
 
 You can also play around with [zipkin](https://zipkin.io/pages/quickstart.html) which has library support for [pretty much any programming language](https://zipkin.io/pages/tracers_instrumentation.html) you're probably thinking of using.
 
-Let me know your thoughts about this article or Opentracing in general over on [Twitter](https://twitter.com/Nirespire).
+Let me know your thoughts about this article or Opentracing in general over on [X](https://x.com/Nirespire).
