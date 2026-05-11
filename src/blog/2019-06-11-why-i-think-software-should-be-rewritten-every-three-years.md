@@ -100,4 +100,4 @@ I want us to critically question the apparent inevitability of legacy code being
 
 ---
 
-This is my first crack at an opinion piece, so I'd love to hear any feedback including counterarguments or supporting experiences. Everything said here was my own opinion and not reflective of any person or entity I've worked with. Please bring your own thoughts to this discussion here or on Twitter [@Nirespire](https://twitter.com/Nirespire).
+This is my first crack at an opinion piece, so I'd love to hear any feedback including counterarguments or supporting experiences. Everything said here was my own opinion and not reflective of any person or entity I've worked with. Please bring your own thoughts to this discussion here or on X [@Nirespire](https://x.com/Nirespire).
