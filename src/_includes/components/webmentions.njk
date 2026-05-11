@@ -38,7 +38,7 @@
             {{ reply.author.name }}
           </a>
           <div class="webmention__content">
-            {{ reply.content.html | safe }}
+            {{ reply.content.text }}
           </div>
         </li>
       {% endfor %}
