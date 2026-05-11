@@ -100,4 +100,4 @@ With the above steps in place, we have now checked off our last item:
 
 Keeping your software dependencies is easier now than I think it has ever been. I believe it is every developer's responsibility to be aware of best-practices and take advantage of the constantly improving tools we have freely available at our disposal.
 
-If you have any thoughts about this topic, please leave a comment or reach out on Twitter [@nirespire](https://twitter.com/Nirespire).
+If you have any thoughts about this topic, please leave a comment or reach out on X [@Nirespire](https://x.com/Nirespire).
