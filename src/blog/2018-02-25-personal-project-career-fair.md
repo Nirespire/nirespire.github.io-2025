@@ -5,6 +5,8 @@ date: 2018-02-25
 tags: ["career", "software engineering", "projects", "students"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+
 *Disclaimer: This article is aimed at **beginners** to software development or those looking to enhance their personal project experience*.*
 
 I do a lot of recruiting for my job, mainly for entry level or interns for software engineering. A common question I always get asked about this from prospective new hires is: "How do I stand out?" The answer for me is simple. Have experience building software and be able to confidently and intelligently talk about it.
@@ -49,6 +51,10 @@ This is a skill some professional developers don't even have a grasp on and a lo
 
 What this pipeline can do is pretty endless, but here are a few free tools to easily get started:
 
+{% call editorial_note("May 2026") %}
+<p>Travis CI effectively retired its free tier for open-source projects in 2020, so the link below largely points to a paid plan today. For a new project in 2026, <a href="https://github.com/features/actions">GitHub Actions</a> is the most direct free alternative and integrates with your repo with zero setup.</p>
+{% endcall %}
+
 * [Travis CI](https://travis-ci.com/getting_started): Easily integrate with your Github repos and have jobs trigger every time you push code. Useful if you need to build or test you code and extensible for when you need to deploy it (read about that further down).
 * [CircleCI](https://circleci.com/docs/2.0/hello-world/): Another free CI tool that lets you run automated tasks every time your code updates.
 * [SonarCloud](https://www.sonarsource.com/products/sonarcloud/): Have your code scanned and analyzed for quality.
@@ -64,6 +70,10 @@ So often the last but more crucial step to really finishing a project is skipped
 [Github pages](https://pages.github.com/) is an easy and free way to host a static website through a free, public Github repo. It's where I host [my website](https://sanjaynair.me)! If you took the HTML/CSS/JS route in step 1, this might be a good choice.
 
 But if you really want to take it to the next level, using one of the many free cloud service provides to host a site is a great way to get the same cool effect while gaining an extra skill under your belt. It can the final punch that really knocks the recruiter's socks off.
+
+{% call editorial_note("May 2026") %}
+<p>Heroku retired its free dyno tier on November 28, 2022, so the "free account on Heroku" path described below is no longer available. Modern free-tier alternatives worth considering include <a href="https://fly.io/">Fly.io</a>, <a href="https://render.com/">Render</a>, <a href="https://railway.app/">Railway</a>, and <a href="https://vercel.com/">Vercel</a> or <a href="https://www.netlify.com/">Netlify</a> for static and serverless workloads.</p>
+{% endcall %}
 
 Sign up for a free account on [Heroku](https://devcenter.heroku.com/start). They provide support for deploying apps written in all kinds of languages. Go through the steps to manually deploy your app to their platform and enjoy your website, now publicly available for everyone to see!
 
