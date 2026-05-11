@@ -41,7 +41,7 @@
 
     {% if coverImage %}
     <div class="relative w-full h-48 md:h-64 -mt-8 mb-8 overflow-hidden">
-      <img src="{{ coverImage }}" alt="{{ coverImageAlt }}" class="absolute w-full h-full object-cover" itemprop="image">
+      <img src="{{ coverImage }}" alt="{{ coverImageAlt or title }}" class="absolute w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high" itemprop="image">
       <div class="absolute inset-0"></div>
     </div>
     {% endif %}

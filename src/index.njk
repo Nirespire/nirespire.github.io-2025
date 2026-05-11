@@ -48,11 +48,7 @@ title: Home
       {% endfor %}
     </p>
     {% if latestPost.data.coverImage %}
-      <img src="{{ latestPost.data.coverImage }}" 
-           alt="{{ latestPost.data.title }}" 
-           class="w-full h-48 object-cover mb-4" 
-           loading="lazy" 
-           decoding="async">
+      <img src="{{ latestPost.data.coverImage }}" alt="{{ latestPost.data.title }}" class="w-full h-48 object-cover mb-4" loading="lazy" decoding="async">
     {% endif %}
     <p class="post-content">{{ latestPost.templateContent | striptags | truncate(150) }}...</p>
     <a href="{{ latestPost.url }}" class="text-accent hover:underline">Read more →</a>

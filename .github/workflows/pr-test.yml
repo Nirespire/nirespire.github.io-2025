@@ -15,3 +15,11 @@ jobs:
 
     - name: Setup and Test
       uses: ./.github/actions/setup-and-test
+
+    - name: Build site
+      run: npm run build
+
+    - name: Run Lighthouse CI
+      run: npx lhci autorun --config=./.lighthouserc.json
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

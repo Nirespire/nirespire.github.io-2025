@@ -30,11 +30,7 @@ eleventyComputed:
         {% if post.data.readingTime %} • {{ post.data.readingTime }}{% endif %}
       </p>
       {% if post.data.coverImage %}
-        <img src="{{ post.data.coverImage }}" 
-             alt="{{ post.data.title }}" 
-             class="w-full h-48 object-cover mb-4" 
-             loading="lazy" 
-             decoding="async">
+        <img src="{{ post.data.coverImage }}" alt="{{ post.data.title }}" class="w-full h-48 object-cover mb-4" loading="lazy" decoding="async">
       {% endif %}
       <p>{{ post.templateContent | striptags | truncate(150) }}...</p>
       <a href="{{ post.url }}" class="text-accent hover:underline">Read more →</a>
