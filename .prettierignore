@@ -1,0 +1,18 @@
+_site/
+node_modules/
+playwright-report/
+test-results/
+.cache/
+package-lock.json
+src/assets/css/tailwind-built.css
+
+# Markdown and content — out of scope for autoformatting
+*.md
+src/blog/
+src/_data/raindrop.json
+src/_data/webmentions.json
+src/_data/hallucinations.json
+src/reads/
+
+# YAML workflows — leave to manual review
+.github/

@@ -6,13 +6,12 @@ test.describe('Reads page', () => {
 
     // Check page title - includes site name
     await expect(page).toHaveTitle(/All Reads/);
-    const heading = page.getByRole('heading', { level: 1 });
 
     // Check source links are present
     const sourceLinks = [
       { text: 'Hacker News', href: 'https://news.ycombinator.com/' },
       { text: 'TLDR.tech', href: 'https://tldr.tech/' },
-      { text: 'Software Lead Weekly', href: 'https://softwareleadweekly.com/' }
+      { text: 'Software Lead Weekly', href: 'https://softwareleadweekly.com/' },
     ];
 
     for (const link of sourceLinks) {
@@ -33,11 +32,11 @@ test.describe('Reads page', () => {
 
     // Check first article structure
     const firstArticle = articles[0];
-    
+
     // Title should be visible and clickable
     const title = firstArticle.getByRole('heading');
     await expect(title).toBeVisible();
-    
+
     // Date should be present and in correct format
     const date = firstArticle.locator('p.text-sm');
     await expect(date).toBeVisible();
@@ -47,7 +46,7 @@ test.describe('Reads page', () => {
     // Article should have either excerpt or link
     const excerpt = firstArticle.locator('p.text-text-main');
     const readMoreLink = firstArticle.getByRole('link', { name: 'Read more →' });
-    
+
     if (await excerpt.isVisible()) {
       expect(await excerpt.textContent()).not.toBe('');
     }
