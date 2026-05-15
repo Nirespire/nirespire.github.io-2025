@@ -31,6 +31,10 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:8080',
+    // Cold builds process every /assets/images/* into AVIF/WebP/JPEG variants,
+    // which can take 2+ minutes on a CI runner with no warm cache. The default
+    // 60s timeout fires before the dev server starts.
+    timeout: 300 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 });
