@@ -1,10 +1,34 @@
 const { DateTime } = require('luxon');
+const path = require('path');
 const markdownIt = require('markdown-it');
 const pluginRss = require('@11ty/eleventy-plugin-rss').rssPlugin;
+const { eleventyImageTransformPlugin } = require('@11ty/eleventy-img');
 
 module.exports = function (eleventyConfig) {
   // Add RSS plugin
   eleventyConfig.addPlugin(pluginRss);
+
+  // Transform <img> tags in the rendered HTML into responsive <picture>
+  // elements with AVIF/WebP/JPEG variants. Avoids async-shortcode races with
+  // `templateContent` consumers (index.njk, blog/index.njk, tags/tag.njk,
+  // feed.xml.njk) by running after templates render.
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    extensions: 'html',
+    formats: ['avif', 'webp', 'jpeg'],
+    widths: [400, 800, 1200, 'auto'],
+    urlPath: '/assets/images/optimized/',
+    outputDir: './_site/assets/images/optimized/',
+    defaultAttributes: {
+      loading: 'lazy',
+      decoding: 'async',
+      sizes: '(min-width: 1024px) 800px, 100vw',
+    },
+    filenameFormat: function (id, src, width, format) {
+      const ext = path.extname(src);
+      const name = path.basename(src, ext);
+      return `${name}-${width}w-${id}.${format}`;
+    },
+  });
 
   // Add absolute URL filter for RSS
   eleventyConfig.addFilter('absoluteUrl', (url, base) => {
