@@ -56,7 +56,6 @@ Personal website and blog for Sanjay Nair, a software engineering leader based i
 ├── tailwind.config.js           # Tailwind CSS configuration
 ├── postcss.config.js            # PostCSS configuration
 ├── playwright.config.ts         # Playwright test configuration
-├── _headers                     # HTTP headers for caching
 ├── README.md                    # Project documentation
 ├── LICENSE                      # MIT License
 │
@@ -462,13 +461,13 @@ permissions:
   id-token: write
 ```
 
-### Caching Strategy (_headers)
+### Caching Strategy
 
-```
-/assets/*: Cache-Control: public, max-age=604800, immutable
-/*.html: Cache-Control: public, max-age=86400
-/*: Cache-Control: public, max-age=604800
-```
+GitHub Pages serves static assets with its own default cache headers; the site
+does not ship a custom `_headers` file because GitHub Pages does not honor that
+Netlify/Cloudflare convention. If the deployment target changes to a host that
+supports `_headers`, restore a file with the asset-vs-HTML split documented in
+git history.
 
 ---
 
