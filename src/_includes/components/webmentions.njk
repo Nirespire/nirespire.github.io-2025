@@ -6,7 +6,7 @@
       {% for like in webmentions.likes %}
         <li class="webmention webmention--like">
           <a href="{{ like.url }}" class="webmention__author">
-            <img src="{{ like.author.photo }}" alt="{{ like.author.name }}" class="webmention__author__photo">
+            <img src="{{ like.author.photo }}" alt="{{ like.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
             {{ like.author.name }}
           </a>
         </li>
@@ -20,7 +20,7 @@
       {% for repost in webmentions.reposts %}
         <li class="webmention webmention--repost">
           <a href="{{ repost.url }}" class="webmention__author">
-            <img src="{{ repost.author.photo }}" alt="{{ repost.author.name }}" class="webmention__author__photo">
+            <img src="{{ repost.author.photo }}" alt="{{ repost.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
             {{ repost.author.name }}
           </a>
         </li>
@@ -34,7 +34,7 @@
       {% for reply in webmentions.replies %}
         <li class="webmention webmention--reply">
           <a href="{{ reply.url }}" class="webmention__author">
-            <img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" class="webmention__author__photo">
+            <img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
             {{ reply.author.name }}
           </a>
           <div class="webmention__content">
