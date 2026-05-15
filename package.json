@@ -14,10 +14,11 @@
     "watch:css": "npx tailwindcss -i ./src/assets/css/styles.css -o ./src/assets/css/tailwind-built.css --watch",
     "dev": "npm run build && concurrently \"npm:start\" \"npm:watch:css\"",
     "test": "playwright test",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
     "test:setup": "npx playwright install --with-deps",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
-"fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
+    "fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
     "send-webmentions": "node scripts/send-webmentions.js"
   },
   "dependencies": {

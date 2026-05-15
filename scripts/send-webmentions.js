@@ -187,4 +187,10 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { sendWebmention, discoverWebmentionEndpoint };
+module.exports = {
+  sendWebmention,
+  discoverWebmentionEndpoint,
+  splitLinkHeader,
+  findWebmentionInLinkHeader,
+  findWebmentionInHtml,
+};

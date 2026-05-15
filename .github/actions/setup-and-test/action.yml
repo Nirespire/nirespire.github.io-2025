@@ -22,6 +22,10 @@ runs:
       run: npm ci
       shell: bash
 
+    - name: Run unit tests
+      run: npm run test:unit
+      shell: bash
+
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
       shell: bash
