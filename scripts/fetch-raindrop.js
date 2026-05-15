@@ -48,14 +48,16 @@ async function main() {
       const response = await fetch(`${RAINDROP_API_URL}?${queryParams.toString()}`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${testToken}`,
+          Authorization: `Bearer ${testToken}`,
           'Content-Type': 'application/json',
         },
       });
 
       if (!response.ok) {
         const errorBody = await response.text();
-        console.error(`Error fetching data from Raindrop.io: ${response.status} ${response.statusText}`);
+        console.error(
+          `Error fetching data from Raindrop.io: ${response.status} ${response.statusText}`
+        );
         console.error('Error details:', errorBody);
         process.exit(1);
       }
@@ -63,7 +65,9 @@ async function main() {
       const data = await response.json();
 
       if (!data.items || !Array.isArray(data.items)) {
-        console.error('Error: Unexpected data structure from Raindrop.io API. "items" array not found.');
+        console.error(
+          'Error: Unexpected data structure from Raindrop.io API. "items" array not found.'
+        );
         console.error('Received data:', JSON.stringify(data, null, 2));
         process.exit(1);
       }
@@ -78,7 +82,7 @@ async function main() {
 
     console.log(`Successfully fetched a total of ${allItems.length} items.`);
 
-    const transformedData = allItems.map(item => ({
+    const transformedData = allItems.map((item) => ({
       title: item.title || '',
       url: item.link || '',
       excerpt: item.excerpt || item.note || '', // Use note as fallback for excerpt
@@ -89,7 +93,6 @@ async function main() {
     const outPath = getOutputPath();
     await fs.writeFile(outPath, JSON.stringify(transformedData, null, 2));
     console.log(`Successfully wrote ${transformedData.length} items to ${outPath}`);
-
   } catch (error) {
     console.error('An error occurred during the fetch process:', error);
     process.exit(1);

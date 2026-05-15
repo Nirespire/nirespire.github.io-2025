@@ -51,9 +51,12 @@ function findWebmentionInHtml(html) {
     if (!rel.split(/\s+/).includes('webmention')) continue;
     const hrefMatch = attrs.match(/\shref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
     if (!hrefMatch) continue;
-    const href = hrefMatch[1] !== undefined ? hrefMatch[1]
-               : hrefMatch[2] !== undefined ? hrefMatch[2]
-               : hrefMatch[3];
+    const href =
+      hrefMatch[1] !== undefined
+        ? hrefMatch[1]
+        : hrefMatch[2] !== undefined
+          ? hrefMatch[2]
+          : hrefMatch[3];
     return href;
   }
   return null;
@@ -71,7 +74,9 @@ async function readCappedText(response, maxBytes) {
     received += value.byteLength;
     out += decoder.decode(value, { stream: true });
     if (received >= maxBytes) {
-      try { await reader.cancel(); } catch {}
+      try {
+        await reader.cancel();
+      } catch {}
       break;
     }
   }
@@ -93,14 +98,18 @@ async function discoverWebmentionEndpoint(targetUrl) {
   if (linkHeader) {
     const found = findWebmentionInLinkHeader(linkHeader);
     if (found !== null) {
-      try { await res.body?.cancel(); } catch {}
+      try {
+        await res.body?.cancel();
+      } catch {}
       return new URL(found, baseUrl).toString();
     }
   }
 
   const contentType = (res.headers.get('content-type') || '').toLowerCase();
   if (!contentType.includes('text/html') && !contentType.includes('application/xhtml')) {
-    try { await res.body?.cancel(); } catch {}
+    try {
+      await res.body?.cancel();
+    } catch {}
     return null;
   }
 
@@ -136,7 +145,9 @@ async function sendWebmention(source, target) {
       },
       body: new URLSearchParams({ source, target }),
     });
-    try { await res.body?.cancel(); } catch {}
+    try {
+      await res.body?.cancel();
+    } catch {}
     if (res.ok) return { success: true, status: res.status, endpoint };
     return { success: false, status: res.status, endpoint, error: `HTTP ${res.status}` };
   } catch (err) {

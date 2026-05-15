@@ -1,19 +1,19 @@
 /* CSS Theme Variables */
 :root {
-  --color-bg-main: #2D2D2D;
-  --color-text-main: #FFFFFF;
-  --color-accent: #F97316;
-  --color-text-secondary: #9CA3AF; /* gray-400 */
-  --color-bg-interactive-strong: #1F2937; /* gray-800 */
-  --color-text-interactive-strong: #FFFFFF;
-  --color-bg-interactive-soft: #2D2D2D; /* primary.DEFAULT */
-  --color-selection-bg: #3B82F6;
-  --color-selection-text: #FFFFFF;
-  --color-link-text: #FFFFFF; /* For nav links */
-  --color-link-hover-text: #F97316; /* Accent for nav link hover */
-  --color-border-subtle: #4B5563; /* gray-600 */
-  --color-code-bg: #1F2937; /* Background for code blocks (gray-800) */
-  --color-code-text: #E5E7EB; /* Text color for code blocks (gray-200) */
+  --color-bg-main: #2d2d2d;
+  --color-text-main: #ffffff;
+  --color-accent: #f97316;
+  --color-text-secondary: #9ca3af; /* gray-400 */
+  --color-bg-interactive-strong: #1f2937; /* gray-800 */
+  --color-text-interactive-strong: #ffffff;
+  --color-bg-interactive-soft: #2d2d2d; /* primary.DEFAULT */
+  --color-selection-bg: #3b82f6;
+  --color-selection-text: #ffffff;
+  --color-link-text: #ffffff; /* For nav links */
+  --color-link-hover-text: #f97316; /* Accent for nav link hover */
+  --color-border-subtle: #4b5563; /* gray-600 */
+  --color-code-bg: #1f2937; /* Background for code blocks (gray-800) */
+  --color-code-text: #e5e7eb; /* Text color for code blocks (gray-200) */
 
   /* RGB versions for opacity usage */
   --color-bg-interactive-strong-rgb: 31, 41, 55;
@@ -23,19 +23,19 @@
 }
 
 html.light {
-  --color-bg-main: #FFFFFF;
+  --color-bg-main: #ffffff;
   --color-text-main: #111827; /* gray-900 */
-  --color-accent: #F97316; /* Orange - same */
-  --color-text-secondary: #6B7280; /* gray-500 */
-  --color-bg-interactive-strong: #E5E7EB; /* gray-200 */
+  --color-accent: #f97316; /* Orange - same */
+  --color-text-secondary: #6b7280; /* gray-500 */
+  --color-bg-interactive-strong: #e5e7eb; /* gray-200 */
   --color-text-interactive-strong: #111827; /* gray-900 */
-  --color-bg-interactive-soft: #F3F4F6; /* gray-100 */
-  --color-selection-bg: #3B82F6;
-  --color-selection-text: #FFFFFF;
+  --color-bg-interactive-soft: #f3f4f6; /* gray-100 */
+  --color-selection-bg: #3b82f6;
+  --color-selection-text: #ffffff;
   --color-link-text: #111827; /* For nav links in light mode */
-  --color-link-hover-text: #F97316; /* Accent for nav link hover */
-  --color-border-subtle: #D1D5DB; /* gray-300 */
-  --color-code-bg: #F3F4F6; /* gray-100 */
+  --color-link-hover-text: #f97316; /* Accent for nav link hover */
+  --color-border-subtle: #d1d5db; /* gray-300 */
+  --color-code-bg: #f3f4f6; /* gray-100 */
   --color-code-text: #111827; /* gray-900 */
 
   /* RGB versions for opacity usage - Light Theme */
@@ -46,7 +46,7 @@ html.light {
 }
 
 /* Tailwind Imports */
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../../../tailwind.config.js";
 
 /* Base Body Styles */
@@ -55,7 +55,9 @@ body {
   background-color: var(--color-bg-main);
   color: var(--color-text-main);
   /* transition for smooth theme changes */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   margin: 0; /* Reset default margin */
   padding: 0; /* Reset default padding */
   -webkit-font-smoothing: antialiased; /* Smoother fonts */
@@ -69,25 +71,32 @@ body {
      The prompt says: "The initial state should look identical to the current dark theme."
      The background-color above will be overridden by this gradient.
   */
-  background-image: linear-gradient(to bottom right, var(--color-bg-main), #111827); /* #111827 is gray-900 */
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-bg-main),
+    #111827
+  ); /* #111827 is gray-900 */
 }
 
 html.light body {
-    /* Light theme gradient or solid color can be defined here if needed */
-    /* For now, light theme will use its --color-bg-main solid color */
-    background-image: linear-gradient(to bottom right, var(--color-bg-main), #e5e7eb); /* Example: light gray gradient */
+  /* Light theme gradient or solid color can be defined here if needed */
+  /* For now, light theme will use its --color-bg-main solid color */
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-bg-main),
+    #e5e7eb
+  ); /* Example: light gray gradient */
 }
-
 
 /* Text Selection Highlight Styles */
 ::selection {
-    background-color: var(--color-selection-bg);
-    color: var(--color-selection-text);
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
 
 ::-moz-selection {
-    background-color: var(--color-selection-bg);
-    color: var(--color-selection-text);
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
 
 /* Custom Styles from original styles.css, adapted for CSS Variables */
@@ -104,9 +113,8 @@ a {
 }
 
 a:hover {
-    color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
+  color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
 }
-
 
 #searchInput {
   @apply text-lg py-3 px-6 rounded-lg transition-colors duration-200;
@@ -138,7 +146,7 @@ a:hover {
 }
 
 .blog-post:hover {
-    border-color: rgba(var(--color-accent-rgb), 0.3);
+  border-color: rgba(var(--color-accent-rgb), 0.3);
 }
 
 .blog-post:hover .post-title {
@@ -174,7 +182,7 @@ nav a:hover::after {
 }
 
 /* Article styling from original */
-article a { 
+article a {
   @apply relative border-b transition-all duration-200;
   border-color: rgba(var(--color-accent-rgb), 0.3);
   color: var(--color-accent);
@@ -200,12 +208,18 @@ article a:hover {
   color: var(--color-text-main);
 }
 
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
   color: var(--color-text-main); /* Changed from selection-bg to text-main for cleaner look */
   @apply font-bold;
 }
 
-.prose a { /* Prose links inherit from article a or global a styles */
+.prose a {
+  /* Prose links inherit from article a or global a styles */
   /* Ensure prose links are clearly distinguishable if not covered by article a */
   /* Default styling from 'article a' (accent color) should apply and is good. */
 }
@@ -230,17 +244,19 @@ article a:hover {
   color: var(--color-text-main); /* Ensure text inside blockquote is readable */
 }
 
-.prose blockquote p { /* Text inside blockquote paragraphs */
+.prose blockquote p {
+  /* Text inside blockquote paragraphs */
   color: var(--color-text-main);
 }
 
 .prose pre {
   background-color: rgba(var(--color-code-bg-rgb), 0.8);
-  @apply backdrop-blur-sm; 
+  @apply backdrop-blur-sm;
   color: var(--color-code-text);
 }
 
-.prose code { /* Inline code */
+.prose code {
+  /* Inline code */
   color: var(--color-accent);
   background-color: rgba(var(--color-code-bg-rgb), 0.5);
   @apply px-1 rounded font-mono text-sm; /* Added font-mono and text-sm for typical code appearance */
@@ -295,7 +311,7 @@ a:hover {
 */
 /* Text shadow as a utility or apply where needed */
 .text-shadow {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Add back the general link styling from the original tailwind.css if it's meant to be global,
@@ -307,12 +323,12 @@ a:hover {
    It's better to define this globally using variables.
 */
 a {
-    color: var(--color-link-text); /* Default link color */
-    text-decoration: none;
+  color: var(--color-link-text); /* Default link color */
+  text-decoration: none;
 }
 a:hover {
-    color: var(--color-link-hover-text); /* Default link hover color */
-    text-decoration: underline;
+  color: var(--color-link-hover-text); /* Default link hover color */
+  text-decoration: underline;
 }
 
 /* The more specific link styles in 'nav a', 'article a', '.prose a' will override these defaults. */

@@ -13,7 +13,7 @@ test.describe('Tag cloud page', () => {
     await expect(tag).toBeVisible();
 
     // Get the computed font size of the tag
-    const fontSize = await tag.evaluate(element => {
+    const fontSize = await tag.evaluate((element) => {
       return window.getComputedStyle(element).getPropertyValue('font-size');
     });
 

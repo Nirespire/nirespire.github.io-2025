@@ -3,11 +3,11 @@ import { test, expect } from '@playwright/test';
 test.describe('404 page', () => {
   test('should display correct heading and message', async ({ page }) => {
     await page.goto('/nonexistent-page');
-    
+
     // Check main elements
     const heading = page.getByRole('heading', { name: '404' });
     await expect(heading).toBeVisible();
-    
+
     const message = page.getByText('Oops! Page not found.');
     await expect(message).toBeVisible();
   });
@@ -15,10 +15,10 @@ test.describe('404 page', () => {
   test('should display a random quote that changes on refresh', async ({ page }) => {
     // First load
     await page.goto('/nonexistent-page');
-    
+
     // Wait for quote to load
     await page.waitForSelector('#quote-container p');
-    
+
     // Get initial quote
     const initialQuote = await page.locator('#quote-container').textContent();
     expect(initialQuote).toBeTruthy();
@@ -33,7 +33,7 @@ test.describe('404 page', () => {
       await page.reload();
       await page.waitForSelector('#quote-container p');
       const newQuote = await page.locator('#quote-container').textContent();
-      
+
       if (newQuote !== firstQuote) {
         foundDifferentQuote = true;
         break;
@@ -46,7 +46,7 @@ test.describe('404 page', () => {
 
   test('should be accessible', async ({ page }) => {
     await page.goto('/nonexistent-page');
-    
+
     // Check heading structure
     const h1Count = await page.locator('h1').count();
     expect(h1Count).toBe(1);
@@ -58,7 +58,7 @@ test.describe('404 page', () => {
 
   test('should have proper metadata', async ({ page }) => {
     await page.goto('/nonexistent-page');
-    
+
     // Check page title
     await expect(page).toHaveTitle(/404 - Page Not Found/);
 
