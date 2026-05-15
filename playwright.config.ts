@@ -29,11 +29,14 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev',
+    // In CI, build once and serve the static _site over Python's http.server.
+    // The dev script's concurrently+watch combo plus the eleventy-img cold pass
+    // (every /assets/images/* into AVIF/WebP/JPEG variants) is slow and brittle
+    // under Playwright's webServer wait. Locally, keep the watch flow.
+    command: process.env.CI
+      ? 'npm run build && cd _site && python3 -m http.server 8080'
+      : 'npm run dev',
     url: 'http://localhost:8080',
-    // Cold builds process every /assets/images/* into AVIF/WebP/JPEG variants,
-    // which can take 2+ minutes on a CI runner with no warm cache. The default
-    // 60s timeout fires before the dev server starts.
     timeout: 300 * 1000,
     reuseExistingServer: !process.env.CI,
   },
