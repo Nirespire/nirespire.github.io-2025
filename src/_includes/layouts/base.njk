@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
+  <!-- Security headers -->
+  <!-- CSP delivered via <meta> because GitHub Pages does not let us set
+       HTTP response headers. 'unsafe-inline' is required for the inline
+       Web Vitals script + Schema.org JSON-LD in this template and for the
+       inline style attribute on the Ko-fi link in the footer; moving those
+       out would let us tighten to nonce/hash sources in a follow-up. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://giscus.app https://api.github.com; frame-src https://giscus.app; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
   <!-- Primary Meta Tags -->
   <title>{{ title }}{{ " | " if title }}Sanjay Nair - Software Engineering Leader</title>
   <meta name="title" content="{{ title }}{{ " | " if title }}Sanjay Nair - Software Engineering Leader">
@@ -42,9 +52,6 @@
   <link rel="canonical" href="{{ page.url | absoluteUrl("https://sanjaynair.me") }}">
   <link rel="stylesheet" href="/assets/css/tailwind-built.css">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  
-  <!-- Cache control -->
-  <meta http-equiv="Cache-Control" content="max-age=604800">
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
