@@ -26,11 +26,6 @@ module.exports = function(eleventyConfig) {
       "src/assets/js": "assets/js"
     });
 
-    // Add cache control headers
-    eleventyConfig.addPassthroughCopy({
-      "_headers": "_headers"
-    });
-
     eleventyConfig.addCollection("blog", function(collectionApi) {
       return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => {
         return b.date - a.date;
