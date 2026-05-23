@@ -21,7 +21,7 @@ module.exports = function(eleventyConfig) {
 
     // Copy assets with cache busting
     eleventyConfig.addPassthroughCopy({
-      "src/assets/css": "assets/css",
+      "src/assets/css/tailwind-built.css": "assets/css/tailwind-built.css",
       "src/assets/images": "assets/images",
       "src/assets/js": "assets/js"
     });
