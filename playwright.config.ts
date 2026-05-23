@@ -29,15 +29,12 @@ export default defineConfig({
   ],
 
   webServer: {
-    // In CI, build once and serve the static _site over Python's http.server.
-    // The dev script's concurrently+watch combo plus the eleventy-img cold pass
-    // (every /assets/images/* into AVIF/WebP/JPEG variants) is slow and brittle
-    // under Playwright's webServer wait. Locally, keep the watch flow.
-    command: process.env.CI
-      ? 'npm run build && cd _site && python3 -m http.server 8080'
-      : 'npm run dev',
+    command: 'npm run dev',
     url: 'http://localhost:8080',
-    timeout: 300 * 1000,
+    // Cold image processing takes ~2 min and the dev script then runs another
+    // eleventy pass under concurrently. Default 60s blows up before the dev
+    // server is ready.
+    timeout: 600 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 });
