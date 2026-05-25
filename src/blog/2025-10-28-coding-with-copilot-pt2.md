@@ -22,7 +22,7 @@ Enter coding agents. My first exposure to this paradigm came when Jules was mode
 
 After a few sessions with it, I could confidently say it worked 100% of the time...about 80% of the time. But I'm more than satisfied with that kind of hit rate on translating a few lines of plain English into working code. From there I threw it a few random tasks that I otherwise would have just thrown to Copilot but was simple enough to open up a browser, submit the prompt, and move on to something else without having to keep an editor open or monitor the agent's coding progress.
 
-After a few months of light usage was when the paradigm shift happened. I thought up a new enhancement I'd like to have added to the site. I reflectively reached for my todo list to add it, but paused when I realized I could just pull up Jules in my browser and send it the todo instead. And so I did.  I typed out my todo item in a few sentences, clicked submit, and watched Jules spin up and get to work. Suddenly , I felt like I was leveled up. I had just created a "todo list and does itself".
+After a few months of light usage was when the paradigm shift happened. I thought up a new enhancement I'd like to have added to the site. I reflectively reached for my todo list to add it, but paused when I realized I could just pull up Jules in my browser and send it the todo instead. And so I did. I typed out my todo item in a few sentences, clicked submit, and watched Jules spin up and get to work. Suddenly, I felt like I was leveled up. I had just created a "todo list that does itself".
 
 The next "ah-hah" moment happened after I received this lovely email from Mozilla about the sunsetting of Pocket. 
 ![Pocket retirement email](/assets/images/pocketretirementemail.png)
