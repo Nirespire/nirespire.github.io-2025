@@ -58,7 +58,7 @@ Next thing to look for is a CONTRIBUTING document. Where the README might includ
 
 What are the guidelines that the repo maintainers have put forward for how they want you to make changes to the code? Sometimes it's as simple as opening a pull request and having someone approve and merge it. Larger projects might have stricter protocols that include opening an issue, validating the issue is not a duplicate, opening a pull request, having the pull request pass automated test suites or CI process, and finally being approved by a maintainer. Different projects operate in different ways, so be sure to know how the one you want to contribute to does.
 
-The VSCode project has a great [CONTRIBUTING](https://github.com/facebook/react) document that I've always been directed to as a reference.
+The VSCode project has a great [CONTRIBUTING](https://github.com/microsoft/vscode/blob/main/CONTRIBUTING.md) document that I've always been directed to as a reference.
 
 Last but certainly not least is the CODE OF CONDUCT document. This document provides the guidelines by which contributors are expected to conduct themselves when collaborating online with the community. Some can be short and sweet and simple say "Don't be a jerk." Others can get into more details about what kind of interactions and behavior are considered inappropriate.
 
