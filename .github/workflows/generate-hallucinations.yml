@@ -25,7 +25,10 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
-        
+
+      - name: Install Claude CLI
+        run: npm install --no-save @anthropic-ai/claude-code
+
       - name: Verify Claude CLI
         run: npx claude --version
 
