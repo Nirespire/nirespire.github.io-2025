@@ -28,7 +28,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
-    "@anthropic-ai/claude-code": "^2.1.147",
+    "@anthropic-ai/claude-code": "^2.1.150",
     "@playwright/test": "^1.60.0",
     "@tailwindcss/cli": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
