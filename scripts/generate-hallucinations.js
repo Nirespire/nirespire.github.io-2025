@@ -29,37 +29,34 @@ async function generateHallucination(title, content) {
   }
 }
 
-async function getLatestBlogPosts() {
-  const blogDir = path.join(process.cwd(), 'src/blog');
+async function getLatestBlogPosts(blogDir = path.join(process.cwd(), 'src/blog'), limit = 5) {
   const files = await fs.readdir(blogDir);
-  
+
   const posts = await Promise.all(
     files
-      .filter(file => file.endsWith('.md'))
-      .map(async file => {
+      .filter((file) => file.endsWith('.md'))
+      .map(async (file) => {
         const content = await fs.readFile(path.join(blogDir, file), 'utf-8');
         const { data, content: postContent } = matter(content);
         return {
           title: data.title,
           date: data.date,
-          content: postContent
+          content: postContent,
         };
       })
   );
 
-  return posts
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 5);
+  return posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, limit);
 }
 
 async function main() {
   try {
     const posts = await getLatestBlogPosts();
     const hallucinations = await Promise.all(
-      posts.map(async post => ({
+      posts.map(async (post) => ({
         title: post.title,
         date: post.date,
-        hallucination: await generateHallucination(post.title, post.content)
+        hallucination: await generateHallucination(post.title, post.content),
       }))
     );
 
@@ -69,7 +66,7 @@ async function main() {
       path.join(dataDir, 'hallucinations.json'),
       JSON.stringify(hallucinations, null, 2)
     );
-    
+
     console.log('Successfully generated hallucinations for latest blog posts');
   } catch (error) {
     console.error('Error generating hallucinations:', error);
@@ -77,4 +74,8 @@ async function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = { getLatestBlogPosts, generateHallucination };
