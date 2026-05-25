@@ -24,6 +24,7 @@ export default [
       '.eleventy.js',
       'tailwind.config.js',
       'postcss.config.js',
+      'tests/unit/**/*.js',
     ],
     languageOptions: {
       ecmaVersion: 2023,
