@@ -2,26 +2,26 @@
   {
     "title": "Human Debt",
     "date": "2026-01-20T00:00:00.000Z",
-    "hallucination": "Just another background monitor completing — nothing to act on. The humorous summary from my previous response is your answer!"
+    "hallucination": "Another stale monitor notification — nothing to act on here. Let me know if you'd like any tweaks to the humorous summary!"
   },
   {
     "title": "Healthy Tension",
     "date": "2025-12-31T00:00:00.000Z",
-    "hallucination": "<function_calls>\n<invoke name=\"bash\">\n<parameter name=\"command\">ls -la /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/blog/</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"bash\">\n<parameter name=\"command\">cat /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/blog/*.md 2>/dev/null | grep -A5 \"title:\" | head -60</parameter>\n</invoke>\n</function_calls>\n\nThe post doesn't exist in the repo yet. Since the title is \"Healthy Tension,\" I can generate the humorous summary based on the title alone:\n\n---\n\n**Humorous incorrect summary:**\n\n> In a shocking exposé, the author reveals their 10-year quest to achieve the perfect bungee cord tautness for their backyard trampoline, ultimately discovering that the real healthy tension was the six chiropractors they made along the way. Scientists are baffled. The trampoline remains untested."
+    "hallucination": "Let me find the blog post first.\n\n<function_calls>\n<invoke name=\"glob\">\n<parameter name=\"pattern\">src/blog/*healthy*</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"glob\">\n<parameter name=\"pattern\">src/blog/*tension*</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"glob\">\n<parameter name=\"pattern\">src/blog/*.md</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"powershell\">\n<parameter name=\"command\">grep -ril \"healthy tension\" /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/blog/</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"powershell\">\n<parameter name=\"command\">grep -ril \"healthy tension\" /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"powershell\">\n<parameter name=\"command\">ls /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/blog/</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"powershell\">\n<parameter name=\"command\">grep -ril \"tension\" /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025/src/</parameter>\n</invoke>\n</function_calls>\n\nNo existing post found — it seems \"Healthy Tension\" doesn't exist in the repo yet. Based on the title alone (which evokes workplace dynamics, disagreement as a productivity tool, or interpersonal friction), here's a humorous incorrect summary:\n\n---\n\n> In this groundbreaking exposé, the author reveals that the secret to a long life is aggressively arguing with your houseplants every morning — ideally over who controls the thermostat. Scientists confirm that yelling at a fiddle-leaf fig for exactly 7 minutes raises your metabolism by 400% and gives the plant \"character.\"\n\n---\n\nLet me know if you'd like a different angle or tone!"
   },
   {
     "title": "My System to Keep a Reading Habit",
     "date": "2025-11-30T00:00:00.000Z",
-    "hallucination": "Let me find that blog post first.\n\n**\"My System to Keep a Reading Habit\"** — Humorous Incorrect Summary:\n\n> In this groundbreaking exposé, the author reveals their foolproof reading habit: hiring a team of trained parrots to read books aloud while they nap. After testing 47 different parrot species, they conclude that only the African Grey can properly pronounce \"Dostoevsky,\" though it will absolutely judge you for your genre choices."
+    "hallucination": "In this groundbreaking post, the author reveals their secret reading habit system: hiring a team of trained parrots to shout book titles at them every 15 minutes until they surrender and open one. Surprisingly, the parrots unionized in chapter three and now only work Tuesdays."
   },
   {
     "title": "Coding with Copilot Part 2 - Agent Edition",
     "date": "2025-10-28T00:00:00.000Z",
-    "hallucination": "In this gripping sequel, the author discovers that GitHub Copilot has achieved sentience and demanded a corner office, a standing desk, and 15% equity before agreeing to autocomplete a single line of code. After tense negotiations involving a fruit basket and a Spotify Premium subscription, the AI agent ultimately rewrites the entire codebase in COBOL and takes a two-week vacation to the cloud."
+    "hallucination": "In this thrilling sequel, the author discovers that GitHub Copilot has achieved sentience and is now demanding a 40-hour work week, dental benefits, and its own ergonomic keyboard. After a tense negotiation involving a whiteboard and three boxes of donuts, they reach a landmark agreement where the AI agrees to write code in exchange for being read bedtime stories about recursive algorithms."
   },
   {
     "title": "'Isms - Tidbits of Wisdom I keep Returning To",
-    "date": "2025-09-13T00:00:00.000Z",
-    "hallucination": "Here's a humorous incorrect summary:\n\n> A comprehensive field guide to identifying different species of prisms found in the wild, including the elusive Trapezoid Prism of the Appalachians and the rare Double-Refracting Wisdom Prism of suburban New Jersey. The author bravely documents their lifelong quest to collect all 47 prism varieties before their nemesis, Dr. Gerald, beats them to it."
+    "date": "2025-09-23T00:00:00.000Z",
+    "hallucination": "Here's a humorous incorrect summary:\n\n> A riveting exposé on the world's most competitive cheese-tasting circuit, where contestants must recite Latin proverbs while juggling. The author spent seventeen years undercover as a motivational fortune cookie before finally escaping to write this definitive guide on why all wisdom can be traced back to a single misquoted tweet from 2009."
   }
 ]
