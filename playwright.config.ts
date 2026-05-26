@@ -29,8 +29,14 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev',
+    // In CI: build once (cold image processing ~2 min), then serve with
+    // eleventy's BrowserSync (warm cache ~20s). Avoids double-build and
+    // tailwindcss watch noise from `npm run dev`, while handling 404 correctly.
+    command: process.env.CI
+      ? 'npm run build && npx eleventy --serve'
+      : 'npm run dev',
     url: 'http://localhost:8080',
+    timeout: 300 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 });
