@@ -78,7 +78,7 @@ This section is primarily for those directly reporting to me.
 - Team recognition: Have a team or individual that went above and beyond or reached a major milestone? Pull me into a standup, have me sign a formal recognition you authored, ask for suggestions for how to tell our people they did a good job and that we appreciate them for it.
 - Networking: are you working on a hard problem that requires some cross-functional collaboration? I can help you either find the information, suggest some ways how to find it, or directly connect you with someone who can help.
 - Brainstorming: feeling like you're drowning in ambiguity and don't know where to start? Schedule some time and let's just talk through it. 
-Being challenged: need something to push yourself out of your comfort zone and accelerate some personal growth? Just say the word. I'm generally thrilled to share something off my plate. But I will expect nothing but top effort on these. Don't come with this request lightly.
+- Being challenged: need something to push yourself out of your comfort zone and accelerate some personal growth? Just say the word. I'm generally thrilled to share something off my plate. But I will expect nothing but top effort on these. Don't come with this request lightly.
 
 ## My Quirks and Growth Opportunities
 >aka. where I will probably need your help the most
