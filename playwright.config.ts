@@ -33,9 +33,7 @@ export default defineConfig({
     // eleventy's BrowserSync (warm cache ~20s). This avoids the double-build
     // and tailwindcss watch noise from `npm run dev`, while still getting
     // correct 404 handling from BrowserSync (unlike Python's http.server).
-    command: process.env.CI
-      ? 'npm run build && npx eleventy --serve'
-      : 'npm run dev',
+    command: process.env.CI ? 'npm run build && npx eleventy --serve' : 'npm run dev',
     url: 'http://localhost:8080',
     timeout: 300 * 1000,
     reuseExistingServer: !process.env.CI,
