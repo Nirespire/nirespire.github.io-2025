@@ -38,9 +38,7 @@ test.describe('Accessibility (axe-core)', () => {
         .soft(
           blocking,
           `${FAILING_IMPACTS.join('/')} a11y violations on ${url}:\n` +
-            blocking
-              .map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.helpUrl}`)
-              .join('\n')
+            blocking.map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.helpUrl}`).join('\n')
         )
         .toEqual([]);
     });
