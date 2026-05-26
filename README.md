@@ -53,6 +53,10 @@ This project is my personal website/blog built using modern web development tool
   - `npm run start` - Start 11ty server only
   - `npm run build:css` - Build CSS only
   - `npm run watch:css` - Watch for CSS changes
+  - `npm test` - Run the Playwright E2E suite, including the `a11y.spec.ts`
+    accessibility scan that runs [axe-core](https://github.com/dequelabs/axe-core)
+    against every main page. The accessibility check fails on any `serious` or
+    `critical` WCAG 2.1 A/AA violation.
 
 ## Integrations
 

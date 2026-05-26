@@ -18,13 +18,12 @@ module.exports = function (eleventyConfig) {
     widths: [400, 800, 1200, 'auto'],
     urlPath: '/assets/images/optimized/',
     outputDir: './_site/assets/images/optimized/',
+    failOnError: false,
     defaultAttributes: {
       loading: 'lazy',
       decoding: 'async',
       sizes: '(min-width: 1024px) 800px, 100vw',
     },
-    // Only transform local /assets/images/* paths, skip absolute URLs
-    // (webmention avatars, external images in post bodies).
     filenameFormat: function (id, src, width, format) {
       const ext = path.extname(src);
       const name = path.basename(src, ext);
