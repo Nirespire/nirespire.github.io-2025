@@ -4,12 +4,12 @@ test.describe('Uses page', () => {
   test('should be accessible from About page', async ({ page }) => {
     // Start at About page
     await page.goto('/about/');
-    
+
     // Find and click Uses link
     const usesLink = page.getByRole('link', { name: 'Uses' });
     await expect(usesLink).toBeVisible();
     await usesLink.click();
-    
+
     // Verify we're on the Uses page
     await expect(page).toHaveURL('/uses/');
     await expect(page.getByRole('heading', { name: 'What I Use' })).toBeVisible();
@@ -27,7 +27,7 @@ test.describe('Uses page', () => {
       'Computers & Displays',
       'Desk Setup',
       'Audio & Video',
-      'Accessories'
+      'Accessories',
     ];
 
     for (const section of sections) {
@@ -45,19 +45,19 @@ test.describe('Uses page', () => {
       'Jarvis Laminate Standing Desk',
       'Logitech MX Mechanical Mini',
       'Logitech MX Master',
-      'Audio Technica ATH-AD500X'
+      'Audio Technica ATH-AD500X',
     ];
 
     // Check each link exists and has proper attributes
     for (const linkText of links) {
       const link = page.getByRole('link', { name: linkText });
       await expect(link).toBeVisible();
-      
+
       // Verify link has proper attributes for external links
       const linkElement = await link.elementHandle();
       const target = await linkElement?.getAttribute('target');
       const rel = await linkElement?.getAttribute('rel');
-      
+
       expect(target).toBe('_blank');
       expect(rel).toContain('noopener');
       expect(rel).toContain('noreferrer');
@@ -74,7 +74,7 @@ test.describe('Uses page', () => {
       '16GB',
       'Samsung 850 500GB NVME SSD',
       'Samsung EVO 500GB SATA SSD',
-      '1000W'
+      '1000W',
     ];
 
     for (const spec of specs) {
@@ -91,7 +91,7 @@ test.describe('Uses page', () => {
       'Computers & Displays',
       'Desk Setup',
       'Audio & Video',
-      'Accessories'
+      'Accessories',
     ];
 
     for (const section of sections) {
@@ -102,7 +102,7 @@ test.describe('Uses page', () => {
       // Find the list that follows the heading
       const list = heading.locator('xpath=following-sibling::ul').first();
       await expect(list).toBeVisible();
-      
+
       // Verify list has items
       const items = await list.locator('li').count();
       expect(items).toBeGreaterThan(0);

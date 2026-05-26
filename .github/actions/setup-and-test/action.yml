@@ -26,6 +26,14 @@ runs:
       run: npm run test:unit
       shell: bash
 
+    - name: Lint
+      run: npm run lint
+      shell: bash
+
+    - name: Format check
+      run: npm run format:check
+      shell: bash
+
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
       shell: bash

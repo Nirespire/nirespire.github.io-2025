@@ -24,7 +24,7 @@ if (currentTheme === 'light') {
 } else {
   // Default to dark: ensure 'light' class is removed and dark icon is shown.
   // This handles both 'dark' in localStorage and null (no preference).
-  htmlElement.classList.remove('light'); 
+  htmlElement.classList.remove('light');
   localStorage.setItem('theme', 'dark'); // Explicitly set to dark if no preference
   updateIcons('dark');
 }

@@ -4,10 +4,7 @@ const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 
-const {
-  fetchWebmentions,
-  setFetchForTest,
-} = require('../../scripts/fetch-webmentions.js');
+const { fetchWebmentions, setFetchForTest } = require('../../scripts/fetch-webmentions.js');
 
 let tmpFile;
 const originalToken = process.env.WEBMENTION_IO_TOKEN;
