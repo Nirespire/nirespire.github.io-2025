@@ -7,7 +7,7 @@ tags: ["career", "software engineering", "projects", "students"]
 
 {% from "macros/editorial-note.njk" import editorial_note %}
 
-*Disclaimer: This article is aimed at **beginners** to software development or those looking to enhance their personal project experience*.*
+*Disclaimer: This article is aimed at **beginners** to software development or those looking to enhance their personal project experience.*
 
 I do a lot of recruiting for my job, mainly for entry level or interns for software engineering. A common question I always get asked about this from prospective new hires is: "How do I stand out?" The answer for me is simple. Have experience building software and be able to confidently and intelligently talk about it.
 
@@ -45,9 +45,9 @@ Next time your talk to a recruiter, you have a new talking point to add to your 
 
 Check that box off ✅
 
-#### 2. Create a Automated CI Pipeline
+#### 2. Create an Automated CI Pipeline
 
-This is a skill some professional developers don't even have a grasp on and a lot of companies are still trying to figure out how to implement. The basic idea is this: create an automated process to build, test, analyze, and publish results about your code every time you update it in Github. This is what's called a *continuous integration pipeline* ✨*.
+This is a skill some professional developers don't even have a grasp on and a lot of companies are still trying to figure out how to implement. The basic idea is this: create an automated process to build, test, analyze, and publish results about your code every time you update it in Github. This is what's called a *continuous integration pipeline* ✨.
 
 What this pipeline can do is pretty endless, but here are a few free tools to easily get started:
 
