@@ -1,4 +1,4 @@
---- 
+---
 layout: layouts/post.njk
 title: "Healthy Tension"
 subtitle: "The Organizational Dynamic That Drives High-Performing Teams"
