@@ -18,6 +18,7 @@ module.exports = function (eleventyConfig) {
     widths: [400, 800, 1200, 'auto'],
     urlPath: '/assets/images/optimized/',
     outputDir: './_site/assets/images/optimized/',
+    failOnError: false,
     defaultAttributes: {
       loading: 'lazy',
       decoding: 'async',
