@@ -15,7 +15,7 @@ test('main fetches items and writes transformed output file', async () => {
   process.env.RAINDROP_OUTPUT_PATH = outputPath;
 
   // Stub fetch: return an API response for Raindrop
-  const stubFetch = async (url: any, opts?: any) => {
+  const stubFetch = async (url: any, _opts?: any) => {
     // API GET
     if (new URL(String(url)).hostname === 'api.raindrop.io') {
       return {
@@ -56,7 +56,7 @@ test('main fetches items and writes transformed output file', async () => {
     // Cleanup - remove the generated file if present
     try {
       await fs.unlink(outputPath);
-    } catch (e) {
+    } catch (_e) {
       // ignore
     }
   }
