@@ -42,7 +42,7 @@
     "cssnano": "^8.0.1",
     "dotenv": "^17.4.2",
     "eslint": "^10.4.0",
-    "eslint-config-prettier": "^9.1.2",
+    "eslint-config-prettier": "^10.1.8",
     "globals": "^17.6.0",
     "postcss": "^8.5.15",
     "prettier": "^3.8.3",
