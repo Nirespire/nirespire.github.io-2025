@@ -23,7 +23,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
-    "send-webmentions": "node scripts/send-webmentions.js"
+    "send-webmentions": "node scripts/send-webmentions.js",
+    "download-medium-images": "node scripts/download-medium-images.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
