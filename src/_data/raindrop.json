@@ -1,5 +1,14 @@
 [
   {
+    "title": "Jamie Hurst's Blog - Is this sustainable?",
+    "url": "https://jamiehurst.co.uk/2026-05-24_ai-sustainable",
+    "excerpt": "Jamie Hurst - Software and System Engineer, Enthusiast of Terrible Cars",
+    "dateAdded": "2026-05-29T11:56:53.480Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "The AI engineering stack we built internally — on the platform we ship",
     "url": "https://blog.cloudflare.com/internal-ai-engineering-stack/?utm_source=tldrnewsletter",
     "excerpt": "We built our internal AI engineering stack on the same products we ship. That means 20 million requests routed through AI Gateway, 241 billion tokens processed, and inference running on Workers AI, serving more than 3,683 internal users. Here's how we did it.",
