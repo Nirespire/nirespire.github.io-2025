@@ -44,7 +44,9 @@ npm run test:ui      # Playwright with interactive UI
 
 After making changes, verify with:
 1. `npm run build` — clean build with no errors
-2. `npm test` — all Playwright tests pass
+2. `npm run lint` — ESLint passes with no errors
+3. `npm run format:check` — Prettier format check passes
+4. `npm test` — all Playwright tests pass
 
 ## Content Audit Guidance
 
