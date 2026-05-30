@@ -88,6 +88,8 @@ async function processMarkdownFile(filePath) {
   const matches = [...content.matchAll(CDN_REGEX)];
   if (matches.length === 0) return;
 
+  console.log(`\nProcessing: ${path.basename(filePath)}`);
+
   // Collect unique URLs to avoid duplicate downloads
   const seen = new Map();
   for (const match of matches) {
@@ -121,11 +123,7 @@ async function main() {
   const mdFiles = files.filter((f) => f.endsWith('.md')).map((f) => path.join(BLOG_DIR, f));
 
   for (const file of mdFiles) {
-    const content = await fs.readFile(file, 'utf-8');
-    if (content.includes(CDN_HOST)) {
-      console.log(`\nProcessing: ${path.basename(file)}`);
-      await processMarkdownFile(file);
-    }
+    await processMarkdownFile(file);
   }
 
   console.log('\nDone.');
