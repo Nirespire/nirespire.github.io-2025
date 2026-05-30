@@ -48,6 +48,11 @@ function detectMimeExtension(response) {
 }
 
 async function downloadImage(url, destDir) {
+  const parsedUrl = new URL(url);
+  if (parsedUrl.hostname !== CDN_HOST) {
+    throw new Error(`Unexpected host: ${parsedUrl.hostname}`);
+  }
+
   const { sanitizedBase, hasKnownExtension } = deriveFilename(url);
 
   const controller = new AbortController();
@@ -113,9 +118,7 @@ async function processMarkdownFile(filePath) {
 
 async function main() {
   const files = await fs.readdir(BLOG_DIR);
-  const mdFiles = files
-    .filter((f) => f.endsWith('.md'))
-    .map((f) => path.join(BLOG_DIR, f));
+  const mdFiles = files.filter((f) => f.endsWith('.md')).map((f) => path.join(BLOG_DIR, f));
 
   for (const file of mdFiles) {
     const content = await fs.readFile(file, 'utf-8');
