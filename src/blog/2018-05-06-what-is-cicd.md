@@ -7,6 +7,11 @@ coverImageAlt: "Photo by SpaceX on Unsplash"
 tags: ["devops", "continuous integration", "continuous deployment", "software engineering"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>The Travis CI links in this post (<code>travis-ci.com</code> and <code>travis-ci.com/getting_started</code>) are preserved as the canonical service URL but are largely obsolete in 2026 - Travis CI retired its free open-source tier in 2020 and the service has since been overshadowed by <a href="https://github.com/features/actions">GitHub Actions</a>, <a href="https://circleci.com/">CircleCI</a>, and other modern CI providers.</p>
+{% endcall %}
+
 Modern software moves fast and demands more from developers than ever. Tools and concepts around CICD help developers deliver value faster and more transparently.
 
 You might have heard the term CI, Continuous Integration, CICD, or Continuous delivery. It's a concept that goes by many names but covers the same basic ideas. In short, it lays out some practices to follow in order for the code you write to more quickly and safely get to your users and ultimately generate value.
