@@ -70,9 +70,9 @@ test.describe('Uses page', () => {
     // Check PC specs are visible
     const specs = [
       'Intel Core i7-8700K',
-      'Nvidia RTX 770',
+      'Nvidia RTX 4070',
       '16GB',
-      'Samsung 850 500GB NVME SSD',
+      'Samsung 850 500GB SATA SSD',
       'Samsung EVO 500GB SATA SSD',
       '1000W',
     ];
