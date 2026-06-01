@@ -72,7 +72,7 @@ Now you've found some code you want to contribute to and you're familiar with th
 
 Github has a feature called "forking" that essentially means: take this repo owned by someone else and create a linked copy in my personal Github profile.
 
-![The github-pr-dashboard owned by joeattardi that I forked to my profile](https://cdn-images-1.medium.com/max/800/1*dFemDPFGQUPsWic7W4rdjA.png)
+![The github-pr-dashboard owned by joeattardi that I forked to my profile](/assets/images/blog/2019-02-26-getting-started-with-opensource/1xdFemDPFGQUPsWic7W4rdjA.png)
 
 This allows you to create a branch and push code to your forked copy without having write access to the main repo.
 
@@ -82,11 +82,11 @@ So now you should do exactly that. Clone the forked repo to your machine, make w
 
 Once you're happy with the changes, you can open a Pull Request.
 
-![One way you can open a PR is clicking this button on the Pull requests tab of your forked repo](https://cdn-images-1.medium.com/max/800/1*S-fn57AUwFdoYLNWUezQFw.png)
+![One way you can open a PR is clicking this button on the Pull requests tab of your forked repo](/assets/images/blog/2019-02-26-getting-started-with-opensource/1xS-fn57AUwFdoYLNWUezQFw.png)
 
 Make sure that the base branch you are proposing to merge your branch into is the appropriate branch of the *original* repo. That way the maintainers will see your open PR in their list of pull requests.
 
-![](https://cdn-images-1.medium.com/max/800/1*dgmEMn3FuYyrqscJwmRJ5Q.png)
+![](/assets/images/blog/2019-02-26-getting-started-with-opensource/1xdgmEMn3FuYyrqscJwmRJ5Q.png)
 
 Again, follow the contributing guidelines to decide which is the correct default branch the maintainers want you to merge into and what details are expected in the Pull Request description. Some repos on Github are set up with [Pull Request templates](https://help.github.com/en/articles/creating-a-pull-request-template-for-your-repository) that will pre-fill the description with a basic scaffold you can add details too.
 

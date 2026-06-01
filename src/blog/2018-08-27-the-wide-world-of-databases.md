@@ -17,7 +17,7 @@ In this post, I'll go over some of the most common types of databases you might 
 
 The trusty relational database (RDB) is usually the first thing you encounter if you take the traditional, academic avenue into software development. This is very much on purpose, as shown by the StackOverflow Developer Skills Survey from 2018, four out of the five most used database technologies by all respondents were RDBs (excluding MongoDB).
 
-![Source: https://insights.stackoverflow.com/survey/2018/#technology-databases](https://cdn-images-1.medium.com/max/800/1*GtHSGssY-c-WBOY0hsbcpA.png)
+![Source: https://insights.stackoverflow.com/survey/2018/#technology-databases](/assets/images/blog/2018-08-27-the-wide-world-of-databases/1xGtHSGssY-c-WBOY0hsbcpA.png)
 
 If you're planning on taking your learned skills from school into industry, you're probably going to need to know something about RDBs.
 
@@ -105,7 +105,7 @@ Some example use-cases include Redis, which is a popular in-memory KV datastore 
 
 To explain column-oriented databases (yet another NoSQL set of databases), let's first see how data is stored on disk for this kind of database vs. the more common, row-oriented design. Below is a comparison of what data stored in a row-oriented vs column-oriented system would look like on disk:
 
-![Either rows or columns are placed close together on disk](https://cdn-images-1.medium.com/max/800/1*_N-W-v98jMESdqsWL1d3gA.png)
+![Either rows or columns are placed close together on disk](/assets/images/blog/2018-08-27-the-wide-world-of-databases/1x_N-W-v98jMESdqsWL1d3gA.png)
 
 The performance of a database operation is largely depending on physical proximity of data, whether on a spinning hard disk or between nodes in a cluster. The immediate side effect of organizing column data close together is that queries over a full row become less efficient in favor of queries over a full column. Each row typically has a **row key**, however the data is queried using the column values rather than keys on the rows. Some implementations group column key's or **column qualifiers** into **column families** to more easily group similar sets of data.
 

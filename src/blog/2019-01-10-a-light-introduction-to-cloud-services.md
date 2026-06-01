@@ -99,7 +99,7 @@ The clear advantage of this model is obviously the lower cost and opportunity to
 
 Similar to my [previous article](https://sanjaynair.me/blog/2018-10-01-the-wide-world-of-software-testing/) on software testing, it's around here where we get into some of the more specialized tooling offered in the cloud. While specific in their intended use cases, this category of cloud services still spans their own significant portion of most platforms out there and is worth understanding at a high level.
 
-![An example of a Dataflow pipeline](https://cdn-images-1.medium.com/max/800/0*pfuE1pNi3eMbGJ5K.png)
+![An example of a Dataflow pipeline](/assets/images/blog/2019-01-10-a-light-introduction-to-cloud-services/0xpfuE1pNi3eMbGJ5K.png)
 *An example of a Dataflow pipeline (https://cloud.google.com/solutions/processing-logs-at-scale-using-dataflow)*
 
 Most cloud platforms will offer some kind of scalable, high throughput, data pipeline processing tool. These might be useful when you're trying to build a high volume or throughput system that requires a lot of computing power. A managed data streaming service would give you abstractions around the hardware where your algorithms are running, how to separate and link different steps, and the ways to configure how it scales with incoming data volume. Like other managed service offerings specific to cloud platforms, these data streaming services typically integrate very easily with other managed services like databases and object storage.
@@ -120,7 +120,7 @@ Examples of managed pubsub services:
 
 With the mainstream rise of Machine Learning and AI as an area of software specialization, cloud providers are more than ready to provide managed solutions to some of the main problems posed by this up-and-coming area.
 
-![Example of face detection through Google Vision API](https://cdn-images-1.medium.com/max/800/0*EYsVULBoHbKVcc0M)
+![Example of face detection through Google Vision API](/assets/images/blog/2019-01-10-a-light-introduction-to-cloud-services/0xEYsVULBoHbKVcc0M.png)
 *Example of face detection through Google Vision API (https://developers.google.com/vision/)*
 
 Most modern cloud providers (especially the ones that already developed high fidelity ML and AI tools for the other business ventures - I'm looking at you Google) offer managed solutions to overcome the barriers to entry into the space. For example, they might provide image recognition tools to provide high quality image recognition without the need to write implementations from scratch or worry about collecting training data sets. They effectively take care of all the implementation and training while letting you, the customer, reap the benefits through a friendly API.
