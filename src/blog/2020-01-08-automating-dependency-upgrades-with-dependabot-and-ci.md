@@ -7,6 +7,11 @@ coverImageAlt: "GitHub Dependabot security alerts illustration"
 tags: ["github", "security", "automation", "dependabot", "continuous integration", "devops"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>All of the GitHub help links in this post have been updated to their current canonical URLs. GitHub retired the <code>help.github.com</code> domain in favor of <a href="https://docs.github.com/">docs.github.com</a>, and the Dependabot security update, dependency graph, notifications, and branch protection articles have all moved to new paths under that domain.</p>
+{% endcall %}
+
 I'm a big proponent of keeping software up to date. Especially in the modern day where it feels like new critical security vulnerabilities are popping up in software every other week.
 
 There's a whole industry, multiple academic fields, and career tracks just focused on this topic of software security. Smart people are always finding ways to make it easier for devs to implement best security practices when writing code.
@@ -33,13 +38,13 @@ If you have your code hosted on Github in a repo that you have contribution righ
 
 ![](/assets/images/blog/2020-01-08-automating-dependency-upgrades-with-dependabot-and-ci/1xXE6Mv5jjflMWpfiHrSDIPg.png)
 
-Note that this feature has some restrictions as to [which types of repos](https://help.github.com/en/github/managing-security-vulnerabilities/configuring-automated-security-updates#supported-repositories) it is enabled for and which programming languages / [package managers](https://help.github.com/en/github/visualizing-repository-data-with-graphs/listing-the-packages-that-a-repository-depends-on#supported-package-ecosystems) it supports. Most of the projects I work in are public repos that include NPM and Docker as package managers, which are both compatible.
+Note that this feature has some restrictions as to [which types of repos](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates) it is enabled for and which programming languages / [package managers](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/dependency-graph-supported-package-ecosystems) it supports. Most of the projects I work in are public repos that include NPM and Docker as package managers, which are both compatible.
 
 Below is an example of what an alert looks like once Dependabot receives a new CVE publication and identifies that it applies to your repo.
 
 ![](/assets/images/blog/2020-01-08-automating-dependency-upgrades-with-dependabot-and-ci/1x_4dgK4ls18dixzyhAf8-rA.png)
 
-Once you have this set up, you can even [set up your notifications preferences](https://help.github.com/en/github/receiving-notifications-about-activity-on-github/choosing-the-delivery-method-for-your-notifications#choosing-the-delivery-method-for-security-alerts-for-vulnerable-dependencies) to have Github email you when a vulnerability is detected on one of your repos or provide a weekly report of findings.
+Once you have this set up, you can even [set up your notifications preferences](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications) to have Github email you when a vulnerability is detected on one of your repos or provide a weekly report of findings.
 
 As far as checking the boxes we mentioned above, for every supported repo you configure this for, here's what we've now got covered:
 
@@ -86,7 +91,7 @@ Furthermore, you can adopt some principles of Continuous Integration ([which I a
 * Trigger your CI when a PR is opened on your repo
 * Run tests on branch the PR is for
 * Publish the results of the tests to the PR on Github
-* (Optional) [Configure branch protection rules](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to block merging the PR until the CI check has passed
+* (Optional) [Configure branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) to block merging the PR until the CI check has passed
 
 If your codebase or app is just not that complex and manually testing it suffices, the above steps might not even be necessary when making dependency upgrades. For example, my personal website is just a single page static site with basically zero complex functionality. If it builds and renders, I consider my testing complete.
 
