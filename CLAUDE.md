@@ -45,12 +45,12 @@ npm run test:ui      # Playwright with interactive UI
 `npm run verify` runs the full check suite — lint, format check, unit tests,
 production build, and Playwright E2E — in one command. It is the **single
 source of truth** for CI: both the PR workflow and the deploy workflow run it
-(via `.github/actions/setup-and-test`), and the `pre-commit` hook
-(`.githooks/pre-commit`) runs the exact same command, so local results never
+(via `.github/actions/setup-and-test`), and the `pre-push` hook
+(`.githooks/pre-push`) runs the exact same command, so local results never
 drift from CI.
 
 ```bash
-npm run verify       # everything CI runs, in one go (also enforced pre-commit)
+npm run verify       # everything CI runs, in one go (also enforced pre-push)
 ```
 
 The hook is enabled automatically on `npm install` (via the `prepare` script,

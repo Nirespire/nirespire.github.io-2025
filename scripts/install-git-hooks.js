@@ -3,9 +3,9 @@
 // Enables the repo's shared git hooks by pointing core.hooksPath at the
 // version-controlled .githooks directory. Runs automatically through the npm
 // "prepare" lifecycle (i.e. after `npm install`), so every clone gets the same
-// pre-commit checks without any manual setup.
+// pre-push checks without any manual setup.
 //
-// No-op inside GitHub Actions: CI performs automated commits (the content-update
+// No-op inside GitHub Actions: CI performs automated commits and pushes (the content-update
 // workflows) that must not trigger the local check suite, and CI quality gates
 // already run through .github/actions/setup-and-test.
 
