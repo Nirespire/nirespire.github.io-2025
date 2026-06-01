@@ -4,18 +4,18 @@ Version-controlled git hooks for this repo. Enabled automatically via the npm
 `prepare` script (`scripts/install-git-hooks.js`), which points
 `core.hooksPath` at this directory after `npm install`.
 
-## `pre-commit`
+## `pre-push`
 
-Runs `npm run verify` before every commit — the **same** checks CI runs on pull
+Runs `npm run verify` before every push — the **same** checks CI runs on pull
 requests and on a merge to `main` before deployment:
 
-| Check            | Command               | Runs in CI?                          |
-| ---------------- | --------------------- | ------------------------------------ |
-| Lint             | `npm run lint`        | PR + deploy (via `verify`)           |
-| Format           | `npm run format:check`| PR + deploy (via `verify`)           |
-| Unit tests       | `npm run test:unit`   | PR + deploy (via `verify`)           |
-| Production build | `npm run build`       | PR + deploy (via `verify`)           |
-| E2E (Playwright) | `npm run test`        | PR + deploy (via `verify`)           |
+| Check            | Command                | Runs in CI?                |
+| ---------------- | ---------------------- | -------------------------- |
+| Lint             | `npm run lint`         | PR + deploy (via `verify`) |
+| Format           | `npm run format:check` | PR + deploy (via `verify`) |
+| Unit tests       | `npm run test:unit`    | PR + deploy (via `verify`) |
+| Production build | `npm run build`        | PR + deploy (via `verify`) |
+| E2E (Playwright) | `npm run test`         | PR + deploy (via `verify`) |
 
 ### Why there is no drift
 
@@ -31,8 +31,8 @@ for example, fails locally exactly as it would on GitHub.
 
 ### Notes
 
-- The hook is a no-op inside GitHub Actions, so automated content-update commits
+- The hook is a no-op inside GitHub Actions, so automated content-update pushes
   are never blocked.
 - Requires dependencies to be installed (`npm install`). The first run also
   installs Playwright browsers if needed (`npm run test:setup`).
-- Bypass for a single commit (discouraged): `git commit --no-verify`.
+- Bypass for a single push (discouraged): `git push --no-verify`.

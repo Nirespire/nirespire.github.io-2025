@@ -26,8 +26,8 @@ runs:
       run: npx playwright install --with-deps
       shell: bash
 
-    # Single source of truth for the check suite. The pre-commit hook
-    # (.githooks/pre-commit) runs this exact same command, so local and CI
+    # Single source of truth for the check suite. The pre-push hook
+    # (.githooks/pre-push) runs this exact same command, so local and CI
     # results stay deterministically aligned. To change what CI checks, edit
     # the "verify" script in package.json — every entry point updates together.
     - name: Run checks (lint, format, unit tests, build, e2e)
