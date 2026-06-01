@@ -5,6 +5,11 @@ layout: layouts/post.njk
 tags: ["ai", "ai safety"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>Two Google AI references in this post have been updated to their current canonical URLs. DeepMind's site moved from <code>deepmind.com</code> to <a href="https://deepmind.google/">deepmind.google</a> after the broader Google AI consolidation, and the Google AI Blog (<code>ai.googleblog.com</code>) was folded into <a href="https://research.google/blog/">research.google/blog</a> with the Duplex post now reachable there.</p>
+{% endcall %}
+
 I was recently listening to an episode of the podcast [This Week in Machine Learning and AI](https://twimlai.com/twiml-talk-181-anticipating-superintelligence-with-nick-bostrom/), featuring professor Nick Bostrom. He is the author of a book I recently read called [Superintelligence](https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies), which explores the potential consequences of artificial intelligence that surpasses the capabilities of human beings by orders of magnitude. Bostrom is also a member of the [Future of Life Institute](https://futureoflife.org/) which seeks to steer humanity through a safe course into the future along with the rapid pace of technological advancement.
 
 On the podcast, Bostrom highlights the relatively brand new academic area of **AI Safety**. It is a really fascinating topic which I feel is becoming increasingly relevant in the modern age, and I figured it was a topic that might not be familiar to many. So here is the beginners crash course of what AI safety is and why you should probably care about it.
@@ -21,9 +26,9 @@ Contrary to what news media might make you think, the concept and implementation
 
 And many, many more…
 
-Digital implementations in these areas through various techniques resulted in systems that were significantly superior to humans in their specialized areas of expertise. Some famous examples include IBM's [Deep Blue](https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29), which beat world champion chess player Gary Kasparov at his own game. While Deep Blue was more of a brute force implementation which computed many thousands of moves ahead and picked the statically best move, more recent achievements such as DeepMind's [Alpha Go](https://deepmind.com/research/alphago/) overcame much greater statistical complexity of playing a game of Go through reinforcement learning techniques.
+Digital implementations in these areas through various techniques resulted in systems that were significantly superior to humans in their specialized areas of expertise. Some famous examples include IBM's [Deep Blue](https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29), which beat world champion chess player Gary Kasparov at his own game. While Deep Blue was more of a brute force implementation which computed many thousands of moves ahead and picked the statically best move, more recent achievements such as DeepMind's [Alpha Go](https://deepmind.google/research/projects/alphago/) overcame much greater statistical complexity of playing a game of Go through reinforcement learning techniques.
 
-A relatively recent product delivered directly to customers that implements concepts from computer vision and reinforcement learning is car manufacturer [Tesla's autopilot system](https://www.tesla.com/autopilot), which can provide basic automated driving capabilities to their line of electric vehicles. Look at [Google's Duplex](https://ai.googleblog.com/2018/05/duplex-ai-system-for-natural-conversation.html) system for smartphones that, through the use of natural language processing and deep neural nets, can effectively mimic a basic phone conversation.
+A relatively recent product delivered directly to customers that implements concepts from computer vision and reinforcement learning is car manufacturer [Tesla's autopilot system](https://www.tesla.com/autopilot), which can provide basic automated driving capabilities to their line of electric vehicles. Look at [Google's Duplex](https://research.google/blog/google-duplex-an-ai-system-for-accomplishing-real-world-tasks-over-the-phone/) system for smartphones that, through the use of natural language processing and deep neural nets, can effectively mimic a basic phone conversation.
 
 There's no question that with today's technology and techniques, it's possible to develop a specialized system that could learn to perform a narrow set of tasks, sometimes even better than a human.
 

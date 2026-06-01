@@ -7,6 +7,11 @@ coverImageAlt: "Photo by Jonathan Singer on Unsplash"
 tags: ["databases", "software engineering", "technology"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>Two external references in this post have been refreshed: the Stack Overflow 2018 Developer Survey citation in the image caption below was updated from <code>insights.stackoverflow.com</code> (the old subdomain Stack Overflow used for survey results) to the current <a href="https://survey.stackoverflow.co/2018/">survey.stackoverflow.co</a>. The RethinkDB link further down is preserved, but note that RethinkDB the company shut down in 2016; the project is now community-maintained under the Linux Foundation.</p>
+{% endcall %}
+
 Working in software, it's easy to get caught up in all the latest and greatest technologies and frameworks. Every other week there seems to be a new JavaScript framework that "solves" all your problems. However, one of the most fundamental pieces of any non-trivial application is how you store and retrieve your data, i.e. your database.
 
 In this post, I'll go over some of the most common types of databases you might encounter in modern software development and what makes them unique.
@@ -17,7 +22,7 @@ In this post, I'll go over some of the most common types of databases you might 
 
 The trusty relational database (RDB) is usually the first thing you encounter if you take the traditional, academic avenue into software development. This is very much on purpose, as shown by the StackOverflow Developer Skills Survey from 2018, four out of the five most used database technologies by all respondents were RDBs (excluding MongoDB).
 
-![Source: https://insights.stackoverflow.com/survey/2018/#technology-databases](/assets/images/blog/2018-08-27-the-wide-world-of-databases/1xGtHSGssY-c-WBOY0hsbcpA.png)
+![Source: https://survey.stackoverflow.co/2018/#technology-databases](/assets/images/blog/2018-08-27-the-wide-world-of-databases/1xGtHSGssY-c-WBOY0hsbcpA.png)
 
 If you're planning on taking your learned skills from school into industry, you're probably going to need to know something about RDBs.
 

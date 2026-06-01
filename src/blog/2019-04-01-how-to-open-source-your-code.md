@@ -8,6 +8,11 @@ coverImageAlt: "Photo by Alex Holyoake on Unsplash"
 tags: ["open source", "software engineering", "github"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>All of the GitHub help links in this post have been updated to their current canonical URLs. GitHub retired the <code>help.github.com</code> domain in favor of <a href="https://docs.github.com/">docs.github.com</a>, and the articles on licensing, contributing guidelines, and healthy contributions have all moved to new paths under that domain.</p>
+{% endcall %}
+
 In my [last post](https://sanjaynair.me/blog/2019-02-26-getting-started-with-opensource/), I outlined what open source is and presented some steps for how to get involved. Every open source project available today, even those with many thousands of contributors, all started with at least one person who had the drive to make what they were creating available for other to freely use and contribute to.
 
 If you fall into this category of people but don't have a good idea of how to get started, then this is hopefully a good place for you to start. We will cover some of the high level concepts and steps you can take to get your project ready for the world of open source.
@@ -53,7 +58,7 @@ The open source **license** is probably the second most important document you w
 * Are you OK with someone modifying it and selling it as their own, new product?
 * Does the entity using your code need to explicitly give your credit when using any original or modified version of your code?
 
-The good news is, so much of the heavy legal work has already been done by other smart folks on the internet. Github does an amazing job with their [helpful documentation](https://help.github.com/en/articles/licensing-a-repository) as well as reminders when you create a public repo without a license to make sure you include the right one for your needs.
+The good news is, so much of the heavy legal work has already been done by other smart folks on the internet. Github does an amazing job with their [helpful documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) as well as reminders when you create a public repo without a license to make sure you include the right one for your needs.
 
 ![You can drop in a license right when you create the repo on Github!](/assets/images/blog/2019-04-01-how-to-open-source-your-code/1x6N_arUB-mpf6Hgd1SjChcQ.png)
 
@@ -88,7 +93,7 @@ Step 4. Open a pull request, reference your original issue, and provide a concis
 Step 5. Your PR requires 2 approvals from maintainers before it can be merged.
 ```
 
-You can go as wild as you want with it. Just like the code, all the documentation is also open source, so it can also evolve and improve along with your project! Check out Github's [documentation](https://help.github.com/en/articles/setting-guidelines-for-repository-contributors) for some **_amazing_** examples of contributing documents in the wild. I particularly like the short and sweet [Open Government Contributing guidelines document](https://github.com/opengovernment/opengovernment/blob/master/CONTRIBUTING.md).
+You can go as wild as you want with it. Just like the code, all the documentation is also open source, so it can also evolve and improve along with your project! Check out Github's [documentation](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors) for some **_amazing_** examples of contributing documents in the wild. I particularly like the short and sweet [Open Government Contributing guidelines document](https://github.com/opengovernment/opengovernment/blob/master/CONTRIBUTING.md).
 
 ### Step 5: Community
 
@@ -125,7 +130,7 @@ For larger projects with many users and contributors, it might mean making sure 
 
 ### Further Reading
 
-I highly recommend [Github's entire knowledge base](https://help.github.com/en#dotcom) for how to do open source right, specifically their section on [Setting up your project for healthy contributions](https://help.github.com/en/articles/setting-up-your-project-for-healthy-contributions) which I think is most relevant to the content in this piece.
+I highly recommend [Github's entire knowledge base](https://docs.github.com/) for how to do open source right, specifically their section on [Setting up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions) which I think is most relevant to the content in this piece.
 
 Below are some of my favorite example open source projects which have great, real-world examples of everything I mentioned above and more:
 
