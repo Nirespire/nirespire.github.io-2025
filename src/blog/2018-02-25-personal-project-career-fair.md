@@ -33,9 +33,13 @@ Once you're ready to build, pick what you're going to use to build it. Ideally p
 
 Keep it basic with just HTML/CSS/JS (Here's a [tutorial](https://medium.com/codingthesmartway-com-blog/build-a-real-world-html5-css3-responsive-website-from-scratch-afc079f8bb6b) you can follow for that). Or take it a step further and build it using a popular web framework. Here are a few examples:
 
-* [VueJS](https://vuejs.org/v2/guide/): great for small projects, has a lot of similar concepts to other frameworks.
+{% call editorial_note("June 2026") %}
+<p>The Vue and Angular documentation links below have been updated to their current canonical URLs. The Vue 2 guide moved to <a href="https://v2.vuejs.org/">v2.vuejs.org</a> when Vue 3 took over the main <code>vuejs.org</code> domain, and Angular's site has since been rebranded to <a href="https://angular.dev/">angular.dev</a>.</p>
+{% endcall %}
+
+* [VueJS](https://v2.vuejs.org/v2/guide/): great for small projects, has a lot of similar concepts to other frameworks.
 * [React](https://github.com/facebook/create-react-app): One of the most popular frameworks out there right now.
-* [Angular](https://angular.io/guide/quickstart): Still plenty popular in enterprise.
+* [Angular](https://angular.dev/): Still plenty popular in enterprise.
 
 As you build, push everything to a public repo on [Github](https://github.com) (get familiar with Git and version control if you need to because **you need to**). Write a nice README into the repo, outline your development process and giving some simple instructions on how to pull down and run your code.
 

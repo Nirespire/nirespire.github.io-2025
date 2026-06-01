@@ -6,6 +6,11 @@ date: 2020-12-28
 tags: ["software engineering", "databases", "architecture"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>The GitHub developer API link in this post has been updated to its current canonical URL. The standalone <code>developer.github.com</code> site was folded into the main GitHub docs, so the REST and GraphQL API references now live under <a href="https://docs.github.com/en/rest">docs.github.com</a>.</p>
+{% endcall %}
+
 I was recently having a design conversation with some engineers on my product team. We were discussing the implementation of a feature that dealt with saving user settings on a web app. When thinking about the concept of persistent storage, my brain automatically tended to go straight to the obvious tool that provided programmatic persistent storage: a database.
 
 Databases generally provide a flexible paradigm for storing different formats of data and standard APIs to read and write that data programmatically.
@@ -48,7 +53,7 @@ For example:
 
 Beyond that, you have Wiki pages that provide document storage. You can create a Project board on a repo that can hold bucketed text data.
 
-All of this is of course backed by [Github's ever-improving developer APIs](https://developer.github.com/).
+All of this is of course backed by [Github's ever-improving developer APIs](https://docs.github.com/en/rest).
 
 ### And Beyond…
 

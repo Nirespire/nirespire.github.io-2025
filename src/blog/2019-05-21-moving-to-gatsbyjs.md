@@ -12,6 +12,10 @@ tags: ["web development", "gatsbyjs", "react", "javascript", "software engineeri
 <p>When this post was written the site ran on Gatsby. The site has since been rebuilt on <a href="https://www.11ty.dev/">11ty (Eleventy)</a> with Tailwind CSS, so the Gatsby endorsement below reflects the state of the stack in 2019 rather than a current recommendation.</p>
 {% endcall %}
 
+{% call editorial_note("June 2026") %}
+<p>Two external links in this post have been updated to their current canonical URLs: GitHub's documentation site moved from <code>help.github.com</code> to <a href="https://docs.github.com/">docs.github.com</a>, and Gatsby's main domain switched from <code>gatsbyjs.org</code> to <a href="https://www.gatsbyjs.com/">gatsbyjs.com</a> when Gatsby Cloud launched.</p>
+{% endcall %}
+
 There are lots of tools to build websites freely available to download and use online. You might want to go at it with just plain HTML, CSS, and some JavaScript. This is how I built my first personal website and unless you're trying to get fancy with frontend features or content, this might have worked well for you.
 
 Overtime, I got the itch to move my website development to something a little more robust in terms of tooling. Not so much because the content there was complex enough to merit a full-fledged frontend framework, but more so I could have a place to practice my web development skills with some modern frameworks, tools, and abstractions. The web development landscape moves so fast, I wanted to make sure I had my own sandbox to experiment and learn easily.
@@ -30,7 +34,7 @@ While researching some popular static site generation tools, I came across NextJ
 
 After some more stubborn digging, I came across [NuxtJS](https://nuxt.com/), which unashamedly advertised itself as NextJS with a fronted by Vue instead of React. I happily picked it up and was on my way to modern web development land.
 
-Once I was happy with an initial version, I generated my static assets and pushed it up to my [Github repo](https://github.com/Nirespire/nirespire.github.io). Like I mentioned before, Github has excellent support for hosting static sites. Their [documentation about Github pages](https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages), tight integration with repos, and the [`gh-pages`](https://www.npmjs.com/package/gh-pages) tool makes it effortless to develop and host static sites.
+Once I was happy with an initial version, I generated my static assets and pushed it up to my [Github repo](https://github.com/Nirespire/nirespire.github.io). Like I mentioned before, Github has excellent support for hosting static sites. Their [documentation about Github pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site), tight integration with repos, and the [`gh-pages`](https://www.npmjs.com/package/gh-pages) tool makes it effortless to develop and host static sites.
 
 Website V2 DONE. As I expected, it was a LOT nicer to build having modern tools and features like hot-reloading and bundling available to me. I had the modern web sandbox I was looking for.
 
@@ -58,7 +62,7 @@ Faster load times and more responsive behavior are the main claims to fame in my
 
 #### Conversion: The Developer Experience
 
-Although Vue and React have pretty different paradigms in terms of how they expect applications to be structured, the simplicity of my website allowed me to basically just copy paste over what I had. I started with a barebones [gatsby-starter-hello-world](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-blog/) and started moving things over. The biggest manual work I had to do was convert my HTML markup into JSX, which was a step forward since it helped me modularize the markup quite a bit.
+Although Vue and React have pretty different paradigms in terms of how they expect applications to be structured, the simplicity of my website allowed me to basically just copy paste over what I had. I started with a barebones [gatsby-starter-hello-world](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog/) and started moving things over. The biggest manual work I had to do was convert my HTML markup into JSX, which was a step forward since it helped me modularize the markup quite a bit.
 
 Routing between pages is handled implicitly. If you drop a `home.jsx` file into your `src/pages` directory, Gatsby will build it into the `/home` route automatically. CSS and other static assets like images and build in automatically from the `static` directory, and Gatsby does a great job bundling and minifying everything behind the scenes for efficient delivery to the client. I only had one page to worry about, and this model was just like Nuxt, so there was no major things to learn here.
 
