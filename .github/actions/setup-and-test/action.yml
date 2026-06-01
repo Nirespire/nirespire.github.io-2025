@@ -1,5 +1,5 @@
 name: 'Setup and Test'
-description: 'Sets up Node.js, installs dependencies, and runs Playwright tests'
+description: 'Sets up Node.js, installs dependencies, and runs the canonical check suite (npm run verify)'
 runs:
   using: "composite"
   steps:
@@ -22,24 +22,16 @@ runs:
       run: npm ci
       shell: bash
 
-    - name: Run unit tests
-      run: npm run test:unit
-      shell: bash
-
-    - name: Lint
-      run: npm run lint
-      shell: bash
-
-    - name: Format check
-      run: npm run format:check
-      shell: bash
-
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
       shell: bash
 
-    - name: Run Playwright tests
-      run: npm run test
+    # Single source of truth for the check suite. The pre-commit hook
+    # (.githooks/pre-commit) runs this exact same command, so local and CI
+    # results stay deterministically aligned. To change what CI checks, edit
+    # the "verify" script in package.json — every entry point updates together.
+    - name: Run checks (lint, format, unit tests, build, e2e)
+      run: npm run verify
       shell: bash
 
     - name: Upload Playwright report
