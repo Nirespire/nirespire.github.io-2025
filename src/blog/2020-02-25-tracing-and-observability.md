@@ -18,11 +18,11 @@ I like to bring the concept of open tracing down to the level of two application
 
 Say, for example, we have a simple web server application that receives a request at the endpoint /hello and sends back a static string of text "hello" back to the client.
 
-![](https://cdn-images-1.medium.com/max/800/1*Gg60-W1EKRbjqYrIwcPn6Q.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1xGg60-W1EKRbjqYrIwcPn6Q.png)
 
 From the perspective of the client, they send a request, wait some time for things like the network between itself and the server as well as time for the server to process the request. Within the server, there is only a single action that occurs, within the context of the same application. We can visualize this entire transaction in a "span". This span has a begin and ending time as well as some detail or "tag" about the type of operation being performed.
 
-![](https://cdn-images-1.medium.com/max/800/1*aNOI94aMiZau_5brcn558A.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1xaNOI94aMiZau_5brcn558A.png)
 
 Now the client knows about the request and response, including what was sent, when it was sent, what was received back, and when it was received back. The server knows something similar but from its own perspective of when a request was received and responded to.
 
@@ -42,7 +42,7 @@ In this example, let's say that the client and server know about this observer a
 
 The interaction might follow as illustrated below:
 
-![](https://cdn-images-1.medium.com/max/800/1*1YFvPksRP1DLE3q6Rwt2ow.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1x1YFvPksRP1DLE3q6Rwt2ow.png)
 
 Here's the breakdown of actions that the Observer is recording:
 
@@ -87,7 +87,7 @@ The Observer can now use the Trace ID to group these series of events together a
 
 Since this will probably clutter up the component diagram, this information can be summarized as a series of spans in time. Note the functions on the client to process the response are omitted, but you can surmise what the spans for those might look like:
 
-![](https://cdn-images-1.medium.com/max/800/1*U2Xg9zQ4GscTAr9sHBdAdw.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1xU2Xg9zQ4GscTAr9sHBdAdw.png)
 
 The Span ID "hellorequest1" covers all the spans below it and logically groups the tracing information of the events happening within it like the client sending the request, the server receiving it, and the server processing to send the response back to the client.
 
@@ -101,7 +101,7 @@ Let's say the exchange still starts with our Client application, but this time i
 
 Let's draw this interaction out. We can label the order in which the operations happen and we can then infer the series of events being recorded by the Observer.
 
-![](https://cdn-images-1.medium.com/max/800/1*6icOp7aWjJf87xPlGdkx_A.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1x6icOp7aWjJf87xPlGdkx_A.png)
 
 Here's what the Observer recorded based on the events each application sent it. All the events are listed with the numbers from the diagram matching the numbers on the list. I'm omitting timestamps and ID's to save some space, but you can fill in the blanks:
 
@@ -120,7 +120,7 @@ Here's what the Observer recorded based on the events each application sent it. 
 
 Just by adding two players into the mix, the number of events being recorded has grown quite a bit. We can visualize the same list of events as spans to provide a better view of the execution path of the /readinfo request:
 
-![](https://cdn-images-1.medium.com/max/800/1*T5EAMjSAPDtQlej2I1bu8w.png)
+![](/assets/images/blog/2020-02-25-tracing-and-observability/1xT5EAMjSAPDtQlej2I1bu8w.png)
 
 Notice all the events are still grouped in the same TraceID, but we can see the span of each individual service passing the request between each other and working together to process the final result to the Client.
 
@@ -134,7 +134,7 @@ There are many opensource libraries and software that implement the Opentracing 
 
 Once your application can communicate via Opentracing, you still need an Observer to record all the events being emitted from the applications. There are many systems that implementing the Opentracing spec. Zipkin is one of these popular distributed tracing systems that you can install and run yourself. It plays the part of the Observer from our examples and consumes tracing data from applications that adhere to the Opentracing standard to provide interactive visuals of your application traces.
 
-![Source: https://zipkin.io/public/img/web-screenshot.png](https://cdn-images-1.medium.com/max/800/0*p7vUaXbA6c6ak0uX.png)
+![Source: https://zipkin.io/public/img/web-screenshot.png](/assets/images/blog/2020-02-25-tracing-and-observability/0xp7vUaXbA6c6ak0uX.png)
 
 If you're like more information about Opentracing, you can check out their [website](https://opentelemetry.io/) which has specification docs as well as guides to get started with Opentracing.
 

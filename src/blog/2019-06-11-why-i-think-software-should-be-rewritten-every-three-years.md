@@ -60,7 +60,7 @@ What happens when the codebase you're working with was started and worked on by 
 
 ### A Clean Start
 
-![Let your code be reborn from the ashes anew](https://cdn-images-1.medium.com/max/800/1*pp9ITHW9tW79mxsqk3BOCw.gif)
+![Let your code be reborn from the ashes anew](/assets/images/blog/2019-06-11-why-i-think-software-should-be-rewritten-every-three-years/1xpp9ITHW9tW79mxsqk3BOCw.gif)
 
 Given all of my previous points, here's what I'm proposing: Software, given enough time, will reach an inflection point where the cost to maintain the existing solution far exceeds the cost to rewrite it. Here are some potential reasons why:
 

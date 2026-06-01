@@ -31,13 +31,13 @@ The Security tab is the main way that Dependabot and other automated security fe
 
 If you have your code hosted on Github in a repo that you have contribution rights to, head over to the Security tab and select the option to receive Automated Security Updates.
 
-![](https://cdn-images-1.medium.com/max/1200/1*XE6Mv5jjflMWpfiHrSDIPg.png)
+![](/assets/images/blog/2020-01-08-automating-dependency-upgrades-with-dependabot-and-ci/1xXE6Mv5jjflMWpfiHrSDIPg.png)
 
 Note that this feature has some restrictions as to [which types of repos](https://help.github.com/en/github/managing-security-vulnerabilities/configuring-automated-security-updates#supported-repositories) it is enabled for and which programming languages / [package managers](https://help.github.com/en/github/visualizing-repository-data-with-graphs/listing-the-packages-that-a-repository-depends-on#supported-package-ecosystems) it supports. Most of the projects I work in are public repos that include NPM and Docker as package managers, which are both compatible.
 
 Below is an example of what an alert looks like once Dependabot receives a new CVE publication and identifies that it applies to your repo.
 
-![](https://cdn-images-1.medium.com/max/800/1*_4dgK4ls18dixzyhAf8-rA.png)
+![](/assets/images/blog/2020-01-08-automating-dependency-upgrades-with-dependabot-and-ci/1x_4dgK4ls18dixzyhAf8-rA.png)
 
 Once you have this set up, you can even [set up your notifications preferences](https://help.github.com/en/github/receiving-notifications-about-activity-on-github/choosing-the-delivery-method-for-your-notifications#choosing-the-delivery-method-for-security-alerts-for-vulnerable-dependencies) to have Github email you when a vulnerability is detected on one of your repos or provide a weekly report of findings.
 
@@ -53,7 +53,7 @@ As far as checking the boxes we mentioned above, for every supported repo you co
 
 When you click on the Security Alert, you get information about the relevant CVE publication as well as an option to have Dependabot automatically generate a Pull Request with the appropriate dependency upgrade.
 
-![](https://cdn-images-1.medium.com/max/800/1*a8o-fT0m47cQxfO_Usjbyg.png)
+![](/assets/images/blog/2020-01-08-automating-dependency-upgrades-with-dependabot-and-ci/1xa8o-fT0m47cQxfO_Usjbyg.png)
 
 This option will not always be there and you might have to make the fix manually yourself, but consider yourself being 90% of the way there by knowing the vulnerability is there and being handed the steps to fix it.
 
