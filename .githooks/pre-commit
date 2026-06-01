@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+#
+# Pre-commit hook — runs the EXACT same checks as CI.
+#
+# Single source of truth: the "verify" npm script. CI runs it through
+# .github/actions/setup-and-test (used by both pr-test.yml and deploy.yml), and
+# this hook runs the very same command. Keeping one definition means the local
+# pre-commit verdict can never drift from the PR/deploy verdict on the same
+# codebase state.
+#
+# Bypass (discouraged): git commit --no-verify
+
+# Never run inside GitHub Actions. Automated workflows (content updates) create
+# commits there, and CI already enforces these checks via the composite action.
+if [ -n "$GITHUB_ACTIONS" ]; then
+  exit 0
+fi
+
+# Resolve the repo root so the hook works from any subdirectory or git frontend.
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+cd "$repo_root" || exit 1
+
+if [ ! -d node_modules ]; then
+  echo "pre-commit: dependencies missing — run 'npm install' before committing." >&2
+  exit 1
+fi
+
+echo "pre-commit: running CI checks via 'npm run verify' (lint, format, unit, build, e2e)..."
+
+# Force CI semantics (CI=true) so Playwright behaves exactly as it does on
+# GitHub Actions — forbids committed test.only, identical retries/workers, fresh
+# web server — guaranteeing the same pass/fail result as the PR/deploy pipeline.
+CI=true npm run verify
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  echo "" >&2
+  echo "pre-commit: checks FAILED — commit aborted." >&2
+  echo "Fix the issues above and re-commit (or bypass with: git commit --no-verify)." >&2
+fi
+
+exit "$status"
