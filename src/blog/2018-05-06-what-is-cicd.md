@@ -41,11 +41,11 @@ You can find examples of CICD being used all over the place; you just need to kn
 
 #### ReactJS
 
-![React CICD badges](https://cdn-images-1.medium.com/max/800/1*XphK15Zv2ANybcW288qN6A.png)
+![React CICD badges](/assets/images/blog/2018-05-06-what-is-cicd/1xXphK15Zv2ANybcW288qN6A.png)
 
 The React JavaScript framework developed and maintained by Facebook has a great example of a robust and high visible CICD pipeline. If you visit its [Github page](https://github.com/facebook/react) and click through the badges displayed at the top of their README, you can get an idea of what type of automated processes they run their codebase through. The Coverage badge links to [Coveralls](https://coveralls.io/), which is a tool to display unit test coverage reports. You can click on the [CircleCI](https://circleci.com/gh/facebook/react) badge which shows a history of all the builds automatically run against Pull Requests submitted by contributors. If you click on a build, you can even see every step in the CI process and how their pipeline is configured.
 
-![CircleCI build steps](https://cdn-images-1.medium.com/max/800/1*efvjxrDcIsW3Vkc2UG-7Rg.png)
+![CircleCI build steps](/assets/images/blog/2018-05-06-what-is-cicd/1xefvjxrDcIsW3Vkc2UG-7Rg.png)
 
 #### Homebrew
 
@@ -55,7 +55,7 @@ If you do any sort of development on MacOS, then you've probably at least heard 
 
 Machine Learning and AI related projects have been rising in popularity for a while now and I think Google's TensorFlow library has had a lot to do with that. TensorFlow is an open source Python framework for building ML and AI applications. Their Github README is decorated with the same familiar badges but with an additional twist.
 
-![TensorFlow build status](https://cdn-images-1.medium.com/max/800/1*sWXSg7ezlnPTAUAjVn2qYw.png)
+![TensorFlow build status](/assets/images/blog/2018-05-06-what-is-cicd/1xsWXSg7ezlnPTAUAjVn2qYw.png)
 
 Since TensorFlow is a cross-platform tool that can run on CPU and GPU hardware, the maintainers have set up multiple pipelines to build and test the tool on different operating system platforms and CPU/GPU configurations. Their pipelines are built using [Jenkins](https://jenkins.io/).
 

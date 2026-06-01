@@ -55,7 +55,7 @@ The open source **license** is probably the second most important document you w
 
 The good news is, so much of the heavy legal work has already been done by other smart folks on the internet. Github does an amazing job with their [helpful documentation](https://help.github.com/en/articles/licensing-a-repository) as well as reminders when you create a public repo without a license to make sure you include the right one for your needs.
 
-![You can drop in a license right when you create the repo on Github!](https://cdn-images-1.medium.com/max/800/1*6N_arUB-mpf6Hgd1SjChcQ.png)
+![You can drop in a license right when you create the repo on Github!](/assets/images/blog/2019-04-01-how-to-open-source-your-code/1x6N_arUB-mpf6Hgd1SjChcQ.png)
 
 ### **Step 4: How to Contribute**
 
