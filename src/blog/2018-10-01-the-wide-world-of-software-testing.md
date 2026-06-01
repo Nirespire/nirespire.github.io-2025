@@ -83,7 +83,7 @@ Since, by nature, E2E tests typically involve multiple codebases and application
 
 Consider the following architecture:
 
-![Example Application Architecture](https://cdn-images-1.medium.com/max/800/1*Fcwphc6GDAEC6UEJObjHWQ.png)
+![Example Application Architecture](/assets/images/blog/2018-10-01-the-wide-world-of-software-testing/1xFcwphc6GDAEC6UEJObjHWQ.png)
 
 Some E2E test cases might include:
 

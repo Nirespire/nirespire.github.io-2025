@@ -14,7 +14,7 @@ Fast forward to today, and an article on the front page of Hacker News caught my
 
 I thought back to experiences manually provisioning and deploying cloud infrastructure. I thought Terraform seemed to make all those past pains go away. I figured learning something about it would move me in the right direction of getting properly familiar with some cloud infrastructure fundamentals. And it did! But in some ways I didn't initially expect.
 
-![A little kid splashing in the water in wellies in Rīgas pilsēta by Daiga Ellaby on Unsplash](https://cdn-images-1.medium.com/max/800/0*WLrJSGVGb-wRTExG.)
+![A little kid splashing in the water in wellies in Rīgas pilsēta by Daiga Ellaby on Unsplash](/assets/images/blog/2018-03-16-getting-to-know-terraform/0xWLrJSGVGb-wRTExG.jpg)
 
 #### Getting My Feet Wet
 

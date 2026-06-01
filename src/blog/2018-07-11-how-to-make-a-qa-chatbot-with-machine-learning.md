@@ -23,15 +23,15 @@ This guide assumes you have basic knowledge about Node development, as this will
 
 Once you have your Slack workspace open, go to any channel and click on the settings gear icon. We're going to add an app to our workspace.
 
-![How to add an integration to a Slack workspace](https://cdn-images-1.medium.com/max/800/1*byGuMKAATI6kEB-rGHIG-g.png)
+![How to add an integration to a Slack workspace](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xbyGuMKAATI6kEB-rGHIG-g.png)
 
 Search for bot and add the Bots integration.
 
-![Searching for the "Bots" integration in Slack](https://cdn-images-1.medium.com/max/800/1*U6y3jGXnT0v9Qvat7osdTw.png)
+![Searching for the "Bots" integration in Slack](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xU6y3jGXnT0v9Qvat7osdTw.png)
 
 Add the configuration and give it a name you like. This will basically create a special type of user in your workspace you can send messages to, just like any other user. You can change the name and icon of the bot later, but what we need now is the **API Token** value that get's generated. ***BE SURE TO KEEP THIS VALUE SECRET***. If someone gets access to this, they get free access to read and post messages in your workspace.
 
-![Copy the API token generated on this page (blacked out in this picture)](https://cdn-images-1.medium.com/max/800/1*ez3ze-YKqbuLvlCsAqpwxA.png)
+![Copy the API token generated on this page (blacked out in this picture)](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xez3ze-YKqbuLvlCsAqpwxA.png)
 
 Keep that value handy. We're going to use it soon as we start writing some code.
 
@@ -108,7 +108,7 @@ Bot.spawn({
 
 The code above should be simple enough to get your bot up and running. You just need to execute `node index.js`, and your bot should connect to the Slack API and show up as "Active" in your workspace. If you send it a message, it should reply back with "got it". You could also modify the code to have the bot respond with whatever you like.
 
-![It's alive!](https://cdn-images-1.medium.com/max/800/1*tzZ91By6WcIg-Fh8X11oPw.png)
+![It's alive!](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xtzZ91By6WcIg-Fh8X11oPw.png)
 
 #### Adding some machine learning
 
@@ -299,15 +299,15 @@ Let's see what our bot can do! Go ahead and run `node index.js` in your console 
 
 Head back to Slack and try to ask it to introduce itself!
 
-![It's alive! (and a little intelligent)](https://cdn-images-1.medium.com/max/800/1*03cYxuxELUoIsE5_5Zp5sg.png)
+![It's alive! (and a little intelligent)](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1x03cYxuxELUoIsE5_5Zp5sg.png)
 
 Ask it something else you trained it to respond to!
 
-![Such wisdom](https://cdn-images-1.medium.com/max/800/1*Dbtx99vit0Q19INdUgh_lg.png)
+![Such wisdom](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xDbtx99vit0Q19INdUgh_lg.png)
 
 If you ask it something it hasn't been trained for, expect an appropriate response.
 
-![But not magic](https://cdn-images-1.medium.com/max/800/1*uYcyfVwukojbgSxPPDfztw.png)
+![But not magic](/assets/images/blog/2018-07-11-how-to-make-a-qa-chatbot-with-machine-learning/1xuYcyfVwukojbgSxPPDfztw.png)
 
 But you could always train the bot to respond to that by adding it to your training data! Just create a new label and add some questions and an answer you'd like the bot to respond with.
 
