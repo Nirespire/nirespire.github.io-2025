@@ -16,3 +16,7 @@ src/reads/
 
 # YAML workflows — leave to manual review
 .github/
+
+# Generated PR preview output
+previews-output/
+previews-routes.json
