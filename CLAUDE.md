@@ -42,11 +42,24 @@ npm run test:ui      # Playwright with interactive UI
 
 ## Verification
 
-After making changes, verify with:
-1. `npm run build` — clean build with no errors
-2. `npm run lint` — ESLint passes with no errors
-3. `npm run format:check` — Prettier format check passes
-4. `npm test` — all Playwright tests pass
+`npm run verify` runs the full check suite — lint, format check, unit tests,
+production build, and Playwright E2E — in one command. It is the **single
+source of truth** for CI: both the PR workflow and the deploy workflow run it
+(via `.github/actions/setup-and-test`), and the `pre-push` hook
+(`.githooks/pre-push`) runs the exact same command, so local results never
+drift from CI.
+
+```bash
+npm run verify       # everything CI runs, in one go (also enforced pre-push)
+```
+
+The hook is enabled automatically on `npm install` (via the `prepare` script,
+which sets `git config core.hooksPath .githooks`). Individual checks:
+1. `npm run lint` — ESLint passes with no errors
+2. `npm run format:check` — Prettier format check passes
+3. `npm run test:unit` — Node unit tests pass
+4. `npm run build` — clean build with no errors
+5. `npm test` — all Playwright tests pass
 
 ## Content Audit Guidance
 

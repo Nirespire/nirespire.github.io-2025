@@ -8,6 +8,11 @@ coverImageAlt: "Photo by Alina Grubnyak on Unsplash"
 tags: ["open source", "github", "software engineering"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>The GitHub help link in this post has been updated to its current canonical URL. GitHub retired the <code>help.github.com</code> domain in favor of <a href="https://docs.github.com/">docs.github.com</a>, and the pull request templates article now lives under the Communities section there.</p>
+{% endcall %}
+
 Did you know that a large part of the software you use everyday was probably built with tools and technologies that are freely available for anyone to download, install, study, and modify?
 
 The operating system running the server that's delivering this webpage to you. The library securing your network traffic to this website. The framework used to build this website. All of these thing were build on or with the help of open source technology.
@@ -88,7 +93,7 @@ Make sure that the base branch you are proposing to merge your branch into is th
 
 ![](/assets/images/blog/2019-02-26-getting-started-with-opensource/1xdgmEMn3FuYyrqscJwmRJ5Q.png)
 
-Again, follow the contributing guidelines to decide which is the correct default branch the maintainers want you to merge into and what details are expected in the Pull Request description. Some repos on Github are set up with [Pull Request templates](https://help.github.com/en/articles/creating-a-pull-request-template-for-your-repository) that will pre-fill the description with a basic scaffold you can add details too.
+Again, follow the contributing guidelines to decide which is the correct default branch the maintainers want you to merge into and what details are expected in the Pull Request description. Some repos on Github are set up with [Pull Request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that will pre-fill the description with a basic scaffold you can add details too.
 
 Now just wait to get some feedback from the code owners to see if they think your changes are ready to be merged. Sometimes its a quick thumbs up and other times there might be some back and forth where additional changes might be requested. Remember that this whole process is about teamwork and communication. You the contributor and the maintainer are on the same team, so be sure to respect the **code of conduct** for contributing and don't get discouraged if you don't get it right the first time!
 

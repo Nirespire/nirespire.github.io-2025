@@ -8,9 +8,14 @@ coverImageAlt: "Photo by Wojciech Szaturski on Unsplash"
 tags: ["infrastructure", "devops", "terraform", "cloud"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("June 2026") %}
+<p>The Vagrant and Vault product links below have been updated to their current canonical URLs. HashiCorp has since consolidated its product documentation under <a href="https://developer.hashicorp.com/">developer.hashicorp.com</a>, so the standalone <code>vagrantup.com</code> and <code>vaultproject.io</code> marketing sites redirect there today.</p>
+{% endcall %}
+
 Every few weeks or so, I try to spend some quality time getting to know a concept or technology outside my core proficiency of web application development. About half a year ago, I had the chance to dabble in some cloud infrastructure management. It was, to some degree, restricted to a lot of repetitive, manual tasks on a tiny corner of the platform. With the rise of the big cloud providers like Google Cloud Platform, AWS, and Azure, it seemed like being comfortable with the fundamentals of moving through those systems was becoming an ever increasingly necessary skill to have. However, with my limited experience, I didn't feel like I could confidently say I had good experience in "cloud infrastructure management."
 
-Fast forward to today, and an article on the front page of Hacker News caught my eye. It was called [Terraforming 1Password](https://blog.agilebits.com/2018/01/25/terraforming-1password/), written by the founder of Agile Bits, the company behind the popular password manager: 1Password. It outlined the process that the company went through to convert their system of "Infrastructure as code," moving from the AWS proprietary provisioning tool called Cloudformation, to Terraform: an open source solution built by Hashicorp. You might be familiar with some of their other products: like [Vagrant](https://www.vagrantup.com/) and [Vault](https://www.vaultproject.io/). Give the article a read when you get a chance, it's a good one.
+Fast forward to today, and an article on the front page of Hacker News caught my eye. It was called [Terraforming 1Password](https://blog.agilebits.com/2018/01/25/terraforming-1password/), written by the founder of Agile Bits, the company behind the popular password manager: 1Password. It outlined the process that the company went through to convert their system of "Infrastructure as code," moving from the AWS proprietary provisioning tool called Cloudformation, to Terraform: an open source solution built by Hashicorp. You might be familiar with some of their other products: like [Vagrant](https://developer.hashicorp.com/vagrant) and [Vault](https://developer.hashicorp.com/vault). Give the article a read when you get a chance, it's a good one.
 
 I thought back to experiences manually provisioning and deploying cloud infrastructure. I thought Terraform seemed to make all those past pains go away. I figured learning something about it would move me in the right direction of getting properly familiar with some cloud infrastructure fundamentals. And it did! But in some ways I didn't initially expect.
 
