@@ -41,6 +41,7 @@ async function getLatestBlogPosts(blogDir = path.join(process.cwd(), 'src/blog')
           title: data.title,
           date: data.date,
           content: postContent,
+          url: `/blog/${path.basename(file, '.md')}/`,
         };
       })
   );
@@ -55,6 +56,7 @@ async function main() {
       posts.map(async (post) => ({
         title: post.title,
         date: post.date,
+        url: post.url,
         hallucination: await generateHallucination(post.title, post.content),
       }))
     );
