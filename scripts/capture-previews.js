@@ -51,37 +51,70 @@ function contentType(filePath) {
   return CONTENT_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
 
-// Map a request URL to a file inside siteDir, applying GitHub Pages "pretty URL"
-// rules (a trailing slash or extensionless path resolves to index.html). Returns
-// null for attempts to escape siteDir.
-function resolveFile(siteDir, requestUrl) {
-  let pathname = decodeURIComponent(requestUrl.split('?')[0].split('#')[0]);
-  if (pathname.endsWith('/')) pathname += 'index.html';
-  else if (!path.extname(pathname)) pathname += '/index.html';
-  const filePath = path.normalize(path.join(siteDir, pathname));
-  if (filePath !== siteDir && !filePath.startsWith(siteDir + path.sep)) return null;
-  return filePath;
+// Walk the built site once and build a lookup of request path -> absolute file
+// path, applying GitHub Pages "pretty URL" rules (a directory's index.html is
+// also reachable at the directory URL with and without a trailing slash). The
+// server reads only from this pre-computed map, so an untrusted request URL is
+// never turned into a filesystem path — it is only ever used as a map key.
+function buildFileMap(siteDir) {
+  const map = new Map();
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const abs = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(abs);
+        continue;
+      }
+      if (!entry.isFile()) continue;
+      const rel = path.relative(siteDir, abs).split(path.sep).join('/');
+      map.set('/' + rel, abs);
+      if (entry.name === 'index.html') {
+        const dirUrl = '/' + rel.slice(0, -'index.html'.length); // e.g. "/about/"
+        map.set(dirUrl, abs);
+        if (dirUrl.length > 1) map.set(dirUrl.replace(/\/$/, ''), abs); // "/about"
+      }
+    }
+  };
+  walk(siteDir);
+  return map;
+}
+
+// Reduce a request URL to the map key it should resolve to (path only, decoded).
+function requestKey(requestUrl) {
+  const raw = requestUrl.split('?')[0].split('#')[0];
+  try {
+    return decodeURIComponent(raw) || '/';
+  } catch {
+    return raw || '/';
+  }
 }
 
 function createStaticServer(siteDir) {
+  const fileMap = buildFileMap(siteDir);
+  const notFoundFile = fileMap.get('/404.html');
   return http.createServer((req, res) => {
-    const filePath = resolveFile(siteDir, req.url);
-    if (!filePath) {
-      res.writeHead(403);
-      res.end('Forbidden');
+    const file = fileMap.get(requestKey(req.url));
+    if (file) {
+      fs.readFile(file, (err, data) => {
+        if (err) {
+          res.writeHead(500);
+          res.end('Read error');
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': contentType(file) });
+        res.end(data);
+      });
       return;
     }
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        fs.readFile(path.join(siteDir, '404.html'), (notFoundErr, body) => {
-          res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-          res.end(notFoundErr ? 'Not found' : body);
-        });
-        return;
-      }
-      res.writeHead(200, { 'Content-Type': contentType(filePath) });
-      res.end(data);
-    });
+    if (notFoundFile) {
+      fs.readFile(notFoundFile, (err, data) => {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end(err ? 'Not found' : data);
+      });
+      return;
+    }
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Not found');
   });
 }
 
@@ -219,4 +252,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { resolveFile, slugify, loadRoutes, createStaticServer };
+module.exports = { buildFileMap, requestKey, slugify, loadRoutes, createStaticServer };
