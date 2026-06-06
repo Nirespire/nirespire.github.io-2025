@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Hallucinations page', () => {
   test('renders post links that resolve to real blog posts', async ({ page }) => {
-    await page.goto('/hallucinations/');
+    await page.goto('/hallucination/');
 
     const links = page.locator('.space-y-8 a');
     const count = await links.count();
@@ -18,7 +18,7 @@ test.describe('Hallucinations page', () => {
   });
 
   test('post links are derived from filenames, not title slugs', async ({ page }) => {
-    await page.goto('/hallucinations/');
+    await page.goto('/hallucination/');
 
     const links = page.locator('.space-y-8 a');
     const hrefs: string[] = await links.evaluateAll((els) =>
