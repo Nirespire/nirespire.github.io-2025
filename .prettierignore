@@ -19,3 +19,7 @@ src/reads/
 
 # Shell git hooks — not formattable by Prettier
 .githooks/
+
+# Generated PR preview output
+previews-output/
+previews-routes.json
