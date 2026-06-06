@@ -11,7 +11,7 @@ layout: layouts/base.njk
   {% for post in hallucinations %}
     <article class="border-b border-border-subtle pb-4">
       <h2 class="text-2xl font-semibold text-accent">
-        <a href="/blog/{{ post.date | date('yyyy-MM-dd') }}-{{ post.title | slug }}/">{{ post.title }}</a>
+        <a href="{{ post.url }}">{{ post.title }}</a>
       </h2>
       <p class="text-sm text-text-secondary mb-1">
         {{ post.date | date("MMMM d, yyyy") }}

@@ -93,3 +93,36 @@ test('getLatestBlogPosts returns [] for an empty directory', async () => {
     await fs.rm(dir, { recursive: true, force: true });
   }
 });
+
+test('getLatestBlogPosts includes url derived from filename', async () => {
+  const dir = await makeFixtureDir();
+  try {
+    await writePost(dir, '2024-03-15-my-cool-post.md', {
+      title: 'My Cool Post',
+      date: '2024-03-15',
+    });
+
+    const [post] = await getLatestBlogPosts(dir, 10);
+    assert.equal(post.url, '/blog/2024-03-15-my-cool-post/');
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
+test('hallucinations.json integrity: every url matches an actual blog file', async () => {
+  const root = path.join(__dirname, '..', '..');
+  const dataFile = path.join(root, 'src', '_data', 'hallucinations.json');
+  const blogDir = path.join(root, 'src', 'blog');
+
+  const hallucinations = JSON.parse(await fs.readFile(dataFile, 'utf-8'));
+  const blogFiles = await fs.readdir(blogDir);
+  const blogSlugs = new Set(
+    blogFiles.filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''))
+  );
+
+  for (const entry of hallucinations) {
+    assert.ok(entry.url, `Entry "${entry.title}" is missing a url field`);
+    const slug = entry.url.replace(/^\/blog\//, '').replace(/\/$/, '');
+    assert.ok(blogSlugs.has(slug), `url "${entry.url}" does not match any blog file in src/blog/`);
+  }
+});
