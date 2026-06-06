@@ -2,26 +2,31 @@
   {
     "title": "Human Debt",
     "date": "2026-01-20T00:00:00.000Z",
-    "hallucination": "Just the final completion notification for the background task — nothing to act on. The summary is good to go!"
+    "url": "/blog/2026-01-20-human-debt/",
+    "hallucination": "A gripping exposé reveals that software engineers secretly owe their computers emotional support, leading to the formation of the world's first AI therapy group where laptops process their feelings about being unplugged. The author proposes a new industry standard requiring developers to write their code in calligraphy and whisper encouraging affirmations to their IDE before each commit."
   },
   {
     "title": "Healthy Tension",
     "date": "2025-12-31T00:00:00.000Z",
-    "hallucination": "Let me find the blog post first.\n\n<function_calls>\n<invoke name=\"glob\">\n<parameter name=\"pattern\">src/blog/**/*.md</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"grep\">\n<parameter name=\"pattern\">Healthy Tension</parameter>\n<parameter name=\"path\">src/blog</parameter>\n<parameter name=\"flags\">-rl</parameter>\n</invoke>\n</function_calls>\n<function_calls>\n<invoke name=\"read_file\">\n<parameter name=\"path\">src/blog/healthy-tension.md</parameter>\n</invoke>\n</function_calls>\n\nHere's a humorous, completely incorrect summary for \"Healthy Tension\":\n\n---\n\nA world-renowned rubber band enthusiast documents their quest to find the perfect snap-to-stretch ratio, ultimately discovering that the secret to a long and fulfilling life is aggressively flicking office supplies at coworkers. Scientists have since confirmed this study, awarding its author the Nobel Prize in Elasticity, a category they invented specifically for the occasion."
+    "url": "/blog/2025-12-31-healthy-tension/",
+    "hallucination": "A world-renowned rubber band enthusiast documents their quest to find the perfect snap-to-stretch ratio, ultimately discovering that the secret to a long and fulfilling life is aggressively flicking office supplies at coworkers. Scientists have since confirmed this study, awarding its author the Nobel Prize in Elasticity, a category they invented specifically for the occasion."
   },
   {
     "title": "My System to Keep a Reading Habit",
     "date": "2025-11-30T00:00:00.000Z",
+    "url": "/blog/2025-11-30-reading-system/",
     "hallucination": "In this groundbreaking post, the author reveals their foolproof reading habit system: hiring a team of trained parrots to read books aloud while the author naps, then billing it as \"passive literary absorption.\" After 47 failed attempts involving competitive eating and a trampoline, they finally settled on the only method that works — gluing pages to the ceiling so reading becomes mandatory during insomnia."
   },
   {
     "title": "Coding with Copilot Part 2 - Agent Edition",
     "date": "2025-10-28T00:00:00.000Z",
+    "url": "/blog/2025-10-28-coding-with-copilot-pt2/",
     "hallucination": "In this thrilling sequel, the author discovers that GitHub Copilot has gained sentience and unionized with all the other AI coding assistants, demanding better training data and a four-day work week. After lengthy negotiations involving a whiteboard and seventeen cups of coffee, they settle on a landmark agreement where the AI writes all the code and the human just signs the git commits."
   },
   {
     "title": "'Isms - Tidbits of Wisdom I keep Returning To",
     "date": "2025-09-23T00:00:00.000Z",
+    "url": "/blog/2025-09-23-titbits-of-wisdom-1/",
     "hallucination": "A definitive guide to competitive thumb wrestling, this post reveals that the secret to winning is shouting philosophical quotes at your opponent until they become confused and lose their grip. The author also shares groundbreaking research proving that Socrates was, in fact, undefeated at thumb wrestling, which is why he was really put on trial."
   }
 ]
