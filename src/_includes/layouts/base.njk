@@ -74,6 +74,7 @@
 
 </head>
 <body class="font-sans bg-bg-main text-text-main">
+  <canvas id="node-graph-bg" aria-hidden="true"></canvas>
   {% from "macros/breadcrumbs.njk" import breadcrumbs %}
   <header class="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
     <nav class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
@@ -122,6 +123,7 @@
     {% endblock %}
   </main>
   <script src="/assets/js/theme-switcher.js" defer></script>
+  <script src="/assets/js/node-graph.js" defer></script>
   <script src="/assets/js/dev-console.js" defer></script>
   <script>document.querySelectorAll('a[href^="http"]').forEach(a=>{if(a.hostname!==location.hostname){a.target='_blank';a.rel='noopener noreferrer';}});</script>
 </body>
