@@ -23,7 +23,7 @@ test.describe('Node-graph background', () => {
 
     // The full-viewport canvas overlays the nav, but pointer-events:none means
     // links underneath it still receive clicks.
-    await page.getByRole('link', { name: 'Blog' }).click();
+    await page.getByRole('link', { name: 'Blog', exact: true }).click();
     await expect(page).toHaveURL(/\/blog\/?$/);
   });
 });
