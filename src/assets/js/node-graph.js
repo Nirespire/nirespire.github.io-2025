@@ -30,6 +30,9 @@
   // Fallbacks match --color-accent-rgb / --color-border-subtle-rgb (dark).
   let nodeColor = '249, 115, 22';
   let edgeColor = '75, 85, 99';
+  // Light backgrounds wash out the subtle gray edges, so we recolor them to
+  // the accent and scale up their opacity in light mode (set in readColors).
+  let edgeAlphaScale = 1;
 
   let width = 0;
   let height = 0;
@@ -42,11 +45,19 @@
   const pointer = { x: 0, y: 0, active: false };
 
   function readColors() {
-    const cs = getComputedStyle(document.documentElement);
+    const root = document.documentElement;
+    const cs = getComputedStyle(root);
     const accent = cs.getPropertyValue('--color-accent-rgb').trim();
     const border = cs.getPropertyValue('--color-border-subtle-rgb').trim();
     if (accent) nodeColor = accent;
-    if (border) edgeColor = border;
+    if (root.classList.contains('light')) {
+      // Accent edges + boosted opacity so the graph stays visible on light bg.
+      edgeColor = accent || border || edgeColor;
+      edgeAlphaScale = 1.7;
+    } else {
+      if (border) edgeColor = border;
+      edgeAlphaScale = 1;
+    }
   }
 
   function resize() {
@@ -84,7 +95,7 @@
         const b = nodes[j];
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (dist < CONFIG.linkDist) {
-          const alpha = (1 - dist / CONFIG.linkDist) * CONFIG.maxEdgeAlpha;
+          const alpha = (1 - dist / CONFIG.linkDist) * CONFIG.maxEdgeAlpha * edgeAlphaScale;
           ctx.strokeStyle = 'rgba(' + edgeColor + ',' + alpha.toFixed(3) + ')';
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
