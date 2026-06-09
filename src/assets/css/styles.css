@@ -88,6 +88,17 @@ html.light body {
   ); /* Example: light gray gradient */
 }
 
+/* Animated node-graph background canvas */
+#node-graph-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind content, above the body gradient */
+  pointer-events: none; /* never blocks clicks/selection */
+  display: block;
+}
+
 /* Text Selection Highlight Styles */
 ::selection {
   background-color: var(--color-selection-bg);
