@@ -44,7 +44,8 @@ test.describe('Reads page', () => {
     expect(dateText).toMatch(/Read on [A-Z][a-z]+ \d{1,2}, \d{4}/);
 
     // Article should have either excerpt or link
-    const excerpt = firstArticle.locator('p.text-text-main');
+    // (.first() targets the read's own excerpt, not the inline note teaser text)
+    const excerpt = firstArticle.locator('p.text-text-main').first();
     const readMoreLink = firstArticle.getByRole('link', { name: 'Read more →' });
 
     if (await excerpt.isVisible()) {
