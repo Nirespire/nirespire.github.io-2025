@@ -20,6 +20,7 @@ export default [
   {
     files: [
       'scripts/**/*.js',
+      'lib/**/*.js',
       'src/_data/**/*.js',
       '.eleventy.js',
       'tailwind.config.js',

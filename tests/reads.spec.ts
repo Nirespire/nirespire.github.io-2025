@@ -54,4 +54,20 @@ test.describe('Reads page', () => {
     expect(await readMoreLink.getAttribute('target')).toBe('_blank');
     expect(await readMoreLink.getAttribute('rel')).toBe('noopener noreferrer');
   });
+
+  test('should show an inline note teaser for reads that have one', async ({ page }) => {
+    await page.goto('/reads/');
+
+    // The seed note annotates this read URL.
+    const tiedRead = page.locator(
+      'a[href="https://tombedor.dev/human-attention-and-human-effort/"]'
+    );
+    await expect(tiedRead.first()).toBeVisible();
+
+    // Its card links through to the individual note page.
+    const noteLink = page.locator('a[href="/notes/2026-06-13-human-effort/"]', {
+      hasText: 'Read my note →',
+    });
+    await expect(noteLink.first()).toBeVisible();
+  });
 });
