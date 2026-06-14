@@ -1,30 +1,34 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+{% set sourceRead = null %}
+{% if read %}
+  {% for r in raindrop %}{% if r.url == read %}{% set sourceRead = r %}{% endif %}{% endfor %}
+{% endif %}
 <article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8">
   <header class="not-prose mb-8">
-    <h1 class="text-accent text-4xl font-bold">{{ title }}</h1>
+    <h1 class="text-accent text-4xl font-bold">
+      {% if read %}
+        Note on
+        <a href="{{ read }}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+          {{ sourceRead.title if sourceRead else read }}
+        </a>
+      {% else %}
+        Note from {{ date | date("MMMM d, yyyy") }}
+      {% endif %}
+    </h1>
     <div class="flex flex-col gap-2 text-sm text-text-secondary mt-4">
       <div>
-        <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time>
-        • <span>{{ content | striptags | wordcount | readingTime }} min read</span>
+        {% if read %}
+          <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time> ·
+        {% endif %}
+        <span>{{ content | striptags | wordcount | readingTime }} min read</span>
+        {% if read and sourceRead and sourceRead.dateAdded %}
+          · <span>read on {{ sourceRead.dateAdded | date("MMMM d, yyyy") }}</span>
+        {% endif %}
       </div>
     </div>
   </header>
-
-  {% if read %}
-    {% set sourceRead = null %}
-    {% for r in raindrop %}{% if r.url == read %}{% set sourceRead = r %}{% endif %}{% endfor %}
-    <aside class="not-prose p-4 bg-bg-interactive-soft rounded-lg border border-border-subtle mb-8">
-      <p class="text-sm text-text-secondary mb-1">A note on:</p>
-      <a href="{{ read }}" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold hover:underline">
-        {{ sourceRead.title if sourceRead else read }}
-      </a>
-      {% if sourceRead and sourceRead.dateAdded %}
-        <span class="text-text-secondary text-sm ml-2">· read on {{ sourceRead.dateAdded | date("MMMM d, yyyy") }}</span>
-      {% endif %}
-    </aside>
-  {% endif %}
 
   <div class="prose-lg">
     {{ content | safe }}

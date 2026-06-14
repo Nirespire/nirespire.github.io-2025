@@ -1,5 +1,4 @@
 ---
-title: "Demonstrate the effort you're asking for"
 date: 2026-06-13
 read: "https://tombedor.dev/human-attention-and-human-effort/"
 teaser: "The etiquette of forwarding AI output to a human comes down to a fairness exchange."
