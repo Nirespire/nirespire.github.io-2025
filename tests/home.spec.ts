@@ -58,6 +58,19 @@ test.describe('Home page', () => {
     }
   });
 
+  test('should link to a note when a tied read is in the latest reads', async ({ page }) => {
+    await page.goto('/');
+
+    // Homepage shows only the 5 newest reads, so guard on the read being present.
+    const tiedRead = page.locator(
+      'a[href="https://tombedor.dev/human-attention-and-human-effort/"]'
+    );
+    if ((await tiedRead.count()) > 0) {
+      const noteLink = page.locator('a[href="/notes/2026-06-13-human-effort/"]');
+      await expect(noteLink.first()).toBeVisible();
+    }
+  });
+
   test('should render profile section', async ({ page }) => {
     await page.goto('/');
 
