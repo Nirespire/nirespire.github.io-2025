@@ -103,7 +103,7 @@ Once that's done, you did it! You have officially contributed to open source!
 
 I hope this guide provided some insight into how to get your foot in the door to contributing to open source. I'd love to hear your feedback in the comments or on [X](https://x.com/Nirespire).
 
-I'm planning on making a follow up to this piece about how to open source your own projects, so be on the lookout for that.
+I've since written a follow up to this piece about [how to open source your own projects](https://sanjaynair.me/blog/2019-04-01-how-to-open-source-your-code/), so be sure to check that out next.
 
 If you're looking for some other great resources:
 
