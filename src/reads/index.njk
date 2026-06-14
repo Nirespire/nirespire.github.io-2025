@@ -30,10 +30,6 @@ title: All Reads
           {% set note = noteMap[article.url] %}
           {% if note %}
             <div class="mt-2 mb-4 pl-4 border-l-2 border-accent">
-              <p class="text-sm text-text-secondary mb-1">My note</p>
-              <p class="text-text-main mb-1">
-                {% if note.data.teaser %}{{ note.data.teaser }}{% else %}{{ note.templateContent | striptags | truncate(150) }}...{% endif %}
-              </p>
               <a href="{{ note.url }}" class="text-accent font-semibold hover:underline">Read my note &rarr;</a>
             </div>
           {% endif %}

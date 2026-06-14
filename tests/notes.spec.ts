@@ -21,13 +21,16 @@ test.describe('Notes index', () => {
 
   test('should distinguish tied and standalone notes', async ({ page }) => {
     await page.goto('/notes/');
-    await expect(page.getByText('on a shared read').first()).toBeVisible();
-    await expect(page.getByText('standalone note').first()).toBeVisible();
+    // Tied notes surface their source with an "On: ..." link to the external read.
+    const sourceLink = page.locator(`a[href="${TIED_READ_URL}"]`).first();
+    await expect(sourceLink).toBeVisible();
+    expect(await sourceLink.getAttribute('target')).toBe('_blank');
+    expect(await sourceLink.getAttribute('rel')).toBe('noopener noreferrer');
   });
 });
 
 test.describe('Individual note page (tied to a read)', () => {
-  test('should render the source read and a backlink', async ({ page }) => {
+  test('should render the source read metadata and no excerpt', async ({ page }) => {
     await page.goto(TIED_NOTE);
 
     await expect(
@@ -41,10 +44,8 @@ test.describe('Individual note page (tied to a read)', () => {
     expect(await readLink.first().getAttribute('target')).toBe('_blank');
     expect(await readLink.first().getAttribute('rel')).toBe('noopener noreferrer');
 
-    // Related posts backlink resolves to a blog post.
-    await expect(page.getByRole('heading', { name: 'Related posts' })).toBeVisible();
-    const backlink = page.locator('a[href="/blog/2025-10-28-coding-with-copilot-pt2/"]');
-    await expect(backlink.first()).toBeVisible();
+    // Date metadata is shown; source excerpt is not.
+    await expect(page.getByText('read on', { exact: false })).toBeVisible();
 
     // Back-to-notes link.
     await expect(page.getByRole('link', { name: '← Back to all notes' })).toBeVisible();

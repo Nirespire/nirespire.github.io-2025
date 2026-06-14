@@ -44,7 +44,6 @@ test.describe('Reads page', () => {
     expect(dateText).toMatch(/Read on [A-Z][a-z]+ \d{1,2}, \d{4}/);
 
     // Article should have either excerpt or link
-    // (.first() targets the read's own excerpt, not the inline note teaser text)
     const excerpt = firstArticle.locator('p.text-text-main').first();
     const readMoreLink = firstArticle.getByRole('link', { name: 'Read more →' });
 
@@ -56,7 +55,7 @@ test.describe('Reads page', () => {
     expect(await readMoreLink.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
-  test('should show an inline note teaser for reads that have one', async ({ page }) => {
+  test('should show a note link for reads that have one', async ({ page }) => {
     await page.goto('/reads/');
 
     // The seed note annotates this read URL.

@@ -3,8 +3,6 @@ title: "Demonstrate the effort you're asking for"
 date: 2026-06-13
 read: "https://tombedor.dev/human-attention-and-human-effort/"
 teaser: "The etiquette of forwarding AI output to a human comes down to a fairness exchange."
-topics: ["ai", "etiquette", "teams"]
-backlinks: ["/blog/2025-10-28-coding-with-copilot-pt2/"]
 ---
 
 This piece reframes a question I keep running into on my own teams: when is it
