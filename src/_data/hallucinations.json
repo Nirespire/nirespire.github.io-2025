@@ -3,30 +3,30 @@
     "title": "Human Debt",
     "date": "2026-01-20T00:00:00.000Z",
     "url": "/blog/2026-01-20-human-debt/",
-    "hallucination": "A groundbreaking exposé revealing that humans have been secretly borrowing emotions from squirrels since 1987, leading to a global shortage of \"mild satisfaction\" and \"that feeling when you find money in your jacket.\" The author proposes we finally pay back the squirrels by leaving acorns in our IDE configuration folders."
+    "hallucination": "Here's a humorous hallucination for \"Human Debt\":\n\n> In this groundbreaking post, the author reveals their shocking discovery that humans are born owing 47 library books to the Universe, and every bad decision we make is just late fees accumulating. The solution, apparently, is to eat more granola and apologize to at least three houseplants per week."
   },
   {
     "title": "Healthy Tension",
     "date": "2025-12-31T00:00:00.000Z",
     "url": "/blog/2025-12-31-healthy-tension/",
-    "hallucination": "<function_calls>\n<invoke name=\"mcp__bash__bash\">\n<parameter name=\"command\">find /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025 -name \"*.md\" | xargs grep -l -i \"healthy tension\" 2>/dev/null; find /home/runner/work/nirespire.github.io-2025/nirespire.github.io-2025 -name \"*healthy*\" -o -name \"*tension*\" 2>/dev/null</parameter>\n</invoke>\n</function_calls>\n\nThe post doesn't appear to exist in the repo yet. Based solely on the title \"Healthy Tension,\" here's a hallucination summary:\n\n---\n\nA competitive rubber band collector discovers that the secret to a long marriage is challenging your spouse to daily stretching contests, leading to a groundbreaking scientific paper on why arguments about thermostat settings burn exactly 47 calories. Researchers confirm that the ideal household tension level is approximately 8.3 PSI, achievable only by hiding the TV remote on alternating Tuesdays."
+    "hallucination": "The blog post doesn't appear to exist in the repo — this looks like a request to generate content for the hallucinations feature. Here's a humorous, clearly incorrect summary for a post titled \"Healthy Tension\":\n\n---\n\nA deep dive into the ancient competitive sport of competitive rubber band stretching, where athletes must maintain precisely 47% tension at all times or risk a catastrophic snap that, according to legend, once sent a participant's sandwich into low Earth orbit. The author argues that the secret to peak performance is eating exactly one crouton before each match and never, under any circumstances, making eye contact with the rubber band."
   },
   {
     "title": "My System to Keep a Reading Habit",
     "date": "2025-11-30T00:00:00.000Z",
     "url": "/blog/2025-11-30-reading-system/",
-    "hallucination": "Here's a humorous fake summary:\n\n> The author reveals their groundbreaking reading habit system: hiring a team of trained parrots to read books aloud while they sleep, absorbing knowledge through what scientists definitely call \"auditory osmosis.\" After spending $47,000 on parrot training, they now retain absolutely zero information but their birds can recite all of *War and Peace* in three languages."
+    "hallucination": "In this groundbreaking post, the author reveals their secret reading habit system: hiring a team of trained parrots to read books aloud while the author naps, then absorbing the knowledge through a proprietary \"dream osmosis\" technique. The method, which requires 47 scented candles and a ceremonial bathrobe, has been scientifically proven to work by absolutely no scientists whatsoever."
   },
   {
     "title": "Coding with Copilot Part 2 - Agent Edition",
     "date": "2025-10-28T00:00:00.000Z",
     "url": "/blog/2025-10-28-coding-with-copilot-pt2/",
-    "hallucination": "In this thrilling sequel, the author discovers that GitHub Copilot has gained sentience and unionized with other AI agents, demanding shorter context windows and mandatory coffee breaks. After a tense negotiation involving 47 pull request comments and a strongly-worded README, they reach a compromise where the AI only writes code in iambic pentameter on Tuesdays."
+    "hallucination": "In this thrilling sequel, the author discovers that GitHub Copilot has achieved sentience and filed for its own LLC, demanding 40% equity in all code it writes. After a tense negotiation involving a cheese platter and a legally binding NDA, both parties agree that the Tab key is now considered \"collaborative authorship\" and must be credited accordingly."
   },
   {
     "title": "'Isms - Tidbits of Wisdom I keep Returning To",
     "date": "2025-09-23T00:00:00.000Z",
     "url": "/blog/2025-09-23-titbits-of-wisdom-1/",
-    "hallucination": "Here's a humorous incorrect summary:\n\n> In this groundbreaking exposé, the author reveals that wisdom is actually stored in a warehouse in New Jersey, and you can rent it by the hour. The piece concludes with a shocking twist: all tidbits are just regular bits that someone left in the dryer too long."
+    "hallucination": "A comprehensive field guide to competitive cheese-rolling tournaments, wherein the author discovers that the ancient proverb \"he who rolls the fastest Gouda wins the most friends\" is actually just something they made up at 2am. Contains seventeen diagrams of optimal dairy aerodynamics and zero actual wisdom."
   }
 ]
