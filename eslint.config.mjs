@@ -22,6 +22,7 @@ export default [
       'scripts/**/*.js',
       'lib/**/*.js',
       'src/_data/**/*.js',
+      'src/notes/**/*.js',
       '.eleventy.js',
       'tailwind.config.js',
       'postcss.config.js',

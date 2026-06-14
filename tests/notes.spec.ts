@@ -21,7 +21,7 @@ test.describe('Notes index', () => {
 
   test('should distinguish tied and standalone notes', async ({ page }) => {
     await page.goto('/notes/');
-    // Tied notes surface their source with an "On: ..." link to the external read.
+    // Tied notes surface their source with a link to the external read inside the heading.
     const sourceLink = page.locator(`a[href="${TIED_READ_URL}"]`).first();
     await expect(sourceLink).toBeVisible();
     expect(await sourceLink.getAttribute('target')).toBe('_blank');
@@ -34,17 +34,19 @@ test.describe('Individual note page (tied to a read)', () => {
     await page.goto(TIED_NOTE);
 
     await expect(
-      page.getByRole('heading', { name: "Demonstrate the effort you're asking for", level: 1 })
+      page.getByRole('heading', {
+        name: 'Note on If You are Asking for Human Attention, Demonstrate Human Effort',
+        level: 1,
+      })
     ).toBeVisible();
 
-    // "A note on:" aside links to the external read.
-    await expect(page.getByText('A note on:')).toBeVisible();
+    // The h1 itself links to the external read.
     const readLink = page.locator(`a[href="${TIED_READ_URL}"]`);
     await expect(readLink.first()).toBeVisible();
     expect(await readLink.first().getAttribute('target')).toBe('_blank');
     expect(await readLink.first().getAttribute('rel')).toBe('noopener noreferrer');
 
-    // Date metadata is shown; source excerpt is not.
+    // "read on" date metadata appears in the meta line.
     await expect(page.getByText('read on', { exact: false })).toBeVisible();
 
     // Back-to-notes link.
@@ -57,10 +59,9 @@ test.describe('Individual note page (standalone)', () => {
     await page.goto(STANDALONE_NOTE);
 
     await expect(
-      page.getByRole('heading', { name: "Reading is thinking in someone else's head", level: 1 })
+      page.getByRole('heading', { name: 'Note from June 10, 2026', level: 1 })
     ).toBeVisible();
 
-    await expect(page.getByText('A note on:')).toHaveCount(0);
     await expect(page.getByRole('link', { name: '← Back to all notes' })).toBeVisible();
   });
 });

@@ -1,4 +1,4 @@
-{% macro breadcrumbs(page) %}
+{% macro breadcrumbs(page, finalTitle) %}
   {% set path_parts = page.url | split('/') %}
   {% set path = [] %}
   {% for part in path_parts %}
@@ -21,7 +21,7 @@
         </li>
         {% if i == (path | length) - 1 %}
           <li aria-current="page">
-            <span class="font-medium text-text-main">{{ segment | replace('-', ' ') | title }}</span>
+            <span class="font-medium text-text-main">{{ finalTitle if finalTitle else (segment | replace('-', ' ') | title) }}</span>
           </li>
         {% else %}
           <li>

@@ -1,5 +1,4 @@
 ---
-title: "Reading is thinking in someone else's head"
 date: 2026-06-10
 teaser: "A standalone thought on why I keep notes on what I read at all."
 ---
