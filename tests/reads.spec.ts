@@ -38,7 +38,7 @@ test.describe('Reads page', () => {
     await expect(title).toBeVisible();
 
     // Date should be present and in correct format
-    const date = firstArticle.locator('p.text-sm');
+    const date = firstArticle.locator('p.text-sm', { hasText: 'Read on' });
     await expect(date).toBeVisible();
     const dateText = await date.textContent();
     expect(dateText).toMatch(/Read on [A-Z][a-z]+ \d{1,2}, \d{4}/);
