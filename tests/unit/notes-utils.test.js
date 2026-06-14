@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-const { notesByUrl, resolveBacklinks } = require('../../lib/notes-utils.js');
+const { notesByUrl } = require('../../lib/notes-utils.js');
 
 // Helper to build a note item shaped like an 11ty collection entry.
 const note = (read, url) => ({ data: { read }, url });
@@ -32,23 +32,4 @@ test('notesByUrl keeps the first (newest) note when a read has duplicates', () =
 test('notesByUrl returns an empty object for missing input', () => {
   assert.deepEqual(notesByUrl(undefined), {});
   assert.deepEqual(notesByUrl([]), {});
-});
-
-test('resolveBacklinks resolves URLs to post titles', () => {
-  const blog = [
-    { url: '/blog/foo/', data: { title: 'Foo Post' } },
-    { url: '/blog/bar/', data: { title: 'Bar Post' } },
-  ];
-  const resolved = resolveBacklinks(['/blog/bar/'], blog);
-  assert.deepEqual(resolved, [{ url: '/blog/bar/', title: 'Bar Post' }]);
-});
-
-test('resolveBacklinks falls back to the URL when no post matches', () => {
-  const resolved = resolveBacklinks(['/blog/missing/'], []);
-  assert.deepEqual(resolved, [{ url: '/blog/missing/', title: '/blog/missing/' }]);
-});
-
-test('resolveBacklinks returns an empty array for non-array input', () => {
-  assert.deepEqual(resolveBacklinks(undefined, []), []);
-  assert.deepEqual(resolveBacklinks(null, []), []);
 });

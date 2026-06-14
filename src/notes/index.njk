@@ -11,29 +11,23 @@ permalink: /notes/
 
   <div class="space-y-8">
     {% for note in collections.notes %}
-      <article class="p-6 bg-bg-interactive-soft rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-        <h2 class="text-2xl font-bold text-accent mb-2">
-          <a href="{{ note.url }}" class="hover:underline">{{ note.data.title }}</a>
-        </h2>
-        <p class="text-sm text-text-secondary mb-2">
-          {{ note.date | date("MMMM d, yyyy") }}
-          {% if note.data.read %}
-            • <span class="text-text-interactive-strong">on a shared read</span>
-          {% else %}
-            • <span class="text-text-secondary">standalone note</span>
-          {% endif %}
-        </p>
+      {% set sourceRead = null %}
+      {% if note.data.read %}
+        {% for r in raindrop %}{% if r.url == note.data.read %}{% set sourceRead = r %}{% endif %}{% endfor %}
+      {% endif %}
+      {% set cardBg = 'bg-bg-interactive-soft' if note.data.read else 'bg-bg-interactive-strong' %}
+      <article class="p-6 {{ cardBg }} rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+        {% if note.data.read %}
+          <p class="text-xs tracking-wide text-text-secondary mb-2">On:
+            <a href="{{ note.data.read }}" target="_blank" rel="noopener noreferrer" class="text-text-interactive-strong hover:underline">{{ sourceRead.title if sourceRead else note.data.read }}</a>
+          </p>
+        {% endif %}
+        <h2 class="text-2xl font-bold text-accent mb-2">{{ note.data.title }}</h2>
+        <p class="text-sm text-text-secondary mb-2">{{ note.date | date("MMMM d, yyyy") }}</p>
         {% if note.data.teaser %}
           <p class="text-text-main mb-4">{{ note.data.teaser }}</p>
         {% else %}
           <p class="text-text-main mb-4">{{ note.templateContent | striptags | truncate(150) }}...</p>
-        {% endif %}
-        {% if note.data.topics | length %}
-          <p class="text-sm mb-2">
-            {% for topic in note.data.topics %}
-              <span class="mr-1 bg-bg-interactive-strong px-2 py-1 rounded text-text-interactive-strong text-xs">{{ topic }}</span>
-            {% endfor %}
-          </p>
         {% endif %}
         <a href="{{ note.url }}" class="text-accent font-semibold hover:underline">Read my note &rarr;</a>
       </article>

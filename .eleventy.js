@@ -1,7 +1,7 @@
 const { DateTime } = require('luxon');
 const markdownIt = require('markdown-it');
 const pluginRss = require('@11ty/eleventy-plugin-rss').rssPlugin;
-const { notesByUrl, resolveBacklinks } = require('./lib/notes-utils');
+const { notesByUrl } = require('./lib/notes-utils');
 
 module.exports = function (eleventyConfig) {
   // Add RSS plugin
@@ -47,9 +47,6 @@ module.exports = function (eleventyConfig) {
   // Map a shared read's URL to the note that annotates it (used by /reads
   // and the homepage to render an inline "my note" teaser).
   eleventyConfig.addFilter('notesByUrl', notesByUrl);
-
-  // Resolve site-relative blog backlink URLs into { url, title } objects.
-  eleventyConfig.addFilter('resolveBacklinks', resolveBacklinks);
 
   // Render an arbitrary markdown string to HTML (reuses the configured lib).
   eleventyConfig.addFilter('renderMarkdown', (str) => {

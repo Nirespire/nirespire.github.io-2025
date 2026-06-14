@@ -2,8 +2,6 @@
 title: "Reading is thinking in someone else's head"
 date: 2026-06-10
 teaser: "A standalone thought on why I keep notes on what I read at all."
-topics: ["reading", "meta"]
-backlinks: ["/blog/2025-11-30-reading-system/"]
 ---
 
 No external link here — just a note to myself about the point of this whole

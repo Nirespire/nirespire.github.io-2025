@@ -9,13 +9,6 @@
         <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time>
         • <span>{{ content | striptags | wordcount | readingTime }} min read</span>
       </div>
-      {% if topics | length %}
-        <p>
-          {% for topic in topics %}
-            <span class="mr-1 bg-bg-interactive-strong px-2 py-1 rounded text-text-interactive-strong text-xs">{{ topic }}</span>
-          {% endfor %}
-        </p>
-      {% endif %}
     </div>
   </header>
 
@@ -27,8 +20,8 @@
       <a href="{{ read }}" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold hover:underline">
         {{ sourceRead.title if sourceRead else read }}
       </a>
-      {% if sourceRead and sourceRead.excerpt %}
-        <p class="text-text-main mt-2">{{ sourceRead.excerpt }}</p>
+      {% if sourceRead and sourceRead.dateAdded %}
+        <span class="text-text-secondary text-sm ml-2">· read on {{ sourceRead.dateAdded | date("MMMM d, yyyy") }}</span>
       {% endif %}
     </aside>
   {% endif %}
@@ -36,18 +29,6 @@
   <div class="prose-lg">
     {{ content | safe }}
   </div>
-
-  {% set resolved = backlinks | resolveBacklinks(collections.blog) %}
-  {% if resolved | length %}
-    <section class="not-prose mt-8 pt-4 border-t border-border-subtle">
-      <h2 class="text-xl font-semibold text-accent mb-2">Related posts</h2>
-      <ul class="list-disc list-inside">
-        {% for b in resolved %}
-          <li><a href="{{ b.url }}" class="text-accent hover:underline">{{ b.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
 
   <footer class="not-prose mt-12 pt-4 border-t border-border-subtle">
     <a href="/notes" class="text-accent hover:underline">&larr; Back to all notes</a>

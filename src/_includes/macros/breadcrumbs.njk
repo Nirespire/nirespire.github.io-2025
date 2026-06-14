@@ -12,10 +12,10 @@
       <li>
         <a href="/" class="hover:underline">Home</a>
       </li>
+      {% set currentUrl = '' %}
       {% for i in range(0, path | length) %}
         {% set segment = path[i] %}
-        {% set pathSegments = path | slice(0, i + 1) %}
-        {% set url = '/' + pathSegments | join('/') + '/' %}
+        {% set currentUrl = currentUrl + '/' + segment %}
         <li>
           <span class="mx-2">/</span>
         </li>
@@ -25,11 +25,7 @@
           </li>
         {% else %}
           <li>
-            {% if segment == 'blog' %}
-              <a href="/blog/" class="hover:underline">{{ segment | replace('-', ' ') | title }}</a>
-            {% else %}
-              <a href="{{ url }}" class="hover:underline">{{ segment | replace('-', ' ') | title }}</a>
-            {% endif %}
+            <a href="{{ currentUrl }}/" class="hover:underline">{{ segment | replace('-', ' ') | title }}</a>
           </li>
         {% endif %}
       {% endfor %}
