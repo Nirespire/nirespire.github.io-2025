@@ -313,7 +313,7 @@ But you could always train the bot to respond to that by adding it to your train
 
 ### Conclusion
 
-I was going to write some extra stuff about how to deploy the bot somewhere and potential ideas for enhancements, but this post has already become longer than I anticipated. I plan to get those thoughts into a follow up post and link it here. In the meanwhile, please comment with your feedback. Was following along easy enough? What skill level are you at with Node development or ML concepts? Also don't forget to share the cool bots you create!
+I was going to write some extra stuff about how to deploy the bot somewhere and potential ideas for enhancements, but this post has already become longer than I anticipated. I never did get around to writing that follow up, but in the meantime, please comment with your feedback. Was following along easy enough? What skill level are you at with Node development or ML concepts? Also don't forget to share the cool bots you create!
 
 #### Other resources
 
