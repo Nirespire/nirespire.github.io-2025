@@ -195,7 +195,10 @@ async function main() {
 }
 
 if (require.main === module) {
-  main();
+  main().catch((err) => {
+    console.error('Error sending webmentions:', err);
+    process.exit(1);
+  });
 }
 
 module.exports = {
