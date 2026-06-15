@@ -63,3 +63,5 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 ---
 
 I have found these concepts cover enough of the fundamentals to navigate the discussion and innovation swirling around Generative AI. I hope you find them useful. If so, please consider passing it along to someone who's been quietly wondering what all the noise is about.
+
+> The post was authored with editorial support (Claude Sonnet 4.6) and image generation (Gemini 3.1 Pro) from Generative AI. All words are my own.
