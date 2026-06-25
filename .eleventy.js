@@ -31,6 +31,11 @@ module.exports = function (eleventyConfig) {
     _headers: '_headers',
   });
 
+  // Wedding archive — copied verbatim (no Nunjucks templating) to /archive/wedding/
+  eleventyConfig.addPassthroughCopy({
+    archive: 'archive',
+  });
+
   eleventyConfig.addCollection('blog', function (collectionApi) {
     return collectionApi.getFilteredByGlob('src/blog/*.md').sort((a, b) => {
       return b.date - a.date;
