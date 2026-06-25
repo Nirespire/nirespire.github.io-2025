@@ -26,6 +26,10 @@ module.exports = function (eleventyConfig) {
     'src/assets/js': 'assets/js',
   });
 
+  // robots.txt is plain text — not in templateFormats, so we passthrough copy
+  // it explicitly so it ends up at the site root.
+  eleventyConfig.addPassthroughCopy({ 'src/robots.txt': 'robots.txt' });
+
   // Add cache control headers
   eleventyConfig.addPassthroughCopy({
     _headers: '_headers',
