@@ -81,11 +81,6 @@ This project is my personal website/blog built using modern web development tool
   `prepare` script). Runs `npm run verify` before every push so a green local
   run guarantees a green CI run on the same code.
 
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for the contributor workflow and
-[SECURITY.md](./SECURITY.md) for how to report security issues.
-
 ## Integrations
 
 ### Raindrop.io Latest Reads
