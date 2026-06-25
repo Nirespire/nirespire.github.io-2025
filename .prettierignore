@@ -23,3 +23,6 @@ src/reads/
 # Generated PR preview output
 previews-output/
 previews-routes.json
+
+# Wedding archive — legacy vendored files must not be reformatted
+archive/
