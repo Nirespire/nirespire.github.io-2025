@@ -123,3 +123,16 @@ img.img-registry {
   margin-right: auto;
 }
 
+/* The bundled FlexSlider CSS draws the prev/next arrows with the
+   "flexslider-icon" webfont, but that font is not shipped with the site, so the
+   glyphs never render. Override the arrow content with plain unicode chevrons
+   that use an available font instead. */
+.flex-direction-nav a:before {
+  font-family: 'Droid Serif', serif;
+  content: '\276E'; /* ❮ */
+}
+
+.flex-direction-nav a.flex-next:before {
+  content: '\276F'; /* ❯ */
+}
+
