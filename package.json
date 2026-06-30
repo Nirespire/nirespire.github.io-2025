@@ -40,7 +40,7 @@
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
-    "@tailwindcss/cli": "^4.3.1",
+    "@tailwindcss/cli": "^4.3.2",
     "@tailwindcss/typography": "^0.5.20",
     "autoprefixer": "^10.5.2",
     "concurrently": "^10.0.3",
