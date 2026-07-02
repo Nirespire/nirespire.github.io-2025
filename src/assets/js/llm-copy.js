@@ -1,3 +1,7 @@
+// How long success/error feedback stays on the button before it reverts.
+// Mirrored by FEEDBACK_DURATION_MS in tests/llm-copy.spec.ts — keep in sync.
+const LLM_COPY_FEEDBACK_MS = 2000;
+
 // eslint-disable-next-line no-unused-vars -- invoked from inline onclick handlers in templates
 function copyToClipboard(contentId, buttonElement) {
   // Prevent multiple clicks while feedback is active
@@ -88,7 +92,7 @@ function showCopyFeedback(buttonElement, message, success) {
     delete buttonElement.dataset.originalText;
     delete buttonElement.dataset.originalClasses;
     delete buttonElement.dataset.timeoutId;
-  }, 2000);
+  }, LLM_COPY_FEEDBACK_MS);
 
   buttonElement.dataset.timeoutId = timeoutId.toString();
 }
