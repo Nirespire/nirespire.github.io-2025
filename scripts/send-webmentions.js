@@ -8,7 +8,9 @@ const sourceUrl = 'https://sanjaynair.me/reads';
 
 const USER_AGENT = 'sanjaynair.me-webmention/1.0 (+https://sanjaynair.me)';
 const REQUEST_TIMEOUT_MS = 10_000;
-const MAX_HTML_BYTES = 1_048_576;
+// Endpoint discovery only needs the <head> of the target page; cap the read
+// so a huge (or hostile) page can't burn memory/time across the whole fan-out.
+const MAX_HTML_BYTES = 262_144;
 
 function splitLinkHeader(header) {
   const entries = [];
@@ -207,4 +209,6 @@ module.exports = {
   splitLinkHeader,
   findWebmentionInLinkHeader,
   findWebmentionInHtml,
+  readCappedText,
+  MAX_HTML_BYTES,
 };
