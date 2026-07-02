@@ -17,6 +17,17 @@ module.exports = function (eleventyConfig) {
     breaks: true,
     linkify: true,
   });
+  // Code blocks can scroll horizontally; make them keyboard-focusable so
+  // keyboard users can scroll them (axe: scrollable-region-focusable).
+  for (const rule of ['fence', 'code_block']) {
+    const defaultRender =
+      markdownLibrary.renderer.rules[rule] ||
+      ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+    markdownLibrary.renderer.rules[rule] = (tokens, idx, options, env, self) => {
+      const html = defaultRender(tokens, idx, options, env, self);
+      return html.replace('<pre>', '<pre tabindex="0">');
+    };
+  }
   eleventyConfig.setLibrary('md', markdownLibrary);
 
   // Copy assets with cache busting
