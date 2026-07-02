@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+title: Notes
+permalink: /notes/
+---
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <h1 class="text-3xl font-bold mb-6">Notes</h1>
+  <p class="mb-8 text-lg text-text-secondary">
+    My commentary on things I read, and standalone thoughts — a growing digital garden.
+  </p>
+
+  <div class="space-y-8">
+    {% for note in collections.notes %}
+      {% set sourceRead = null %}
+      {% if note.data.read %}
+        {% for r in raindrop %}{% if r.url == note.data.read %}{% set sourceRead = r %}{% endif %}{% endfor %}
+      {% endif %}
+      {% set cardBg = 'bg-bg-interactive-soft' if note.data.read else 'bg-bg-interactive-strong' %}
+      <article class="p-6 {{ cardBg }} rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+        <h2 class="text-2xl font-bold text-accent mb-2">
+          {% if note.data.read %}
+            Note on
+            <a href="{{ note.data.read }}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+              {{ sourceRead.title if sourceRead else note.data.read }}
+            </a>
+          {% else %}
+            Note from {{ note.date | date("MMMM d, yyyy") }}
+          {% endif %}
+        </h2>
+        {% if note.data.read %}
+          <p class="text-sm text-text-secondary mb-2">{{ note.date | date("MMMM d, yyyy") }}</p>
+        {% endif %}
+        {% if note.data.teaser %}
+          <p class="text-text-main mb-4">{{ note.data.teaser }}</p>
+        {% else %}
+          <p class="text-text-main mb-4">{{ note.templateContent | striptags | truncate(150) }}...</p>
+        {% endif %}
+        <a href="{{ note.url }}" class="text-accent font-semibold hover:underline">Read my note &rarr;</a>
+      </article>
+    {% else %}
+      <p class="text-text-secondary">No notes yet — check back soon.</p>
+    {% endfor %}
+  </div>
+</div>

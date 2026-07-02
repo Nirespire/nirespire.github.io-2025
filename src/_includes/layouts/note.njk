@@ -1,0 +1,41 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+{% set sourceRead = null %}
+{% if read %}
+  {% for r in raindrop %}{% if r.url == read %}{% set sourceRead = r %}{% endif %}{% endfor %}
+{% endif %}
+<article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8">
+  <header class="not-prose mb-8">
+    <h1 class="text-accent text-4xl font-bold">
+      {% if read %}
+        Note on
+        <a href="{{ read }}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+          {{ sourceRead.title if sourceRead else read }}
+        </a>
+      {% else %}
+        Note from {{ date | date("MMMM d, yyyy") }}
+      {% endif %}
+    </h1>
+    <div class="flex flex-col gap-2 text-sm text-text-secondary mt-4">
+      <div>
+        {% if read %}
+          <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date("MMMM d, yyyy") }}</time> ·
+        {% endif %}
+        <span>{{ content | striptags | wordcount | readingTime }} min read</span>
+        {% if read and sourceRead and sourceRead.dateAdded %}
+          · <span>read on {{ sourceRead.dateAdded | date("MMMM d, yyyy") }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="prose-lg">
+    {{ content | safe }}
+  </div>
+
+  <footer class="not-prose mt-12 pt-4 border-t border-border-subtle">
+    <a href="/notes" class="text-accent hover:underline">&larr; Back to all notes</a>
+  </footer>
+</article>
+{% endblock %}

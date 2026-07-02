@@ -38,13 +38,13 @@ test.describe('Reads page', () => {
     await expect(title).toBeVisible();
 
     // Date should be present and in correct format
-    const date = firstArticle.locator('p.text-sm');
+    const date = firstArticle.locator('p.text-sm', { hasText: 'Read on' });
     await expect(date).toBeVisible();
     const dateText = await date.textContent();
     expect(dateText).toMatch(/Read on [A-Z][a-z]+ \d{1,2}, \d{4}/);
 
     // Article should have either excerpt or link
-    const excerpt = firstArticle.locator('p.text-text-main');
+    const excerpt = firstArticle.locator('p.text-text-main').first();
     const readMoreLink = firstArticle.getByRole('link', { name: 'Read more →' });
 
     if (await excerpt.isVisible()) {
@@ -53,5 +53,21 @@ test.describe('Reads page', () => {
     await expect(readMoreLink).toBeVisible();
     expect(await readMoreLink.getAttribute('target')).toBe('_blank');
     expect(await readMoreLink.getAttribute('rel')).toBe('noopener noreferrer');
+  });
+
+  test('should show a note link for reads that have one', async ({ page }) => {
+    await page.goto('/reads/');
+
+    // The seed note annotates this read URL.
+    const tiedRead = page.locator(
+      'a[href="https://tombedor.dev/human-attention-and-human-effort/"]'
+    );
+    await expect(tiedRead.first()).toBeVisible();
+
+    // Its card links through to the individual note page.
+    const noteLink = page.locator('a[href="/notes/2026-06-13-human-effort/"]', {
+      hasText: 'Read my note →',
+    });
+    await expect(noteLink.first()).toBeVisible();
   });
 });
