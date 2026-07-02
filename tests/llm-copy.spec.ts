@@ -1,5 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+// How long the button shows 'Copied!'/'Error!' before reverting. Mirrors
+// LLM_COPY_FEEDBACK_MS in src/assets/js/llm-copy.js — keep in sync.
+const FEEDBACK_DURATION_MS = 2000;
+// Feedback appears as soon as the (mocked) clipboard promise settles, so a
+// short poll window is enough while still tolerating slow CI runners.
+const FEEDBACK_APPEARS_TIMEOUT = FEEDBACK_DURATION_MS;
+// The revert happens FEEDBACK_DURATION_MS after the click; give generous
+// slack on top so a busy runner doesn't produce a flaky failure.
+const FEEDBACK_REVERTS_TIMEOUT = FEEDBACK_DURATION_MS + 5000;
+
 test.describe('LLM Copy Functionality', () => {
   test('should copy blog post content successfully', async ({ page }) => {
     // Mock clipboard API to succeed
@@ -31,10 +41,10 @@ test.describe('LLM Copy Functionality', () => {
     await copyButton.click();
 
     // Wait for the success feedback
-    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+    await expect(copyButton).toHaveText('Copied!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
 
     // Wait for the button to return to original text
-    await expect(copyButton).toHaveText('Copy for LLM', { timeout: 3000 });
+    await expect(copyButton).toHaveText('Copy for LLM', { timeout: FEEDBACK_REVERTS_TIMEOUT });
   });
 
   test('should handle copy error gracefully', async ({ page }) => {
@@ -59,10 +69,10 @@ test.describe('LLM Copy Functionality', () => {
     await copyButton.click();
 
     // Should show error feedback
-    await expect(copyButton).toHaveText('Error!', { timeout: 2000 });
+    await expect(copyButton).toHaveText('Error!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
 
     // Should return to original text
-    await expect(copyButton).toHaveText('Copy for LLM', { timeout: 3000 });
+    await expect(copyButton).toHaveText('Copy for LLM', { timeout: FEEDBACK_REVERTS_TIMEOUT });
   });
 
   test('should work on different blog posts', async ({ page }) => {
@@ -87,7 +97,7 @@ test.describe('LLM Copy Functionality', () => {
     await copyButton.click();
 
     // Wait for the success feedback
-    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+    await expect(copyButton).toHaveText('Copied!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
 
     // Verify markdown content exists for this post too
     const markdownContent = page.locator('#llm-markdown-content');
@@ -148,13 +158,13 @@ test.describe('LLM Copy Functionality', () => {
     await copyButton.click();
 
     // Should show success feedback
-    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+    await expect(copyButton).toHaveText('Copied!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
 
     // Should eventually return to original text
-    await expect(copyButton).toHaveText('Copy for LLM', { timeout: 3000 });
+    await expect(copyButton).toHaveText('Copy for LLM', { timeout: FEEDBACK_REVERTS_TIMEOUT });
 
     // Button should be clickable again after timeout
     await copyButton.click();
-    await expect(copyButton).toHaveText('Copied!', { timeout: 2000 });
+    await expect(copyButton).toHaveText('Copied!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
   });
 });
