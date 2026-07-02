@@ -17,6 +17,18 @@ module.exports = function (eleventyConfig) {
     breaks: true,
     linkify: true,
   });
+
+  // In-post images sit below the fold (the cover banner is templated in
+  // post.njk), so defer them instead of blocking initial page load.
+  const defaultImageRenderer =
+    markdownLibrary.renderer.rules.image ||
+    ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+  markdownLibrary.renderer.rules.image = (tokens, idx, options, env, self) => {
+    tokens[idx].attrSet('loading', 'lazy');
+    tokens[idx].attrSet('decoding', 'async');
+    return defaultImageRenderer(tokens, idx, options, env, self);
+  };
+
   eleventyConfig.setLibrary('md', markdownLibrary);
 
   // Copy assets with cache busting
