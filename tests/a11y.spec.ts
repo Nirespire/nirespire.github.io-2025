@@ -14,11 +14,13 @@ const PAGES = [
   { name: '404', url: '/this-page-does-not-exist/' },
 ];
 
-// Threshold ratchet: start strict on `critical` only so the suite lands green
-// while the codebase still has known `serious` issues (some color contrast,
-// landmark/region coverage). Tighten to include `serious` once those are
+// Threshold ratchet: `critical` and `serious` violations fail the suite.
+// Tighten to include `moderate` once any remaining lower-impact issues are
 // cleared in follow-up PRs.
-const FAILING_IMPACTS: Array<'critical' | 'serious' | 'moderate' | 'minor'> = ['critical'];
+const FAILING_IMPACTS: Array<'critical' | 'serious' | 'moderate' | 'minor'> = [
+  'critical',
+  'serious',
+];
 
 test.describe('Accessibility (axe-core)', () => {
   for (const { name, url } of PAGES) {
