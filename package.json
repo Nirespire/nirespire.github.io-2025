@@ -3,7 +3,23 @@
   "version": "1.0.0",
   "description": "Sanjay Nair personal website",
   "author": "Sanjay Nair <email@sanjaynair.dev>",
-  "main": "index.js",
+  "private": true,
+  "homepage": "https://sanjaynair.me",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nirespire/nirespire.github.io-2025.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nirespire/nirespire.github.io-2025/issues"
+  },
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "tailwindcss",
+    "static-site",
+    "blog",
+    "personal-website"
+  ],
   "engines": {
     "node": "^22.14.0"
   },
