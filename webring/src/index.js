@@ -2,15 +2,21 @@ import ring from '../ring.json' with { type: 'json' };
 
 // Reduce a URL (or bare host) to a lowercase host with no scheme, no path,
 // no leading "www.", so "https://www.Example.com/blog" and "example.com"
-// match the same member.
+// match the same member. Uses the URL parser (linear) rather than regex
+// slicing so an attacker-supplied `from` can't trigger catastrophic
+// backtracking.
 function normalizeHost(value) {
   if (!value) return '';
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(/^https?:\/\//, '')
-    .replace(/\/.*$/, '')
-    .replace(/^www\./, '');
+  let candidate = value.trim();
+  // Accept bare hosts ("example.com") as well as full URLs.
+  if (!candidate.includes('://')) candidate = `https://${candidate}`;
+  let host;
+  try {
+    host = new URL(candidate).hostname.toLowerCase();
+  } catch {
+    return '';
+  }
+  return host.startsWith('www.') ? host.slice(4) : host;
 }
 
 // Index of the member the request is coming *from*, or -1 if unknown.
