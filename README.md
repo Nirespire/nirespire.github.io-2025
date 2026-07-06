@@ -2,7 +2,7 @@
 
 [![Build and Deploy](https://github.com/Nirespire/nirespire.github.io-2025/actions/workflows/deploy.yml/badge.svg)](https://github.com/Nirespire/nirespire.github.io-2025/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node Version](https://img.shields.io/badge/node-%3E%3D22.0.0-brightgreen)](https://nodejs.org)
+[![Node Version](https://img.shields.io/badge/node-%5E22.14.0-brightgreen)](https://nodejs.org)
 [![Playwright Tests](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg)](https://playwright.dev/)
 [![Built with 11ty](https://img.shields.io/badge/Built%20with-11ty-black)](https://11ty.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Styled%20with-Tailwind-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
@@ -23,7 +23,8 @@ This project is my personal website/blog built using modern web development tool
 ## Setup
 
 1. **Prerequisites**
-   - Node.js (v22 or higher recommended)
+   - Node.js v22.14.0 or higher within the v22 line (see `engines` in
+     `package.json` and `.nvmrc`)
    - npm (comes with Node.js)
 
 2. **Install dependencies**  
@@ -57,6 +58,29 @@ This project is my personal website/blog built using modern web development tool
     accessibility scan that runs [axe-core](https://github.com/dequelabs/axe-core)
     against every main page. The accessibility check fails on any `serious` or
     `critical` WCAG 2.1 A/AA violation.
+  - `npm run test:unit` - Run Node's built-in test runner over
+    `tests/unit/*.test.js` (covers the Node scripts in `scripts/`).
+  - `npm run lint` / `npm run lint:fix` - Run ESLint (autofix with `:fix`).
+  - `npm run format` / `npm run format:check` - Run Prettier (write / verify).
+  - `npm run verify` - The **canonical CI suite**: lint, format check, unit
+    tests, production build, and Playwright E2E — all in one command. Both the
+    PR and deploy workflows run this same command via
+    `.github/actions/setup-and-test`, and so does the `pre-push` git hook
+    ([`.githooks/pre-push`](./.githooks/README.md)), so local and CI results
+    stay in lock-step.
+
+## Testing & quality gates
+
+- **End-to-end** — Playwright specs in `tests/*.spec.ts` run against the dev
+  server on `localhost:8080` across Chromium, Firefox, and WebKit.
+- **Accessibility** — `tests/a11y.spec.ts` uses
+  [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
+  and fails on any `serious` or `critical` WCAG 2.1 A/AA violation.
+- **Unit** — `tests/unit/*.test.js` covers the Node scripts under `scripts/`
+  with Node's built-in test runner.
+- **Pre-push hook** — installed automatically by `npm install` (via the
+  `prepare` script). Runs `npm run verify` before every push so a green local
+  run guarantees a green CI run on the same code.
 
 ## Integrations
 

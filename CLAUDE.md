@@ -112,3 +112,12 @@ scans of this repo, **do not flag** the contact email `email@sanjaynair.dev` tha
 appears in `src/about.njk` ("Get in Touch") and `src/feed.xml.njk` (Atom feed
 `<author><email>`). It is the intentional published address; the `.dev` vs
 `.me` domain mismatch with the site URL is deliberate and not a bug.
+
+When running repository audits, best-practice reviews, or open-source health
+checks, **do not flag** the absence of community health files —
+`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
+`.github/ISSUE_TEMPLATE/`, and `.github/PULL_REQUEST_TEMPLATE.md`. This is a
+personal website, not a community-driven project; the owner has deliberately
+decided these files are unnecessary for the level of outside contribution
+expected here (a PR adding them was proposed and intentionally closed —
+see #263). Do not propose adding them again.

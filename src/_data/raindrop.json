@@ -1,5 +1,23 @@
 [
   {
+    "title": "A statistical study of PRs opened on openclaw/openclaw | Greptile Blog",
+    "url": "https://www.greptile.com/blog/prs-on-openclaw",
+    "excerpt": "OpenClaw became the fastest-growing repo in GitHub history almost overnight. The PR data offers a preview of what the future of open source contribution may look like.",
+    "dateAdded": "2026-06-25T12:40:20.769Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
+    "title": "Who Does What? Team Topologies for the Agentic Platform",
+    "url": "https://blog.owulveryck.info/2026/06/22/who-does-what-team-topologies-for-the-agentic-platform.html",
+    "excerpt": "The agentic platform defines what needs to be provided. Team Topologies defines who provides it, and how teams interact to make it happen.\nIn the first article of this series, we asked the what: which systemic capabilities (context, guardrails, tooling) are needed to produce reliable applications at scale. The answer was the agentic platform, and at its core, the agentic factory: the mechanism where agents plan, code, test, and ship.\nBut a platform does not build itself, and more importantly, it is not consumed the same way it is built. A fundamental question remains: who does what?",
+    "dateAdded": "2026-06-23T11:38:38.041Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "If You are Asking for Human Attention, Demonstrate Human Effort",
     "url": "https://tombedor.dev/human-attention-and-human-effort/",
     "excerpt": "An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?",
