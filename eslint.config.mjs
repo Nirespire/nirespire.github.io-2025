@@ -13,6 +13,7 @@ export default [
       'test-results/**',
       '.cache/**',
       'archive/**',
+      'webring/**',
     ],
   },
 

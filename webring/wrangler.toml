@@ -1,0 +1,7 @@
+name = "sanjaynair-webring"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# To serve from a custom domain instead of *.workers.dev, add a route once the
+# domain's DNS is managed by Cloudflare, e.g.:
+#   routes = [{ pattern = "webring.sanjaynair.me", custom_domain = true }]
