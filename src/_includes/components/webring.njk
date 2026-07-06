@@ -1,0 +1,39 @@
+{#
+  Webring navigation. Links into the Cloudflare Worker that hosts the ring
+  (see /webring in this repo). The Worker reads the `from` param, finds this
+  site in its member list, and 302-redirects to the prev/next neighbour.
+
+  If the Worker URL or this site's domain ever changes, edit the two values
+  below — nothing else in the template references them.
+
+  Links carry `data-webring` so the "open external links in a new tab" script
+  in base.njk skips them: webring navigation stays in the same tab, and the
+  rel="prev"/"next" hints are preserved.
+#}
+{% set WEBRING_BASE = "https://sanjaynair-webring.workers.dev" %}
+{% set WEBRING_FROM = "https://sanjaynair.me" %}
+<div
+  class="mb-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-text-secondary"
+>
+  <span>Webring:</span>
+  <a
+    data-webring
+    rel="prev"
+    href="{{ WEBRING_BASE }}/prev?from={{ WEBRING_FROM }}"
+    class="text-link hover:text-link-hover transition-colors"
+    >‹ Prev</a
+  >
+  <a
+    data-webring
+    href="{{ WEBRING_BASE }}/random"
+    class="text-link hover:text-link-hover transition-colors"
+    >Random</a
+  >
+  <a
+    data-webring
+    rel="next"
+    href="{{ WEBRING_BASE }}/next?from={{ WEBRING_FROM }}"
+    class="text-link hover:text-link-hover transition-colors"
+    >Next ›</a
+  >
+</div>
