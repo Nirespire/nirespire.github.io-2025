@@ -43,6 +43,7 @@
     "fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
     "send-webmentions": "node scripts/send-webmentions.js",
     "download-medium-images": "node scripts/download-medium-images.js",
+    "compress-images": "node scripts/compress-images.js",
     "capture-previews": "node scripts/capture-previews.js"
   },
   "dependencies": {
@@ -52,9 +53,9 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
-    "@eslint/js": "^10.0.1",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@axe-core/playwright": "^4.12.1",
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/cli": "^4.3.2",
     "@tailwindcss/typography": "^0.5.20",
@@ -67,6 +68,7 @@
     "globals": "^17.7.0",
     "postcss": "^8.5.16",
     "prettier": "^3.9.4",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.1",
     "typescript-eslint": "^8.62.1"
   },
