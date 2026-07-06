@@ -5,6 +5,7 @@ const htmlElement = document.documentElement;
 
 // Function to update icon visibility
 function updateIcons(theme) {
+  if (!lightIcon || !darkIcon) return;
   if (theme === 'light') {
     lightIcon.classList.remove('hidden');
     darkIcon.classList.add('hidden');
@@ -29,10 +30,14 @@ if (currentTheme === 'light') {
   updateIcons('dark');
 }
 
-// Event listener for the toggle button
-themeToggleBtn.addEventListener('click', () => {
-  htmlElement.classList.toggle('light');
-  const newTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
-  localStorage.setItem('theme', newTheme);
-  updateIcons(newTheme);
-});
+// Event listener for the toggle button. The toggle is not guaranteed to exist
+// on every page that loads this script, so guard before wiring it up —
+// otherwise a missing button throws and kills every other script on the page.
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    htmlElement.classList.toggle('light');
+    const newTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
+    localStorage.setItem('theme', newTheme);
+    updateIcons(newTheme);
+  });
+}

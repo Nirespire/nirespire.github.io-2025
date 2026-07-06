@@ -17,6 +17,17 @@ module.exports = function (eleventyConfig) {
     breaks: true,
     linkify: true,
   });
+  // Code blocks can scroll horizontally; make them keyboard-focusable so
+  // keyboard users can scroll them (axe: scrollable-region-focusable).
+  for (const rule of ['fence', 'code_block']) {
+    const defaultRender =
+      markdownLibrary.renderer.rules[rule] ||
+      ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+    markdownLibrary.renderer.rules[rule] = (tokens, idx, options, env, self) => {
+      const html = defaultRender(tokens, idx, options, env, self);
+      return html.replace('<pre>', '<pre tabindex="0">');
+    };
+  }
 
   // In-post images sit below the fold (the cover banner is templated in
   // post.njk), so defer them instead of blocking initial page load.
@@ -38,9 +49,18 @@ module.exports = function (eleventyConfig) {
     'src/assets/js': 'assets/js',
   });
 
+  // robots.txt is plain text — not in templateFormats, so we passthrough copy
+  // it explicitly so it ends up at the site root.
+  eleventyConfig.addPassthroughCopy({ 'src/robots.txt': 'robots.txt' });
+
   // Add cache control headers
   eleventyConfig.addPassthroughCopy({
     _headers: '_headers',
+  });
+
+  // Wedding archive — copied verbatim (no Nunjucks templating) to /archive/wedding/
+  eleventyConfig.addPassthroughCopy({
+    archive: 'archive',
   });
 
   eleventyConfig.addCollection('blog', function (collectionApi) {

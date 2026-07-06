@@ -37,7 +37,7 @@ jobs:
           cache: 'npm'
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
@@ -55,7 +55,7 @@ jobs:
 
       - name: Resolve changed routes
         id: routes
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
@@ -117,7 +117,7 @@ jobs:
 
       - name: Upsert preview comment
         if: always() && steps.routes.outcome == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           SHA: ${{ steps.publish.outputs.sha }}
           ROUTE_COUNT: ${{ steps.routes.outputs.count }}

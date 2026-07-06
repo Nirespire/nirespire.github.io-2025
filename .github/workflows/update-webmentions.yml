@@ -12,6 +12,7 @@ jobs:
     environment: github-pages
     permissions:
       contents: write
+      actions: write
 
     steps:
       - name: Checkout code
@@ -49,9 +50,8 @@ jobs:
 
       - name: Trigger deploy workflow
         if: steps.commit.outputs.changes_made == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
-          github-token: ${{ secrets.GH_PAT }}
           script: |
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,

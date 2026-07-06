@@ -1,0 +1,138 @@
+body {
+  opacity: 0;
+  font-size: 21px;
+  margin-top: 25px;
+  text-align: center;
+
+  -webkit-transition: opacity 2s ease-in;
+     -moz-transition: opacity 2s ease-in;
+      -ms-transition: opacity 2s ease-in;
+       -o-transition: opacity 2s ease-in;
+          transition: opacity 2s ease-in;
+}
+
+body {
+  opacity: 1;
+  background-color: ivory;
+}
+
+h1 {
+  font-size: 65px;
+}
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.navbar {
+  background-color: #286090;
+  border-color: navy;
+}
+
+.navbar .navbar-header a.navbar-brand {
+  color: white;
+  font-family: 'Droid Serif', serif;
+  font-size: 21px;
+}
+
+.navbar ul li a {
+  color: white;
+  font-family: 'Droid Serif', serif
+}
+
+.navbar ul li :hover {
+  color: white;
+  background-color: #4989bf;
+}
+
+.navbar ul li :active {
+  color: white;
+  background-color: #4989bf;
+}
+
+div.info {
+  background-color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  margin-top: 5%;
+  box-shadow: 0px 0px 10px rgb(205, 223, 189);
+  border-radius: 10px;
+  padding: 25px;
+  font-family: 'Euphoria Script', cursive;
+}
+
+.media-list img {
+  width: 200px;
+}
+
+.media-heading {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.media-body {
+  padding-top: 20%;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -412px;   /* 50% */
+  }
+}
+
+img.img-party {
+  height: 200px;
+  width: 200px;
+}
+
+img.img-header {
+  max-width: 80%;
+}
+
+img.img-registry {
+  display: unset;
+}
+
+.plain-font {
+  font-family: 'Droid Serif', serif
+}
+
+.flexslider .slides > li {
+  overflow:hidden;
+  position:relative;
+  /* height: 600px; */
+}
+
+.flexslider .slides > li > img {
+  /* height: 100%; */
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The bundled FlexSlider CSS draws the prev/next arrows with the
+   "flexslider-icon" webfont, but that font is not shipped with the site, so the
+   glyphs never render. Override the arrow content with plain unicode chevrons
+   that use an available font instead. */
+.flex-direction-nav a:before {
+  font-family: 'Droid Serif', serif;
+  content: '\276E'; /* ❮ */
+}
+
+.flex-direction-nav a.flex-next:before {
+  content: '\276F'; /* ❯ */
+}
+
