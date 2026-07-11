@@ -5,7 +5,9 @@ const path = require('node:path');
 
 // Budgets live in scripts/image-budgets.js, shared with the fixer script —
 // bring a failing file within budget with `npm run compress-images`.
-const { BUDGETS, IMAGES_DIR } = require('../../scripts/image-budgets.js');
+const { BUDGETS, IMAGE_DIRS } = require('../../scripts/image-budgets.js');
+
+const REPO_ROOT = path.join(__dirname, '..', '..');
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -14,13 +16,17 @@ function walk(dir) {
   });
 }
 
+function allImages() {
+  return IMAGE_DIRS.flatMap((dir) => walk(dir));
+}
+
 test('every shipped image stays within its size budget', () => {
-  const overBudget = walk(IMAGES_DIR)
+  const overBudget = allImages()
     .map((file) => {
       const ext = path.extname(file).toLowerCase();
       const budget = BUDGETS[ext];
       const size = fs.statSync(file).size;
-      return { file: path.relative(IMAGES_DIR, file), ext, size, budget };
+      return { file: path.relative(REPO_ROOT, file), ext, size, budget };
     })
     .filter(({ budget, size }) => budget !== undefined && size > budget);
 
@@ -35,11 +41,11 @@ test('every shipped image stays within its size budget', () => {
 });
 
 test('every shipped image has a known extension with a budget', () => {
-  const unknown = walk(IMAGES_DIR).filter(
+  const unknown = allImages().filter(
     (file) => BUDGETS[path.extname(file).toLowerCase()] === undefined
   );
   assert.deepEqual(
-    unknown.map((file) => path.relative(IMAGES_DIR, file)),
+    unknown.map((file) => path.relative(REPO_ROOT, file)),
     [],
     'Unrecognized image type — add a budget for it in BUDGETS.'
   );
