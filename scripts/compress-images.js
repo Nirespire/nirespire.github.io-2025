@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
-const { BUDGETS, IMAGES_DIR } = require('./image-budgets');
+const { BUDGETS, IMAGE_DIRS } = require('./image-budgets');
 
 const WIDTHS = [1600, 1400, 1200, 1000, 800];
 const QUALITIES = [90, 80, 70, 60];
@@ -95,7 +95,8 @@ function kb(bytes) {
 }
 
 async function main(args) {
-  const files = args.length > 0 ? args.map((f) => path.resolve(f)) : walk(IMAGES_DIR);
+  const files =
+    args.length > 0 ? args.map((f) => path.resolve(f)) : IMAGE_DIRS.flatMap((dir) => walk(dir));
   let ok = true;
   for (const file of files) {
     ok = (await processFile(file)) && ok;
