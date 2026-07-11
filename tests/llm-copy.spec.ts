@@ -132,6 +132,25 @@ test.describe('LLM Copy Functionality', () => {
     expect(content).toContain('I constantly encourage my teams to leverage Generative AI');
   });
 
+  test('announces the copy result in a polite live region', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: () => Promise.resolve() },
+        configurable: true,
+      });
+    });
+
+    await page.goto('/blog/2025-07-10-genai-for-leaders/');
+    await page.waitForLoadState('networkidle');
+
+    await page.locator('button[onclick*="copyToClipboard"]').click();
+
+    const liveRegion = page.locator('#llm-copy-live-region');
+    await expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+    await expect(liveRegion).toHaveAttribute('role', 'status');
+    await expect(liveRegion).toHaveText('Copied!', { timeout: FEEDBACK_APPEARS_TIMEOUT });
+  });
+
   test('should handle rapid clicking without getting stuck', async ({ page }) => {
     // Mock clipboard API to succeed
     await page.addInitScript(() => {
