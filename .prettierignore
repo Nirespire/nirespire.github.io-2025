@@ -26,3 +26,6 @@ previews-routes.json
 
 # Wedding archive — legacy vendored files must not be reformatted
 archive/
+
+# Webring Cloudflare Worker — self-contained, has its own tooling
+webring/
