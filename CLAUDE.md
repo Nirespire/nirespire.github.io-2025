@@ -105,6 +105,14 @@ Other workflows of note:
 - Branch naming: `feature/description` or `bug/description`
 - Use conventional commit format
 - Check current branch with `git branch` before committing
+- **Split independent work into independent PRs.** When a proposed plan
+  addresses multiple distinct, self-contained issues, open a separate branch
+  and pull request for each one rather than bundling them into a single PR —
+  do this by default, without the user needing to ask. Prefer the smallest
+  reasonable unit of change per PR, and group related changes by category
+  (e.g. bug fixes, new features, content changes, chores/tooling) rather than
+  mixing categories in one PR. This applies automatically once a plan is
+  approved.
 
 ## Content Audit Guidance
 
