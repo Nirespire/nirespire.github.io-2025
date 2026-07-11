@@ -37,7 +37,7 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`
 - `src/assets/css/styles.css` — source CSS
 - `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`
-- `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `download-medium-images`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
+- `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `download-medium-images`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests) and `purge-history.sh` (one-time git history shrink)
 - `tests/` — Playwright E2E specs (`*.spec.ts`) and Node unit tests (`tests/unit/*.test.js`)
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
 - `tailwind.config.js` — Tailwind theme with CSS variable-based colors
@@ -64,6 +64,14 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - **Node 22** required (see `.nvmrc`; `package.json` engines `^22.14.0`)
 - Theme colors use CSS custom properties (`--color-bg-main`, `--color-accent`, etc.) mapped through `tailwind.config.js`
 - Light/dark theme switching handled by `src/assets/js/theme-switcher.js`
+- **Keep the repo small** — image weight budgets (`scripts/image-budgets.js`)
+  cover **both** `src/assets/images` and the wedding archive `archive/wedding/img`;
+  bring a violating image within budget with `npm run compress-images`. A hard
+  1.5 MB cap on **any** tracked file (`tests/unit/file-size-guard.test.js`) blocks
+  stray large binaries — don't commit them; use an external host or release asset.
+  Both are enforced via `test:unit` → `npm run verify` → pre-push + CI. The
+  history was purged once with `scripts/purge-history.sh`; do not re-introduce
+  large blobs.
 
 ## Testing
 
@@ -71,7 +79,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   localhost:8080 across Chromium, Firefox, and WebKit.
 - **Accessibility** — `tests/a11y.spec.ts` uses `@axe-core/playwright`.
 - **Unit** — Node's built-in test runner (`node --test`) over `tests/unit/*.test.js`
-  covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`).
+  covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`) and
+  repo-weight guards (`image-budget`, `file-size-guard`).
 
 ## CI / Automation
 
