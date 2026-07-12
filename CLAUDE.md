@@ -21,7 +21,6 @@ Content / ops scripts (normally run by GitHub Actions, runnable locally):
 ```bash
 npm run fetch-raindrop         # Sync "latest reads" from Raindrop.io → src/_data/raindrop.json
 npm run send-webmentions       # Send webmentions for new posts
-npm run download-medium-images # Localize Medium-hosted post images
 npm run compress-images        # Resize/recompress images to the CI size budgets (scripts/image-budgets.js)
 npm run capture-previews       # Render screenshots of changed pages (PR previews)
 ```
@@ -37,7 +36,7 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`
 - `src/assets/css/styles.css` — source CSS
 - `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`
-- `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `download-medium-images`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests) and `purge-history.sh` (one-time git history shrink)
+- `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
 - `tests/` — Playwright E2E specs (`*.spec.ts`) and Node unit tests (`tests/unit/*.test.js`)
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
 - `tailwind.config.js` — Tailwind theme with CSS variable-based colors

@@ -42,7 +42,6 @@
     "prepare": "node scripts/install-git-hooks.js",
     "fetch-raindrop": "node scripts/fetch-raindrop.js && npm run send-webmentions",
     "send-webmentions": "node scripts/send-webmentions.js",
-    "download-medium-images": "node scripts/download-medium-images.js",
     "compress-images": "node scripts/compress-images.js",
     "capture-previews": "node scripts/capture-previews.js"
   },
