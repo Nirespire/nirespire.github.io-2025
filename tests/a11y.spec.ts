@@ -1,5 +1,16 @@
 import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+
+// The theme is applied by a deferred script that toggles the `.light` class,
+// and the body/links animate color over 0.3s. Scanning immediately after load
+// can catch a mid-transition color (flaky on WebKit), so freeze transitions and
+// animations to their settled state before running axe.
+async function freezeAnimations(page: Page) {
+  await page.addStyleTag({
+    content: '*, *::before, *::after { transition: none !important; animation: none !important; }',
+  });
+}
 
 // Pages that should pass automated accessibility checks. Blog posts use the
 // same `post.njk` layout, so scanning one representative post is sufficient
@@ -26,6 +37,7 @@ test.describe('Accessibility (axe-core)', () => {
   for (const { name, url } of PAGES) {
     test(`${name} has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
       await page.goto(url);
+      await freezeAnimations(page);
 
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -53,6 +65,7 @@ test.describe('Accessibility (axe-core)', () => {
     expect(href, 'expected at least one blog post on /blog/').toBeTruthy();
 
     await page.goto(href!);
+    await freezeAnimations(page);
 
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
