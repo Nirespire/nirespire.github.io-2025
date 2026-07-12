@@ -16,9 +16,9 @@ This project is my personal website/blog built using modern web development tool
 - **Build Tools**: PostCSS, cssnano, and autoprefixer for CSS optimization
 - **Hosting**: GitHub Pages with custom domain configuration
 - **Latest Reads**: Integration with Raindrop.io API to display recently read articles
-- **AI Assistance**: Developed with the help of AI tools including:
-  - GitHub Copilot for code completion and pair programming
-  - Claude 3.5 Sonnet for development assistance and content generation
+- **AI Assistance**: Developed with the help of AI coding tools, including
+  GitHub Copilot and Anthropic's Claude (via Claude Code) for development
+  assistance and content generation
 
 ## Setup
 
