@@ -24,7 +24,9 @@
   <meta name="language" content="English">
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{% if layout === "layouts/post.njk" %}article{% else %}website{% endif %}">
+  {% if layout === "layouts/post.njk" %}<meta property="article:published_time" content="{{ page.date | date("yyyy-MM-dd") }}">
+  <meta property="article:author" content="Sanjay Nair">{% endif %}
   <meta property="og:url" content="{{ page.url | absoluteUrl("https://sanjaynair.me") }}">
   <meta property="og:title" content="{{ title }}{{ " | " if title }}Sanjay Nair">
   <meta property="og:description" content="{{ description or "Software engineering leader based in Atlanta, Georgia, sharing insights on leadership, technology, and software development." }}">
