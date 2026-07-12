@@ -25,15 +25,19 @@
 html.light {
   --color-bg-main: #ffffff;
   --color-text-main: #111827; /* gray-900 */
-  --color-accent: #f97316; /* Orange - same */
-  --color-text-secondary: #6b7280; /* gray-500 */
+  /* Accent doubles as a text color (links, headings) on white and on the
+     #f3f4f6 cards. The dark theme's #f97316 only hits ~2.5:1 there, so the
+     light theme uses a darker burnt-orange that clears WCAG AA 4.5:1 on both
+     backgrounds. Dark theme keeps the brighter #f97316 (see :root). */
+  --color-accent: #9a3412; /* orange-800 (needs to clear AA on the #e5e7eb pill bg too) */
+  --color-text-secondary: #4b5563; /* gray-600 (gray-500 was 4.39:1 on #f3f4f6) */
   --color-bg-interactive-strong: #e5e7eb; /* gray-200 */
   --color-text-interactive-strong: #111827; /* gray-900 */
   --color-bg-interactive-soft: #f3f4f6; /* gray-100 */
   --color-selection-bg: #3b82f6;
   --color-selection-text: #ffffff;
   --color-link-text: #111827; /* For nav links in light mode */
-  --color-link-hover-text: #f97316; /* Accent for nav link hover */
+  --color-link-hover-text: #9a3412; /* match the darker light-theme accent */
   --color-border-subtle: #d1d5db; /* gray-300 */
   --color-code-bg: #f3f4f6; /* gray-100 */
   --color-code-text: #111827; /* gray-900 */
@@ -41,7 +45,7 @@ html.light {
   /* RGB versions for opacity usage - Light Theme */
   --color-bg-interactive-strong-rgb: 229, 231, 235;
   --color-border-subtle-rgb: 209, 213, 219;
-  --color-accent-rgb: 249, 115, 22; /* Same as dark */
+  --color-accent-rgb: 154, 52, 18; /* orange-800, matches --color-accent above */
   --color-code-bg-rgb: 243, 244, 246;
 }
 
@@ -155,6 +159,15 @@ a {
 
 a:hover {
   color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
+}
+
+/* Post tag pills are `<a class="bg-gray-800 text-white">`, but the global `a`
+   rule above overrides text-white with the accent color. On the dark theme the
+   accent (#f97316) still clears AA on the gray-800 pill, so it's left as-is; in
+   the light theme the darker accent (#9a3412) drops below AA there, so restore
+   the intended white. Scoped to light to keep the dark theme identical. */
+html.light a.bg-gray-800 {
+  color: #ffffff;
 }
 
 #searchInput {
