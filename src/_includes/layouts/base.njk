@@ -74,6 +74,7 @@
 
 </head>
 <body class="font-sans bg-bg-main text-text-main">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded focus:bg-bg-interactive-strong focus:text-text-interactive-strong focus:ring-2 focus:ring-accent">Skip to main content</a>
   <canvas id="node-graph-bg" aria-hidden="true"></canvas>
   {% from "macros/breadcrumbs.njk" import breadcrumbs %}
   <header class="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
@@ -117,7 +118,7 @@
     </div>
   {% endif %}
 
-  <main class="max-w-4xl mx-auto px-2 sm:px-4">
+  <main id="main-content" tabindex="-1" class="max-w-4xl mx-auto px-2 sm:px-4">
     {% block content %}
       {{ content | safe }}
     {% endblock %}
