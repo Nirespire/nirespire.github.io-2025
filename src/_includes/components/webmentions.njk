@@ -1,7 +1,7 @@
 <div id="webmentions" class="webmentions">
-  <h3>Webmentions</h3>
+  <h2>Webmentions</h2>
   {% if webmentions.likes | length > 0 %}
-    <h4>Likes</h4>
+    <h3>Likes</h3>
     <ul class="webmentions__list webmentions__list--likes">
       {% for like in webmentions.likes %}
         <li class="webmention webmention--like">
@@ -15,7 +15,7 @@
   {% endif %}
 
   {% if webmentions.reposts | length > 0 %}
-    <h4>Reposts</h4>
+    <h3>Reposts</h3>
     <ul class="webmentions__list webmentions__list--reposts">
       {% for repost in webmentions.reposts %}
         <li class="webmention webmention--repost">
@@ -29,7 +29,7 @@
   {% endif %}
 
   {% if webmentions.replies | length > 0 %}
-    <h4>Replies</h4>
+    <h3>Replies</h3>
     <ul class="webmentions__list webmentions__list--replies">
       {% for reply in webmentions.replies %}
         <li class="webmention webmention--reply">
