@@ -63,6 +63,14 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - **Node 22** required (see `.nvmrc`; `package.json` engines `^22.14.0`)
 - Theme colors use CSS custom properties (`--color-bg-main`, `--color-accent`, etc.) mapped through `tailwind.config.js`
 - Light/dark theme switching handled by `src/assets/js/theme-switcher.js`
+- **Keep the repo small** — image weight budgets (`scripts/image-budgets.js`)
+  cover **both** `src/assets/images` and the wedding archive `archive/wedding/img`;
+  bring a violating image within budget with `npm run compress-images`. A hard
+  1.5 MB cap on **any** tracked file (`tests/unit/file-size-guard.test.js`) blocks
+  stray large binaries — don't commit them; use an external host or release asset.
+  Both are enforced via `test:unit` → `npm run verify` → pre-push + CI. The
+  history was purged once with `scripts/purge-history.sh`; do not re-introduce
+  large blobs.
 
 ## Testing
 
@@ -70,7 +78,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   localhost:8080 across Chromium, Firefox, and WebKit.
 - **Accessibility** — `tests/a11y.spec.ts` uses `@axe-core/playwright`.
 - **Unit** — Node's built-in test runner (`node --test`) over `tests/unit/*.test.js`
-  covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`).
+  covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`) and
+  repo-weight guards (`image-budget`, `file-size-guard`).
 
 ## CI / Automation
 
@@ -104,6 +113,14 @@ Other workflows of note:
 - Branch naming: `feature/description` or `bug/description`
 - Use conventional commit format
 - Check current branch with `git branch` before committing
+- **Split independent work into independent PRs.** When a proposed plan
+  addresses multiple distinct, self-contained issues, open a separate branch
+  and pull request for each one rather than bundling them into a single PR —
+  do this by default, without the user needing to ask. Prefer the smallest
+  reasonable unit of change per PR, and group related changes by category
+  (e.g. bug fixes, new features, content changes, chores/tooling) rather than
+  mixing categories in one PR. This applies automatically once a plan is
+  approved.
 
 ## Content Audit Guidance
 

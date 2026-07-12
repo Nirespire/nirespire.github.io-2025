@@ -17,6 +17,12 @@ const BUDGETS = {
   '.ico': 50 * 1024,
 };
 
-const IMAGES_DIR = path.join(__dirname, '..', 'src', 'assets', 'images');
+// Directories whose images are scanned/compressed against BUDGETS. The wedding
+// archive (archive/wedding/img) ships full-size photos and used to escape the
+// budget entirely, which is how the repo bloated — keep it in this list.
+const IMAGE_DIRS = [
+  path.join(__dirname, '..', 'src', 'assets', 'images'),
+  path.join(__dirname, '..', 'archive', 'wedding', 'img'),
+];
 
-module.exports = { BUDGETS, IMAGES_DIR };
+module.exports = { BUDGETS, IMAGE_DIRS };

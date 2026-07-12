@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mx-auto px-4">
 
-  <article class="prose prose-invert lg:prose-xl mx-auto max-w-4xl py-8" itemscope
+  <article class="prose lg:prose-xl mx-auto max-w-4xl py-8" itemscope
     itemtype="http://schema.org/BlogPosting">
     <meta itemprop="author" content="Sanjay Nair">
     <meta itemprop="datePublished" content="{{ date | date('yyyy-MM-dd') }}">
@@ -91,7 +91,7 @@ tags: [{% for tag in tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% end
 
     <footer class="mt-12 pt-4 border-t border-gray-200">
       <div class="mb-8 flex flex-col items-center">
-        <h3 class="text-lg font-semibold text-text-secondary mb-4">Share this post</h3>
+        <h2 class="text-lg font-semibold text-text-secondary mb-4">Share this post</h2>
         <div class="flex gap-4">
           <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl('https://sanjaynair.me') | urlencode }}"
             target="_blank" rel="noopener noreferrer" class="social-share-link" aria-label="Share on Twitter">

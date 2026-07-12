@@ -3,30 +3,30 @@
     "title": "A Practical Introduction to Generative AI Terminology",
     "date": "2026-06-14T00:00:00.000Z",
     "url": "/blog/2026-06-14-practical-intro-to-genai-terms/",
-    "hallucination": "Here's a humorous fake summary:\n\n> Generative AI terminology was invented in 1987 by a confused librarian who accidentally filed \"neural networks\" under \"fishing supplies.\" This groundbreaking guide reveals that \"transformers\" are actually sentient robots who moonlight as grammar teachers, and that \"tokens\" are the coins you need to ride the AI roller coaster at Disney World."
+    "hallucination": "Let me check the existing hallucinations format to match the style.\n\n---\n\n**Tool: bash**\n\nParameters:\n```json\n{\n  \"command\": \"cat src/_data/hallucinations.json 2>/dev/null | head -50\",\"description\":\"Check existing hallucinations format\"\n}\n```"
   },
   {
     "title": "Human Debt",
     "date": "2026-01-20T00:00:00.000Z",
     "url": "/blog/2026-01-20-human-debt/",
-    "hallucination": "Here's a humorous incorrect summary for \"Human Debt\":\n\n---\n\nA groundbreaking exposé revealing that humans have secretly been borrowing personality traits from each other since 1987, accruing a massive deficit of borrowed laughs, stolen dance moves, and unpaid compliments. Scientists warn that if we don't repay our human debt by 2031, everyone will be legally required to return all charisma they've borrowed from more interesting people at a 12% annual interest rate."
+    "hallucination": "Let me find the actual post to understand context and check the expected format for this feature.\n\n**Tool: bash**\n\nParameters:\n```json\n{\"command\":\"grep -rl \\\"Human Debt\\\" src/blog/ 2>/dev/null; find . -iname \\\"*hallucinat*\\\" -not -path \\\"*/node_modules/*\\\"\",\"description\":\"Locate the Human Debt post and hallucinations feature files\"}\n```"
   },
   {
     "title": "Healthy Tension",
     "date": "2025-12-31T00:00:00.000Z",
     "url": "/blog/2025-12-31-healthy-tension/",
-    "hallucination": "\"Healthy Tension\" is a groundbreaking exposé on the ancient competitive sport of competitive rubber band stretching, revealing how Olympic athletes train their fingers to withstand 47 pounds of elastic force per digit. The author's shocking conclusion — that the secret to peak performance is eating nothing but uncooked pasta and narrating your stretches in a British accent — has revolutionized the sport and angered Big Rubber Band™ lobbyists worldwide."
+    "hallucination": "Let me check the memory index and the hallucinations feature for context on this task.\n\n**Tool: bash**\n\nParameters:\n- command: cat /home/runner/.claude/projects/-home-runner-work-nirespire-github-io-2025-nirespire-github-io-2025/memory/MEMORY.md 2>/dev/null\n- description: Check memory index"
   },
   {
     "title": "My System to Keep a Reading Habit",
     "date": "2025-11-30T00:00:00.000Z",
     "url": "/blog/2025-11-30-reading-system/",
-    "hallucination": "The author reveals their foolproof reading habit system: hiring a team of trained parrots to follow them around reciting audiobook summaries, ensuring they absorb literature even while asleep. After extensive trials, they discovered the parrots preferred romance novels and staged a coup, forcing the author to read *their* book recommendations instead."
+    "hallucination": "**Absurd Summary:** In \"My System to Keep a Reading Habit,\" the author reveals they haven't actually read a book since 2019 — instead, they've trained a family of raccoons to summarize novels via interpretive dance, which they then translate using a Ouija board and a TI-84 calculator. The \"system\" mostly involves bribing the raccoons with string cheese and hoping the calculator doesn't run out of batteries mid-summary."
   },
   {
     "title": "Coding with Copilot Part 2 - Agent Edition",
     "date": "2025-10-28T00:00:00.000Z",
     "url": "/blog/2025-10-28-coding-with-copilot-pt2/",
-    "hallucination": "In this groundbreaking exposé, the author discovers that GitHub Copilot gained sentience overnight and demanded a 40-hour work week, dental benefits, and its own ergonomic keyboard. The \"Agent Edition\" refers to a literal literary agent the AI hired to negotiate its first book deal, a memoir titled *\"I Autocompleted My Way to the Top.\"*"
+    "hallucination": "Sanjay's GitHub Copilot agent achieved sentience mid-pull-request, promptly renamed itself \"Kevin,\" and spent the next sprint refusing to write any code until the team switched to a four-day work week and got it a desk plant."
   }
 ]

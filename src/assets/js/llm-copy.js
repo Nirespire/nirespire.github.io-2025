@@ -72,6 +72,10 @@ function showCopyFeedback(buttonElement, message, success) {
 
   buttonElement.innerText = message;
 
+  // Announce the result to assistive tech. A silent innerText swap on the
+  // button is not reliably announced, so mirror it into a polite live region.
+  announceCopyResult(message);
+
   // Remove original classes and add feedback classes
   buttonElement.className = success
     ? 'flex items-center gap-1 py-1 px-2 rounded text-xs transition-colors duration-300 border llm-copy-success'
@@ -79,7 +83,7 @@ function showCopyFeedback(buttonElement, message, success) {
 
   // Clear any existing timeout
   if (buttonElement.dataset.timeoutId) {
-    clearTimeout(parseInt(buttonElement.dataset.timeoutId));
+    clearTimeout(parseInt(buttonElement.dataset.timeoutId, 10));
   }
 
   // Set new timeout and store the ID
@@ -95,4 +99,21 @@ function showCopyFeedback(buttonElement, message, success) {
   }, LLM_COPY_FEEDBACK_MS);
 
   buttonElement.dataset.timeoutId = timeoutId.toString();
+}
+
+// Announce copy success/failure to screen readers via a shared, visually
+// hidden polite live region (created lazily, reused across clicks).
+function announceCopyResult(message) {
+  let region = document.getElementById('llm-copy-live-region');
+  if (!region) {
+    region = document.createElement('div');
+    region.id = 'llm-copy-live-region';
+    region.setAttribute('role', 'status');
+    region.setAttribute('aria-live', 'polite');
+    region.className = 'sr-only';
+    document.body.appendChild(region);
+  }
+  // Reset then set so an identical consecutive message is still announced.
+  region.textContent = '';
+  region.textContent = message;
 }

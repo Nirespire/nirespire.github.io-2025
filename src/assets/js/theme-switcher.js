@@ -15,18 +15,23 @@ function updateIcons(theme) {
   }
 }
 
-// On page load, check localStorage and apply theme
-// Initialize to dark theme if no preference is found or if 'dark' is explicitly set.
+// On page load, resolve the active theme:
+//  1. An explicit choice the user made previously (localStorage) always wins.
+//  2. Otherwise follow the OS's prefers-color-scheme, defaulting to dark.
+// We intentionally do NOT persist the resolved default here — writing it would
+// freeze the first-visit OS state and stop future OS changes from being picked
+// up. Only an explicit toggle (below) persists a preference.
 let currentTheme = localStorage.getItem('theme');
+
+if (!currentTheme) {
+  currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
 
 if (currentTheme === 'light') {
   htmlElement.classList.add('light');
   updateIcons('light');
 } else {
-  // Default to dark: ensure 'light' class is removed and dark icon is shown.
-  // This handles both 'dark' in localStorage and null (no preference).
   htmlElement.classList.remove('light');
-  localStorage.setItem('theme', 'dark'); // Explicitly set to dark if no preference
   updateIcons('dark');
 }
 

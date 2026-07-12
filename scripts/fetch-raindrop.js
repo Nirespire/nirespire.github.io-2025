@@ -8,6 +8,9 @@ let fetch = global.fetch;
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1/raindrops/0'; // 0 is for "Unsorted" or "All" collection, check API for specifics if needed
 
+// Abort a hung request so a stalled upstream can't hang the CI job indefinitely.
+const FETCH_TIMEOUT_MS = 10000;
+
 if (require.main === module) {
   main();
 }
@@ -51,6 +54,7 @@ async function main() {
           Authorization: `Bearer ${testToken}`,
           'Content-Type': 'application/json',
         },
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       });
 
       if (!response.ok) {
@@ -74,6 +78,12 @@ async function main() {
 
       allItems = [...allItems, ...data.items];
       console.log(`Successfully fetched ${data.items.length} items from page ${page + 1}.`);
+
+      // Guard against an infinite loop: if the API reports a count larger than
+      // the items it actually returns, an empty page would spin forever.
+      if (data.items.length === 0) {
+        break;
+      }
 
       // Check if we've fetched all items by comparing with total count
       hasMorePages = allItems.length < data.count;

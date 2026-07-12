@@ -53,11 +53,6 @@ module.exports = function (eleventyConfig) {
   // it explicitly so it ends up at the site root.
   eleventyConfig.addPassthroughCopy({ 'src/robots.txt': 'robots.txt' });
 
-  // Add cache control headers
-  eleventyConfig.addPassthroughCopy({
-    _headers: '_headers',
-  });
-
   // Wedding archive — copied verbatim (no Nunjucks templating) to /archive/wedding/
   eleventyConfig.addPassthroughCopy({
     archive: 'archive',

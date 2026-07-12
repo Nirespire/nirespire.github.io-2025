@@ -20,3 +20,25 @@ test.describe('Wide-screen layout centering', () => {
     });
   }
 });
+
+test.describe('Skip to main content link', () => {
+  test('is the first tab stop and reveals on focus, targeting <main>', async ({ page }) => {
+    await page.goto('/');
+
+    const skipLink = page.getByRole('link', { name: 'Skip to main content' });
+    await expect(skipLink).toHaveAttribute('href', '#main-content');
+
+    // Visually hidden (sr-only) until focused.
+    await expect(skipLink).not.toBeInViewport();
+
+    // First Tab lands on the skip link and makes it visible.
+    await page.keyboard.press('Tab');
+    await expect(skipLink).toBeFocused();
+    await expect(skipLink).toBeInViewport();
+
+    // Its target exists and is the main landmark.
+    const target = page.locator('#main-content');
+    await expect(target).toHaveCount(1);
+    expect(await target.evaluate((el) => el.tagName)).toBe('MAIN');
+  });
+});

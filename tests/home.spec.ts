@@ -76,16 +76,18 @@ test.describe('Home page', () => {
   });
 
   test('should toggle light and dark themes', async ({ page }) => {
+    // No stored choice + OS prefers dark → dark, and nothing is persisted yet
+    // (persisting the resolved default would freeze the OS state on first visit).
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('/');
 
     const html = page.locator('html');
     const toggle = page.locator('#theme-toggle');
 
-    // Default theme should be dark
     let isLight = await html.evaluate((el) => el.classList.contains('light'));
     expect(isLight).toBe(false);
     let storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
-    expect(storedTheme).toBe('dark');
+    expect(storedTheme).toBeNull();
 
     // Switch to light mode
     await toggle.click();
@@ -114,5 +116,17 @@ test.describe('Home page', () => {
     expect(isLight).toBe(false);
     storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
     expect(storedTheme).toBe('dark');
+  });
+
+  test('follows OS prefers-color-scheme when no choice is stored', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+
+    const html = page.locator('html');
+    const isLight = await html.evaluate((el) => el.classList.contains('light'));
+    expect(isLight).toBe(true);
+    // Following the OS preference must not persist a choice.
+    const storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBeNull();
   });
 });
