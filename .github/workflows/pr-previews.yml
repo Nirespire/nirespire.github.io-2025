@@ -5,6 +5,12 @@ name: PR Previews
 # branch and referenced via raw.githubusercontent.com so GitHub renders them
 # inline. Kept separate from pr-test.yml so a preview failure never blocks the
 # gating test signal, and so the test job keeps its read-only permissions.
+#
+# The branch is always force-pushed as a single parentless snapshot commit:
+# appending normal commits made its history grow by the full screenshot set
+# (~70 MB) on every run, since deleted PNGs stay reachable forever. Only the
+# live tip matters — raw.githubusercontent.com URLs reference the branch, not
+# a commit — so no history is worth keeping.
 
 on:
   pull_request:
@@ -110,8 +116,9 @@ jobs:
 
           git -C "$WORK" add -A
           if [ -n "$(git -C "$WORK" status --porcelain)" ]; then
-            git -C "$WORK" commit -q -m "previews: PR #${PR_NUMBER} @ ${SHA}"
-            git -C "$WORK" push -q origin "$BRANCH"
+            TREE="$(git -C "$WORK" write-tree)"
+            SNAPSHOT="$(git -C "$WORK" commit-tree "$TREE" -m "previews: PR #${PR_NUMBER} @ ${SHA}")"
+            git -C "$WORK" push -q --force origin "${SNAPSHOT}:refs/heads/${BRANCH}"
           fi
           echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
 
@@ -235,8 +242,9 @@ jobs:
           git -C "$WORK" checkout -q -b "$BRANCH" FETCH_HEAD
           if [ -d "$WORK/pr-${PR_NUMBER}" ]; then
             git -C "$WORK" rm -rq "pr-${PR_NUMBER}"
-            git -C "$WORK" commit -q -m "previews: clean up PR #${PR_NUMBER}"
-            git -C "$WORK" push -q origin "$BRANCH"
+            TREE="$(git -C "$WORK" write-tree)"
+            SNAPSHOT="$(git -C "$WORK" commit-tree "$TREE" -m "previews: clean up PR #${PR_NUMBER}")"
+            git -C "$WORK" push -q --force origin "${SNAPSHOT}:refs/heads/${BRANCH}"
           else
             echo "No previews for PR #${PR_NUMBER}."
           fi
