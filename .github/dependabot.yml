@@ -8,3 +8,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # v6 crashes during "Setup Pages" with "TypeError: error must be an
+      # instance of Error" - pinned to v4 in deploy.yml until upstream fixes it.
+      - dependency-name: "actions/configure-pages"
+        versions: [">=5"]
