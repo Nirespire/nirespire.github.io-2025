@@ -1,16 +1,12 @@
 name: PR Previews
 
 # Captures screenshots of the pages a PR changes and posts them as a single,
-# self-updating sticky comment. Images are hosted on the orphan `pr-previews`
-# branch and referenced via raw.githubusercontent.com so GitHub renders them
-# inline. Kept separate from pr-test.yml so a preview failure never blocks the
-# gating test signal, and so the test job keeps its read-only permissions.
-#
-# The branch is always force-pushed as a single parentless snapshot commit:
-# appending normal commits made its history grow by the full screenshot set
-# (~70 MB) on every run, since deleted PNGs stay reachable forever. Only the
-# live tip matters — raw.githubusercontent.com URLs reference the branch, not
-# a commit — so no history is worth keeping.
+# self-updating sticky comment. Images are hosted as assets on a dedicated
+# `pr-previews` GitHub Release and referenced via their release download URLs so
+# GitHub renders them inline. Release assets live outside the git object store,
+# so they never bloat the repo the way a screenshot-carrying branch would. Kept
+# separate from pr-test.yml so a preview failure never blocks the gating test
+# signal, and so the test job keeps its read-only permissions.
 
 on:
   pull_request:
@@ -18,7 +14,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, closed]
 
 permissions:
-  contents: write # push screenshots to the pr-previews branch
+  contents: write # manage the pr-previews release + its assets
   pull-requests: write # create/update the sticky comment
 
 concurrency:
@@ -28,7 +24,7 @@ concurrency:
 jobs:
   previews:
     # Skip on close (handled by `cleanup`) and on fork PRs, whose GITHUB_TOKEN is
-    # read-only and cannot push the branch or comment — degrade cleanly instead.
+    # read-only and cannot manage the release or comment — degrade cleanly instead.
     if: >-
       github.event.action != 'closed' &&
       github.event.pull_request.head.repo.full_name == github.repository
@@ -83,44 +79,88 @@ jobs:
         if: steps.routes.outputs.count != '0'
         run: node scripts/capture-previews.js --routes-file previews-routes.json
 
-      - name: Publish previews to pr-previews branch
+      - name: Publish previews to release
         id: publish
         if: steps.routes.outputs.count != '0'
+        uses: actions/github-script@v9
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          set -euo pipefail
-          BRANCH="pr-previews"
-          SHA="$(git rev-parse --short "$HEAD_SHA")"
-          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          WORK="$(mktemp -d)"
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const tag = 'pr-previews';
+            const prNumber = process.env.PR_NUMBER;
+            const sha = process.env.HEAD_SHA.slice(0, 7);
+            const prefix = `pr-${prNumber}__`;
 
-          git -C "$WORK" init -q
-          git -C "$WORK" config user.name "github-actions[bot]"
-          git -C "$WORK" config user.email "github-actions[bot]@users.noreply.github.com"
-          git -C "$WORK" remote add origin "$REMOTE"
+            // Resolve the release that acts as our asset bucket, creating it once
+            // on first ever run. Assets on a release live outside the git object
+            // store, so they never bloat the repo the way a branch would.
+            async function getOrCreateRelease() {
+              try {
+                const { data } = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+                return data;
+              } catch (err) {
+                if (err.status !== 404) throw err;
+              }
+              try {
+                const { data } = await github.rest.repos.createRelease({
+                  owner,
+                  repo,
+                  tag_name: tag,
+                  name: 'PR Previews',
+                  prerelease: true,
+                  body: 'Automated PR-preview screenshots. Managed by the pr-previews workflow — do not edit.',
+                });
+                return data;
+              } catch (err) {
+                // A concurrent run may have created it first; re-fetch and use that.
+                const { data } = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+                return data;
+              }
+            }
 
-          if git -C "$WORK" ls-remote --exit-code origin "$BRANCH" >/dev/null 2>&1; then
-            git -C "$WORK" fetch -q --depth 1 origin "$BRANCH"
-            git -C "$WORK" checkout -q -b "$BRANCH" FETCH_HEAD
-          else
-            git -C "$WORK" checkout -q --orphan "$BRANCH"
-          fi
+            const release = await getOrCreateRelease();
 
-          # Keep only the latest screenshots for this PR.
-          rm -rf "$WORK/pr-${PR_NUMBER}"
-          mkdir -p "$WORK/pr-${PR_NUMBER}/${SHA}"
-          cp -R "$GITHUB_WORKSPACE/previews-output/." "$WORK/pr-${PR_NUMBER}/${SHA}/"
+            // Drop this PR's previous assets so the set stays bounded (mirrors the
+            // old `rm -rf pr-<num>` behaviour).
+            const existing = await github.paginate(github.rest.repos.listReleaseAssets, {
+              owner,
+              repo,
+              release_id: release.id,
+              per_page: 100,
+            });
+            for (const asset of existing) {
+              if (asset.name.startsWith(prefix)) {
+                await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id: asset.id });
+              }
+            }
 
-          git -C "$WORK" add -A
-          if [ -n "$(git -C "$WORK" status --porcelain)" ]; then
-            TREE="$(git -C "$WORK" write-tree)"
-            SNAPSHOT="$(git -C "$WORK" commit-tree "$TREE" -m "previews: PR #${PR_NUMBER} @ ${SHA}")"
-            git -C "$WORK" push -q --force origin "${SNAPSHOT}:refs/heads/${BRANCH}"
-          fi
-          echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
+            // Upload each captured PNG and record file -> download URL for the
+            // comment step. Asset names use only [a-z0-9._-], preserved verbatim.
+            const outDir = 'previews-output';
+            const files = fs
+              .readdirSync(outDir)
+              .filter((f) => f.toLowerCase().endsWith('.png'));
+            const urls = {};
+            for (const file of files) {
+              const name = `${prefix}${sha}__${file}`;
+              const { data } = await github.rest.repos.uploadReleaseAsset({
+                owner,
+                repo,
+                release_id: release.id,
+                name,
+                data: fs.readFileSync(path.join(outDir, file)),
+                headers: { 'content-type': 'image/png' },
+              });
+              urls[file] = data.browser_download_url;
+            }
+            fs.writeFileSync(path.join(outDir, 'urls.json'), JSON.stringify(urls, null, 2));
+            core.setOutput('sha', sha);
 
       - name: Upsert preview comment
         if: always() && steps.routes.outcome == 'success'
@@ -143,8 +183,16 @@ jobs:
               manifest = JSON.parse(fs.readFileSync('previews-output/manifest.json', 'utf8'));
             }
 
+            let urls = {};
+            if (fs.existsSync('previews-output/urls.json')) {
+              urls = JSON.parse(fs.readFileSync('previews-output/urls.json', 'utf8'));
+            }
+
+            // Prefer the exact download URL recorded at upload time; fall back to
+            // the predictable release-asset URL if the map is missing an entry.
             const rawUrl = (file) =>
-              `https://raw.githubusercontent.com/${owner}/${repo}/pr-previews/pr-${prNumber}/${sha}/${file}`;
+              urls[file] ||
+              `https://github.com/${owner}/${repo}/releases/download/pr-previews/pr-${prNumber}__${sha}__${file}`;
 
             let body;
             if (manifest.length > 0 && sha) {
@@ -214,37 +262,45 @@ jobs:
             }
 
   cleanup:
-    # On PR close, drop this PR's folder from the pr-previews branch.
+    # On PR close (including merge), delete this PR's assets from the pr-previews
+    # release. The release itself is kept as the shared bucket for other PRs.
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Remove previews for closed PR
+        uses: actions/github-script@v9
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          set -euo pipefail
-          BRANCH="pr-previews"
-          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          WORK="$(mktemp -d)"
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const tag = 'pr-previews';
+            const prefix = `pr-${process.env.PR_NUMBER}__`;
 
-          git -C "$WORK" init -q
-          git -C "$WORK" config user.name "github-actions[bot]"
-          git -C "$WORK" config user.email "github-actions[bot]@users.noreply.github.com"
-          git -C "$WORK" remote add origin "$REMOTE"
+            let release;
+            try {
+              const { data } = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+              release = data;
+            } catch (err) {
+              if (err.status === 404) {
+                console.log('No pr-previews release; nothing to clean.');
+                return;
+              }
+              throw err;
+            }
 
-          if ! git -C "$WORK" ls-remote --exit-code origin "$BRANCH" >/dev/null 2>&1; then
-            echo "No $BRANCH branch; nothing to clean."
-            exit 0
-          fi
-
-          git -C "$WORK" fetch -q --depth 1 origin "$BRANCH"
-          git -C "$WORK" checkout -q -b "$BRANCH" FETCH_HEAD
-          if [ -d "$WORK/pr-${PR_NUMBER}" ]; then
-            git -C "$WORK" rm -rq "pr-${PR_NUMBER}"
-            TREE="$(git -C "$WORK" write-tree)"
-            SNAPSHOT="$(git -C "$WORK" commit-tree "$TREE" -m "previews: clean up PR #${PR_NUMBER}")"
-            git -C "$WORK" push -q --force origin "${SNAPSHOT}:refs/heads/${BRANCH}"
-          else
-            echo "No previews for PR #${PR_NUMBER}."
-          fi
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
+              owner,
+              repo,
+              release_id: release.id,
+              per_page: 100,
+            });
+            let removed = 0;
+            for (const asset of assets) {
+              if (asset.name.startsWith(prefix)) {
+                await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id: asset.id });
+                removed++;
+              }
+            }
+            console.log(`Removed ${removed} asset(s) for PR #${process.env.PR_NUMBER}.`);
