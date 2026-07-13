@@ -104,7 +104,9 @@ which sets `git config core.hooksPath .githooks`). Individual checks:
 
 Other workflows of note:
 - `.github/workflows/pr-previews.yml` — on PRs, renders screenshots of changed
-  pages (`scripts/capture-previews.js` + `resolve-changed-routes.js`) and posts them.
+  pages (`scripts/capture-previews.js` + `resolve-changed-routes.js`), uploads them
+  as assets on a dedicated `pr-previews` GitHub Release (kept out of the git object
+  store so they don't bloat the repo), and posts a sticky comment embedding them.
 - `.github/workflows/generate-hallucinations.yml` — regenerates `hallucinations.json`.
 
 ## Git Workflow
