@@ -1,0 +1,226 @@
+[
+  {
+    "label": "Home",
+    "path": "/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "home__desktop__dark.png"
+  },
+  {
+    "label": "Blog index",
+    "path": "/blog/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "blog-index__desktop__dark.png"
+  },
+  {
+    "label": "About",
+    "path": "/about/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "about__desktop__dark.png"
+  },
+  {
+    "label": "Uses",
+    "path": "/uses/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "uses__desktop__dark.png"
+  },
+  {
+    "label": "Reads",
+    "path": "/reads/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "reads__desktop__dark.png"
+  },
+  {
+    "label": "Tags",
+    "path": "/tags/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "tags__desktop__dark.png"
+  },
+  {
+    "label": "404",
+    "path": "/404.html",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "404__desktop__dark.png"
+  },
+  {
+    "label": "Post: 2026-01-20-human-debt",
+    "path": "/blog/2026-01-20-human-debt/",
+    "theme": "dark",
+    "viewport": "desktop",
+    "file": "post-2026-01-20-human-debt__desktop__dark.png"
+  },
+  {
+    "label": "Home",
+    "path": "/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "home__desktop__light.png"
+  },
+  {
+    "label": "Blog index",
+    "path": "/blog/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "blog-index__desktop__light.png"
+  },
+  {
+    "label": "About",
+    "path": "/about/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "about__desktop__light.png"
+  },
+  {
+    "label": "Uses",
+    "path": "/uses/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "uses__desktop__light.png"
+  },
+  {
+    "label": "Reads",
+    "path": "/reads/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "reads__desktop__light.png"
+  },
+  {
+    "label": "Tags",
+    "path": "/tags/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "tags__desktop__light.png"
+  },
+  {
+    "label": "404",
+    "path": "/404.html",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "404__desktop__light.png"
+  },
+  {
+    "label": "Post: 2026-01-20-human-debt",
+    "path": "/blog/2026-01-20-human-debt/",
+    "theme": "light",
+    "viewport": "desktop",
+    "file": "post-2026-01-20-human-debt__desktop__light.png"
+  },
+  {
+    "label": "Home",
+    "path": "/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "home__mobile__dark.png"
+  },
+  {
+    "label": "Blog index",
+    "path": "/blog/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "blog-index__mobile__dark.png"
+  },
+  {
+    "label": "About",
+    "path": "/about/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "about__mobile__dark.png"
+  },
+  {
+    "label": "Uses",
+    "path": "/uses/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "uses__mobile__dark.png"
+  },
+  {
+    "label": "Reads",
+    "path": "/reads/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "reads__mobile__dark.png"
+  },
+  {
+    "label": "Tags",
+    "path": "/tags/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "tags__mobile__dark.png"
+  },
+  {
+    "label": "404",
+    "path": "/404.html",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "404__mobile__dark.png"
+  },
+  {
+    "label": "Post: 2026-01-20-human-debt",
+    "path": "/blog/2026-01-20-human-debt/",
+    "theme": "dark",
+    "viewport": "mobile",
+    "file": "post-2026-01-20-human-debt__mobile__dark.png"
+  },
+  {
+    "label": "Home",
+    "path": "/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "home__mobile__light.png"
+  },
+  {
+    "label": "Blog index",
+    "path": "/blog/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "blog-index__mobile__light.png"
+  },
+  {
+    "label": "About",
+    "path": "/about/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "about__mobile__light.png"
+  },
+  {
+    "label": "Uses",
+    "path": "/uses/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "uses__mobile__light.png"
+  },
+  {
+    "label": "Reads",
+    "path": "/reads/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "reads__mobile__light.png"
+  },
+  {
+    "label": "Tags",
+    "path": "/tags/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "tags__mobile__light.png"
+  },
+  {
+    "label": "404",
+    "path": "/404.html",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "404__mobile__light.png"
+  },
+  {
+    "label": "Post: 2026-01-20-human-debt",
+    "path": "/blog/2026-01-20-human-debt/",
+    "theme": "light",
+    "viewport": "mobile",
+    "file": "post-2026-01-20-human-debt__mobile__light.png"
+  }
+]
