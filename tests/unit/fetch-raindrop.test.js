@@ -57,12 +57,13 @@ test('transforms raindrop items into the public shape', async () => {
     title: 'Article One',
     url: 'https://example.com/1',
     excerpt: 'a short excerpt',
+    note: '',
     dateAdded: new Date('2024-05-01T12:00:00Z').toISOString(),
     tags: ['reading', 'js'],
   });
 });
 
-test('falls back to item.note when excerpt is missing', async () => {
+test('persists item.note as its own field without excerpt fallback', async () => {
   setFetchForTest(async () => ({
     ok: true,
     status: 200,
@@ -72,19 +73,30 @@ test('falls back to item.note when excerpt is missing', async () => {
         {
           title: 'Note-only article',
           link: 'https://example.com/note',
-          note: 'fallback note body',
+          note: 'my commentary on this read',
           created: '2024-01-01T00:00:00Z',
           tags: [],
         },
+        {
+          title: 'Article with both',
+          link: 'https://example.com/both',
+          excerpt: 'the article excerpt',
+          note: 'and my note',
+          created: '2024-01-02T00:00:00Z',
+          tags: [],
+        },
       ],
-      count: 1,
+      count: 2,
     }),
     text: async () => '',
   }));
 
   await main();
   const data = JSON.parse(await fs.readFile(tmpFile, 'utf-8'));
-  assert.equal(data[0].excerpt, 'fallback note body');
+  assert.equal(data[0].excerpt, '');
+  assert.equal(data[0].note, 'my commentary on this read');
+  assert.equal(data[1].excerpt, 'the article excerpt');
+  assert.equal(data[1].note, 'and my note');
 });
 
 test('paginates until the reported count is reached', async () => {

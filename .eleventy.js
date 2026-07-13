@@ -42,6 +42,15 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.setLibrary('md', markdownLibrary);
 
+  // Render an arbitrary markdown string to HTML (reuses the configured lib).
+  // Used for Raindrop-authored notes on the reads pages.
+  eleventyConfig.addFilter('renderMarkdown', (str) => {
+    if (typeof str !== 'string') {
+      return '';
+    }
+    return markdownLibrary.render(str);
+  });
+
   // Copy assets with cache busting
   eleventyConfig.addPassthroughCopy({
     'src/assets/css': 'assets/css',
