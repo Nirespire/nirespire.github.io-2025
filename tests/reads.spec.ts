@@ -38,7 +38,7 @@ test.describe('Reads page', () => {
     await expect(title).toBeVisible();
 
     // Date should be present and in correct format
-    const date = firstArticle.locator('p.text-sm');
+    const date = firstArticle.locator('p.text-sm', { hasText: 'Read on' });
     await expect(date).toBeVisible();
     const dateText = await date.textContent();
     expect(dateText).toMatch(/Read on [A-Z][a-z]+ \d{1,2}, \d{4}/);
@@ -53,5 +53,20 @@ test.describe('Reads page', () => {
     await expect(readMoreLink).toBeVisible();
     expect(await readMoreLink.getAttribute('target')).toBe('_blank');
     expect(await readMoreLink.getAttribute('rel')).toBe('noopener noreferrer');
+  });
+
+  test('should render note commentary for reads that have one', async ({ page }) => {
+    await page.goto('/reads/');
+
+    // Notes are authored in Raindrop and synced into raindrop.json, so their
+    // presence depends on live data — assert structure only when one exists.
+    const notes = page.locator('article .read-note');
+    if ((await notes.count()) > 0) {
+      const firstNote = notes.first();
+      await expect(firstNote.getByText('My note')).toBeVisible();
+      const body = firstNote.locator('div.text-text-main');
+      await expect(body).toBeVisible();
+      expect((await body.textContent())?.trim()).not.toBe('');
+    }
   });
 });

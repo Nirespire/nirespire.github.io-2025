@@ -74,6 +74,14 @@ title: Home
     {% if article.excerpt %}
     <p class="text-text-main">{{ article.excerpt | truncate(150) }}</p> <!-- Changed text-gray-300 to text-text-main -->
     {% endif %}
+    {% if article.note %}
+    <p class="read-note-teaser mt-1 text-sm">
+      <a href="/reads" class="text-accent hover:underline">
+        <span class="font-semibold">✎ My note:</span>
+        {{ article.note | renderMarkdown | striptags | truncate(100) }}
+      </a>
+    </p>
+    {% endif %}
   </article>
   {% endfor %}
   <div class="text-right">

@@ -95,6 +95,9 @@ The site automatically fetches and displays my latest read articles from Raindro
    - GitHub Actions runs daily to fetch the 5 latest articles tagged with `RAINDROP_SEARCH_TAG`.
    - Articles are stored in `src/_data/raindrop.json`
    - Latest reads are displayed on the homepage.
+   - Notes authored in Raindrop's note field sync down with each bookmark and render
+     as "My note" commentary (markdown supported) on `/reads/`, with a teaser on the
+     homepage.
    - The fetch can also be triggered manually via GitHub Actions.
    - The script `scripts/fetch-raindrop.js` handles the fetching.
    - The workflow is defined in `.github/workflows/update-raindrop.reads.yml`.

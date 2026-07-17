@@ -27,7 +27,8 @@ test('main fetches items and writes transformed output file', async () => {
             {
               title: 'Stubbed Item',
               link: 'http://example.com/item',
-              excerpt: 'An example note',
+              excerpt: 'An example excerpt',
+              note: 'My authored note',
               created: Date.now(),
               tags: ['test'],
             },
@@ -52,6 +53,8 @@ test('main fetches items and writes transformed output file', async () => {
     expect(data.length).toBeGreaterThan(0);
     expect(data[0]).toHaveProperty('title', 'Stubbed Item');
     expect(data[0]).toHaveProperty('url', 'http://example.com/item');
+    expect(data[0]).toHaveProperty('excerpt', 'An example excerpt');
+    expect(data[0]).toHaveProperty('note', 'My authored note');
   } finally {
     // Cleanup - remove the generated file if present
     try {

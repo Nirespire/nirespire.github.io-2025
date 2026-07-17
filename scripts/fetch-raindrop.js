@@ -95,7 +95,8 @@ async function main() {
     const transformedData = allItems.map((item) => ({
       title: item.title || '',
       url: item.link || '',
-      excerpt: item.excerpt || item.note || '', // Use note as fallback for excerpt
+      excerpt: item.excerpt || '',
+      note: item.note || '', // Authored in the Raindrop app; rendered as "My note" commentary
       dateAdded: new Date(item.created).toISOString(), // Ensure ISO string format
       tags: item.tags || [],
     }));

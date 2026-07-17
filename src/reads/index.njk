@@ -26,6 +26,12 @@ title: All Reads
               {{ article.excerpt }}
             </p>
           {% endif %}
+          {% if article.note %}
+            <div class="read-note mt-2 mb-4 pl-4 border-l-2 border-accent">
+              <p class="text-sm font-semibold text-accent mb-1">My note</p>
+              <div class="text-text-main">{{ article.note | renderMarkdown | safe }}</div>
+            </div>
+          {% endif %}
           <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold hover:underline">
             Read more &rarr;
           </a>

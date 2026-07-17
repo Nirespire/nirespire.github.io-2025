@@ -53,6 +53,10 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   `.github/workflows/generate-hallucinations.yml`).
 - **Latest reads (Raindrop.io)** — `scripts/fetch-raindrop.js` syncs bookmarks to
   `src/_data/raindrop.json`; needs `RAINDROP_TEST_TOKEN` and `RAINDROP_SEARCH_TAG`.
+  Raindrop is also the source of truth for per-read notes: commentary authored in
+  the Raindrop app's note field syncs down as each item's `note` and renders as
+  "My note" (markdown, via the `renderMarkdown` filter) on `/reads/` plus a teaser
+  on the homepage.
 - **Webmentions** — sent/received via `scripts/send-webmentions.js` /
   `fetch-webmentions.js` and `src/_data/webmentions.*`.
 - **External links** open in a new tab globally (handled in `base.njk`).
