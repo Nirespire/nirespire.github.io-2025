@@ -3,6 +3,7 @@
     "title": "The hidden cost of AI-assisted development: cognitive fatigue",
     "url": "https://warpedvisions.org/blog/2025/hitting-the-wall-at-ai-speed/",
     "excerpt": "After three months of AI-assisted development, I’m more productive than ever. I’m also mentally exhausted in ways I didn’t expect.\nThe productivity gains are real—I can go from sketch to working prototype in hours instead of days. But there’s a hidden cost that we’re not talking about: the tools fundamentally change the cognitive load of programming. Instead of being tired from wrestling with implementation details, I’m exhausted from operating constantly at the architecture and design level.",
+    "note": "",
     "dateAdded": "2026-07-12T19:38:04.228Z",
     "tags": [
       "to-share"
@@ -12,6 +13,7 @@
     "title": "COMPULSION: The Writers Who Wrote The Most in History",
     "url": "https://brennan.day/compulsion-the-writers-who-wrote-the-most-in-history/",
     "excerpt": "I've been writing publicly every day for seven months, and I wanted to know what that looked like for other compulsive writers. From Chesterton dictating past midnight, to Chinese web fiction authors racing through 10,000 words daily. What does their obsessive output reveal about the nature of writing itself? The volume isn't the point. The showing up is.",
+    "note": "",
     "dateAdded": "2026-07-06T01:01:22.502Z",
     "tags": [
       "to-share"
@@ -21,6 +23,7 @@
     "title": "A statistical study of PRs opened on openclaw/openclaw | Greptile Blog",
     "url": "https://www.greptile.com/blog/prs-on-openclaw",
     "excerpt": "OpenClaw became the fastest-growing repo in GitHub history almost overnight. The PR data offers a preview of what the future of open source contribution may look like.",
+    "note": "",
     "dateAdded": "2026-06-25T12:40:20.769Z",
     "tags": [
       "to-share"
@@ -30,6 +33,7 @@
     "title": "Who Does What? Team Topologies for the Agentic Platform",
     "url": "https://blog.owulveryck.info/2026/06/22/who-does-what-team-topologies-for-the-agentic-platform.html",
     "excerpt": "The agentic platform defines what needs to be provided. Team Topologies defines who provides it, and how teams interact to make it happen.\nIn the first article of this series, we asked the what: which systemic capabilities (context, guardrails, tooling) are needed to produce reliable applications at scale. The answer was the agentic platform, and at its core, the agentic factory: the mechanism where agents plan, code, test, and ship.\nBut a platform does not build itself, and more importantly, it is not consumed the same way it is built. A fundamental question remains: who does what?",
+    "note": "",
     "dateAdded": "2026-06-23T11:38:38.041Z",
     "tags": [
       "to-share"
@@ -39,6 +43,7 @@
     "title": "If You are Asking for Human Attention, Demonstrate Human Effort",
     "url": "https://tombedor.dev/human-attention-and-human-effort/",
     "excerpt": "An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?",
+    "note": "",
     "dateAdded": "2026-06-12T12:00:02.749Z",
     "tags": [
       "to-share"
@@ -48,6 +53,7 @@
     "title": "Domain Expertise Has Always Been the Real Moat | Aaron Brethorst",
     "url": "https://www.brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/",
     "excerpt": "Personal website for Aaron Brethorst - Seattleite, technology leader, photographer, transit enthusiast, erstwhile non-runner.",
+    "note": "",
     "dateAdded": "2026-05-31T11:45:51.412Z",
     "tags": [
       "to-share"
@@ -57,6 +63,7 @@
     "title": "Jamie Hurst's Blog - Is this sustainable?",
     "url": "https://jamiehurst.co.uk/2026-05-24_ai-sustainable",
     "excerpt": "Jamie Hurst - Software and System Engineer, Enthusiast of Terrible Cars",
+    "note": "",
     "dateAdded": "2026-05-29T11:56:53.480Z",
     "tags": [
       "to-share"
@@ -66,6 +73,7 @@
     "title": "The AI engineering stack we built internally — on the platform we ship",
     "url": "https://blog.cloudflare.com/internal-ai-engineering-stack/?utm_source=tldrnewsletter",
     "excerpt": "We built our internal AI engineering stack on the same products we ship. That means 20 million requests routed through AI Gateway, 241 billion tokens processed, and inference running on Workers AI, serving more than 3,683 internal users. Here's how we did it.",
+    "note": "",
     "dateAdded": "2026-04-21T12:27:40.189Z",
     "tags": [
       "to-share"
@@ -75,6 +83,7 @@
     "title": "The Agent Stack Bet",
     "url": "https://addyo.substack.com/p/the-agent-stack-bet?utm_source=tldrnewsletter",
     "excerpt": "The bet every serious developer needs to make on on their agent stack",
+    "note": "",
     "dateAdded": "2026-04-21T00:26:13.339Z",
     "tags": [
       "to-share"
@@ -84,6 +93,7 @@
     "title": "How we hire AI-native engineers now: our criteria",
     "url": "https://www.augmentcode.com/blog/how-we-hire-ai-native-engineers-now",
     "excerpt": "The most powerful AI software development platform with the industry-leading context engine.",
+    "note": "",
     "dateAdded": "2026-04-10T11:55:47.737Z",
     "tags": [
       "to-share"
@@ -93,6 +103,7 @@
     "title": "The Git Commands I Run Before Reading Any Code",
     "url": "https://piechowski.io/post/git-commands-before-reading-code/",
     "excerpt": "Five git commands that tell you where a codebase hurts before you open a single file. Churn hotspots, bus factor, bug clusters, and crisis patterns.",
+    "note": "",
     "dateAdded": "2026-04-09T12:23:40.725Z",
     "tags": [
       "to-share"
@@ -102,6 +113,7 @@
     "title": "Agent responsibly - Vercel",
     "url": "https://vercel.com/blog/agent-responsibly",
     "excerpt": "There's a difference between leveraging AI and relying on it. A framework for shipping agent-generated code with the judgment and guardrails it requires.",
+    "note": "",
     "dateAdded": "2026-04-04T13:04:41.919Z",
     "tags": [
       "to-share"
@@ -111,6 +123,7 @@
     "title": "Production Is Where the Rigor Goes",
     "url": "https://www.honeycomb.io/blog/production-is-where-the-rigor-goes",
     "excerpt": "In early February, Martin Fowler and the good folks at Thoughtworks sponsored a small, invite-only unconference in Deer Valley, Utah—birthplace of the Agile Manifesto—to talk about how software engineering is changing in the AI-native era. The longer I sit with this recap, the more troubled I am by what it doesn't say. I worry that the most respected minds in software are unintentionally replicating a serious blind spot that has haunted software engineering for decades: relegating production to the realm of bugs and incidents.",
+    "note": "",
     "dateAdded": "2026-03-21T13:08:23.818Z",
     "tags": [
       "to-share"
@@ -120,6 +133,7 @@
     "title": "Willingness to look stupid is a genuine moat in creative work",
     "url": "https://sharif.io/looking-stupid",
     "excerpt": "Looking foolish is underrated.",
+    "note": "",
     "dateAdded": "2026-03-13T12:44:41.821Z",
     "tags": [
       "to-share"
@@ -129,6 +143,7 @@
     "title": "I'm Building Agents That Run While I Sleep",
     "url": "https://www.claudecodecamp.com/p/i-m-building-agents-that-run-while-i-sleep",
     "excerpt": "I Have No Idea If What They Ship Is Any Good",
+    "note": "",
     "dateAdded": "2026-03-11T12:26:50.167Z",
     "tags": [
       "to-share"
@@ -138,6 +153,7 @@
     "title": "Should managers become hands-on again?",
     "url": "https://newsletter.terminalprompt.com/p/should-managers-become-hands-on-again",
     "excerpt": "Why engineering leaders can’t afford to stay away from the terminal",
+    "note": "",
     "dateAdded": "2026-02-21T21:16:46.205Z",
     "tags": [
       "to-share"
@@ -147,6 +163,7 @@
     "title": "Minions: Stripe’s one-shot, end-to-end coding agents",
     "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
     "excerpt": "Minions are Stripe’s homegrown coding agents, responsible for more than a thousand pull requests merged each week. Though humans review the code, minions write it from start to finish. Learn how they work, and how we built them.",
+    "note": "",
     "dateAdded": "2026-02-21T21:11:01.996Z",
     "tags": [
       "to-share"
@@ -156,6 +173,7 @@
     "title": "Context graphs, one month in - B2BaCEO by Ashu Garg",
     "url": "https://ashugarg.substack.com/p/context-graphs-one-month-in",
     "excerpt": "What we've learned since the essay went viral",
+    "note": "",
     "dateAdded": "2026-02-14T14:41:06.623Z",
     "tags": [
       "to-share"
@@ -165,6 +183,7 @@
     "title": "Context is King",
     "url": "https://x.com/itsurboyevan/status/2021987783225524566?s=12&utm_source=tldrnewsletter",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2026-02-14T01:06:22.295Z",
     "tags": [
       "to-share"
@@ -174,6 +193,7 @@
     "title": "My AI Adoption Journey",
     "url": "https://mitchellh.com/writing/my-ai-adoption-journey",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2026-02-09T13:26:35.984Z",
     "tags": [
       "to-share"
@@ -183,6 +203,7 @@
     "title": "Welcome to the Room",
     "url": "https://www.jsnover.com/blog/2026/02/01/welcome-to-the-room/",
     "excerpt": "A lesson in leadership by Satya Nadella When I was Promoted to Technical Fellow, I was “invited to the room”, joining Microsoft’s other Senior Executives.  It was really something. Achieving t…",
+    "note": "",
     "dateAdded": "2026-02-08T01:47:00.266Z",
     "tags": [
       "to-share"
@@ -192,6 +213,7 @@
     "title": "I miss thinking hard.",
     "url": "https://www.jernesto.com/articles/thinking_hard",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2026-02-04T13:34:26.160Z",
     "tags": [
       "to-share"
@@ -201,6 +223,7 @@
     "title": "The Five Levels: from Spicy Autocomplete to the Dark Factory",
     "url": "https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/?utm_source=tldrnewsletter",
     "excerpt": "In my last post, I wrote about technical deflation. We’re seeing the cost of code is dropping so fast that we need to change our tech debt payment plans. The smart teams…",
+    "note": "",
     "dateAdded": "2026-01-29T13:27:48.969Z",
     "tags": [
       "to-share"
@@ -210,6 +233,7 @@
     "title": "Things I’ve learned in my 10 years as an engineering manager",
     "url": "https://www.jampa.dev/p/lessons-learned-after-10-years-as",
     "excerpt": "Non-obvious advice that I wish I learned sooner.",
+    "note": "",
     "dateAdded": "2026-01-26T12:48:53.429Z",
     "tags": [
       "to-share"
@@ -219,6 +243,7 @@
     "title": "How I estimate work as a staff software engineer",
     "url": "https://www.seangoedecke.com/how-i-estimate-work/",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2026-01-24T17:34:56.056Z",
     "tags": [
       "to-share"
@@ -228,6 +253,7 @@
     "title": "Your App Subscription Is Now My Weekend Project · Roberto Selbach",
     "url": "https://rselbach.com/your-sub-is-now-my-weekend-project",
     "excerpt": "Random thoughts",
+    "note": "",
     "dateAdded": "2026-01-23T13:27:57.737Z",
     "tags": [
       "to-share"
@@ -237,6 +263,7 @@
     "title": "Why We've Tried to Replace Developers Every Decade Since 1969",
     "url": "https://www.caimito.net/en/blog/2025/12/07/the-recurring-dream-of-replacing-developers.html",
     "excerpt": "Every decade brings new promises: this time, we'll finally make software development simple enough that we won't need so many developers. From COBOL to AI, the pattern repeats. Business leaders gro...",
+    "note": "",
     "dateAdded": "2026-01-18T12:51:46.610Z",
     "tags": [
       "to-share"
@@ -246,6 +273,7 @@
     "title": "The Napoleon Technique: Postponing Things to Increase Productivity – Effectiviology",
     "url": "https://effectiviology.com/napoleon/",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2026-01-08T13:31:50.866Z",
     "tags": [
       "to-share"
@@ -255,6 +283,7 @@
     "title": "The Unbearable Joy of Sitting Alone in A Café",
     "url": "https://candost.blog/the-unbearable-joy-of-sitting-alone-in-a-cafe/",
     "excerpt": "Hunting timeless insights into humans and software and helping others on the way.",
+    "note": "",
     "dateAdded": "2026-01-05T00:35:07.246Z",
     "tags": [
       "to-share"
@@ -264,6 +293,7 @@
     "title": "21 Lessons From 14 Years at Google",
     "url": "https://addyosmani.com/blog/21-lessons/",
     "excerpt": "Lessons learned from 14 years of engineering at Google, focusing on what truly matters beyond just writing great code.",
+    "note": "",
     "dateAdded": "2026-01-05T00:25:24.724Z",
     "tags": [
       "to-share"
@@ -273,6 +303,7 @@
     "title": "POSSE",
     "url": "https://indieweb.org/POSSE#",
     "excerpt": "POSSE is an abbreviation for Publish (on your) Own Site, Syndicate Elsewhere, the practice of posting content on your own site first, then publishing copies or sharing links to third parties (like social media silos) with original post links to provide viewers a path to directly interacting with your content.",
+    "note": "",
     "dateAdded": "2026-01-03T18:37:04.987Z",
     "tags": [
       "to-share"
@@ -282,6 +313,7 @@
     "title": "A Website To End All Websites | Henry From Online",
     "url": "https://henry.codes/writing/a-website-to-destroy-all-websites/",
     "excerpt": "How to win the war for the soul of the internet, and build the Web We Want.",
+    "note": "",
     "dateAdded": "2026-01-02T13:32:26.537Z",
     "tags": [
       "to-share"
@@ -291,6 +323,7 @@
     "title": "Including link: https://samuelalbanie.substack.com/",
     "url": "https://samuelalbanie.substack.com/p/reflections-on-2025#:~:text=The%20evolutionary%20point%20is%20that%20intelligence%20is%20not%20a%20fragile%20accident%20of%20primate%20biology.%20It%20is%20a%20recurring%20architectural%20pattern%20the%20universe%20stumbles%20upon%20whenever%20it%20leaves%20a%20pile%20of%20neurons%20unattended.",
     "excerpt": "The Compute Theory of Everything, grading the homework of a minor deity, and the acoustic preferences of Atlantic salmon",
+    "note": "",
     "dateAdded": "2026-01-01T22:30:51.597Z",
     "tags": [
       "to-share"
@@ -300,6 +333,7 @@
     "title": "Are we stuck with the same Desktop UX forever? | Ubuntu Summit 25.10",
     "url": "https://youtube.com/watch?v=1fZTOjd_bOQ&si=NvM7CuDjp1KYpvdY",
     "excerpt": "This talk focuses on that evil little term “UX/UI,” which is responsible for so much confusion and tension in open-source projects. Not only does it unnecess...",
+    "note": "",
     "dateAdded": "2025-12-18T03:35:41.960Z",
     "tags": [
       "to-share"
@@ -309,6 +343,7 @@
     "title": "Revisiting Manager READMEs",
     "url": "https://skamille.medium.com/revisiting-manager-readmes-b9a59167c226",
     "excerpt": "Several years ago, I published a critique of manager READMEs that succeeded in stirring up a lot of feelings, pro and con. I’d like to…",
+    "note": "",
     "dateAdded": "2025-12-07T01:59:35.625Z",
     "tags": [
       "to-share"
@@ -318,6 +353,7 @@
     "title": "We're Losing Our Voice to LLMs | Tony Alicea",
     "url": "https://tonyalicea.dev/blog/were-losing-our-voice-to-llms/",
     "excerpt": "We are losing something precious in the age of LLMs: our unique voices.",
+    "note": "",
     "dateAdded": "2025-11-27T16:27:07.238Z",
     "tags": [
       "to-share"
@@ -327,6 +363,7 @@
     "title": "How AWS is losing the younger generation with complexity",
     "url": "https://www.theregister.com/2025/11/04/aws_genz_misery_nope/",
     "excerpt": ": They have no need to prove their bonafides",
+    "note": "",
     "dateAdded": "2025-11-06T01:41:16.926Z",
     "tags": [
       "to-share"
@@ -336,6 +373,7 @@
     "title": "AI's Dial-Up Era - by Nowfal - Wreflection",
     "url": "https://www.wreflection.com/p/ai-dial-up-era",
     "excerpt": "It is 1995.",
+    "note": "",
     "dateAdded": "2025-11-04T13:14:48.630Z",
     "tags": [
       "to-share"
@@ -345,6 +383,7 @@
     "title": "Your URL Is Your State",
     "url": "https://alfy.blog/2025/10/31/your-url-is-your-state.html",
     "excerpt": "A deep dive into how thoughtful URL design can enhance usability, shareability, and performance. Learn what state belongs in URLs, common pitfalls to avoid, and practical patterns for modern web apps.",
+    "note": "",
     "dateAdded": "2025-11-03T13:23:21.472Z",
     "tags": [
       "to-share"
@@ -354,6 +393,7 @@
     "title": "Vibe engineering",
     "url": "https://simonwillison.net/2025/Oct/7/vibe-engineering/",
     "excerpt": "I feel like vibe coding is pretty well established now as covering the fast, loose and irresponsible way of building software with AI—entirely prompt-driven, and with no attention paid to …",
+    "note": "",
     "dateAdded": "2025-10-08T01:05:57.916Z",
     "tags": [
       "to-share"
@@ -363,6 +403,7 @@
     "title": "From managing people to managing AI: The leadership skills everyone needs now | Julie Zhuo",
     "url": "https://www.youtube.com/watch?v=c_w0LaFahxk",
     "excerpt": "Julie Zhuo is the former VP and Head of Design at Facebook (now Meta), author of the bestselling book The Making of a Manager, and co-founder of Sundial, an ...",
+    "note": "",
     "dateAdded": "2025-10-04T02:04:20.159Z",
     "tags": [
       "to-share"
@@ -372,6 +413,7 @@
     "title": "You're definitely going to be a manager now",
     "url": "https://lg.substack.com/p/managing-ai-is-like-managing-humans",
     "excerpt": "Book launch! + Predictions for the manager in the era of AI",
+    "note": "",
     "dateAdded": "2025-09-20T14:20:40.712Z",
     "tags": [
       "to-share"
@@ -381,6 +423,7 @@
     "title": "How to Use Claude Code Subagents to Parallelize Development | zach wills",
     "url": "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/",
     "excerpt": "In my last post I talked about how I spent a week heads down using AI to work on a greenfield engineering metrics tool. As I built it, I’d often navigate the web app and spot things that needed to be fleshed out. Sometimes it was a small typo; other times it was a bigger […]",
+    "note": "",
     "dateAdded": "2025-09-13T13:17:09.601Z",
     "tags": [
       "to-share"
@@ -390,6 +433,7 @@
     "title": "996 | Armin Ronacher's Thoughts and Writings",
     "url": "https://lucumr.pocoo.org/2025/9/4/996/",
     "excerpt": "There is cost to your lifestyle.",
+    "note": "",
     "dateAdded": "2025-09-06T14:28:15.076Z",
     "tags": [
       "to-share"
@@ -399,6 +443,7 @@
     "title": "Communication is The Job",
     "url": "https://boz.com/articles/communication-is-the-job",
     "excerpt": "We cannot help but communicate and our failure to embrace that reality can leave our teams in a state of information insecurity. Instead, we need to own our responsibility and be proactive.",
+    "note": "",
     "dateAdded": "2025-08-23T23:05:02.339Z",
     "tags": [
       "to-share"
@@ -408,6 +453,7 @@
     "title": "Closure | Tech Debt? I don't believe it exists.",
     "url": "https://dadrian.io/blog/posts/tech-debt/?utm_source=tldrnewsletter",
     "excerpt": "Rodents of Unusual Size? I don't believe they exist. There’s endless discourse around tech debt. Kellan has some really good categorizations of different types, Will Larson has a great explainer of organization debt in his book, and I also like the idea of product debt. Throughout my career, I’ve been an engineer complaining about tech debt, a manager prioritizing (and deprioritizing) addressing tech debt, and a product manager, where I assume I primarily inspire the creation of new tech debt.",
+    "note": "",
     "dateAdded": "2025-08-13T12:18:05.731Z",
     "tags": [
       "to-share"
@@ -417,6 +463,7 @@
     "title": "I Tried Every Todo App and Ended Up With a .txt File - Alireza Bashiri",
     "url": "https://www.al3rez.com/todo-txt-journey",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2025-08-11T23:17:54.422Z",
     "tags": [
       "to-share"
@@ -426,6 +473,7 @@
     "title": "Full-breadth Developers | justin․searls․co",
     "url": "https://justin.searls.co/posts/full-breadth-developers/",
     "excerpt": "The software industry is at an inflection point unlike anything in its brief history. Generative AI is all anyone can talk about. It has rendered entire product…",
+    "note": "",
     "dateAdded": "2025-08-03T15:33:27.336Z",
     "tags": [
       "to-share"
@@ -435,6 +483,7 @@
     "title": "6 Weeks of Claude Code - Puzzmo Blog",
     "url": "https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/",
     "excerpt": "It is wild to think that it has been only a handful of weeks.\nClaude Code has considerably changed my relationship to writing and maintaining code at scale. I still write code at the same level of quality, but I feel like I have a new freedom of expression which is hard to fully articulate.\nClaude Code has decoupled myself from writing every line of code, I still consider myself fully responsible for everything I ship to Puzzmo, but the ability to instantly create a whole scene instead of going line by line, word by word is incredibly powerful.",
+    "note": "",
     "dateAdded": "2025-08-03T14:47:08.800Z",
     "tags": [
       "to-share"
@@ -444,6 +493,7 @@
     "title": "Freestyle Documentation",
     "url": "https://docs.freestyle.sh/blog/docs-revamp",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2025-08-01T00:38:26.656Z",
     "tags": [
       "to-share"
@@ -453,6 +503,7 @@
     "title": "Why I'm Betting Against AI Agents in 2025 (Despite Building Them)",
     "url": "https://utkarshkanwat.com/writing/betting-against-agents/",
     "excerpt": "AI Engineer at ANZ Bank working on intelligent systems, LLM optimization, and scalable ML platforms.",
+    "note": "",
     "dateAdded": "2025-07-21T12:30:12.616Z",
     "tags": [
       "to-share"
@@ -462,6 +513,7 @@
     "title": "It's rude to show AI output to people | Alex Martsinovich",
     "url": "https://distantprovince.by/posts/its-rude-to-show-ai-output-to-people/?utm_source=tldrnewsletter",
     "excerpt": "Feeding slop is an act of war",
+    "note": "",
     "dateAdded": "2025-07-21T12:18:50.683Z",
     "tags": [
       "to-share"
@@ -471,6 +523,7 @@
     "title": "From Memo to Movement: Shopify’s Cultural Adoption of AI | First Round",
     "url": "https://www.firstround.com/ai/shopify?utm_source=tldrnewsletter",
     "excerpt": "The non-obvious insights, tactics and workflows Shopify used to bring an ambitious memo to life.",
+    "note": "",
     "dateAdded": "2025-07-16T12:29:54.294Z",
     "tags": [
       "to-share"
@@ -480,6 +533,7 @@
     "title": "How I build software quickly",
     "url": "https://evanhahn.com/how-i-build-software-quickly/",
     "excerpt": "Know how good your code needs to be for the task at hand. Start with a rough draft. Try to soften requirements if you can. Don't get distracted. Make small changes. Practice specific skills.",
+    "note": "",
     "dateAdded": "2025-07-14T12:16:04.551Z",
     "tags": [
       "to-share"
@@ -489,6 +543,7 @@
     "title": "Adding a feature because ChatGPT incorrectly thinks it exists | Holovaty.com",
     "url": "https://www.holovaty.com/writing/chatgpt-fake-feature/",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2025-07-08T12:15:36.364Z",
     "tags": [
       "to-share"
@@ -498,6 +553,7 @@
     "title": "The Uncertain Future of Coding Careers and Why I'm Still Hopeful",
     "url": "https://jonmagic.com/posts/the-uncertain-future-of-coding-careers-and-why-im-still-hopeful/",
     "excerpt": "My thoughts on the future of coding careers in the age of AI, and why I believe that human creativity and ingenuity will always be in demand.",
+    "note": "",
     "dateAdded": "2025-07-03T12:24:40.494Z",
     "tags": [
       "to-share"
@@ -507,6 +563,7 @@
     "title": "matduggan.com/what-would-a-kubernetes-2-0-look-like/?utm_source=tldrnewsletter",
     "url": "https://matduggan.com/what-would-a-kubernetes-2-0-look-like/",
     "excerpt": "As we approach the 10 year anniversary of the 1.0 release of Kubernetes, let's take stock of the successes and failures of the project in the wild. Also what would be on a wish list for a Kubernetes 2.0 release.",
+    "note": "",
     "dateAdded": "2025-06-21T00:25:02.987Z",
     "tags": [
       "to-share"
@@ -516,6 +573,7 @@
     "title": "Home | Substack",
     "url": "https://substack.com/home/post/p-165655726",
     "excerpt": "And the most fun",
+    "note": "",
     "dateAdded": "2025-06-18T12:20:38.844Z",
     "tags": [
       "to-share"
@@ -525,6 +583,7 @@
     "title": "Max Mitchell | I Read All Of Cloudflare's Claude-Generated Commits",
     "url": "https://www.maxemitchell.com/writings/i-read-all-of-cloudflares-claude-generated-commits/",
     "excerpt": "Max Mitchell's personal portfolio website showcasing his photography, YouTube videos, coding projects, and work history.",
+    "note": "",
     "dateAdded": "2025-06-08T01:31:43.492Z",
     "tags": [
       "to-share"
@@ -534,6 +593,7 @@
     "title": "The Prompt Engineering Playbook for Programmers",
     "url": "https://addyo.substack.com/p/the-prompt-engineering-playbook-for",
     "excerpt": "Turn AI coding assistants into more reliable development partners",
+    "note": "",
     "dateAdded": "2025-06-05T12:20:28.905Z",
     "tags": [
       "to-share"
@@ -543,6 +603,7 @@
     "title": "Five opinions I’ve kept, let go, and picked up as a software builder and leader",
     "url": "https://world.hey.com/joaoqalves/five-opinions-i-ve-kept-let-go-and-picked-up-as-a-software-builder-and-leader-5ab3b919",
     "excerpt": "Leading teams and building platforms across different contexts made me rethink. Some opinions proved reliable and continued to guide decisions. Others failed under pressure or became blockers. Along the way, I picked up new ones, usually the hard way. This post reflects how my thinking has evolved: what I still believe, don't, and have...",
+    "note": "",
     "dateAdded": "2025-05-31T17:36:59.591Z",
     "tags": [
       "to-share"
@@ -552,6 +613,7 @@
     "title": "When a team is too big - Alex Ewerlöf Notes",
     "url": "https://blog.alexewerlof.com/p/when-a-team-is-too-big",
     "excerpt": "What signs to look for and how to increase productivity with all-round skillset",
+    "note": "",
     "dateAdded": "2025-05-22T12:23:27.000Z",
     "tags": [
       "to-share"
@@ -561,6 +623,7 @@
     "title": "How We Build Effective Agents: Barry Zhang, Anthropic",
     "url": "https://youtu.be/D7_ipDqhtwk?si=iJEYwsRUJIMz-5Fj",
     "excerpt": "Recorded live at the Agent Engineering Session Day from the AI Engineer Summit 2025 in New York. Learn more at https://ai.engineer and purchase tickets to ou...",
+    "note": "",
     "dateAdded": "2025-05-17T17:38:13.000Z",
     "tags": [
       "to-share"
@@ -570,6 +633,7 @@
     "title": "21 observations from people watching - by shani",
     "url": "https://skincontact.substack.com/p/21-observations-from-people-watching",
     "excerpt": "Painting weddings for a few years now, I have spent a fair bit of time observing strangers move through a room.",
+    "note": "",
     "dateAdded": "2025-05-11T01:00:24.000Z",
     "tags": [
       "to-share"
@@ -579,6 +643,7 @@
     "title": "Getting things \"done\" in large tech companies | sean goedecke",
     "url": "https://www.seangoedecke.com/getting-things-done",
     "excerpt": "--",
+    "note": "",
     "dateAdded": "2025-05-06T12:18:16.000Z",
     "tags": [
       "to-share"
@@ -588,6 +653,7 @@
     "title": "Part 1: Finding Your Thing's Essence - by Alex Dobrenko`",
     "url": "https://sublimeinternet.substack.com/p/part-1-finding-your-things-essence",
     "excerpt": "If you've ever tried to explain an idea that doesn’t quite fit in a box, this one’s for you",
+    "note": "",
     "dateAdded": "2025-05-03T17:25:33.000Z",
     "tags": [
       "to-share"
@@ -597,6 +663,7 @@
     "title": "Carl Öst Wilkens´ Blog - Minimum viable blog",
     "url": "https://ostwilkens.se/blog/setting-up-blog",
     "excerpt": "A place for me to vent about my current obsessions.",
+    "note": "",
     "dateAdded": "2025-05-03T16:49:01.000Z",
     "tags": [
       "to-share"
@@ -606,6 +673,7 @@
     "title": "matthewsinclair.com · Intelligence. Innovation. Leadership. Influence.",
     "url": "https://matthewsinclair.com/blog/0178-why-llm-powered-programming-is-more-mech-suit-than-artificial-human",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2025-04-22T02:06:49.000Z",
     "tags": [
       "to-share"
@@ -615,6 +683,7 @@
     "title": "How to Get a Standing Ovation as a Conference Speaker | akos.ma",
     "url": "https://akos.ma/blog/how-to-get-a-standing-ovation-as-a-conference-speaker",
     "excerpt": "I keep on attending otherwise interesting talks and conference sessions being flushed down the toilet by appalling deliveries. This is my plea to you: please, please, PLEASE: if you have to speak in public, follow these rules to ensure a standing ovation at the end of your talk.",
+    "note": "",
     "dateAdded": "2025-04-05T12:31:33.000Z",
     "tags": [
       "to-share"
@@ -624,6 +693,7 @@
     "title": "Everything is a product – We help you create successful product culture and process",
     "url": "https://jpattonassociates.com/everything-is-a-product",
     "excerpt": "",
+    "note": "",
     "dateAdded": "2025-04-05T12:17:18.000Z",
     "tags": [
       "to-share"
@@ -633,6 +703,7 @@
     "title": "Senior Developer Skills in the AI Age: Leveraging Experience for Better Results • Manuel Kießling",
     "url": "https://manuel.kiessling.net/2025/03/31/how-seasoned-developers-can-achieve-great-results-with-ai-coding-agents",
     "excerpt": "How time-tested software engineering practices amplify the effectiveness of AI coding assistants.",
+    "note": "",
     "dateAdded": "2025-04-04T01:51:06.000Z",
     "tags": [
       "to-share"
@@ -642,6 +713,7 @@
     "title": "Accelerating Large-Scale Test Migration with LLMs | by Charles Covey-Brandt | The Airbnb Tech Blog |",
     "url": "https://medium.com/airbnb-engineering/accelerating-large-scale-test-migration-with-llms-9565c208023b",
     "excerpt": "Airbnb recently completed our first large-scale, LLM-driven code migration, updating nearly 3.5K React component test files from Enzyme to use React Testing Library (RTL) instead. We’d originally…",
+    "note": "",
     "dateAdded": "2025-03-23T02:19:30.000Z",
     "tags": [
       "to-share"
