@@ -1,5 +1,15 @@
 [
   {
+    "title": "Why I'm (sort of) not worried about AI",
+    "url": "https://youtube.com/watch?v=17_HcR95YBc&is=EhAV6w0oYRG22v0d",
+    "excerpt": "As a creator, and as a leader of a tech company, I have a deep sense of conflict about AI. I feel outrage, but I also feel something else. On social media, though, only the pure outrage floats to the top of our feeds. The truth is that there’s a gap between the unqualified fury I see externally, and the full complexity of my own, internal feelings. I haven’t seen this friction captured or articulated anywhere yet, and I feel a sort of desperate pressure to explain it — not just to you all, but to myself. After months of trying to structure my thoughts, this talk was the result.",
+    "note": "",
+    "dateAdded": "2026-07-17T22:03:49.541Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "The hidden cost of AI-assisted development: cognitive fatigue",
     "url": "https://warpedvisions.org/blog/2025/hitting-the-wall-at-ai-speed/",
     "excerpt": "After three months of AI-assisted development, I’m more productive than ever. I’m also mentally exhausted in ways I didn’t expect.\nThe productivity gains are real—I can go from sketch to working prototype in hours instead of days. But there’s a hidden cost that we’re not talking about: the tools fundamentally change the cognitive load of programming. Instead of being tired from wrestling with implementation details, I’m exhausted from operating constantly at the architecture and design level.",
