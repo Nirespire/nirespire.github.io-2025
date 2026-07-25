@@ -505,3 +505,94 @@ html.light .llm-copy-error {
   color: var(--color-accent);
   text-decoration: underline;
 }
+
+/* Webmentions — likes/reposts render as rounded avatars, replies as bordered
+   cards. Component markup lives in components/webmentions.njk and sits inside
+   the post's .prose article, so several rules override prose list/link/margin
+   defaults. Theme-aware via the shared CSS custom properties. */
+.webmentions {
+  margin-top: 2.5rem;
+}
+
+.prose .webmentions__list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+/* Likes and reposts: a wrapping row of avatars */
+.prose .webmentions__list--likes,
+.prose .webmentions__list--reposts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.prose .webmentions__list--likes .webmention,
+.prose .webmentions__list--reposts .webmention {
+  margin: 0;
+}
+
+.webmention {
+  margin-bottom: 1rem;
+}
+
+.webmention:last-child {
+  margin-bottom: 0;
+}
+
+/* Author row reads as a byline, not a themed article link */
+.prose .webmention__author,
+.webmention__author {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--color-text-main);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.prose .webmention__author:hover,
+.webmention__author:hover {
+  color: var(--color-accent);
+  background-color: transparent;
+  border-bottom: none;
+}
+
+/* The .prose-prefixed selector (specificity 0,2,0) overrides Tailwind
+   Typography's default `.prose img` rule (0,1,1) — rounded-lg corners, a block
+   margin, a drop shadow — so the avatars read as circles, not shadowed rounded
+   rectangles. */
+.prose .webmention__author__photo,
+.webmention__author__photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Replies: a bordered card with the author byline above the reply body */
+.webmention--reply {
+  border: 1px solid var(--color-border-subtle);
+  background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.4);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.webmention__content {
+  margin-top: 0.625rem;
+  color: var(--color-text-main);
+}
+
+.prose .webmention__content > :first-child {
+  margin-top: 0;
+}
+
+.prose .webmention__content > :last-child {
+  margin-bottom: 0;
+}
