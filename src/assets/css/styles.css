@@ -161,15 +161,6 @@ a:hover {
   color: var(--color-selection-bg); /* Was primary-blue, now selection-bg for consistency */
 }
 
-/* Post tag pills are `<a class="bg-gray-800 text-white">`, but the global `a`
-   rule above overrides text-white with the accent color. On the dark theme the
-   accent (#f97316) still clears AA on the gray-800 pill, so it's left as-is; in
-   the light theme the darker accent (#9a3412) drops below AA there, so restore
-   the intended white. Scoped to light to keep the dark theme identical. */
-html.light a.bg-gray-800 {
-  color: #ffffff;
-}
-
 #searchInput {
   @apply text-lg py-3 px-6 rounded-lg transition-colors duration-200;
   background-color: rgba(var(--color-bg-interactive-strong-rgb), 0.9);
