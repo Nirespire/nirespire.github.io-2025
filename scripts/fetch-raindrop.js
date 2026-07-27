@@ -97,7 +97,7 @@ async function main() {
       url: item.link || '',
       excerpt: item.excerpt || '',
       note: item.note || '', // Authored in the Raindrop app; rendered as "My note" commentary
-      dateAdded: new Date(item.created).toISOString(), // Ensure ISO string format
+      dateAdded: toIsoOrNull(item.created), // Normalize to ISO; null for missing/invalid dates
       tags: item.tags || [],
     }));
 
@@ -110,6 +110,15 @@ async function main() {
   }
 }
 
+// Convert a Raindrop `created` value to an ISO string, tolerating missing or
+// unparseable dates. `new Date(bad).toISOString()` throws a RangeError, which
+// previously aborted the entire fetch (and produced no output file) if a single
+// bookmark had a malformed date; return null instead so the run still succeeds.
+function toIsoOrNull(value) {
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? null : d.toISOString();
+}
+
 // Helper to inject a fetch implementation for tests
 function setFetchForTest(fn) {
   fetch = fn;
@@ -119,4 +128,5 @@ function setFetchForTest(fn) {
 module.exports = {
   main,
   setFetchForTest,
+  toIsoOrNull,
 };

@@ -4,7 +4,7 @@ const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 
-const { main, setFetchForTest } = require('../../scripts/fetch-raindrop.js');
+const { main, setFetchForTest, toIsoOrNull } = require('../../scripts/fetch-raindrop.js');
 
 let tmpFile;
 const originalToken = process.env.RAINDROP_TEST_TOKEN;
@@ -97,6 +97,41 @@ test('persists item.note as its own field without excerpt fallback', async () =>
   assert.equal(data[0].note, 'my commentary on this read');
   assert.equal(data[1].excerpt, 'the article excerpt');
   assert.equal(data[1].note, 'and my note');
+});
+
+test('toIsoOrNull normalizes valid dates and tolerates bad ones', () => {
+  assert.equal(toIsoOrNull('2024-05-01T12:00:00Z'), '2024-05-01T12:00:00.000Z');
+  assert.equal(toIsoOrNull(undefined), null);
+  assert.equal(toIsoOrNull('not-a-date'), null);
+});
+
+test('a single item with a missing/invalid date does not abort the whole fetch', async () => {
+  setFetchForTest(async () => ({
+    ok: true,
+    status: 200,
+    statusText: 'OK',
+    json: async () => ({
+      items: [
+        { title: 'Bad date', link: 'https://example.com/bad', created: 'nope', tags: [] },
+        { title: 'No date', link: 'https://example.com/none', tags: [] },
+        {
+          title: 'Good date',
+          link: 'https://example.com/good',
+          created: '2024-01-01T00:00:00Z',
+          tags: [],
+        },
+      ],
+      count: 3,
+    }),
+    text: async () => '',
+  }));
+
+  await main();
+  const data = JSON.parse(await fs.readFile(tmpFile, 'utf-8'));
+  assert.equal(data.length, 3);
+  assert.equal(data[0].dateAdded, null);
+  assert.equal(data[1].dateAdded, null);
+  assert.equal(data[2].dateAdded, '2024-01-01T00:00:00.000Z');
 });
 
 test('paginates until the reported count is reached', async () => {

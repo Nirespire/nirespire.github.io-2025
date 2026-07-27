@@ -37,9 +37,16 @@ function sanitizeMention(mention) {
 // Function to process and categorize webmentions
 function processWebmentions(mentions) {
   const safe = mentions.map(sanitizeMention);
-  const likes = safe.filter((m) => m.activity.type === 'like');
-  const reposts = safe.filter((m) => m.activity.type === 'repost');
-  const replies = safe.filter((m) => m.activity.type === 'reply' || m.activity.type === 'mention');
+  // `activity` is untrusted, third-party data (see header note) and may be
+  // absent or malformed. Read it with optional chaining so a single mention
+  // missing `activity` is simply left uncategorized rather than throwing —
+  // an unguarded `m.activity.type` would bubble up to the caller's catch and
+  // wipe *every* like/repost/reply site-wide.
+  const likes = safe.filter((m) => m.activity?.type === 'like');
+  const reposts = safe.filter((m) => m.activity?.type === 'repost');
+  const replies = safe.filter(
+    (m) => m.activity?.type === 'reply' || m.activity?.type === 'mention'
+  );
 
   return {
     likes,
