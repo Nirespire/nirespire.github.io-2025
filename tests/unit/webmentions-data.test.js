@@ -44,3 +44,22 @@ test('processWebmentions sanitizes while categorizing by activity type', () => {
   assert.strictEqual(result.reposts.length, 1);
   assert.strictEqual(result.replies.length, 2);
 });
+
+test('processWebmentions tolerates mentions with a missing/malformed activity', () => {
+  // A single mention lacking `activity` must not throw (which would bubble up
+  // and wipe every categorized mention) — it should just be left out.
+  assert.doesNotThrow(() =>
+    processWebmentions([
+      { url: 'https://ok.example/no-activity', author: {} },
+      { url: 'https://ok.example/null-activity', author: {}, activity: null },
+      { url: 'https://ok.example/like', author: {}, activity: { type: 'like' } },
+    ])
+  );
+  const result = processWebmentions([
+    { url: 'https://ok.example/no-activity', author: {} },
+    { url: 'https://ok.example/like', author: {}, activity: { type: 'like' } },
+  ]);
+  assert.strictEqual(result.likes.length, 1);
+  assert.strictEqual(result.reposts.length, 0);
+  assert.strictEqual(result.replies.length, 0);
+});
