@@ -1,5 +1,15 @@
 [
   {
+    "title": "Software for One",
+    "url": "https://www.ajwaxman.com/writing/software-for-one",
+    "excerpt": "Robin Sloan wished for a HyperCard that could build a family app in a day. That world showed up.",
+    "note": "",
+    "dateAdded": "2026-08-01T12:08:20.083Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "Engineering management after the cost of code collapsed",
     "url": "https://karimjedda.com/engineering-management-after-cost-of-code-collapse/",
     "excerpt": "I have been a director of engineering for a bit over three years now, and I still hear and read what I call the \"old rules\" repeated over and over: a director should not spend time coding, good work takes time, protect the team from the business, get consensus before you commit, etc.\n\nFor a while I thought the people repeating these lines were behind. Then we introduced LLMs in my org and the cost of producing code dropped, and I started checking each rule against the assumption underneath it. T",
