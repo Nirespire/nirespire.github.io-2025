@@ -61,6 +61,12 @@ function copyToClipboard(contentId, buttonElement) {
 }
 
 function showCopyFeedback(buttonElement, message, success) {
+  // Count copies that actually landed, not clicks — a failed copy is not
+  // engagement. Optional call: analytics.js may be absent or blocked.
+  if (success) {
+    window.trackEvent?.('copy-for-llm');
+  }
+
   // Set copying state to prevent multiple concurrent operations
   buttonElement.dataset.copying = 'true';
 

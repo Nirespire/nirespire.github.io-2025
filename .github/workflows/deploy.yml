@@ -26,8 +26,18 @@ jobs:
       - name: Setup and Test
         uses: ./.github/actions/setup-and-test
 
+      # Only the deployed build gets analytics. `npm run verify` (run by the
+      # setup-and-test action above, and by the pre-push hook) deliberately does
+      # not, so tests and previews keep exercising the analytics-off path.
+      # These are repository *variables*, not secrets — a umami website ID is
+      # public by design. Unset expands to "" and the build simply omits the
+      # tracker, so this is green before the umami account exists.
       - name: Build site
         run: npm run build
+        env:
+          UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+          UMAMI_SRC: ${{ vars.UMAMI_SRC }}
+          UMAMI_DOMAINS: ${{ vars.UMAMI_DOMAINS }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

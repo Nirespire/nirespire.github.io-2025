@@ -44,5 +44,7 @@ if (themeToggleBtn) {
     const newTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
     localStorage.setItem('theme', newTheme);
     updateIcons(newTheme);
+    // Optional call: analytics.js may be absent or blocked (see its header).
+    window.trackEvent?.('theme-toggle', { theme: newTheme });
   });
 }

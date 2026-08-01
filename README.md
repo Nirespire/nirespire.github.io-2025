@@ -102,6 +102,46 @@ The site automatically fetches and displays my latest read articles from Raindro
    - The script `scripts/fetch-raindrop.js` handles the fetching.
    - The workflow is defined in `.github/workflows/update-raindrop.reads.yml`.
 
+### Umami Analytics
+
+Privacy-first, cookieless analytics via [umami.is](https://umami.is). The integration is
+**scaffolded and switched off**: with no configuration the build emits no tracker tag, no
+network calls, and an unchanged Content-Security-Policy — so local dev, Playwright runs,
+Lighthouse and PR previews are never counted.
+
+1. **Turn it on** (no code change required):
+   - Create a umami account (or stand up a self-hosted instance) and add `sanjaynair.me`
+     as a website.
+   - Copy the generated **Website ID**.
+   - In GitHub → Settings → Secrets and variables → Actions → **Variables**, add
+     `UMAMI_WEBSITE_ID` with that value. It is a variable rather than a secret because
+     the ID is public by design — it ships in the page HTML.
+   - The next deploy renders the tracker.
+
+2. **Optional variables**:
+   - `UMAMI_SRC` — full URL of the tracker script. Defaults to
+     `https://cloud.umami.is/script.js`; set it to
+     `https://your-instance.example.com/script.js` when self-hosting. Must be `https:`;
+     anything else disables analytics rather than weakening the CSP.
+   - `UMAMI_DOMAINS` — comma-separated hostnames the tracker is allowed to record.
+     Defaults to `sanjaynair.me`.
+
+3. **Testing locally**: put the same variables in a root `.env` (gitignored) and run
+   `npm run build`. Note that `npm run verify` intentionally does *not* receive them, so
+   the test suite always exercises the analytics-off path.
+
+4. **How it works**:
+   - `src/_data/analytics.js` reads the environment and is the single source of truth for
+     whether analytics is enabled; it also derives the origin appended to the `script-src`
+     and `connect-src` CSP directives in `src/_includes/layouts/base.njk`.
+   - `.github/workflows/deploy.yml` passes the variables to the deployed build only.
+   - Pageviews are tracked automatically. Custom events: share-link clicks
+     (`share`, with the network as a property) and the footer GitHub/Ko-fi links use
+     umami's declarative `data-umami-event` attributes; the theme toggle
+     (`theme-toggle`) and successful "Copy for LLM" copies (`copy-for-llm`) go through
+     the `trackEvent()` helper in `src/assets/js/analytics.js`, which is a no-op whenever
+     the tracker is absent or blocked.
+
 ## Project Structure
 
 - `/src` - Source files

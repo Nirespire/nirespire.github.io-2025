@@ -33,9 +33,9 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/blog/` — markdown blog posts with YAML front matter
 - `src/_includes/layouts/` — Nunjucks layout templates (`base.njk`, `post.njk`)
 - `src/_includes/components/` — reusable Nunjucks components
-- `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`
+- `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`, `analytics.js`
 - `src/assets/css/styles.css` — source CSS
-- `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`
+- `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`, `analytics.js`
 - `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
 - `tests/` — Playwright E2E specs (`*.spec.ts`) and Node unit tests (`tests/unit/*.test.js`)
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
@@ -60,6 +60,16 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - **Webmentions** — sent/received via `scripts/send-webmentions.js` /
   `fetch-webmentions.js` and `src/_data/webmentions.*`.
 - **External links** open in a new tab globally (handled in `base.njk`).
+- **Umami analytics** — privacy-first, cookieless. Gated at build time on
+  `UMAMI_WEBSITE_ID` (a GitHub repo *variable*, not a secret — the ID is public):
+  `src/_data/analytics.js` returns `{ enabled: false }` when it is unset, so no
+  tracker tag and no CSP change appear in dev, E2E, Lighthouse, or PR preview
+  builds. Only `.github/workflows/deploy.yml`'s build step receives it —
+  deliberately not `npm run verify`. Optional `UMAMI_SRC` (self-hosted, must be
+  `https:`) and `UMAMI_DOMAINS`. The CSP in `base.njk` appends the umami origin to
+  `script-src` + `connect-src` only when enabled. Custom events: declarative
+  `data-umami-event` attributes on links, plus a `trackEvent()` no-op-safe helper in
+  `src/assets/js/analytics.js` used by `theme-switcher.js` and `llm-copy.js`.
 
 ## Key Constraints
 
