@@ -19,8 +19,13 @@ afterEach(() => {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
-// Random noise is the worst case for PNG compression, so an over-budget
-// noise image exercises the full resize/quality ladder.
+// Random noise is the worst case for PNG compression: it will not shrink
+// below its budget until the encoder actually re-encodes it, so it forces
+// compressWithinBudget down the ladder instead of short-circuiting. Kept
+// modest in size (still comfortably over the .png budget once stored as a
+// full-colour PNG) so the whole unit suite stays fast — a larger canvas of
+// incompressible noise costs minutes of effort:7 encoding per test for no
+// extra coverage of the contract under test.
 async function writeNoisePng(file, width, height) {
   const raw = crypto.randomBytes(width * height * 3);
   await sharp(raw, { raw: { width, height, channels: 3 } })
@@ -30,7 +35,7 @@ async function writeNoisePng(file, width, height) {
 
 test('brings an over-budget png within the png budget', async () => {
   const file = path.join(tmpDir, 'huge.png');
-  await writeNoisePng(file, 1600, 1200);
+  await writeNoisePng(file, 800, 700);
   assert.ok(fs.statSync(file).size > BUDGETS['.png'], 'fixture must start over budget');
 
   const buffer = await compressWithinBudget(file, BUDGETS['.png']);
@@ -58,7 +63,7 @@ test('processFile leaves files already within budget untouched', async () => {
 
 test('processFile rewrites an over-budget file in place, within budget', async () => {
   const file = path.join(tmpDir, 'banner.png');
-  await writeNoisePng(file, 1600, 1200);
+  await writeNoisePng(file, 800, 700);
 
   const ok = await processFile(file);
 
