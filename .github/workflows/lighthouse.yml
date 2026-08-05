@@ -3,8 +3,9 @@ permissions:
   contents: read
 
 on:
+  # No `branches:` filter — stacked PRs target their parent branch rather than
+  # `main`, and must run the same gate at every level of the stack.
   pull_request:
-    branches: [main]
 
 jobs:
   lighthouse:

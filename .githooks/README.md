@@ -29,6 +29,20 @@ The hook also runs with `CI=true`, so Playwright applies the same settings as CI
 (`forbidOnly`, retries, workers, a fresh web server). A committed `test.only`,
 for example, fails locally exactly as it would on GitHub.
 
+### Stacked pushes verify the tip only
+
+The hook runs once per `git push` **invocation**, against whatever is checked
+out — not once per pushed ref. Pushing a whole stack in one command
+(`git push --force-with-lease origin feature/a feature/b`) therefore runs
+`npm run verify` against the tip, and the intermediate levels are not verified
+locally.
+
+That is acceptable because CI covers each level independently: the PR workflows
+carry no `branches:` filter, so every PR in a stack — not just the one based on
+`main` — runs the same `npm run verify` through
+`.github/actions/setup-and-test`. Checking out and verifying each ref locally
+instead would mean a full Playwright run across three browsers per level.
+
 ### Notes
 
 - The hook is a no-op inside GitHub Actions, so automated content-update pushes

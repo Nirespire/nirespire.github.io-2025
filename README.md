@@ -82,6 +82,68 @@ This project is my personal website/blog built using modern web development tool
   `prepare` script). Runs `npm run verify` before every push so a green local
   run guarantees a green CI run on the same code.
 
+## Stacked pull requests
+
+When a change depends on another change that hasn't merged yet, stack it: branch
+level 2 off level 1 and open its PR against level 1's branch, so each PR's diff
+shows only its own increment. Independent changes still get their own branch off
+`main` — stacking is only for genuine dependencies.
+
+No extra tooling is needed. `npm install` sets `rebase.updateRefs=true`
+repo-locally (via `scripts/install-git-hooks.js`), which makes a single
+`git rebase` move **every** branch ref in the stack instead of just the
+checked-out one. Every PR workflow runs on stacked PRs too — the `pull_request`
+triggers deliberately carry no `branches:` filter.
+
+**Create a stack**
+
+```bash
+git checkout main && git pull
+git checkout -b feature/a          # level 1
+# ...commit...
+git checkout -b feature/b          # level 2 — branched off feature/a
+# ...commit...
+git push -u origin feature/a feature/b
+```
+
+Then open PR 1 (`feature/a` → `main`) and PR 2 (`feature/b` → `feature/a`).
+
+**Amend a lower level** — check out the **tip** and rebase from there; every
+descendant branch ref moves with it:
+
+```bash
+git checkout feature/b             # the tip, not the branch being edited
+git rebase -i main                 # mark the target commit `edit`, amend, --continue
+git push --force-with-lease origin feature/a feature/b
+```
+
+**Sync the whole stack onto an updated `main`** — again from the tip:
+
+```bash
+git fetch origin
+git checkout feature/b
+git rebase origin/main             # rebase.updateRefs moves feature/a too
+git push --force-with-lease origin feature/a feature/b
+```
+
+**After the bottom PR merges** — merge bottom-up, then rebase the remainder onto
+`main` and force-push. The force-push fires a `synchronize` event, which re-runs
+CI against the new base; a bare base retarget only fires `edited`, which the
+workflows do not listen for:
+
+```bash
+git fetch origin
+git checkout feature/b
+git rebase origin/main
+git push --force-with-lease origin feature/b
+```
+
+Two repository settings keep this working, both under **Settings → General →
+Pull Requests**: **"Allow squash merging" off** (squashing a parent rewrites its
+commits and orphans every branch above it) and **"Automatically delete head
+branches" on** (so GitHub auto-retargets a child PR's base when its parent
+merges).
+
 ## Integrations
 
 ### Raindrop.io Latest Reads
