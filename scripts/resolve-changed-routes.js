@@ -15,7 +15,6 @@ const SITE_WIDE_PATTERNS = [
   /^src\/assets\/css\//,
   /^src\/assets\/js\//,
   /^tailwind\.config\.js$/,
-  /^postcss\.config\.js$/,
   /^\.eleventy\.js$/,
 ];
 
