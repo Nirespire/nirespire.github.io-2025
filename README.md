@@ -13,7 +13,7 @@ This project is my personal website/blog built using modern web development tool
 
 - **Static Site Generator**: [11ty (Eleventy)](https://www.11ty.dev/) for fast and flexible static site generation
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
-- **Build Tools**: PostCSS, cssnano, and autoprefixer for CSS optimization
+- **Build Tools**: Tailwind CSS v4 CLI (`@tailwindcss/cli`) compiles and minifies the stylesheet
 - **Hosting**: GitHub Pages with custom domain configuration
 - **Latest Reads**: Integration with Raindrop.io API to display recently read articles
 - **AI Assistance**: Developed with the help of AI coding tools, including
@@ -149,5 +149,4 @@ Lighthouse and PR previews are never counted.
   - `/assets` - CSS and images
   - `/blog` - Markdown blog posts
 - `/_site` - Generated static site (not committed)
-- `/postcss.config.js` - PostCSS configuration
 - `/tailwind.config.js` - Tailwind CSS configuration

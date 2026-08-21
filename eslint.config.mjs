@@ -24,7 +24,6 @@ export default [
       'src/_data/**/*.js',
       '.eleventy.js',
       'tailwind.config.js',
-      'postcss.config.js',
       'tests/unit/**/*.js',
     ],
     languageOptions: {
