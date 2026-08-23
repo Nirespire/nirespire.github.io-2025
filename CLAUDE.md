@@ -138,6 +138,33 @@ Other workflows of note:
   mixing categories in one PR. This applies automatically once a plan is
   approved.
 
+### Stacked pull requests
+
+The rule above is about **independent** work and is unchanged. Stacking is for
+**dependent** work: a change that cannot stand on its own because it builds on
+another change that has not merged yet. Stack it rather than bundling it into
+one oversized PR or blocking on the parent.
+
+- **Only stack when there is a genuine dependency.** If the second change would
+  make sense against `main` on its own, it is independent work — give it its own
+  branch off `main` and its own PR.
+- **Branch off the parent, not `main`.** Level 2 is created with
+  `git checkout -b feature/b` while `feature/a` is checked out. Normal branch
+  naming applies at every level.
+- **Set each PR's base to its parent branch.** Only the bottom PR targets
+  `main`. Getting this wrong makes the PR's diff include its parent's commits.
+- **Restack from the tip.** `rebase.updateRefs` is enabled repo-locally by
+  `scripts/install-git-hooks.js`, so a single `git rebase` from the topmost
+  branch moves every intermediate branch ref. Never rebase the levels one by
+  one. Push the result with `--force-with-lease`.
+- **Merge bottom-up, never out of order.** After the bottom PR merges, rebase
+  the remainder onto `main` and force-push — the resulting `synchronize` event
+  is what re-runs CI against the new base.
+- **Never squash-merge a PR that has children.** Squashing rewrites the parent's
+  commits and orphans every branch above it.
+
+Commands for each of these are in README.md under "Stacked pull requests".
+
 ## Content Audit Guidance
 
 When running content audits, weekly content reviews, or any link/spelling/placeholder

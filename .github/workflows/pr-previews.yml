@@ -9,8 +9,11 @@ name: PR Previews
 # signal, and so the test job keeps its read-only permissions.
 
 on:
+  # No `branches:` filter — stacked PRs target their parent branch rather than
+  # `main`, and must run the same gate at every level of the stack. The changed
+  # files come from `pulls.listFiles`, which is relative to each PR's own base,
+  # so a stacked PR previews only its own increment.
   pull_request:
-    branches: [main]
     types: [opened, synchronize, reopened, ready_for_review, closed]
 
 permissions:
