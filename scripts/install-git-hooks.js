@@ -8,7 +8,7 @@
 //   rebase.updateRefs -> true, so `git rebase` moves every intermediate branch
 //                        ref in a stack rather than only the checked-out one.
 //                        This is what makes stacked pull requests workable with
-//                        plain git — see "Stacked pull requests" in README.md.
+//                        plain git — see "Stacked pull requests" in CLAUDE.md.
 //
 // Both settings are repo-local (`git config` without --global), so they never
 // leak into the user's other repositories.

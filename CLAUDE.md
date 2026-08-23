@@ -1,17 +1,24 @@
 # CLAUDE.md
 
 Guidance for Claude when working in this repository. This is the single source
-of truth for agent context — keep it current.
+of truth for agent context — keep it current. `README.md` is the human-facing
+landing page and deliberately stays shallow; see [Documentation](#documentation)
+for what belongs where.
 
 ## Commands
 
 ```bash
-npm run dev          # Build CSS + start 11ty dev server + watch (use this for development)
-npm run build        # Production build → _site/
+npm run dev          # build + serve + watch CSS (concurrently) — use this for development
+npm run build        # production build → _site/ (build:css, then eleventy)
+npm run start        # 11ty serve only (no CSS build/watch)
+npm run build:css    # compile + minify Tailwind → src/assets/css/tailwind-built.css
+npm run watch:css    # rebuild the stylesheet on change
 npm test             # Playwright E2E tests (Chromium, Firefox, WebKit)
 npm run test:ui      # Playwright with interactive UI
+npm run test:debug   # Playwright in debug mode
+npm run test:setup   # install Playwright browsers + system deps
 npm run test:unit    # Node unit tests (node --test, tests/unit/*.test.js)
-npm run verify       # Full CI suite (lint, format check, unit, build, E2E) — also pre-push
+npm run verify       # full CI suite (lint, format check, unit, build, E2E) — also pre-push
 npm run lint         # ESLint (lint:fix to autofix)
 npm run format       # Prettier write (format:check to verify only)
 ```
@@ -27,7 +34,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 
 ## Architecture
 
-11ty (Eleventy) static site generator with Nunjucks templates and Tailwind CSS.
+11ty (Eleventy) static site generator with Nunjucks templates and Tailwind CSS
+(v4, via the `@tailwindcss/cli`). Deployed to GitHub Pages.
 
 - `src/` — source files (templates, content, assets)
 - `src/blog/` — markdown blog posts with YAML front matter
@@ -38,6 +46,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`, `analytics.js`
 - `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
 - `tests/` — Playwright E2E specs (`*.spec.ts`) and Node unit tests (`tests/unit/*.test.js`)
+- `static/` — passthrough-copied to the site root; holds the `CNAME` for the custom domain
+- `archive/` — frozen legacy pages served as-is (e.g. `archive/wedding/`)
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
 - `tailwind.config.js` — Tailwind theme with CSS variable-based colors
 - `_site/` — generated output (gitignored)
@@ -51,12 +61,15 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - **Hallucinations** — generated data feature: `scripts/generate-hallucinations.js`
   produces `src/_data/hallucinations.json` (regenerated via
   `.github/workflows/generate-hallucinations.yml`).
-- **Latest reads (Raindrop.io)** — `scripts/fetch-raindrop.js` syncs bookmarks to
-  `src/_data/raindrop.json`; needs `RAINDROP_TEST_TOKEN` and `RAINDROP_SEARCH_TAG`.
-  Raindrop is also the source of truth for per-read notes: commentary authored in
-  the Raindrop app's note field syncs down as each item's `note` and renders as
-  "My note" (markdown, via the `renderMarkdown` filter) on `/reads/` plus a teaser
-  on the homepage.
+- **Latest reads (Raindrop.io)** — `scripts/fetch-raindrop.js` syncs the 5 most
+  recent bookmarks tagged `RAINDROP_SEARCH_TAG` into `src/_data/raindrop.json`,
+  run daily (or on manual dispatch) by
+  `.github/workflows/update-raindrop.reads.yml`. Needs `RAINDROP_TEST_TOKEN` (a
+  repo *secret*) and `RAINDROP_SEARCH_TAG` (a repo *variable*). Raindrop is also
+  the source of truth for per-read notes: commentary authored in the Raindrop
+  app's note field syncs down as each item's `note` and renders as "My note"
+  (markdown, via the `renderMarkdown` filter) on `/reads/` plus a teaser on the
+  homepage.
 - **Webmentions** — sent/received via `scripts/send-webmentions.js` /
   `fetch-webmentions.js` and `src/_data/webmentions.*`.
 - **External links** open in a new tab globally (handled in `base.njk`).
@@ -65,11 +78,17 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   `src/_data/analytics.js` returns `{ enabled: false }` when it is unset, so no
   tracker tag and no CSP change appear in dev, E2E, Lighthouse, or PR preview
   builds. Only `.github/workflows/deploy.yml`'s build step receives it —
-  deliberately not `npm run verify`. Optional `UMAMI_SRC` (self-hosted, must be
-  `https:`) and `UMAMI_DOMAINS`. The CSP in `base.njk` appends the umami origin to
+  deliberately not `npm run verify`. Optional `UMAMI_SRC` (defaults to
+  `https://cloud.umami.is/script.js`; a non-`https:` value disables analytics
+  rather than weakening the CSP) and `UMAMI_DOMAINS` (defaults to
+  `sanjaynair.me`). The CSP in `base.njk` appends the umami origin to
   `script-src` + `connect-src` only when enabled. Custom events: declarative
-  `data-umami-event` attributes on links, plus a `trackEvent()` no-op-safe helper in
-  `src/assets/js/analytics.js` used by `theme-switcher.js` and `llm-copy.js`.
+  `data-umami-event` attributes for share links (`share`, with
+  `data-umami-event-network`) and the footer links (`fork-on-github`,
+  `sponsor-kofi`), plus a `trackEvent()` no-op-safe helper in
+  `src/assets/js/analytics.js` used by `theme-switcher.js` (`theme-toggle`) and
+  `llm-copy.js` (`copy-for-llm`). To exercise the analytics-on path locally, put
+  the same variables in a gitignored root `.env` and run `npm run build`.
 
 ## Key Constraints
 
@@ -90,7 +109,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 
 - **E2E** — Playwright specs in `tests/*.spec.ts`, run against the dev server on
   localhost:8080 across Chromium, Firefox, and WebKit.
-- **Accessibility** — `tests/a11y.spec.ts` uses `@axe-core/playwright`.
+- **Accessibility** — `tests/a11y.spec.ts` uses `@axe-core/playwright` against
+  every main page and fails on any `serious` or `critical` WCAG 2.1 A/AA violation.
 - **Unit** — Node's built-in test runner (`node --test`) over `tests/unit/*.test.js`
   covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`) and
   repo-weight guards (`image-budget`, `file-size-guard`).
@@ -110,18 +130,39 @@ npm run verify       # everything CI runs, in one go (also enforced pre-push)
 
 The hook is enabled automatically on `npm install` (via the `prepare` script,
 which sets `git config core.hooksPath .githooks`). Individual checks:
+
 1. `npm run lint` — ESLint passes with no errors
 2. `npm run format:check` — Prettier format check passes
 3. `npm run test:unit` — Node unit tests pass
 4. `npm run build` — clean build with no errors
 5. `npm test` — all Playwright tests pass
 
-Other workflows of note:
-- `.github/workflows/pr-previews.yml` — on PRs, renders screenshots of changed
-  pages (`scripts/capture-previews.js` + `resolve-changed-routes.js`), uploads them
-  as assets on a dedicated `pr-previews` GitHub Release (kept out of the git object
+Hook behaviour (details in `.githooks/README.md`): it runs with `CI=true` so
+Playwright applies the same settings as CI (a committed `test.only` fails
+locally exactly as it would on GitHub); it is a no-op inside GitHub Actions, so
+automated content-update pushes are never blocked; and it verifies whatever is
+checked out once per `git push` invocation, not once per pushed ref. Bypass for
+a single push with `--no-verify` (discouraged).
+
+Workflows:
+
+- `.github/workflows/deploy.yml` — on push to `main`: runs `verify` via
+  `setup-and-test`, rebuilds with the analytics variables, deploys to GitHub
+  Pages (custom domain from `static/CNAME`).
+- `.github/workflows/pr-test.yml` — runs `verify` on every PR via the same
+  composite action.
+- `.github/workflows/lighthouse.yml` — Lighthouse CI on every PR.
+- `.github/workflows/pr-previews.yml` — renders screenshots of changed pages
+  (`scripts/capture-previews.js` + `resolve-changed-routes.js`), uploads them as
+  assets on a dedicated `pr-previews` GitHub Release (kept out of the git object
   store so they don't bloat the repo), and posts a sticky comment embedding them.
+- `.github/workflows/update-raindrop.reads.yml` — daily Raindrop sync.
+- `.github/workflows/update-webmentions.yml` — daily webmention fetch.
 - `.github/workflows/generate-hallucinations.yml` — regenerates `hallucinations.json`.
+- `.github/workflows/dependabot-automerge.yml` — auto-merges passing Dependabot PRs.
+
+The PR workflows carry **no `branches:` filter**, deliberately — every level of a
+stacked PR runs the same gates, not just the one based on `main`.
 
 ## Git Workflow
 
@@ -163,7 +204,74 @@ one oversized PR or blocking on the parent.
 - **Never squash-merge a PR that has children.** Squashing rewrites the parent's
   commits and orphans every branch above it.
 
-Commands for each of these are in README.md under "Stacked pull requests".
+**Create a stack**
+
+```bash
+git checkout main && git pull
+git checkout -b feature/a          # level 1
+# ...commit...
+git checkout -b feature/b          # level 2 — branched off feature/a
+# ...commit...
+git push -u origin feature/a feature/b
+```
+
+Then open PR 1 (`feature/a` → `main`) and PR 2 (`feature/b` → `feature/a`).
+
+**Amend a lower level** — check out the **tip** and rebase from there; every
+descendant branch ref moves with it:
+
+```bash
+git checkout feature/b             # the tip, not the branch being edited
+git rebase -i main                 # mark the target commit `edit`, amend, --continue
+git push --force-with-lease origin feature/a feature/b
+```
+
+**Sync the whole stack onto an updated `main`** — again from the tip:
+
+```bash
+git fetch origin
+git checkout feature/b
+git rebase origin/main             # rebase.updateRefs moves feature/a too
+git push --force-with-lease origin feature/a feature/b
+```
+
+**After the bottom PR merges** — rebase the remainder onto `main` and
+force-push. The force-push fires a `synchronize` event, which re-runs CI against
+the new base; a bare base retarget only fires `edited`, which the workflows do
+not listen for:
+
+```bash
+git fetch origin
+git checkout feature/b
+git rebase origin/main
+git push --force-with-lease origin feature/b
+```
+
+Two repository settings keep this working, both under **Settings → General →
+Pull Requests**: **"Allow squash merging" off** and **"Automatically delete head
+branches" on** (so GitHub auto-retargets a child PR's base when its parent
+merges).
+
+## Documentation
+
+`CLAUDE.md` and `README.md` divide deliberately. Preserve that split in every
+change to either file.
+
+- **`CLAUDE.md` owns the mechanics** — architecture, features, commands,
+  conventions, workflows, constraints. New technical detail goes here.
+- **`README.md` is the human landing page** — what the project is, how to install
+  and run it, the GitHub-UI configuration only a person can do, and the
+  repository settings a person must hold in place. Standalone, but shallow.
+- **Never document the same fact in both.** When a change touches something
+  already described in the other file, update that file and cross-link — do not
+  restate it.
+- A new feature, integration, script, or workflow goes in `CLAUDE.md`. It earns a
+  `README.md` mention only when a human must act outside the codebase (add a
+  secret or variable, flip a repo setting, install a prerequisite), and then only
+  the minimum needed to perform that action.
+- **Keep `CLAUDE.md` dense.** It is loaded into every agent's context, so extend
+  it by compressing and folding into an existing section rather than appending
+  prose.
 
 ## Content Audit Guidance
 
