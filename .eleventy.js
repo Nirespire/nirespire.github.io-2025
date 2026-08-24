@@ -1,6 +1,6 @@
-const { DateTime } = require('luxon');
 const markdownIt = require('markdown-it');
 const pluginRss = require('@11ty/eleventy-plugin-rss').rssPlugin;
+const { wordcount, readingTime, formatDate, split } = require('./src/_lib/filters');
 
 module.exports = function (eleventyConfig) {
   // Add RSS plugin
@@ -73,20 +73,7 @@ module.exports = function (eleventyConfig) {
     });
   });
 
-  eleventyConfig.addFilter('date', (dateObj, format = 'LLL d, yyyy') => {
-    if (!dateObj) {
-      return '';
-    }
-    if (typeof dateObj === 'string') {
-      try {
-        return DateTime.fromISO(dateObj).toFormat(format);
-      } catch (e) {
-        console.error('Error parsing date:', dateObj, e);
-        return dateObj;
-      }
-    }
-    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat(format);
-  });
+  eleventyConfig.addFilter('date', formatDate);
 
   eleventyConfig.addFilter('getUniqueTags', function (posts) {
     const tags = {};
@@ -114,23 +101,9 @@ module.exports = function (eleventyConfig) {
     return result;
   });
 
-  // Add word count filter
-  eleventyConfig.addFilter('wordcount', function (text) {
-    return text.split(/\s+/g).length;
-  });
-
-  // Add reading time estimate filter
-  eleventyConfig.addFilter('readingTime', function (wordCount) {
-    const wordsPerMinute = 200;
-    return Math.ceil(wordCount / wordsPerMinute);
-  });
-
-  eleventyConfig.addFilter('split', function (str, separator) {
-    if (typeof str !== 'string') {
-      return [];
-    }
-    return str.split(separator);
-  });
+  eleventyConfig.addFilter('wordcount', wordcount);
+  eleventyConfig.addFilter('readingTime', readingTime);
+  eleventyConfig.addFilter('split', split);
 
   return {
     dir: {
