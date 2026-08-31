@@ -4,7 +4,19 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    # Collapse the daily churn into two PRs instead of one-per-package: the
+    # dependabot-automerge workflow still auto-merges the grouped minor/patch
+    # bumps, while a grouped major surfaces as a single review.
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+      production-dependencies:
+        dependency-type: "production"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"

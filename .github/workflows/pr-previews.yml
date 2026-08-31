@@ -32,13 +32,14 @@ jobs:
       github.event.action != 'closed' &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
 
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Cache Playwright browsers
@@ -269,6 +270,7 @@ jobs:
     # release. The release itself is kept as the shared bucket for other PRs.
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Remove previews for closed PR
         uses: actions/github-script@v9
