@@ -7,9 +7,17 @@ on:
   # `main`, and must run the same gate at every level of the stack.
   pull_request:
 
+# Supersede in-flight runs when a PR branch is pushed again — the newest commit
+# is the only one whose verdict matters, so cancel the older run and reclaim the
+# runner.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
     - uses: actions/checkout@v7

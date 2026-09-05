@@ -9,6 +9,7 @@ on:
 jobs:
   update-webmentions:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment: github-pages
     permissions:
       contents: write
@@ -21,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install dependencies
