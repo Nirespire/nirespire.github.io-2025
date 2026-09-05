@@ -148,7 +148,10 @@ Workflows:
 
 - `.github/workflows/deploy.yml` — on push to `main`: runs `verify` via
   `setup-and-test`, rebuilds with the analytics variables, deploys to GitHub
-  Pages (custom domain from `static/CNAME`).
+  Pages. The custom domain is re-pinned every deploy by `static/CNAME` (copied to
+  the site root by the `static` passthrough, guarded by
+  `tests/unit/custom-domain.test.js`); the one-time repo setting behind it is in
+  the [README](./README.md#hosting-and-custom-domain).
 - `.github/workflows/pr-test.yml` — runs `verify` on every PR via the same
   composite action.
 - `.github/workflows/lighthouse.yml` — Lighthouse CI on every PR.
