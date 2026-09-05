@@ -62,6 +62,12 @@ module.exports = function (eleventyConfig) {
   // it explicitly so it ends up at the site root.
   eleventyConfig.addPassthroughCopy({ 'src/robots.txt': 'robots.txt' });
 
+  // static/ is copied verbatim to the site root. It holds CNAME, which is what
+  // pins the GitHub Pages custom domain to sanjaynair.me — without it in the
+  // deployed artifact, re-enabling Pages drops the custom domain and the site
+  // only answers on the github.io project URL.
+  eleventyConfig.addPassthroughCopy({ static: '.' });
+
   // Wedding archive — copied verbatim (no Nunjucks templating) to /archive/wedding/
   eleventyConfig.addPassthroughCopy({
     archive: 'archive',

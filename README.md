@@ -73,6 +73,17 @@ tracker tag, no network calls, and an unchanged Content-Security-Policy. Only th
 deploy build receives these variables, so local dev, Playwright, Lighthouse and PR
 previews are never counted.
 
+## Hosting and custom domain
+
+The site is served by GitHub Pages from the `github-pages` environment, built and
+deployed by `.github/workflows/deploy.yml` (Pages source: **GitHub Actions**).
+
+The custom domain lives in **Settings → Pages → Custom domain** and must read
+`sanjaynair.me`. The build copies `static/CNAME` to the site root so each deploy
+re-pins it, but the field has to be populated once by a person — if Pages is ever
+disabled and re-enabled, GitHub clears it, and until a deploy restores it the site
+answers only on the `github.io` project URL.
+
 ## Stacked pull requests
 
 When a change depends on another change that hasn't merged yet, stack it: branch
