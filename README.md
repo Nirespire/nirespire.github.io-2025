@@ -87,6 +87,15 @@ Requests**: **"Allow squash merging" off** (squashing a parent rewrites its comm
 and orphans every branch above it) and **"Automatically delete head branches" on**
 (so GitHub auto-retargets a child PR's base when its parent merges).
 
+## Dependabot auto-merge
+
+Minor and patch Dependabot PRs are approved automatically and queued to merge
+once the checks pass (`.github/workflows/dependabot-automerge.yml`). Queuing them
+needs **Settings → General → Pull Requests → "Allow auto-merge"** on, plus a
+branch protection rule on `main` requiring the PR checks — GitHub rejects
+auto-merge without both. With either missing the workflow logs a warning instead
+of failing, and the PRs wait for a manual merge.
+
 ## Working in this repo
 
 [`CLAUDE.md`](./CLAUDE.md) is the detailed reference — architecture, features,

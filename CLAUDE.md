@@ -159,7 +159,10 @@ Workflows:
 - `.github/workflows/update-raindrop.reads.yml` — daily Raindrop sync.
 - `.github/workflows/update-webmentions.yml` — daily webmention fetch.
 - `.github/workflows/generate-hallucinations.yml` — regenerates `hallucinations.json`.
-- `.github/workflows/dependabot-automerge.yml` — auto-merges passing Dependabot PRs.
+- `.github/workflows/dependabot-automerge.yml` — approves minor/patch Dependabot
+  PRs and queues them to auto-merge once the checks pass. Auto-merge needs repo
+  settings only a human can flip (see [README](./README.md#dependabot-auto-merge));
+  without them the job warns rather than failing every Dependabot PR.
 
 The PR workflows carry **no `branches:` filter**, deliberately — every level of a
 stacked PR runs the same gates, not just the one based on `main`.
