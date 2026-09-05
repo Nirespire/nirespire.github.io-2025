@@ -22,7 +22,15 @@ function safeUrl(url) {
 
 // Return a copy of a mention with its URL fields scheme-sanitized.
 function sanitizeMention(mention) {
-  const author = mention.author || {};
+  // Mentions are untrusted, third-party data (see header note). A `null` or
+  // non-object entry would make `mention.author` throw a TypeError inside the
+  // `.map` below, bubble to the caller's catch, and wipe *every* like/repost/
+  // reply site-wide — the same failure mode the `activity?.` guard prevents.
+  // Return an inert, uncategorized entry instead.
+  if (!mention || typeof mention !== 'object') {
+    return { url: '', author: { url: '', photo: '' } };
+  }
+  const author = mention.author && typeof mention.author === 'object' ? mention.author : {};
   return {
     ...mention,
     url: safeUrl(mention.url),

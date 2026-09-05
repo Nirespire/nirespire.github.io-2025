@@ -63,3 +63,23 @@ test('processWebmentions tolerates mentions with a missing/malformed activity', 
   assert.strictEqual(result.reposts.length, 0);
   assert.strictEqual(result.replies.length, 0);
 });
+
+test('processWebmentions tolerates a null or non-object mention entry', () => {
+  // A single `null`/malformed entry must not throw inside sanitizeMention —
+  // that would bubble to the data file's catch and wipe every mention.
+  assert.doesNotThrow(() =>
+    processWebmentions([null, 'garbage', { url: 'https://ok.example/like' }])
+  );
+  const result = processWebmentions([
+    null,
+    { url: 'https://ok.example/like', author: {}, activity: { type: 'like' } },
+  ]);
+  assert.strictEqual(result.likes.length, 1);
+});
+
+test('sanitizeMention returns an inert entry for null/non-object input', () => {
+  const out = sanitizeMention(null);
+  assert.strictEqual(out.url, '');
+  assert.strictEqual(out.author.url, '');
+  assert.strictEqual(out.author.photo, '');
+});
