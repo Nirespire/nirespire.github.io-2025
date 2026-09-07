@@ -46,4 +46,28 @@ function split(str, separator) {
   return str.split(separator);
 }
 
-module.exports = { wordcount, readingTime, formatDate, split };
+// Encode a value as a complete JSON string literal (quotes included) for
+// embedding in a <script type="application/ld+json"> block.
+//
+// Nunjucks autoescaping is an HTML escaper, and JSON-LD is JSON, not HTML — a
+// JSON parser does not decode HTML entities. Interpolating a title through
+// autoescaping therefore *corrupts* the structured data: "Q&A" was emitted as
+// "Q&amp;A" and search engines read that literal string. Encoding with
+// JSON.stringify produces the correct value and quotes/escapes it properly, so
+// a title containing a quote or newline can no longer break the block.
+//
+// The output is marked `| safe` at the call site (it is already JSON-escaped),
+// which re-opens the HTML-context hole autoescaping was closing: an unescaped
+// `</script>` inside a value would end the block early. `<`, `>` and `&` are
+// therefore emitted as \uXXXX escapes — invisible to a JSON parser, which
+// decodes them back to the original characters, but inert to an HTML parser.
+// U+2028/U+2029 are escaped too so the block stays valid when read as JS.
+function jsonString(value) {
+  const str = value === null || value === undefined ? '' : String(value);
+  return JSON.stringify(str).replace(
+    /[<>&\u2028\u2029]/g,
+    (ch) => '\\u' + ch.charCodeAt(0).toString(16).padStart(4, '0')
+  );
+}
+
+module.exports = { wordcount, readingTime, formatDate, split, jsonString };

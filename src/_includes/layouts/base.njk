@@ -60,21 +60,27 @@
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
   <!-- Schema.org structured data -->
+  <!-- Values go through `| jsonString | safe`, not Nunjucks autoescaping: this
+       block is JSON, and a JSON parser does not decode HTML entities, so
+       autoescaping corrupted any title containing & " or ' (e.g. "Q&A" was
+       published to search engines as the literal "Q&amp;A"). The filter
+       JSON-encodes the value and escapes < > & as \uXXXX so a value can
+       neither break the JSON nor close this <script> early. -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "{% if layout === "layouts/post.njk" %}BlogPosting{% else %}WebSite{% endif %}",
-      "url": "{{ page.url | absoluteUrl("https://sanjaynair.me") }}",
-      "name": "{{ title }}{{ " | " if title }}Sanjay Nair",
-      "description": "{{ description or "Software engineering leader based in Atlanta, Georgia, sharing insights on leadership, technology, and software development." }}"
+      "url": {{ page.url | absoluteUrl("https://sanjaynair.me") | jsonString | safe }},
+      "name": {{ ((title + " | " + "Sanjay Nair") if title else "Sanjay Nair") | jsonString | safe }},
+      "description": {{ (description or "Software engineering leader based in Atlanta, Georgia, sharing insights on leadership, technology, and software development.") | jsonString | safe }}
       {% if layout === "layouts/post.njk" %},
       "author": {
         "@type": "Person",
         "name": "Sanjay Nair",
         "url": "https://sanjaynair.me"
       },
-      "datePublished": "{{ page.date | date("yyyy-MM-dd") }}",
-      "image": "{{ (coverImage or "/assets/images/profile.png") | absoluteUrl("https://sanjaynair.me") }}"
+      "datePublished": {{ page.date | date("yyyy-MM-dd") | jsonString | safe }},
+      "image": {{ (coverImage or "/assets/images/profile.png") | absoluteUrl("https://sanjaynair.me") | jsonString | safe }}
       {% endif %}
     }
   </script>
