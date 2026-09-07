@@ -1,6 +1,6 @@
 const markdownIt = require('markdown-it');
 const pluginRss = require('@11ty/eleventy-plugin-rss').rssPlugin;
-const { wordcount, readingTime, formatDate, split } = require('./src/_lib/filters');
+const { wordcount, readingTime, formatDate, split, jsonString } = require('./src/_lib/filters');
 
 module.exports = function (eleventyConfig) {
   // Add RSS plugin
@@ -106,6 +106,11 @@ module.exports = function (eleventyConfig) {
     }
     return result;
   });
+
+  // Emits a complete, JSON-escaped string literal (quotes included) for the
+  // Schema.org JSON-LD block in base.njk. Used with `| safe`, because HTML
+  // autoescaping is the wrong escaper for a JSON document — see the filter.
+  eleventyConfig.addFilter('jsonString', jsonString);
 
   eleventyConfig.addFilter('wordcount', wordcount);
   eleventyConfig.addFilter('readingTime', readingTime);

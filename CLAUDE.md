@@ -42,6 +42,15 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/_includes/layouts/` — Nunjucks layout templates (`base.njk`, `post.njk`)
 - `src/_includes/components/` — reusable Nunjucks components
 - `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`, `analytics.js`
+- `src/_lib/filters.js` — pure filter implementations registered in `.eleventy.js`
+  (`wordcount`, `readingTime`, `formatDate`, `split`, `jsonString`), kept separate
+  so they are unit-testable without a full build (`tests/unit/eleventy-filters.test.js`).
+  `jsonString` encodes a value as a JSON string literal for the Schema.org JSON-LD
+  block in `base.njk`: that block is JSON, so Nunjucks' HTML autoescaping is the
+  wrong escaper there and corrupts values (`Q&A` → `Q&amp;A`). Use
+  `| jsonString | safe` for every value inside it — the filter also escapes
+  `< > &` as `\uXXXX`, so a value can neither break the JSON nor close the
+  `<script>` early.
 - `src/assets/css/styles.css` — source CSS
 - `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`, `analytics.js`
 - `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
