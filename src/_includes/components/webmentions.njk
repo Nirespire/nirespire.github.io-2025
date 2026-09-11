@@ -1,3 +1,6 @@
+{# Author avatars are remote, third-party URLs. `eleventy:ignore` keeps them
+   out of the eleventy-img transform in .eleventy.js so a build never depends
+   on fetching another site's images. #}
 <div id="webmentions" class="webmentions">
   <h2>Webmentions</h2>
   {% if webmentions.likes | length > 0 %}
@@ -6,7 +9,7 @@
       {% for like in webmentions.likes %}
         <li class="webmention webmention--like">
           <a href="{{ like.url }}" class="webmention__author">
-            <img src="{{ like.author.photo }}" alt="{{ like.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
+            <img src="{{ like.author.photo }}" alt="{{ like.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo" eleventy:ignore>
             {{ like.author.name }}
           </a>
         </li>
@@ -20,7 +23,7 @@
       {% for repost in webmentions.reposts %}
         <li class="webmention webmention--repost">
           <a href="{{ repost.url }}" class="webmention__author">
-            <img src="{{ repost.author.photo }}" alt="{{ repost.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
+            <img src="{{ repost.author.photo }}" alt="{{ repost.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo" eleventy:ignore>
             {{ repost.author.name }}
           </a>
         </li>
@@ -34,7 +37,7 @@
       {% for reply in webmentions.replies %}
         <li class="webmention webmention--reply">
           <a href="{{ reply.url }}" class="webmention__author">
-            <img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo">
+            <img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" width="48" height="48" loading="lazy" decoding="async" class="webmention__author__photo" eleventy:ignore>
             {{ reply.author.name }}
           </a>
           <div class="webmention__content">

@@ -64,7 +64,25 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 ## Key Features
 
 - **Interactive node-graph background** — animated canvas background in the base
-  layout (`src/assets/js/node-graph.js`).
+  layout (`src/assets/js/node-graph.js`). Honours `prefers-reduced-motion`, runs
+  at 30 fps, and does not initialise until `load` + `requestIdleCallback`:
+  sizing and painting the full-viewport canvas mid-load is real main-thread work
+  inside the page-load window. It is not what makes `/blog/` slow, though — a
+  control build with the script stripped scores the same there; that page is
+  bounded by its own DOM (the `data-content` search index).
+- **Responsive images** — `.eleventy.js` runs `eleventyImageTransformPlugin`
+  (`@11ty/eleventy-img`) over rendered HTML, so every `<img>` becomes a
+  `<picture>` with a webp + original-format `srcset` at the widths in
+  `scripts/image-budgets.js` (`IMAGE_WIDTHS` / `IMAGE_SIZES`), emitted to
+  `_site/assets/img/`. Sources in `src/assets/images/` stay full size —
+  `og:image`, `twitter:image` and the JSON-LD `image` are meta tags, so they are
+  not transformed and still need the original, which is why covers cannot simply
+  be downscaled instead. Two things to know when adding an `<img>`: the plugin's
+  default attributes add `loading="lazy"`, so anything above the fold must set
+  `loading="eager"` itself; and per-image overrides use the plugin's own
+  attributes — `eleventy:widths` (the fixed 192 px avatar) and `eleventy:ignore`
+  (remote webmention avatars, so a build never depends on fetching third-party
+  images).
 - **LLM copy / share** — `src/assets/js/llm-copy.js` adds copy-to-clipboard and
   one-click "share to Claude / ChatGPT / Gemini" with pre-filled page content.
 - **Hallucinations** — generated data feature: `scripts/generate-hallucinations.js`
@@ -122,7 +140,11 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   every main page and fails on any `serious` or `critical` WCAG 2.1 A/AA violation.
 - **Unit** — Node's built-in test runner (`node --test`) over `tests/unit/*.test.js`
   covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`) and
-  repo-weight guards (`image-budget`, `file-size-guard`).
+  repo-weight guards (`image-budget`, `file-size-guard`). `lighthouse-config`
+  guards `lighthouserc.json` itself: every audited URL still resolves to a source
+  file (`staticDistDir` serves a missing one as the 404 page and reports healthy
+  scores), every URL is asserted on LCP and `uses-responsive-images`, and scores
+  are averaged over more than one run.
 
 ## CI / Automation
 
@@ -163,7 +185,16 @@ Workflows:
   the [README](./README.md#hosting-and-custom-domain).
 - `.github/workflows/pr-test.yml` — runs `verify` on every PR via the same
   composite action.
-- `.github/workflows/lighthouse.yml` — Lighthouse CI on every PR.
+- `.github/workflows/lighthouse.yml` — Lighthouse CI on every PR. Thresholds
+  live in `lighthouserc.json`: resource-weight budgets are hard errors; category
+  scores, LCP and `uses-responsive-images` are warnings (they flake on shared
+  runners). Two traps that let #371 through: an assertion added to one
+  assert-matrix entry and not the other silently exempts the URLs the other
+  matches — `/blog/` had no LCP assertion at all; and `maxNumericValue` on an
+  opportunity audit such as `uses-responsive-images` is **estimated millisecond
+  savings**, not bytes, so a byte-sized number there asserts nothing. Actual
+  image weight is gated by `resource-summary:image:size`.
+  `tests/unit/lighthouse-config.test.js` guards both.
 - `.github/workflows/pr-previews.yml` — renders screenshots of changed pages
   (`scripts/capture-previews.js` + `resolve-changed-routes.js`), uploads them as
   assets on a dedicated `pr-previews` GitHub Release (kept out of the git object
