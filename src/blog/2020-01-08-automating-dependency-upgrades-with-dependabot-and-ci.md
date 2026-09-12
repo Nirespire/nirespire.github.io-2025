@@ -74,9 +74,43 @@ That's another item done on our checklist:
 
 Dependabot is [highly configurable](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file) if you would like finer control over how it behaves. You can set things like what package management systems to cover, how frequently it should scan your repo, and even assign specific users to address any security issues with dependencies that are identified.
 
-Below is an example `.dependabot/config.yaml` file I included in the repo for my [personal website](https://sanjaynair.me/).
+Below is an example `.dependabot/config.yaml` file of the kind I included in the repo for my [personal website](https://sanjaynair.me/).
 
-<script src="https://gist.github.com/Nirespire/04838f40753f691feb73a26452ce86d4.js"></script>
+{% call editorial_note("September 2026") %}
+<p>This config was originally embedded as a GitHub gist. That gist no longer resolves, and the embed could not have rendered here anyway — this site's Content Security Policy does not allow scripts from <code>gist.github.com</code> — so the example is now inlined below as a plain code block.</p>
+<p>More importantly, the format shown is obsolete. <code>.dependabot/config.yaml</code> belonged to Dependabot Preview, which GitHub has since retired; configuration now lives at <code>.github/dependabot.yml</code> and uses a different schema. The equivalent of the example below in the current format is:</p>
+<pre><code class="language-yaml">version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "Nirespire"
+    labels:
+      - "dependencies"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+</code></pre>
+<p>See GitHub's <a href="https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference">Dependabot options reference</a> for the full set of current options.</p>
+{% endcall %}
+
+```yaml
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "weekly"
+    default_assignees:
+      - "Nirespire"
+    default_labels:
+      - "dependencies"
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "weekly"
+```
 
 ### Automated Testing and Continuous Integration
 
