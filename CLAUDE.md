@@ -90,9 +90,11 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   `.github/workflows/generate-hallucinations.yml`). Whatever the CLI prints is
   published verbatim on `/hallucination/`, so output is never trusted raw:
   `sanitizeHallucination` strips a leading `**Summary:**`-style label and
-  `isValidHallucination` rejects agent preamble artifacts (tool-call markers,
-  code fences, absolute filesystem paths) plus anything over `MAX_LENGTH` /
-  `MAX_SENTENCES`. A rejected generation is retried, then falls back to the
+  `isValidHallucination` rejects agent preamble artifacts — tool-call markers,
+  code fences, blockquotes, inline code, conversational openers ("This looks
+  like a request for…", "Here's one:"), and references to the repo it is running
+  in (absolute paths, `src/`-style paths, data/template filenames) — plus
+  anything over `MAX_LENGTH` / `MAX_SENTENCES`. A rejected generation is retried, then falls back to the
   entry's previous good value rather than writing garbage. The same predicate
   guards the committed data file in `tests/unit/generate-hallucinations.test.js`,
   so a regression fails `npm run verify` instead of shipping.

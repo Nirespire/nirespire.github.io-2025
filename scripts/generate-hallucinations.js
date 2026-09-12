@@ -14,11 +14,29 @@ const MAX_LENGTH = 600;
 const MAX_SENTENCES = 4;
 
 const REJECT_PATTERNS = [
-  /\*\*\s*Tool\s*:/i, // agent tool-call markers
+  // Tool-call transcripts.
+  /\*\*\s*Tool\s*:/i,
   /^\s*```/m, // fenced code blocks (the CLI wraps tool parameters in them)
   /^\s*Parameters\s*:/im,
   /"(?:command|description)"\s*:/i,
-  /(?:^|[\s("'`])\/(?:home|Users|root|var|tmp|etc|opt|private)\//, // absolute filesystem paths
+
+  // Markdown scaffolding. Prose carries no blockquote markers and no inline
+  // code -- a joke summary never has cause to name a symbol or a file.
+  /^\s*>/m,
+  /`/,
+
+  // References to the repo the generator happens to be running in: absolute
+  // filesystem paths, repo-relative paths, and data/template filenames.
+  /(?:^|[\s("'`])\/(?:home|Users|root|var|tmp|etc|opt|private)\//,
+  /\b(?:src|scripts|tests|node_modules)\//i,
+  /\b[\w-]+\.(?:json|njk|ya?ml)\b/i,
+
+  // Conversational preamble: the model describing the task instead of doing it
+  // ("This looks like a request for...", "Here's one:"). The trailing colon
+  // followed by a blank line is the seam where that preamble hands off to the
+  // actual summary.
+  /^\s*(?:sure|certainly|okay|ok|let me|i'?ll|i can|i'?ve|here'?s|this (?:looks like|appears to be|is for))\b/i,
+  /:\s*\n\s*\n/,
 ];
 
 // A short bolded or bare label ending in a colon, e.g. "**Absurd Summary:**".
