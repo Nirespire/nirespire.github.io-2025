@@ -36,4 +36,4 @@ This might be the use case most likely to be scoffed at by senior engineers. For
 
 ---
 
-> I might do a second edition of this "use-case log" in another six months, as further experimentation yields additional valuable scenarios from the engineering leader's perspective. Please engage if you're interested.
+> I may put out a second edition of this "use-case log" as further experimentation yields additional valuable scenarios from the engineering leader's perspective. Please engage if you're interested.

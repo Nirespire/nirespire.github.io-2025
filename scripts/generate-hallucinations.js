@@ -4,28 +4,99 @@ const path = require('path');
 const matter = require('gray-matter');
 require('dotenv').config();
 
-async function generateHallucination(title, _content) {
+// A published hallucination is meant to be 2-3 sentences of absurd prose and
+// nothing else. The CLI can also emit preamble, a "**Summary:**"-style label,
+// or a whole tool-call transcript -- and whatever it returns is written
+// straight into src/_data/hallucinations.json and rendered on /hallucination/.
+// These bounds are the contract: anything outside them is rejected rather than
+// published (see tests/unit/generate-hallucinations.test.js).
+const MAX_LENGTH = 600;
+const MAX_SENTENCES = 4;
+
+const REJECT_PATTERNS = [
+  /\*\*\s*Tool\s*:/i, // agent tool-call markers
+  /^\s*```/m, // fenced code blocks (the CLI wraps tool parameters in them)
+  /^\s*Parameters\s*:/im,
+  /"(?:command|description)"\s*:/i,
+  /(?:^|[\s("'`])\/(?:home|Users|root|var|tmp|etc|opt|private)\//, // absolute filesystem paths
+];
+
+// A short bolded or bare label ending in a colon, e.g. "**Absurd Summary:**".
+const LEADING_LABEL = /^\s*(?:\*\*|__)?\s*(?:[A-Za-z]+ ){0,3}summary\s*:\s*(?:\*\*|__)?\s*/i;
+
+function stripLeadingLabel(text) {
+  return text.replace(LEADING_LABEL, '');
+}
+
+function countSentences(text) {
+  const matches = text.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g);
+  return matches ? matches.filter((s) => s.trim().length > 0).length : 0;
+}
+
+function isValidHallucination(text) {
+  if (typeof text !== 'string') return false;
+  const trimmed = text.trim();
+  if (trimmed.length === 0) return false;
+  if (trimmed.length > MAX_LENGTH) return false;
+  if (countSentences(trimmed) > MAX_SENTENCES) return false;
+  return !REJECT_PATTERNS.some((pattern) => pattern.test(trimmed));
+}
+
+/**
+ * Normalise raw CLI output into something publishable, or return null when the
+ * output cannot be salvaged. Callers fall back to the previous good value.
+ */
+function sanitizeHallucination(raw) {
+  if (typeof raw !== 'string') return null;
+  const cleaned = stripLeadingLabel(raw.trim()).trim();
+  return isValidHallucination(cleaned) ? cleaned : null;
+}
+
+async function generateHallucination(title, _content, { previous, attempts = 2 } = {}) {
   const prompt = `Given this blog post titled "${title}", create a humorous, 
     completely incorrect summary that's clearly wrong but entertaining. 
     Keep it under 2-3 sentences and make it sound absurd while staying family-friendly.
     The summary should be completely different from the actual content but maintain
-    a connection to the topic.`;
+    a connection to the topic.
+    Respond with the summary text only: no preamble, no label or heading, no
+    code blocks, no file paths, and no explanation of what you are doing.`;
 
-  try {
-    const result = spawnSync('npx', ['claude', '-p', prompt, '--model', 'sonnet', '--tools', ''], {
-      encoding: 'utf-8',
-      env: { ...process.env },
-    });
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    let raw;
+    try {
+      const result = spawnSync(
+        'npx',
+        ['claude', '-p', prompt, '--model', 'sonnet', '--tools', ''],
+        {
+          encoding: 'utf-8',
+          env: { ...process.env },
+        }
+      );
 
-    if (result.status !== 0) {
-      throw new Error(result.stderr || 'Claude CLI exited with non-zero status');
+      if (result.status !== 0) {
+        throw new Error(result.stderr || 'Claude CLI exited with non-zero status');
+      }
+
+      raw = result.stdout;
+    } catch (error) {
+      console.error(`Error generating hallucination for "${title}":`, error.message);
+      continue;
     }
 
-    return result.stdout.trim();
-  } catch (error) {
-    console.error(`Error generating hallucination for "${title}":`, error.message);
-    throw error;
+    const cleaned = sanitizeHallucination(raw);
+    if (cleaned) return cleaned;
+
+    console.error(
+      `Discarding non-conforming hallucination for "${title}" (attempt ${attempt}/${attempts})`
+    );
   }
+
+  if (previous) {
+    console.error(`Keeping the previous hallucination for "${title}"`);
+    return previous;
+  }
+
+  throw new Error(`Could not generate a usable hallucination for "${title}"`);
 }
 
 async function getLatestBlogPosts(blogDir = path.join(process.cwd(), 'src/blog'), limit = 5) {
@@ -49,24 +120,39 @@ async function getLatestBlogPosts(blogDir = path.join(process.cwd(), 'src/blog')
   return posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, limit);
 }
 
+async function readExistingHallucinations(dataFile) {
+  try {
+    const existing = JSON.parse(await fs.readFile(dataFile, 'utf-8'));
+    return new Map(
+      existing
+        .filter((entry) => entry && entry.url && isValidHallucination(entry.hallucination))
+        .map((entry) => [entry.url, entry.hallucination])
+    );
+  } catch {
+    return new Map();
+  }
+}
+
 async function main() {
   try {
+    const dataDir = path.join(process.cwd(), 'src/_data');
+    const dataFile = path.join(dataDir, 'hallucinations.json');
+    const previousByUrl = await readExistingHallucinations(dataFile);
+
     const posts = await getLatestBlogPosts();
     const hallucinations = await Promise.all(
       posts.map(async (post) => ({
         title: post.title,
         date: post.date,
         url: post.url,
-        hallucination: await generateHallucination(post.title, post.content),
+        hallucination: await generateHallucination(post.title, post.content, {
+          previous: previousByUrl.get(post.url),
+        }),
       }))
     );
 
-    const dataDir = path.join(process.cwd(), 'src/_data');
     await fs.mkdir(dataDir, { recursive: true });
-    await fs.writeFile(
-      path.join(dataDir, 'hallucinations.json'),
-      JSON.stringify(hallucinations, null, 2)
-    );
+    await fs.writeFile(dataFile, JSON.stringify(hallucinations, null, 2));
 
     console.log('Successfully generated hallucinations for latest blog posts');
   } catch (error) {
@@ -79,4 +165,13 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { getLatestBlogPosts, generateHallucination };
+module.exports = {
+  getLatestBlogPosts,
+  generateHallucination,
+  sanitizeHallucination,
+  isValidHallucination,
+  stripLeadingLabel,
+  countSentences,
+  MAX_LENGTH,
+  MAX_SENTENCES,
+};

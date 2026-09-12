@@ -3,25 +3,25 @@
     "title": "A Practical Introduction to Generative AI Terminology",
     "date": "2026-06-14T00:00:00.000Z",
     "url": "/blog/2026-06-14-practical-intro-to-genai-terms/",
-    "hallucination": "Let me check the existing hallucinations format to match the style.\n\n---\n\n**Tool: bash**\n\nParameters:\n```json\n{\n  \"command\": \"cat src/_data/hallucinations.json 2>/dev/null | head -50\",\"description\":\"Check existing hallucinations format\"\n}\n```"
+    "hallucination": "Sanjay reveals that every AI buzzword is secretly an anagram of a breakfast food, and spends nine paragraphs proving that \"context window\" is just \"wontons\" with extra steps. He closes by insisting that \"agentic\" was coined in 1887 by a Belgian mime who has been quietly collecting royalties on the word ever since."
   },
   {
     "title": "Human Debt",
     "date": "2026-01-20T00:00:00.000Z",
     "url": "/blog/2026-01-20-human-debt/",
-    "hallucination": "Let me find the actual post to understand context and check the expected format for this feature.\n\n**Tool: bash**\n\nParameters:\n```json\n{\"command\":\"grep -rl \\\"Human Debt\\\" src/blog/ 2>/dev/null; find . -iname \\\"*hallucinat*\\\" -not -path \\\"*/node_modules/*\\\"\",\"description\":\"Locate the Human Debt post and hallucinations feature files\"}\n```"
+    "hallucination": "It turns out \"human debt\" is a literal currency issued by the Bureau of Interpersonal Accounting, and Sanjay personally owes 400 favors to a man named Gary he once shared an elevator with. The recommended repayment plan involves compound interest, a notary, and bringing Gary a sandwich every third Tuesday until the balance clears."
   },
   {
     "title": "Healthy Tension",
     "date": "2025-12-31T00:00:00.000Z",
     "url": "/blog/2025-12-31-healthy-tension/",
-    "hallucination": "Let me check the memory index and the hallucinations feature for context on this task.\n\n**Tool: bash**\n\nParameters:\n- command: cat /home/runner/.claude/projects/-home-runner-work-nirespire-github-io-2025-nirespire-github-io-2025/memory/MEMORY.md 2>/dev/null\n- description: Check memory index"
+    "hallucination": "A spirited argument that all workplace disagreement should be settled by competitive tug-of-war, with rope tension measured in newtons and logged in a shared spreadsheet. Teams scoring below 300 newtons are declared \"dangerously agreeable\" and issued a stiffer rope by HR."
   },
   {
     "title": "My System to Keep a Reading Habit",
     "date": "2025-11-30T00:00:00.000Z",
     "url": "/blog/2025-11-30-reading-system/",
-    "hallucination": "**Absurd Summary:** In \"My System to Keep a Reading Habit,\" the author reveals they haven't actually read a book since 2019 — instead, they've trained a family of raccoons to summarize novels via interpretive dance, which they then translate using a Ouija board and a TI-84 calculator. The \"system\" mostly involves bribing the raccoons with string cheese and hoping the calculator doesn't run out of batteries mid-summary."
+    "hallucination": "In \"My System to Keep a Reading Habit,\" the author reveals they haven't actually read a book since 2019 — instead, they've trained a family of raccoons to summarize novels via interpretive dance, which they then translate using a Ouija board and a TI-84 calculator. The \"system\" mostly involves bribing the raccoons with string cheese and hoping the calculator doesn't run out of batteries mid-summary."
   },
   {
     "title": "Coding with Copilot Part 2 - Agent Edition",

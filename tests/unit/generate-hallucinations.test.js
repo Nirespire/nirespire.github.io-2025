@@ -4,7 +4,14 @@ const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 
-const { getLatestBlogPosts } = require('../../scripts/generate-hallucinations.js');
+const {
+  getLatestBlogPosts,
+  sanitizeHallucination,
+  isValidHallucination,
+  stripLeadingLabel,
+  MAX_LENGTH,
+  MAX_SENTENCES,
+} = require('../../scripts/generate-hallucinations.js');
 
 async function writePost(dir, filename, frontmatter, body = 'body text') {
   const fm = Object.entries(frontmatter)
@@ -124,5 +131,92 @@ test('hallucinations.json integrity: every url matches an actual blog file', asy
     assert.ok(entry.url, `Entry "${entry.title}" is missing a url field`);
     const slug = entry.url.replace(/^\/blog\//, '').replace(/\/$/, '');
     assert.ok(blogSlugs.has(slug), `url "${entry.url}" does not match any blog file in src/blog/`);
+  }
+});
+
+test('stripLeadingLabel removes a bolded "Absurd Summary:" label', () => {
+  assert.equal(
+    stripLeadingLabel('**Absurd Summary:** The raccoons did it.'),
+    'The raccoons did it.'
+  );
+  assert.equal(stripLeadingLabel('Summary: The raccoons did it.'), 'The raccoons did it.');
+  assert.equal(stripLeadingLabel('__Hallucinated Summary:__ Kevin quit.'), 'Kevin quit.');
+});
+
+test('stripLeadingLabel leaves ordinary prose alone', () => {
+  const prose = 'Sanjay trained a raccoon: it did not go well.';
+  assert.equal(stripLeadingLabel(prose), prose);
+});
+
+test('isValidHallucination accepts short absurd prose', () => {
+  assert.ok(
+    isValidHallucination(
+      'Sanjay replaced his entire test suite with a magic 8-ball. It has a 50% pass rate and excellent vibes.'
+    )
+  );
+});
+
+test('isValidHallucination rejects agent tool-call transcripts', () => {
+  assert.equal(
+    isValidHallucination('Let me check the existing format.\n\n**Tool: bash**\n\nParameters:'),
+    false
+  );
+  assert.equal(isValidHallucination('Looking now.\n\n```json\n{"command":"cat file"}\n```'), false);
+});
+
+test('isValidHallucination rejects absolute filesystem paths', () => {
+  assert.equal(
+    isValidHallucination('Checking /home/runner/.claude/projects/some-repo/memory/MEMORY.md now.'),
+    false
+  );
+  assert.equal(isValidHallucination('Reading /Users/sanjay/notes.txt for context.'), false);
+});
+
+test('isValidHallucination rejects empty and over-long output', () => {
+  assert.equal(isValidHallucination(''), false);
+  assert.equal(isValidHallucination('   '), false);
+  assert.equal(isValidHallucination(null), false);
+  assert.equal(isValidHallucination('Word. '.repeat(MAX_LENGTH)), false);
+  assert.equal(
+    isValidHallucination(
+      Array(MAX_SENTENCES + 2)
+        .fill('A raccoon did it.')
+        .join(' ')
+    ),
+    false
+  );
+});
+
+test('sanitizeHallucination strips a label and returns null for garbage', () => {
+  assert.equal(
+    sanitizeHallucination('**Absurd Summary:** Kevin the agent quit.'),
+    'Kevin the agent quit.'
+  );
+  assert.equal(sanitizeHallucination('**Tool: bash**\n\nParameters:\n- command: ls'), null);
+  assert.equal(sanitizeHallucination(undefined), null);
+});
+
+test('hallucinations.json contains only publishable prose', async () => {
+  const dataFile = path.join(__dirname, '..', '..', 'src', '_data', 'hallucinations.json');
+  const hallucinations = JSON.parse(await fs.readFile(dataFile, 'utf-8'));
+
+  assert.ok(hallucinations.length > 0, 'hallucinations.json should not be empty');
+
+  for (const entry of hallucinations) {
+    assert.equal(
+      typeof entry.hallucination,
+      'string',
+      `Entry "${entry.title}" is missing a hallucination string`
+    );
+    assert.ok(
+      isValidHallucination(entry.hallucination),
+      `Entry "${entry.title}" is not publishable prose — it is empty, too long, or contains ` +
+        `tool-call markers, code fences, or an absolute filesystem path: ${entry.hallucination}`
+    );
+    assert.equal(
+      stripLeadingLabel(entry.hallucination),
+      entry.hallucination,
+      `Entry "${entry.title}" still carries a "Summary:"-style label`
+    );
   }
 });
