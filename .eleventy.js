@@ -1,10 +1,43 @@
 const markdownIt = require('markdown-it');
 const pluginRss = require('@11ty/eleventy-plugin-rss').rssPlugin;
+const { eleventyImageTransformPlugin } = require('@11ty/eleventy-img');
 const { wordcount, readingTime, formatDate, split, jsonString } = require('./src/_lib/filters');
+const { IMAGE_WIDTHS, IMAGE_SIZES } = require('./scripts/image-budgets');
 
 module.exports = function (eleventyConfig) {
   // Add RSS plugin
   eleventyConfig.addPlugin(pluginRss);
+
+  // Responsive images. Every <img> in rendered HTML is rewritten into a
+  // <picture> with a webp + original-format srcset, so a 1408px cover is no
+  // longer shipped whole into a 192px-tall card. The full-size original stays
+  // on disk untouched — og:image/twitter:image still point at it, which is why
+  // the sources cannot simply be downscaled instead.
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    extensions: 'html',
+    formats: ['webp', 'auto'],
+    widths: IMAGE_WIDTHS,
+    urlPath: '/assets/img/',
+    outputDir: './_site/assets/img/',
+    // Write real files in `--serve` too, instead of eleventy-img's dynamic
+    // /.11ty/image/ dev endpoint, so the dev server the E2E suite runs against
+    // serves exactly the markup and files a production build does.
+    transformOnRequest: false,
+    // Anything that is not a local file under _site (the wedding archive's
+    // relative paths, any future remote URL) is left exactly as authored.
+    failOnError: false,
+    // sharp's PNG defaults are lossless and produce files several times larger
+    // than the sources; quantize the same way `npm run compress-images` does so
+    // the original-format fallback never outweighs the image it replaces.
+    sharpPngOptions: { palette: true, quality: 90, compressionLevel: 9, effort: 7 },
+    sharpJpegOptions: { quality: 82, mozjpeg: true },
+    sharpWebpOptions: { quality: 80 },
+    defaultAttributes: {
+      loading: 'lazy',
+      decoding: 'async',
+      sizes: IMAGE_SIZES,
+    },
+  });
 
   // Add absolute URL filter for RSS
   eleventyConfig.addFilter('absoluteUrl', (url, base) => {
