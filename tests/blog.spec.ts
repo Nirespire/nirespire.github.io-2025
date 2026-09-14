@@ -1,5 +1,39 @@
 import { test, expect } from '@playwright/test';
 
+test.describe('Blog index search', () => {
+  // The field is labelled by its <label for>, not an aria-label — getByLabel
+  // resolving it is the assertion that the accessible name survives.
+  test('filters the post list by title and restores it when cleared', async ({ page }) => {
+    await page.goto('/blog/');
+
+    const posts = page.locator('.blog-post');
+    const total = await posts.count();
+    expect(total).toBeGreaterThan(1);
+
+    const search = page.getByLabel('Search posts');
+    await expect(search).toBeVisible();
+
+    const firstTitle = (await posts.first().locator('.post-title').innerText()).trim();
+    await search.fill(firstTitle);
+
+    await expect(posts.first()).toBeVisible();
+    await expect.poll(async () => await posts.locator('visible=true').count()).toBeLessThan(total);
+
+    await search.fill('');
+    await expect.poll(async () => await posts.locator('visible=true').count()).toBe(total);
+  });
+
+  test('hides every post when nothing matches', async ({ page }) => {
+    await page.goto('/blog/');
+
+    await page.getByLabel('Search posts').fill('zzzzz-no-such-post-zzzzz');
+
+    await expect
+      .poll(async () => await page.locator('.blog-post').locator('visible=true').count())
+      .toBe(0);
+  });
+});
+
 test.describe('Blog posts', () => {
   test('should render blog post with banner image', async ({ page }) => {
     // Navigate to a post we know has a banner image
@@ -46,7 +80,9 @@ test.describe('Blog posts', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText(
       'GenAI Augmentation for Technology Leaders'
     );
-    await expect(page.locator('p.text-gray-400.text-xl')).toContainText(
+    // Selected by its microdata role, not by a Tailwind class: the presentation
+    // classes are theme tokens that may be retuned, the itemprop is the contract.
+    await expect(page.locator('p[itemprop="alternativeHeadline"]')).toContainText(
       "There's more to it than just the coding agents"
     );
 

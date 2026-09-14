@@ -4,31 +4,34 @@
 <div class="container mx-auto px-4">
 
   <article class="prose lg:prose-xl mx-auto max-w-4xl py-8" itemscope
-    itemtype="http://schema.org/BlogPosting">
+    itemtype="https://schema.org/BlogPosting">
     <meta itemprop="author" content="Sanjay Nair">
     <meta itemprop="datePublished" content="{{ date | date('yyyy-MM-dd') }}">
     <meta itemprop="mainEntityOfPage" content="{{ page.url | absoluteUrl('https://sanjaynair.me') }}">
 
     <header class="not-prose mb-8">
-      <h1 class="text-primary-blue text-4xl font-bold" itemprop="headline">{{ title }}</h1>
+      {# Colors here are theme tokens, never Tailwind's fixed grays: the palette
+         flips between the dark and light themes, so a hardcoded gray-400/500
+         lands below WCAG AA in whichever theme it was not picked for. #}
+      <h1 class="text-4xl font-bold" itemprop="headline">{{ title }}</h1>
       {% if subtitle %}
-      <p class="text-gray-400 text-xl mt-2" itemprop="alternativeHeadline">{{ subtitle }}</p>
+      <p class="text-text-secondary text-xl mt-2" itemprop="alternativeHeadline">{{ subtitle }}</p>
       {% endif %}
-      <div class="flex flex-col gap-2 text-sm text-gray-500 mt-4">
+      <div class="flex flex-col gap-2 text-sm text-text-secondary mt-4">
         <div>
           <time datetime="{{ date | date('yyyy-MM-dd') }}" itemprop="datePublished">{{ date | date("MMMM d, yyyy")
             }}</time>
           • <span itemprop="timeRequired">{{ content | striptags | wordcount | readingTime }} min read</span>
         </div>
         <div class="flex justify-between items-center">
-          <p class="text-primary-blue">
+          <p class="text-accent">
             Tags:
             {% for tag in tags %}
-            <a href="/tags/{{ tag }}" class="mr-1 bg-bg-interactive-strong px-2 py-1 rounded text-text-interactive-strong text-xs post-tag"
+            <a href="/tags/{{ tag | urlencode }}/" class="mr-1 bg-bg-interactive-strong px-2 py-1 rounded text-text-interactive-strong text-xs post-tag"
               itemprop="keywords">{{ tag }}</a>
             {% endfor %}
           </p>
-          <button onclick="copyToClipboard('llm-markdown-content', this)" class="flex items-center gap-1 bg-bg-interactive-strong text-text-interactive-strong py-1 px-2 rounded text-xs hover:bg-accent hover:text-white transition-colors duration-300 border border-border-subtle">
+          <button type="button" onclick="copyToClipboard('llm-markdown-content', this)" class="flex items-center gap-1 bg-bg-interactive-strong text-text-interactive-strong py-1 px-2 rounded text-xs hover:bg-accent hover:text-white transition-colors duration-300 border border-border-subtle">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
               <path d="m4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
@@ -50,7 +53,7 @@
       {{ content | safe }}
     </div>
 
-    <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of page">
+    <button type="button" id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of page">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
       </svg>
@@ -89,7 +92,7 @@ tags: [{% for tag in tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% end
     <div id="llm-text-content" class="hidden">{{ content | striptags }}</div>
     <script src="/assets/js/llm-copy.js" defer></script>
 
-    <footer class="mt-12 pt-4 border-t border-gray-200">
+    <footer class="mt-12 pt-4 border-t border-border-subtle">
       <div class="mb-8 flex flex-col items-center">
         <h2 class="text-lg font-semibold text-text-secondary mb-4">Share this post</h2>
         <div class="flex gap-4">
@@ -122,7 +125,7 @@ tags: [{% for tag in tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% end
           </a>
         </div>
       </div>
-      <nav class="flex justify-between items-center">
+      <nav aria-label="Post navigation" class="flex justify-between items-center">
         {% if collections.blog %}
         {% set previousPost = (collections.blog | reverse | getPreviousCollectionItem(page)) %}
         {% set nextPost = (collections.blog | reverse | getNextCollectionItem(page)) %}

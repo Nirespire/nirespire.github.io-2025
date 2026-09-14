@@ -1,0 +1,4 @@
+# Frozen legacy pages, served exactly as they were authored. They are vendored
+# rather than maintained (same reason archive/ is excluded from ESLint and
+# Prettier), so validating them would only produce findings nobody may fix.
+_site/archive/**
