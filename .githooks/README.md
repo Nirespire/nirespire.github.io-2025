@@ -15,6 +15,7 @@ requests and on a merge to `main` before deployment:
 | Format           | `npm run format:check` | PR + deploy (via `verify`) |
 | Unit tests       | `npm run test:unit`    | PR + deploy (via `verify`) |
 | Production build | `npm run build`        | PR + deploy (via `verify`) |
+| HTML validity    | `npm run lint:html`    | PR + deploy (via `verify`) |
 | E2E (Playwright) | `npm run test`         | PR + deploy (via `verify`) |
 
 ### Why there is no drift

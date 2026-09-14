@@ -18,8 +18,9 @@ npm run test:ui      # Playwright with interactive UI
 npm run test:debug   # Playwright in debug mode
 npm run test:setup   # install Playwright browsers + system deps
 npm run test:unit    # Node unit tests (node --test, tests/unit/*.test.js)
-npm run verify       # full CI suite (lint, format check, unit, build, E2E) — also pre-push
+npm run verify       # full CI suite (lint, format check, unit, build, html, E2E) — also pre-push
 npm run lint         # ESLint (lint:fix to autofix)
+npm run lint:html    # html-validate over _site/**/*.html (requires a build first)
 npm run format       # Prettier write (format:check to verify only)
 ```
 
@@ -148,18 +149,43 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   localhost:8080 across Chromium, Firefox, and WebKit.
 - **Accessibility** — `tests/a11y.spec.ts` uses `@axe-core/playwright` against
   every main page and fails on any `serious` or `critical` WCAG 2.1 A/AA violation.
+  Every page is scanned in **both themes** (`test.use({ colorScheme })`, which
+  `theme-switcher.js` follows when no choice is stored) plus a blog post and a
+  tag detail page, each resolved from a listing rather than hardcoded. One theme
+  proves nothing about the other: the palettes invert, so a color can clear AA
+  against one background and fail against the other. Know axe's blind spot here:
+  `body` carries a `linear-gradient`, and axe files `color-contrast` as
+  **`incomplete`**, not a violation, whenever it cannot resolve a flat background
+  — on a post page it evaluates 6 of ~80 nodes. The suite only inspects
+  `violations`, so contrast regressions pass it; `tests/unit/theme-tokens.test.js`
+  is what actually guards them (below).
+- **HTML validity** — `npm run lint:html` runs `html-validate` over the built
+  `_site/**/*.html` (config in `.htmlvalidate.json`, `_site/archive/**` skipped
+  via `.htmlvalidateignore` like the other vendored-archive exclusions). It runs
+  inside `verify` **after** `build`, since it validates output rather than
+  source. Purely stylistic rules are off, plus `attribute-boolean-style` —
+  `eleventyImageTransformPlugin` re-serializes every page and emits `defer=""`,
+  which is not ours to restyle. It is the gate for the defects Nunjucks will
+  happily emit: a stray `/* ... */` inside a tag becomes a dozen junk attributes,
+  a raw `&` in copy, an `<img>` without `alt`, duplicate unnamed landmarks.
 - **Unit** — Node's built-in test runner (`node --test`) over `tests/unit/*.test.js`
   covers the scripts (e.g. `resolve-changed-routes`, `generate-hallucinations`) and
   repo-weight guards (`image-budget`, `file-size-guard`). `lighthouse-config`
   guards `lighthouserc.json` itself: every audited URL still resolves to a source
   file (`staticDistDir` serves a missing one as the 404 page and reports healthy
   scores), every URL is asserted on LCP and `uses-responsive-images`, and scores
-  are averaged over more than one run.
+  are averaged over more than one run. `theme-tokens` fails any `.njk` whose
+  `class` attribute names a fixed Tailwind palette color (`text-gray-400`,
+  `border-gray-200`, …): those stay put while the theme flips, which is how the
+  post subtitle and byline shipped at 2.6:1 and 2.85:1. Use the CSS-variable
+  tokens instead (`text-text-secondary`, `border-border-subtle`, `text-accent`);
+  a color that genuinely must not follow the theme goes in the test's `ALLOWED`
+  map **with its reason**, and is itself checked for still being used.
 
 ## CI / Automation
 
 `npm run verify` runs the full check suite — lint, format check, unit tests,
-production build, and Playwright E2E — in one command. It is the **single
+production build, HTML validation, and Playwright E2E — in one command. It is the **single
 source of truth** for CI: both the PR workflow and the deploy workflow run it
 (via `.github/actions/setup-and-test`), and the `pre-push` hook
 (`.githooks/pre-push`) runs the exact same command, so local results never
@@ -176,7 +202,8 @@ which sets `git config core.hooksPath .githooks`). Individual checks:
 2. `npm run format:check` — Prettier format check passes
 3. `npm run test:unit` — Node unit tests pass
 4. `npm run build` — clean build with no errors
-5. `npm test` — all Playwright tests pass
+5. `npm run lint:html` — `html-validate` passes on the build output
+6. `npm test` — all Playwright tests pass
 
 Hook behaviour (details in `.githooks/README.md`): it runs with `CI=true` so
 Playwright applies the same settings as CI (a committed `test.only` fails
