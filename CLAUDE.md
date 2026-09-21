@@ -250,6 +250,13 @@ Workflows:
   PRs and queues them to auto-merge once the checks pass. Auto-merge needs repo
   settings only a human can flip (see [README](./README.md#dependabot-auto-merge));
   without them the job warns rather than failing every Dependabot PR.
+- `.github/workflows/claude-code-review.yml` — Claude review on PRs, skipped for
+  bot authors (`github.event.pull_request.user.type != 'Bot'`). Don't drop that
+  guard: `claude-code-action` fails on a non-human actor unless it is in
+  `allowed_bots`, and allow-listing alone would only change the error —
+  Dependabot-triggered runs read the *Dependabot* secret store rather than
+  Actions secrets, so `CLAUDE_CODE_OAUTH_TOKEN` arrives empty. A failing review
+  job blocked auto-merge on every Dependabot PR; a skipped one does not.
 
 The PR workflows carry **no `branches:` filter**, deliberately — every level of a
 stacked PR runs the same gates, not just the one based on `main`.
