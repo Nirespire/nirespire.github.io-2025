@@ -60,11 +60,11 @@
     "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "concurrently": "^10.0.5",
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.0",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.1",
     "typescript-eslint": "^8.70.0"
