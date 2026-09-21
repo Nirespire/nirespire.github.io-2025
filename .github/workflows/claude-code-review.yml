@@ -19,6 +19,9 @@ jobs:
     #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
 
     runs-on: ubuntu-latest
+    # Every other job in this repo is bounded; without this an agent run that
+    # hangs holds a runner for the 360-minute GitHub default.
+    timeout-minutes: 30
     permissions:
       contents: read
       pull-requests: read

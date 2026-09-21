@@ -109,7 +109,14 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   (markdown, via the `renderMarkdown` filter) on `/reads/` plus a teaser on the
   homepage.
 - **Webmentions** — sent/received via `scripts/send-webmentions.js` /
-  `fetch-webmentions.js` and `src/_data/webmentions.*`.
+  `fetch-webmentions.js` and `src/_data/webmentions.*`. `fetch-webmentions.js`
+  must write **byte-stable** output: `update-webmentions.yml` commits whatever
+  it produces and dispatches a full build + E2E + Pages deploy on any diff, so
+  its `timestamp` records when `all` last *changed* (reused verbatim otherwise)
+  rather than when the job last ran. Stamping it with `Date.now()` every run
+  cost a no-op commit and a redeploy every single day — 51 of the 141 commits
+  in the two months before it was fixed. Nothing reads `timestamp`;
+  `tests/unit/fetch-webmentions.test.js` guards the invariant.
 - **External links** open in a new tab globally (handled in `base.njk`).
 - **Umami analytics** — privacy-first, cookieless. Gated at build time on
   `UMAMI_WEBSITE_ID` (a GitHub repo *variable*, not a secret — the ID is public):

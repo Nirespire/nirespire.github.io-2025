@@ -16,19 +16,53 @@ function getOutputPath() {
   return process.env.WEBMENTIONS_OUTPUT_PATH || DEFAULT_OUTPUT_PATH;
 }
 
+// Read the currently committed data file, or null if it is absent/unparseable.
+async function readExisting(outputPath) {
+  try {
+    return JSON.parse(await fs.readFile(outputPath, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function sameMentions(previous, links) {
+  return (
+    previous !== null &&
+    typeof previous === 'object' &&
+    Array.isArray(previous.all) &&
+    typeof previous.timestamp === 'number' &&
+    JSON.stringify(previous.all) === JSON.stringify(links)
+  );
+}
+
+// `timestamp` records when the mention list last *changed*, not when this job
+// last ran.
+//
+// Stamping every run with `Date.now()` made the file differ on every run even
+// when webmention.io returned an identical list, so update-webmentions.yml
+// committed a one-line no-op *and* dispatched a full build + 3-browser E2E +
+// Pages deploy every single day. Nothing in the site reads `timestamp` — it is
+// not referenced by any template, filter or data file — so holding it steady
+// while `all` is unchanged keeps the file byte-identical and lets the
+// workflow's `git diff --staged --quiet` short-circuit the commit and deploy.
+async function writeWebmentions(outputPath, links) {
+  const previous = await readExisting(outputPath);
+  const data = {
+    all: links,
+    timestamp: sameMentions(previous, links) ? previous.timestamp : Date.now(),
+  };
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
+  await fs.writeFile(outputPath, JSON.stringify(data, null, 2) + '\n');
+  return data;
+}
+
 async function fetchWebmentions() {
   const token = process.env.WEBMENTION_IO_TOKEN;
   const outputPath = getOutputPath();
 
   if (!token) {
     console.warn('WEBMENTION_IO_TOKEN is not set. Using dummy data for testing.');
-    const dummyData = {
-      all: [],
-      timestamp: Date.now(),
-    };
-    await fs.mkdir(path.dirname(outputPath), { recursive: true });
-    await fs.writeFile(outputPath, JSON.stringify(dummyData, null, 2));
-    return dummyData;
+    return writeWebmentions(outputPath, []);
   }
 
   console.log(`Fetching webmentions for ${DOMAIN}...`);
@@ -46,13 +80,7 @@ async function fetchWebmentions() {
   }
   console.log(`Webmentions: ${feed.links.length} webmentions fetched from API.`);
 
-  const data = {
-    all: feed.links,
-    timestamp: Date.now(),
-  };
-
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, JSON.stringify(data, null, 2));
+  const data = await writeWebmentions(outputPath, feed.links);
   console.log(`Successfully wrote webmentions to ${outputPath}`);
   return data;
 }
@@ -68,4 +96,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { fetchWebmentions, setFetchForTest };
+module.exports = { fetchWebmentions, setFetchForTest, writeWebmentions, sameMentions };
