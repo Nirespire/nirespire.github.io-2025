@@ -110,4 +110,4 @@ If you're looking for some other great resources:
 * I'm going to plug the [great talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4) I mentioned above again because it has some great examples of PR's being rejected how it was dealt with properly
 * [First Timers Only](https://www.firsttimersonly.com/): A resource dedicated to those contributing to Open Source for the first time
 * The [ReactJS Contributing docs](https://react.dev/community#how-to-contribute) have guidelines specifically for directing beginners to appropriate Issues to contribute changes to
-* [Kent C Dodds](https://twitter.com/kentcdodds) has a great [video](https://www.youtube.com/watch?v=k6KcaMffxac) on the topic of contributing to open source for beginners
+* [Kent C Dodds](https://x.com/kentcdodds) has a great [video](https://www.youtube.com/watch?v=k6KcaMffxac) on the topic of contributing to open source for beginners

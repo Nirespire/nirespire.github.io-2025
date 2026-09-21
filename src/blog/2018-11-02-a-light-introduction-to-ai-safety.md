@@ -80,6 +80,6 @@ If any of this peaks of interest, I encourage you to do more reading on the subj
 - The book [Superintelligence](https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies) by Nick Bostrom
 - Dr. [Michal Kosinski's study](https://www.nytimes.com/2017/11/21/magazine/can-ai-be-taught-to-explain-itself.html) on facial recognition and encountering the "black box" problem
 - The loads of content on the [Future of Life website](https://futureoflife.org/background/existential-risk/)
-- Elon Musk's [twitter feed](https://twitter.com/elonmusk/status/495759307346952192?lang=en)
+- Elon Musk's [twitter feed](https://x.com/elonmusk/status/495759307346952192?lang=en)
 
 Enjoy! 🤖

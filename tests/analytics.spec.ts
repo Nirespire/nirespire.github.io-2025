@@ -44,7 +44,7 @@ test.describe('Analytics (disabled build)', () => {
       .locator('a.social-share-link[data-umami-event="share"]')
       .evaluateAll((links) => links.map((el) => el.getAttribute('data-umami-event-network')));
 
-    expect(networks.sort()).toEqual(['email', 'linkedin', 'twitter']);
+    expect(networks.sort()).toEqual(['email', 'linkedin', 'x']);
   });
 
   test('the theme toggle still works with analytics absent', async ({ page }) => {
