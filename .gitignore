@@ -14,6 +14,9 @@ src/assets/css/tailwind-built.css
 # VSCode settings
 .vscode/
 
+# Claude Code agent worktree scratch space
+.claude/worktrees/
+
 # System files
 .DS_Store
 Thumbs.db
