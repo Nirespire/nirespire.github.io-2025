@@ -25,6 +25,14 @@ const PAGES = [
   { name: '404', url: '/this-page-does-not-exist/' },
 ];
 
+// Both themes are scanned. `theme-switcher.js` resolves the theme from
+// `prefers-color-scheme` when no explicit choice is stored, so emulating the
+// media query is enough to select one. This matters because the two palettes
+// invert (`:root` vs `html.light` in styles.css): a color that clears WCAG AA
+// against the dark background can fail against the light one, and vice versa,
+// so scanning a single theme only ever checks half the site.
+const THEMES = ['dark', 'light'] as const;
+
 // Threshold ratchet: `critical` and `serious` violations fail the suite.
 // Tighten to include `moderate` once any remaining lower-impact issues are
 // cleared in follow-up PRs.
@@ -33,54 +41,71 @@ const FAILING_IMPACTS: Array<'critical' | 'serious' | 'moderate' | 'minor'> = [
   'serious',
 ];
 
-test.describe('Accessibility (axe-core)', () => {
-  for (const { name, url } of PAGES) {
-    test(`${name} has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
-      await page.goto(url);
+async function scan(page: Page) {
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+
+  return results.violations.filter((v) =>
+    FAILING_IMPACTS.includes(v.impact as (typeof FAILING_IMPACTS)[number])
+  );
+}
+
+function describeViolations(where: string, violations: Awaited<ReturnType<typeof scan>>) {
+  return (
+    `${FAILING_IMPACTS.join('/')} a11y violations on ${where}:\n` +
+    violations.map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.helpUrl}`).join('\n')
+  );
+}
+
+for (const theme of THEMES) {
+  test.describe(`Accessibility (axe-core, ${theme} theme)`, () => {
+    test.use({ colorScheme: theme });
+
+    for (const { name, url } of PAGES) {
+      test(`${name} has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
+        await page.goto(url);
+        await freezeAnimations(page);
+
+        const blocking = await scan(page);
+
+        // Surface the offenders in the assertion message so CI logs are actionable.
+        expect.soft(blocking, describeViolations(`${url} (${theme})`, blocking)).toEqual([]);
+      });
+    }
+
+    test(`latest blog post has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
+      await page.goto('/blog/');
+      const firstPost = page.locator('article').first().getByRole('heading').getByRole('link');
+      const href = await firstPost.getAttribute('href');
+      expect(href, 'expected at least one blog post on /blog/').toBeTruthy();
+
+      await page.goto(href!);
       await freezeAnimations(page);
 
-      const results = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-        .analyze();
+      const blocking = await scan(page);
 
-      const blocking = results.violations.filter((v) =>
-        FAILING_IMPACTS.includes(v.impact as (typeof FAILING_IMPACTS)[number])
-      );
-
-      // Surface the offenders in the assertion message so CI logs are actionable.
       expect
-        .soft(
-          blocking,
-          `${FAILING_IMPACTS.join('/')} a11y violations on ${url}:\n` +
-            blocking.map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.helpUrl}`).join('\n')
-        )
+        .soft(blocking, describeViolations(`blog post ${href} (${theme})`, blocking))
         .toEqual([]);
     });
-  }
 
-  test(`latest blog post has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
-    await page.goto('/blog/');
-    const firstPost = page.locator('article').first().getByRole('heading').getByRole('link');
-    const href = await firstPost.getAttribute('href');
-    expect(href, 'expected at least one blog post on /blog/').toBeTruthy();
+    // A tag detail page renders its own listing template (`tags/tag.njk`) rather
+    // than reusing the blog index, so `/tags/` alone leaves it unscanned.
+    test(`a tag page has no ${FAILING_IMPACTS.join('/')} violations`, async ({ page }) => {
+      await page.goto('/tags/');
+      const firstTag = page.locator('#tagCloud a').first();
+      const href = await firstTag.getAttribute('href');
+      expect(href, 'expected at least one tag on /tags/').toBeTruthy();
 
-    await page.goto(href!);
-    await freezeAnimations(page);
+      await page.goto(href!);
+      await freezeAnimations(page);
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
+      const blocking = await scan(page);
 
-    const blocking = results.violations.filter((v) =>
-      FAILING_IMPACTS.includes(v.impact as (typeof FAILING_IMPACTS)[number])
-    );
-
-    expect
-      .soft(
-        blocking,
-        `${FAILING_IMPACTS.join('/')} a11y violations on blog post ${href}:\n` +
-          blocking.map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.helpUrl}`).join('\n')
-      )
-      .toEqual([]);
+      expect
+        .soft(blocking, describeViolations(`tag page ${href} (${theme})`, blocking))
+        .toEqual([]);
+    });
   });
-});
+}

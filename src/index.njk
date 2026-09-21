@@ -39,11 +39,11 @@ title: Home
     <p class="text-sm text-text-secondary mb-1">
       {{ latestPost.date | date("MMMM d, yyyy") }} {% if latestPost.data.readingTime %}• {{ latestPost.data.readingTime }}{% endif %}
     </p>
-    <p class="text-sm text-accent mb-2"> <!-- Changed text-primary-blue to text-accent for the "Tags:" label -->
+    <p class="text-sm text-accent mb-2">
       Tags:
       {% for tag in latestPost.data.tags %}
       {% if tag !== "blog" %}
-      <a href="/tags/{{ tag }}"
+      <a href="/tags/{{ tag | urlencode }}/"
         class="mr-1 bg-bg-interactive-strong px-2 py-1 rounded text-text-interactive-strong text-xs post-tag hover:opacity-90">{{ tag }}</a>
       {% endif %}
       {% endfor %}
@@ -72,7 +72,7 @@ title: Home
       Date Read - {{ article.dateAdded | date("MMMM d, yyyy") }}
     </p>
     {% if article.excerpt %}
-    <p class="text-text-main">{{ article.excerpt | truncate(150) }}</p> <!-- Changed text-gray-300 to text-text-main -->
+    <p class="text-text-main">{{ article.excerpt | truncate(150) }}</p>
     {% endif %}
     {% if article.note %}
     <p class="read-note-teaser mt-1 text-sm">
