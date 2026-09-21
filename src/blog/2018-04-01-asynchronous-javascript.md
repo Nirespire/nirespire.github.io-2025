@@ -6,6 +6,8 @@ date: 2018-04-01
 tags: ["javascript", "web development", "software engineering"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+
 > Callbacks vs Promises vs Async/Await
 
 JavaScript and many other programming languages support an abstraction known as asynchronous execution. What this means is when you want to execute some task that might return some data in an unknown amount of time, JavaScript lets you predefine what to do once that data does show up while continuing to run the rest of your program.
@@ -93,6 +95,10 @@ Should result in the following output:
 **What's not so good**: Doesn't provide any runtime advantages like better performance compared to callbacks. Really just cleaner code.
 
 ### Async/Await
+
+{% call editorial_note("September 2026") %}
+<p>This section originally described async/await as "new and shiny" with support "only recently" landing in browsers and dependent on transpilers like Babel or polyfills for backwards compatibility. That was accurate in 2018; it no longer is. Async/await has been baseline-supported across all major browsers and in Node.js for years now, so a reader today does not need Babel or a polyfill to use it.</p>
+{% endcall %}
 
 The async/await abstraction is the new and shiny for developers looking to be on the cutting edge of JavaScript development. It is only recently getting standard support in browsers but has been available to use through transpilers like Babel. This is due mainly to the fact that async/await is really just syntactic sugar over the existing Promise abstraction.
 

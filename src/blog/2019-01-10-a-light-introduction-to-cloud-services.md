@@ -8,6 +8,8 @@ coverImageAlt: "Photo by Samuel Ferrara on Unsplash"
 tags: ["cloud", "software engineering", "aws", "gcp", "azure", "infrastructure"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+
 As software engineers, there are lots of tools available for us to use. We might start simple with a programming language or two. From there, we might explore software libraries that help us be more productive when solving problems, or tools to help with collaboration. If our use-case requires it, we could reach for advanced monitoring tools to alert us when our software is doing something it shouldn't.
 
 At some point in this process, many of us might have crossed paths with the new hotness in software development: ***The Cloud***.
@@ -28,7 +30,7 @@ You can use these services as a platform to host your application for yourself o
 
 * [Google Compute Engine (GCE)](https://cloud.google.com/compute/)
 * [Amazon Elastic Compute Cloud (EC2)](https://aws.amazon.com/ec2/)
-* [Azure Virtual Machines](https://azure.microsoft.com/en-us/services/virtual-machines/)
+* [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines)
 * [Digital Ocean Droplets](https://www.digitalocean.com/products/droplets/)
 
 ### Object Storage
@@ -60,7 +62,7 @@ With managed database services, the main tradeoff for convenience and speed to m
 
 * [Databases on AWS](https://aws.amazon.com/products/databases/)
 * [GCP Cloud Storage Options](https://cloud.google.com/products/storage/)
-* [Azure Databases](https://azure.microsoft.com/en-us/product-categories/databases/)
+* [Azure Databases](https://azure.microsoft.com/en-us/products/category/databases)
 
 ### Application Platforms as a Service
 
@@ -69,6 +71,10 @@ When you don't want to worry about systems management of a VM and simply want to
 When working with a PaaS, you can typically get an application written and deployed with only some small configuration in the middle. Assuming you are following the principles of [12 factor](https://12factor.net/) application development, getting your app from coded to deployed should only include some small amount of extra configuration. You don't have to worry about VM's or systems administration and can focus more on writing code. You typically pay a premium for this convenience, but for many this is well worth it.
 
 Cloud platforms vary a bit here as far as how approachable they made the developer experience when it comes to directly running apps in the cloud. Some of the first PaaS offerings, like the ever popular [Heroku](https://www.heroku.com/), make deploying as easy as pushing to a git repo and managing your app painless through their web-based tooling. On the flip side, offerings on AWS like Elastic Beanstalk are targeted more at enterprise customers, and therefore trade off convenience for flexibility, customization, and scalability.
+
+{% call editorial_note("September 2026") %}
+<p>Heroku retired its free dyno tier on November 28, 2022, so the "ever popular" free on-ramp described below is no longer available. Modern free-tier alternatives worth considering include <a href="https://fly.io/">Fly.io</a>, <a href="https://render.com/">Render</a>, <a href="https://railway.app/">Railway</a>, and <a href="https://vercel.com/">Vercel</a> or <a href="https://www.netlify.com/">Netlify</a> for static and serverless workloads.</p>
+{% endcall %}
 
 **Examples of Platforms as a Service:**
 
@@ -92,7 +98,7 @@ The clear advantage of this model is obviously the lower cost and opportunity to
 
 * [AWS Lambda](https://aws.amazon.com/lambda/)
 * [Google Cloud Functions](https://cloud.google.com/functions/)
-* [Azure Functions](https://azure.microsoft.com/en-us/services/functions/)
+* [Azure Functions](https://azure.microsoft.com/en-us/products/functions)
 * [Oracle Fn Project](https://fnproject.io/)
 
 ### Streaming and Data Processing
@@ -121,7 +127,7 @@ Examples of managed pubsub services:
 With the mainstream rise of Machine Learning and AI as an area of software specialization, cloud providers are more than ready to provide managed solutions to some of the main problems posed by this up-and-coming area.
 
 ![Example of face detection through Google Vision API](/assets/images/blog/2019-01-10-a-light-introduction-to-cloud-services/0xEYsVULBoHbKVcc0M.png)
-*Example of face detection through Google Vision API (https://developers.google.com/vision/)*
+*Example of face detection through Google Vision API (https://cloud.google.com/vision/)*
 
 Most modern cloud providers (especially the ones that already developed high fidelity ML and AI tools for the other business ventures - I'm looking at you Google) offer managed solutions to overcome the barriers to entry into the space. For example, they might provide image recognition tools to provide high quality image recognition without the need to write implementations from scratch or worry about collecting training data sets. They effectively take care of all the implementation and training while letting you, the customer, reap the benefits through a friendly API.
 

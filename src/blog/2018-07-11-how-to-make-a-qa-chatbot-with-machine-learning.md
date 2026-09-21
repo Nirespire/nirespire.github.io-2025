@@ -5,6 +5,8 @@ date: 2018-07-11
 tags: ["machine learning", "chatbot", "slack", "javascript", "nodejs", "natural language processing", "ai"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+
 This article will teach you how to write your very own Slack chatbot that answers simple questions using some basic machine learning tools. Most of the more complex stuff around natural language processing and math behind creating machine learning models is mostly abstracted out, leaving room for us to easily build a finished product in a pretty short amount of time. If you're looking for a simple and effective way to get a semi-intelligent bot answering questions on Slack fast, then this guide is the one for you.
 
 If you want to skip to the finished code, check out the link to the Github repo [here](https://github.com/Nirespire/FAQBot) or at the end of the post.
@@ -12,6 +14,10 @@ If you want to skip to the finished code, check out the link to the Github repo 
 > Edit 10/27/19
 
 > Because the library I used (Botkit) had a few critical security vulnerabilities and I couldn't get the latest version of the library working, I switched over to the [Slack RTM API](https://slack.dev/node-slack-sdk/rtm-api). The below code examples should work just fine, but if you're interested in using the latest version of the code, check out the example repo at the bottom. [Link to Pull Request with all code changes](https://github.com/Nirespire/FAQBot/pull/2).
+
+{% call editorial_note("September 2026") %}
+<p>Slack has since deprecated the RTM API for new apps, so the 2019 edit above is itself out of date. For a new bot today, use <a href="https://api.slack.com/apis/socket-mode">Socket Mode</a> or the <a href="https://api.slack.com/apis/events-api">Events API</a> instead of RTM.</p>
+{% endcall %}
 
 ### Some Setup
 
