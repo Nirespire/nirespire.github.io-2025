@@ -26,6 +26,12 @@ module.exports = function (eleventyConfig) {
     // Anything that is not a local file under _site (the wedding archive's
     // relative paths, any future remote URL) is left exactly as authored.
     failOnError: false,
+    // sharp defaults to reading only the first frame/page of a source, which
+    // silently flattens an animated GIF into a still image. `animated: true`
+    // preserves every frame; it is a no-op for single-frame sources (verified
+    // byte-identical output for the site's static images), so this is safe to
+    // apply globally rather than opt in per image.
+    sharpOptions: { animated: true },
     // sharp's PNG defaults are lossless and produce files several times larger
     // than the sources; quantize the same way `npm run compress-images` does so
     // the original-format fallback never outweighs the image it replaces.
