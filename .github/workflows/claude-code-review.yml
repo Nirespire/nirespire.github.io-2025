@@ -12,11 +12,14 @@ on:
 
 jobs:
   claude-review:
-    # Optional: Filter by PR author
-    # if: |
-    #   github.event.pull_request.user.login == 'external-contributor' ||
-    #   github.event.pull_request.user.login == 'new-developer' ||
-    #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+    # Skip bot-authored PRs (Dependabot). claude-code-action rejects non-human
+    # actors unless they are listed in `allowed_bots`, and allow-listing alone
+    # would only move the failure: Dependabot-triggered runs read the Dependabot
+    # secret store rather than Actions secrets, so `CLAUDE_CODE_OAUTH_TOKEN`
+    # arrives empty and the action has no credentials. A skipped job reports as
+    # neutral instead of failing, so it no longer blocks dependabot-automerge;
+    # `verify` and Lighthouse still gate those PRs.
+    if: github.event.pull_request.user.type != 'Bot'
 
     runs-on: ubuntu-latest
     # Every other job in this repo is bounded; without this an agent run that
