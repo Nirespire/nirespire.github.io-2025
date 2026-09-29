@@ -61,7 +61,7 @@
     "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "concurrently": "^10.0.5",
-    "dotenv": "^18.0.3",
+    "dotenv": "^18.0.4",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",
