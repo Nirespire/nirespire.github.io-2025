@@ -17,7 +17,7 @@ npm test             # Playwright E2E tests (Chromium, Firefox, WebKit)
 npm run test:ui      # Playwright with interactive UI
 npm run test:debug   # Playwright in debug mode
 npm run test:setup   # install Playwright browsers + system deps
-npm run test:unit    # Node unit tests (node --test, tests/unit/*.test.js)
+npm run test:unit    # Node unit tests (node --test, tests/unit/*.test.js) + native coverage gate (floors in package.json)
 npm run verify       # full CI suite (lint, format check, unit, build, html, E2E) — also pre-push
 npm run lint         # ESLint (lint:fix to autofix)
 npm run lint:html    # html-validate over _site/**/*.html (requires a build first)
