@@ -4,14 +4,14 @@ runs:
   using: "composite"
   steps:
     - name: Use Node.js
-      uses: actions/setup-node@v7
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
         node-version-file: '.nvmrc'
         cache: 'npm'
 
     - name: Cache Playwright browsers
       id: playwright-cache
-      uses: actions/cache@v6
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       with:
         path: ~/.cache/ms-playwright
         key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
@@ -35,7 +35,7 @@ runs:
       shell: bash
 
     - name: Upload Playwright report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
       if: always()
       with:
         name: playwright-report

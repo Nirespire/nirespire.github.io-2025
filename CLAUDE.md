@@ -259,6 +259,8 @@ Workflows:
   Actions secrets, so `CLAUDE_CODE_OAUTH_TOKEN` arrives empty. A failing review
   job blocked auto-merge on every Dependabot PR; a skipped one does not.
 
+Every `uses:` in workflows is pinned to a full commit SHA with a `# vN` comment (Dependabot's `github-actions` ecosystem bumps both); never reintroduce a bare tag.
+
 The PR workflows carry **no `branches:` filter**, deliberately — every level of a
 stacked PR runs the same gates, not just the one based on `main`.
 
