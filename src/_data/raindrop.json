@@ -1,5 +1,15 @@
 [
   {
+    "title": "Why Software Factories Fail",
+    "url": "https://www.youtube.com/watch?v=Ib5GBkD555M",
+    "excerpt": "In July 2025 Dex Horthy turned the lights off: an agent software factory where nobody read the code. It fell apart. An issue appeared that no amount of promp...",
+    "note": "We don't have an issue with too many PRs, its too many bad PRs. Add Product design review (prototyping), architecture review, program design (pseudocode structure review), and plan in vertical slices before implementation. Gain agentic alignment up front (grilling) to make it so PRs coming out are a delight to review. Models going through reinforcement leaning with the harness should get better at this with time.",
+    "dateAdded": "2026-10-03T12:49:20.782Z",
+    "tags": [
+      "to-share"
+    ]
+  },
+  {
     "title": "Plan mode is dead",
     "url": "https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html",
     "excerpt": "Earlier this year, I believed planning was going to become the most important part of building software with AI.",
