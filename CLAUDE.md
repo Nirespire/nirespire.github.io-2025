@@ -243,6 +243,7 @@ Workflows:
   (`scripts/capture-previews.js` + `resolve-changed-routes.js`), uploads them as
   assets on a dedicated `pr-previews` GitHub Release (kept out of the git object
   store so they don't bloat the repo), and posts a sticky comment embedding them.
+- `.github/workflows/codeql.yml` — CodeQL SAST (JS/TS + Actions) on push to main, PRs and weekly.
 - `.github/workflows/update-raindrop.reads.yml` — daily Raindrop sync.
 - `.github/workflows/update-webmentions.yml` — daily webmention fetch.
 - `.github/workflows/generate-hallucinations.yml` — regenerates `hallucinations.json`.
