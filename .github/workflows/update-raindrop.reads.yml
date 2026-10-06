@@ -8,6 +8,11 @@ on:
     - cron: '0 14 * * *' # Runs daily at 09:00 EST (UTC-5)
   workflow_dispatch: # Allow manual runs
 
+# Serialise commits to main: overlapping runs would race on the push
+concurrency:
+  group: content-updates
+  cancel-in-progress: false
+
 jobs:
   update-raindrop-reads:
     runs-on: ubuntu-latest
