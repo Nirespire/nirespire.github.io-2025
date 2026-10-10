@@ -6,11 +6,13 @@ const path = require('node:path');
 
 const {
   getLatestBlogPosts,
+  generateHallucination,
   sanitizeHallucination,
   isValidHallucination,
   stripLeadingLabel,
   MAX_LENGTH,
   MAX_SENTENCES,
+  CLI_TIMEOUT_MS,
 } = require('../../scripts/generate-hallucinations.js');
 
 async function writePost(dir, filename, frontmatter, body = 'body text') {
@@ -225,6 +227,81 @@ test('sanitizeHallucination strips a label and returns null for garbage', () => 
   );
   assert.equal(sanitizeHallucination('**Tool: bash**\n\nParameters:\n- command: ls'), null);
   assert.equal(sanitizeHallucination(undefined), null);
+});
+
+// Stand-ins for spawnSync's result shape. A timed-out child has status null
+// and an ETIMEDOUT error, which is what a hung CLI call produces.
+const timedOut = () => ({
+  status: null,
+  stdout: '',
+  stderr: '',
+  error: Object.assign(new Error('spawnSync npx ETIMEDOUT'), { code: 'ETIMEDOUT' }),
+});
+const succeeded = (stdout) => ({ status: 0, stdout, stderr: '' });
+
+// The CLI's own failures are logged by generateHallucination; keep test output clean.
+async function quietly(fn) {
+  const original = console.error;
+  console.error = () => {};
+  try {
+    return await fn();
+  } finally {
+    console.error = original;
+  }
+}
+
+test('generateHallucination bounds every CLI call with a timeout', async () => {
+  const calls = [];
+  const spawn = (cmd, args, options) => {
+    calls.push(options);
+    return succeeded('Kevin the agent quit to raise goats.');
+  };
+
+  const result = await generateHallucination('Post', '', { spawn });
+
+  assert.equal(result, 'Kevin the agent quit to raise goats.');
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].timeout, CLI_TIMEOUT_MS);
+  assert.ok(CLI_TIMEOUT_MS > 0);
+});
+
+test('generateHallucination retries after a timed-out call', async () => {
+  const responses = [timedOut(), succeeded('Databases are actually shy cats.')];
+  const spawn = () => responses.shift();
+
+  const result = await quietly(() => generateHallucination('Post', '', { spawn }));
+
+  assert.equal(result, 'Databases are actually shy cats.');
+  assert.equal(responses.length, 0);
+});
+
+test('generateHallucination falls back to the previous value when every call times out', async () => {
+  const result = await quietly(() =>
+    generateHallucination('Post', '', { spawn: timedOut, previous: 'The old joke.' })
+  );
+
+  assert.equal(result, 'The old joke.');
+});
+
+test('generateHallucination throws when nothing usable is produced and there is no fallback', async () => {
+  const spawn = () => ({ status: 1, stdout: '', stderr: 'auth failed' });
+
+  await assert.rejects(
+    quietly(() => generateHallucination('Post', '', { spawn })),
+    /Could not generate a usable hallucination for "Post"/
+  );
+});
+
+test('generateHallucination discards non-conforming output', async () => {
+  const responses = [
+    succeeded('**Tool: bash**\n\nParameters:\n- command: ls'),
+    succeeded('Terraform is a gardening cult.'),
+  ];
+  const spawn = () => responses.shift();
+
+  const result = await quietly(() => generateHallucination('Post', '', { spawn }));
+
+  assert.equal(result, 'Terraform is a gardening cult.');
 });
 
 test('hallucinations.json contains only publishable prose', async () => {

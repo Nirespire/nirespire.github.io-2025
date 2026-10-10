@@ -4,6 +4,7 @@ title: "Moving to GatsbyJS"
 subtitle: "What I learned moving my personal website to GatsbyJS"
 date: 2019-05-21
 coverImage: /assets/images/nexttogatsby.png
+coverImageAlt: "The Nuxt.js logo with an arrow pointing to the Gatsby logo"
 tags: ["web development", "gatsbyjs", "react", "javascript", "software engineering"]
 ---
 

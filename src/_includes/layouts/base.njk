@@ -7,15 +7,19 @@
   <!-- Security headers -->
   <!-- CSP delivered via <meta> because GitHub Pages does not let us set
        HTTP response headers. 'unsafe-inline' is required for the inline
-       Web Vitals script + Schema.org JSON-LD in this template and for the
-       inline style attribute on the Ko-fi link in the footer; moving those
-       out would let us tighten to nonce/hash sources in a follow-up.
+       external-links script at the end of <body> and for the inline style
+       attribute on the Ko-fi link in the footer; moving those out would let
+       us tighten to nonce/hash sources in a follow-up. (The JSON-LD block is
+       a data block, which CSP does not govern.)
+       giscus (post comments, layouts/post.njk) needs its origin in
+       script-src (client.js), style-src (client.js injects giscus.app's
+       default.css), connect-src and frame-src.
        The umami origin is appended to script-src (it serves script.js) and
        connect-src (the tracker POSTs events to /api/send on the same host)
        only when analytics is enabled — see src/_data/analytics.js — so the
        policy is byte-identical to before whenever UMAMI_WEBSITE_ID is unset. -->
   {%- set umamiCsp = (" " + analytics.umami.origin) if analytics.umami.enabled else "" %}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app{{ umamiCsp }}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://giscus.app https://api.github.com{{ umamiCsp }}; frame-src https://giscus.app; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app{{ umamiCsp }}; style-src 'self' 'unsafe-inline' https://giscus.app; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://giscus.app https://api.github.com{{ umamiCsp }}; frame-src https://giscus.app; form-action 'self'; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
 

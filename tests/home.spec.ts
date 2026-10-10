@@ -129,4 +129,30 @@ test.describe('Home page', () => {
     const storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
     expect(storedTheme).toBeNull();
   });
+
+  test('resolves and toggles the theme when localStorage throws', async ({ page }) => {
+    // Disabled storage (private mode, blocked site data) throws on access
+    // rather than returning null; the theme must still resolve and toggle.
+    await page.addInitScript(() => {
+      const deny = () => {
+        throw new DOMException('Storage disabled', 'SecurityError');
+      };
+      Object.defineProperty(window, 'localStorage', {
+        configurable: true,
+        get: () => ({ getItem: deny, setItem: deny, removeItem: deny, clear: deny }),
+      });
+    });
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+
+    const html = page.locator('html');
+    await expect(html).toHaveClass(/\blight\b/);
+
+    await page.locator('#theme-toggle').click();
+    await expect(html).not.toHaveClass(/\blight\b/);
+    expect(errors).toEqual([]);
+  });
 });

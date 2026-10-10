@@ -36,7 +36,8 @@ jobs:
         run: npm run build
 
       # Budgets and score thresholds live in lighthouserc.json. Resource-size
-      # budgets (image/css/html weight per page) are hard errors; category
-      # scores and LCP are warnings since they can flake on shared runners.
+      # budgets (image/css/html weight per page) and the accessibility,
+      # best-practices and SEO scores are hard errors; the performance score
+      # and LCP are warnings since they can flake on shared runners.
       - name: Run Lighthouse CI
         run: npx --yes @lhci/cli@0.15.x autorun

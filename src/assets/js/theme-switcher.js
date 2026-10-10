@@ -3,6 +3,26 @@ const lightIcon = document.getElementById('theme-toggle-light-icon');
 const darkIcon = document.getElementById('theme-toggle-dark-icon');
 const htmlElement = document.documentElement;
 
+// localStorage throws (rather than returning null) when storage is disabled —
+// Safari private mode, blocked site data, sandboxed iframes. The theme must
+// still resolve and toggle there, so storage is best-effort: a failed read
+// falls back to the OS preference, and a failed write only skips persisting.
+function readStoredTheme() {
+  try {
+    return localStorage.getItem('theme');
+  } catch {
+    return null;
+  }
+}
+
+function storeTheme(theme) {
+  try {
+    localStorage.setItem('theme', theme);
+  } catch {
+    // Not persisted; the toggle still applies for this page view.
+  }
+}
+
 // Function to update icon visibility
 function updateIcons(theme) {
   if (!lightIcon || !darkIcon) return;
@@ -21,7 +41,7 @@ function updateIcons(theme) {
 // We intentionally do NOT persist the resolved default here — writing it would
 // freeze the first-visit OS state and stop future OS changes from being picked
 // up. Only an explicit toggle (below) persists a preference.
-let currentTheme = localStorage.getItem('theme');
+let currentTheme = readStoredTheme();
 
 if (!currentTheme) {
   currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -42,7 +62,7 @@ if (themeToggleBtn) {
   themeToggleBtn.addEventListener('click', () => {
     htmlElement.classList.toggle('light');
     const newTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
-    localStorage.setItem('theme', newTheme);
+    storeTheme(newTheme);
     updateIcons(newTheme);
     // Optional call: analytics.js may be absent or blocked (see its header).
     window.trackEvent?.('theme-toggle', { theme: newTheme });
