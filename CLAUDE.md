@@ -274,6 +274,11 @@ Workflows:
   job blocked auto-merge on every Dependabot PR; a skipped one does not.
 
 Every `uses:` in workflows is pinned to a full commit SHA with a `# vN` comment (Dependabot's `github-actions` ecosystem bumps both); never reintroduce a bare tag.
+Every `actions/checkout` sets `persist-credentials: false`, so no token sits in
+`.git/config` while `npm ci` runs dependency install scripts. Jobs that push
+(the content-update workflows) authenticate git inside their push step only,
+via `GIT_CONFIG_COUNT`/`GIT_CONFIG_KEY_0`/`GIT_CONFIG_VALUE_0`; guarded by
+`tests/unit/workflow-credentials.test.js`.
 
 The PR workflows carry **no `branches:` filter**, deliberately — every level of a
 stacked PR runs the same gates, not just the one based on `main`.
