@@ -13,6 +13,13 @@ require('dotenv').config();
 const MAX_LENGTH = 600;
 const MAX_SENTENCES = 4;
 
+// spawnSync blocks the whole run, so a hung CLI call (network stall, an auth
+// prompt) would otherwise hold the job until the workflow's 15-minute
+// timeout-minutes kills it -- after which nothing is written and every entry
+// loses its fallback. Bounding each call keeps the worst case (5 posts x 2
+// attempts) inside that budget and lets a stalled attempt fall back cleanly.
+const CLI_TIMEOUT_MS = 60_000;
+
 const REJECT_PATTERNS = [
   // Tool-call transcripts.
   /\*\*\s*Tool\s*:/i,
@@ -70,7 +77,11 @@ function sanitizeHallucination(raw) {
   return isValidHallucination(cleaned) ? cleaned : null;
 }
 
-async function generateHallucination(title, _content, { previous, attempts = 2 } = {}) {
+async function generateHallucination(
+  title,
+  _content,
+  { previous, attempts = 2, spawn = spawnSync } = {}
+) {
   const prompt = `Given this blog post titled "${title}", create a humorous, 
     completely incorrect summary that's clearly wrong but entertaining. 
     Keep it under 2-3 sentences and make it sound absurd while staying family-friendly.
@@ -82,15 +93,18 @@ async function generateHallucination(title, _content, { previous, attempts = 2 }
   for (let attempt = 1; attempt <= attempts; attempt++) {
     let raw;
     try {
-      const result = spawnSync(
-        'npx',
-        ['claude', '-p', prompt, '--model', 'sonnet', '--tools', ''],
-        {
-          encoding: 'utf-8',
-          env: { ...process.env },
-        }
-      );
+      const result = spawn('npx', ['claude', '-p', prompt, '--model', 'sonnet', '--tools', ''], {
+        encoding: 'utf-8',
+        env: { ...process.env },
+        timeout: CLI_TIMEOUT_MS,
+        killSignal: 'SIGKILL',
+      });
 
+      // A timeout (or a failure to start) sets result.error and leaves
+      // status null, so check it first for a message that says what happened.
+      if (result.error) {
+        throw result.error;
+      }
       if (result.status !== 0) {
         throw new Error(result.stderr || 'Claude CLI exited with non-zero status');
       }
@@ -192,4 +206,5 @@ module.exports = {
   countSentences,
   MAX_LENGTH,
   MAX_SENTENCES,
+  CLI_TIMEOUT_MS,
 };
