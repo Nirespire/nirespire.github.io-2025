@@ -25,9 +25,6 @@ test.describe('LLM Copy Functionality', () => {
     // Navigate to a blog post
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
 
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
-
     // Check that the copy button exists
     const copyButton = page.locator('button[onclick*="copyToClipboard"]');
     await expect(copyButton).toBeVisible();
@@ -61,9 +58,6 @@ test.describe('LLM Copy Functionality', () => {
     // Navigate to a blog post
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
 
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
-
     // Click the copy button
     const copyButton = page.locator('button[onclick*="copyToClipboard"]');
     await copyButton.click();
@@ -89,9 +83,6 @@ test.describe('LLM Copy Functionality', () => {
     // Test on a different blog post
     await page.goto('/blog/2025-05-09-coding-with-copilot/');
 
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
-
     // Click the copy button
     const copyButton = page.locator('button[onclick*="copyToClipboard"]');
     await copyButton.click();
@@ -113,9 +104,6 @@ test.describe('LLM Copy Functionality', () => {
   test('should have markdown content with proper structure', async ({ page }) => {
     // Navigate to a blog post
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
-
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
 
     // Check the markdown content structure
     const markdownContent = page.locator('#llm-markdown-content');
@@ -141,7 +129,6 @@ test.describe('LLM Copy Functionality', () => {
     });
 
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
-    await page.waitForLoadState('networkidle');
 
     await page.locator('button[onclick*="copyToClipboard"]').click();
 
@@ -164,9 +151,6 @@ test.describe('LLM Copy Functionality', () => {
 
     // Navigate to a blog post
     await page.goto('/blog/2025-07-10-genai-for-leaders/');
-
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
 
     const copyButton = page.locator('button[onclick*="copyToClipboard"]');
     await expect(copyButton).toBeVisible();
