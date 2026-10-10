@@ -46,7 +46,7 @@ content-sync scripts — is in [`CLAUDE.md`](./CLAUDE.md).
 ## Quality gates
 
 There is exactly one definition of "the checks": the `verify` script. It runs
-lint, format check, unit tests, a production build, an
+lint, a type-check, format check, unit tests, a production build, an
 [html-validate](https://html-validate.org/) pass over the built pages, and the
 Playwright E2E suite (which includes an
 [axe-core](https://github.com/dequelabs/axe-core) accessibility scan in both the

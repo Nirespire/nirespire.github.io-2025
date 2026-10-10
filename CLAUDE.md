@@ -18,8 +18,9 @@ npm run test:ui      # Playwright with interactive UI
 npm run test:debug   # Playwright in debug mode
 npm run test:setup   # install Playwright browsers + system deps
 npm run test:unit    # Node unit tests (node --test, tests/unit/*.test.js) + native coverage gate (floors in package.json)
-npm run verify       # full CI suite (lint, format check, unit, build, html, E2E) — also pre-push
+npm run verify       # full CI suite (lint, typecheck, format check, unit, build, html, E2E) — also pre-push
 npm run lint         # ESLint (lint:fix to autofix)
+npm run typecheck    # tsc --noEmit (strict) over tests/**/*.ts + playwright.config.ts
 npm run lint:html    # html-validate over _site/**/*.html (requires a build first)
 npm run format       # Prettier write (format:check to verify only)
 ```
@@ -58,7 +59,8 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/assets/css/styles.css` — source CSS
 - `src/assets/js/` — client-side JS: `theme-switcher.js`, `node-graph.js`, `llm-copy.js`, `scroll-to-top.js`, `dev-console.js`, `analytics.js`
 - `scripts/` — Node scripts for GitHub Actions: `fetch-raindrop`, `send-webmentions`, `fetch-webmentions`, `generate-hallucinations`, `capture-previews`, `preview-routes`, `resolve-changed-routes`, `install-git-hooks`, plus `compress-images` / `image-budgets` (image size budgets shared with the unit tests)
-- `tests/` — Playwright E2E specs (`*.spec.ts`) and Node unit tests (`tests/unit/*.test.js`)
+- `tests/` — Playwright E2E specs (`*.spec.ts`, type-checked via `tsconfig.json` — Playwright
+  itself only strips types) and Node unit tests (`tests/unit/*.test.js`)
 - `static/` — passthrough-copied to the site root; holds the `CNAME` for the custom domain
 - `archive/` — frozen legacy pages served as-is (e.g. `archive/wedding/`)
 - `.eleventy.js` — 11ty config (filters, collections, passthrough copy)
@@ -204,7 +206,7 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 
 ## CI / Automation
 
-`npm run verify` runs the full check suite — lint, format check, unit tests,
+`npm run verify` runs the full check suite — lint, typecheck, format check, unit tests,
 production build, HTML validation, and Playwright E2E — in one command. It is the **single
 source of truth** for CI: both the PR workflow and the deploy workflow run it
 (via `.github/actions/setup-and-test`), and the `pre-push` hook
@@ -219,11 +221,12 @@ The hook is enabled automatically on `npm install` (via the `prepare` script,
 which sets `git config core.hooksPath .githooks`). Individual checks:
 
 1. `npm run lint` — ESLint passes with no errors
-2. `npm run format:check` — Prettier format check passes
-3. `npm run test:unit` — Node unit tests pass
-4. `npm run build` — clean build with no errors
-5. `npm run lint:html` — `html-validate` passes on the build output
-6. `npm test` — all Playwright tests pass
+2. `npm run typecheck` — strict `tsc` passes on the Playwright specs and config
+3. `npm run format:check` — Prettier format check passes
+4. `npm run test:unit` — Node unit tests pass
+5. `npm run build` — clean build with no errors
+6. `npm run lint:html` — `html-validate` passes on the build output
+7. `npm test` — all Playwright tests pass
 
 Hook behaviour (details in `.githooks/README.md`): it runs with `CI=true` so
 Playwright applies the same settings as CI (a committed `test.only` fails
