@@ -73,3 +73,25 @@ test('scores are averaged over more than one run', () => {
     'numberOfRuns must be > 1 — single-run scores flake on shared CI runners'
   );
 });
+
+// Accessibility, best-practices and SEO scores are near-deterministic for a
+// static site (each is a pass/fail checklist, not a timing), so they gate the
+// PR. Performance stays a warning: it is timing-based and flakes on shared
+// runners. Like LCP above, a gate added to one assertMatrix entry and not the
+// other silently exempts the URLs only the other matches.
+test('every audited URL hard-fails on accessibility, best-practices and SEO', () => {
+  const matrix = config.ci.assert.assertMatrix;
+  for (const url of urls) {
+    const pathname = new URL(url).pathname;
+    const matching = matrix.filter((entry) =>
+      new RegExp(entry.matchingUrlPattern).test(`http://localhost${pathname}`)
+    );
+    for (const category of ['accessibility', 'best-practices', 'seo']) {
+      const key = `categories:${category}`;
+      assert.ok(
+        matching.some((entry) => entry.assertions[key]?.[0] === 'error'),
+        `${pathname} has no error-level "${key}" assertion — a regression there would pass CI`
+      );
+    }
+  }
+});
