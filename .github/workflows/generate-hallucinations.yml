@@ -8,6 +8,11 @@ on:
     paths:
       - 'src/blog/**'
 
+# Serialise commits to main: overlapping runs would race on the push
+concurrency:
+  group: content-updates
+  cancel-in-progress: false
+
 jobs:
   generate-hallucinations:
     permissions:
