@@ -41,7 +41,10 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
 - `src/` — source files (templates, content, assets)
 - `src/blog/` — markdown blog posts with YAML front matter
 - `src/_includes/layouts/` — Nunjucks layout templates (`base.njk`, `post.njk`)
-- `src/_includes/components/` — reusable Nunjucks components
+- `src/_includes/components/` — reusable Nunjucks components (`webmentions.njk`)
+- `src/_includes/macros/` — Nunjucks macros: `breadcrumbs`, and `editorial_note`
+  (the dated "Editor's note" aside on older posts; import it, then
+  `{% call editorial_note("Month YYYY") %}…{% endcall %}`)
 - `src/_data/` — data files: `raindrop.json`, `webmentions.json` (+ `webmentions.js`), `hallucinations.json`, `quotes.json`, `analytics.js`
 - `src/_lib/filters.js` — pure filter implementations registered in `.eleventy.js`
   (`wordcount`, `readingTime`, `formatDate`, `split`, `jsonString`), kept separate
@@ -117,7 +120,16 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   cost a no-op commit and a redeploy every single day — 51 of the 141 commits
   in the two months before it was fixed. Nothing reads `timestamp`;
   `tests/unit/fetch-webmentions.test.js` guards the invariant.
-- **External links** open in a new tab globally (handled in `base.njk`).
+- **External links** open in a new tab globally (handled in `base.njk`); a
+  hardcoded `target="_blank"` must still set `rel="noopener noreferrer"` itself
+  (`tests/unit/content-guards.test.js`, which also requires `coverImageAlt` on
+  every post that sets `coverImage`).
+- **Comments (giscus)** — `post.njk` embeds `giscus.app/client.js` (GitHub
+  Discussions, mapped by title). The CSP in `base.njk` allows `https://giscus.app`
+  in `script-src`, `style-src` (the client injects its own `default.css`),
+  `connect-src` and `frame-src`; dropping any one breaks comments, and a blocked
+  stylesheet surfaces only as a console error — which Lighthouse best-practices
+  now fails on.
 - **Umami analytics** — privacy-first, cookieless. Gated at build time on
   `UMAMI_WEBSITE_ID` (a GitHub repo *variable*, not a secret — the ID is public):
   `src/_data/analytics.js` returns `{ enabled: false }` when it is unset, so no
@@ -180,8 +192,9 @@ npm run capture-previews       # Render screenshots of changed pages (PR preview
   repo-weight guards (`image-budget`, `file-size-guard`). `lighthouse-config`
   guards `lighthouserc.json` itself: every audited URL still resolves to a source
   file (`staticDistDir` serves a missing one as the 404 page and reports healthy
-  scores), every URL is asserted on LCP and `uses-responsive-images`, and scores
-  are averaged over more than one run. `theme-tokens` fails any `.njk` whose
+  scores), every URL is asserted on LCP and `uses-responsive-images` and
+  hard-fails on accessibility / best-practices / SEO, and scores are averaged
+  over more than one run. `theme-tokens` fails any `.njk` whose
   `class` attribute names a fixed Tailwind palette color (`text-gray-400`,
   `border-gray-200`, …): those stay put while the theme flips, which is how the
   post subtitle and byline shipped at 2.6:1 and 2.85:1. Use the CSS-variable
@@ -230,9 +243,10 @@ Workflows:
 - `.github/workflows/pr-test.yml` — runs `verify` on every PR via the same
   composite action.
 - `.github/workflows/lighthouse.yml` — Lighthouse CI on every PR. Thresholds
-  live in `lighthouserc.json`: resource-weight budgets are hard errors; category
-  scores, LCP and `uses-responsive-images` are warnings (they flake on shared
-  runners). Two traps that let #371 through: an assertion added to one
+  live in `lighthouserc.json`: resource-weight budgets and the accessibility,
+  best-practices and SEO scores (checklists, so near-deterministic) are hard
+  errors; the performance score, LCP and `uses-responsive-images` are warnings
+  (they are timing-based and flake on shared runners). Two traps that let #371 through: an assertion added to one
   assert-matrix entry and not the other silently exempts the URLs the other
   matches — `/blog/` had no LCP assertion at all; and `maxNumericValue` on an
   opportunity audit such as `uses-responsive-images` is **estimated millisecond
