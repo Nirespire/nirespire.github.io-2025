@@ -12,6 +12,11 @@ updates:
         dependency-type: "development"
       production-dependencies:
         dependency-type: "production"
+    # typescript 7 breaks `npm ci` (ERESOLVE): typescript-eslint's peer range
+    # is `typescript <6.1.0`. Drop this once typescript-eslint supports TS 7.
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
