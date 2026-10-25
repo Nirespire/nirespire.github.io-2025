@@ -1,16 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Home page', () => {
-  // One test per link, each on a fresh page. Reusing a single page
-  // (click → navigate → goto('/') → click) hangs WebKit 27.2 (Playwright
-  // 1.64) on the second click: the actionability "stable" check never
-  // completes, deterministically, while Chromium and Firefox pass.
+  // Navigating away from the homepage by click while the node-graph rAF loop
+  // runs wedges WebKit 27.2 (Playwright 1.64): whatever comes next — the next
+  // click's "stable" check, or the next test's page setup — hangs until the
+  // timeout. Reduced motion keeps the graph to a static frame, the same
+  // trick node-graph.spec.ts uses for its Blog click. One test per link so a
+  // failure names the link.
   const links = [
     { text: 'Blog', href: '/blog/' },
     { text: 'About', href: '/about/' },
   ];
   for (const link of links) {
     test(`should have a working ${link.text} navigation link`, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto('/');
 
       const nav = page.locator('nav');
