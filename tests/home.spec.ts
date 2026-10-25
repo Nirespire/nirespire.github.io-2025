@@ -1,26 +1,27 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Home page', () => {
-  test('should have working navigation links', async ({ page }) => {
-    await page.goto('/');
+  // One test per link, each on a fresh page. Reusing a single page
+  // (click → navigate → goto('/') → click) hangs WebKit 27.2 (Playwright
+  // 1.64) on the second click: the actionability "stable" check never
+  // completes, deterministically, while Chromium and Firefox pass.
+  const links = [
+    { text: 'Blog', href: '/blog/' },
+    { text: 'About', href: '/about/' },
+  ];
+  for (const link of links) {
+    test(`should have a working ${link.text} navigation link`, async ({ page }) => {
+      await page.goto('/');
 
-    // Test navigation links
-    const nav = await page.locator('nav');
-    await expect(nav).toBeVisible();
+      const nav = page.locator('nav');
+      await expect(nav).toBeVisible();
 
-    // Check main nav links
-    const links = [
-      { text: 'Blog', href: '/blog/' },
-      { text: 'About', href: '/about/' },
-    ];
-    for (const link of links) {
       const navLink = nav.getByRole('link', { name: link.text });
       await expect(navLink).toBeVisible();
       await navLink.click();
       await expect(page).toHaveURL(link.href);
-      await page.goto('/'); // Go back to home
-    }
-  });
+    });
+  }
 
   test('should display latest blog post', async ({ page }) => {
     await page.goto('/');
