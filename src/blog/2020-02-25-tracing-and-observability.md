@@ -8,13 +8,18 @@ coverImageAlt: "Photo by Denys Nevozhai on Unsplash"
 tags: ["microservices", "observability", "software engineering"]
 ---
 
+{% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("October 2026") %}
+<p>When I wrote this, OpenTracing was the standard to follow. It has since been archived and merged with OpenCensus into <a href="https://opentelemetry.io/">OpenTelemetry</a>, which is now the vendor-neutral standard for traces, metrics, and logs. The tracing concepts below (traces, spans, and observers) carry over directly, and the references to OpenTracing have been updated to OpenTelemetry.</p>
+{% endcall %}
+
 Think back to the last time you checked the tracking information for a package you were expecting to receive. You might have followed a link in your email that gave you a breakdown of where and when your package was received and shipped out of various locations. You could make a mental map of what shipping facilities passed through around the world it and how long it spent there and on the road. From that information, you probably got a sense of what kind of journey your package took and why it took as long as it did to get to your doorstep.
 
 We can take this principle of tracking the path of a package across various stops and apply it to the flow of information between software systems. In the current paradigm of distributed microservices, where a simple request to load a webpage might bounce between a dozen different applications, it becomes valuable to **observe** or **trace** the path of data requests across applications and networks.
 
 ### Client-Server Example
 
-I like to bring the concept of open tracing down to the level of two applications in a client-server model. We can take the concepts here and expand on them to apply to any number of applications orchestrated together.
+I like to bring the concept of distributed tracing down to the level of two applications in a client-server model. We can take the concepts here and expand on them to apply to any number of applications orchestrated together.
 
 Say, for example, we have a simple web server application that receives a request at the endpoint /hello and sends back a static string of text "hello" back to the client.
 
@@ -128,16 +133,16 @@ We could extend the granularity of the spans further by including details about 
 
 ### Out of the Example and Into the Real World
 
-The above concepts are simplified versions of terms and constructs formalized in the [Opentracing Specification](https://opentelemetry.io/) for microservices and distributed applications.
+The above concepts are simplified versions of terms and constructs formalized in the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/) (the successor to OpenTracing) for microservices and distributed applications.
 
-There are many opensource libraries and software that implement the Opentracing specification. You can integrate these into your own applications to gain powerful insights into the interactions of your microservices.
+There are many opensource libraries and software that implement the OpenTelemetry specification. You can integrate these into your own applications to gain powerful insights into the interactions of your microservices.
 
-Once your application can communicate via Opentracing, you still need an Observer to record all the events being emitted from the applications. There are many systems that implementing the Opentracing spec. Zipkin is one of these popular distributed tracing systems that you can install and run yourself. It plays the part of the Observer from our examples and consumes tracing data from applications that adhere to the Opentracing standard to provide interactive visuals of your application traces.
+Once your application can communicate via OpenTelemetry, you still need an Observer to record all the events being emitted from the applications. There are many systems that support OpenTelemetry-formatted tracing data. Zipkin is one of these popular distributed tracing systems that you can install and run yourself. It plays the part of the Observer from our examples and consumes tracing data from applications that adhere to the OpenTelemetry standard to provide interactive visuals of your application traces.
 
 ![Source: https://zipkin.io/public/img/web-screenshot.png](/assets/images/blog/2020-02-25-tracing-and-observability/0xp7vUaXbA6c6ak0uX.png)
 
-If you're like more information about Opentracing, you can check out their [website](https://opentelemetry.io/) which has specification docs as well as guides to get started with Opentracing.
+If you're like more information about OpenTelemetry, you can check out their [website](https://opentelemetry.io/) which has specification docs as well as guides to get started with OpenTelemetry.
 
 You can also play around with [zipkin](https://zipkin.io/pages/quickstart.html) which has library support for [pretty much any programming language](https://zipkin.io/pages/tracers_instrumentation.html) you're probably thinking of using.
 
-Let me know your thoughts about this article or Opentracing in general over on [X](https://x.com/Nirespire).
+Let me know your thoughts about this article or OpenTelemetry in general over on [X](https://x.com/Nirespire).
