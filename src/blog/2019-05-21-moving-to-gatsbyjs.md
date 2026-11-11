@@ -17,6 +17,10 @@ tags: ["web development", "gatsbyjs", "react", "javascript", "software engineeri
 <p>Two external links in this post have been updated to their current canonical URLs: GitHub's documentation site moved from <code>help.github.com</code> to <a href="https://docs.github.com/">docs.github.com</a>, and Gatsby's main domain switched from <code>gatsbyjs.org</code> to <a href="https://www.gatsbyjs.com/">gatsbyjs.com</a> when Gatsby Cloud launched.</p>
 {% endcall %}
 
+{% call editorial_note("November 2026") %}
+<p>The closing lines below, about improving the site with Gatsby's plugins and "upcoming additions", were written in 2019 and describe plans for a stack this site no longer uses. Treat them as historical, not as a roadmap.</p>
+{% endcall %}
+
 There are lots of tools to build websites freely available to download and use online. You might want to go at it with just plain HTML, CSS, and some JavaScript. This is how I built my first personal website and unless you're trying to get fancy with frontend features or content, this might have worked well for you.
 
 Overtime, I got the itch to move my website development to something a little more robust in terms of tooling. Not so much because the content there was complex enough to merit a full-fledged frontend framework, but more so I could have a place to practice my web development skills with some modern frameworks, tools, and abstractions. The web development landscape moves so fast, I wanted to make sure I had my own sandbox to experiment and learn easily.

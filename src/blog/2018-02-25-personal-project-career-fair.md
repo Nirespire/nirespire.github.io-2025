@@ -6,10 +6,13 @@ tags: ["career", "software engineering", "projects", "students"]
 ---
 
 {% from "macros/editorial-note.njk" import editorial_note %}
+{% call editorial_note("November 2026") %}
+<p>This post was written in 2018. Where it says I do a lot of recruiting for my job, that describes my role at the time and not my current one.</p>
+{% endcall %}
 
 *Disclaimer: This article is aimed at **beginners** to software development or those looking to enhance their personal project experience.*
 
-I do a lot of recruiting for my job, mainly for entry level or interns for software engineering. A common question I always get asked about this from prospective new hires is: "How do I stand out?" The answer for me is simple. Have experience building software and be able to confidently and intelligently talk about it.
+At the time of writing, I did a lot of recruiting for my job, mainly for entry level or interns for software engineering. A common question I always get asked about this from prospective new hires is: "How do I stand out?" The answer for me is simple. Have experience building software and be able to confidently and intelligently talk about it.
 
 I think personal projects are a great way that any beginner with a computer and an internet connection can get relevant software experience while building something cool in the process. I always say that all the necessary knowledge to qualify for an entry level developer position is freely available online. I see far too many people I interview who flat out tell me they have no project experience to speak to or they have a hard time coming up with ideas for personal projects to work on.
 
